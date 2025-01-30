@@ -89,7 +89,7 @@
 </script>
 
 <template>
-<svg width="1366" height="768" viewBox="0 0 1440 1068" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg viewBox="0 0 1440 1068" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <g id="Home [Auto Layout]" clip-path="url(#clip0_305_510)">
     
 <rect width="1440" height="1068" fill="#FFFEF6"/>

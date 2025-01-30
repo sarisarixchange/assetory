@@ -27,3 +27,9 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Deply in GH-Pages
+
+```sh
+npm run deploy
+```

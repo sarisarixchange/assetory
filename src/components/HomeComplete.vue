@@ -1,6 +1,8 @@
 
 <style>
 
+
+
 .about-node {
     background:#FCFCCE;
     cursor:pointer;
@@ -74,24 +76,40 @@
                         "model16.png",
                         "vaseserena.png"
                     ],
-                    currentIndex: 0
+                    currentIndex: 0, 
+                    svgWidth: window.innerWidth,  // Start with the current screen width
+            svgHeight: window.innerHeight // Start with the current screen height
                 };
             },
+            
             methods: {
                 nextImage() {
                     this.currentIndex = (this.currentIndex + 1) % this.images.length;
                 },
                 prevImage() {
                     this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
+                }, 
+
+                updateSize() {
+            this.svgWidth = window.innerWidth;
+            this.svgHeight = window.innerHeight;
+        }
+    },
+
+                mounted() {
+                    window.addEventListener("resize", this.updateSize);
+                },
+
+                beforeUnmount() {
+                    window.removeEventListener("resize", this.updateSize);
                 }
-            }
- }
+            };
+ 
 </script>
 
 <template>
-<svg viewBox="0 0 1440 1068" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="Home [Auto Layout]" clip-path="url(#clip0_305_510)">
-    
+<svg  :width="svgWidth" :height="svgHeight" viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Home [Auto Layout]" clip-path="url(#clip0_305_510)">  
 <rect width="1440" height="1068" fill="#FFFEF6"/>
 <g id="Frame 27" clip-path="url(#clip1_305_510)">
 <g id="XYZ Graph Main" opacity="0.6">

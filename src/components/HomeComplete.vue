@@ -227,8 +227,8 @@ svg {
 
 <template>
 <!-- <svg  :width="svgWidth" :height="svgHeight" viewBox="0 0 1440 1068" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
-    <!-- <svg viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">  -->
-        <svg  :width="svgWidth" :height="svgHeight" viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- <svg  :width="svgWidth" :height="svgHeight" viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
+<svg viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
     
 <g id="Home [Auto Layout]" clip-path="url(#clip0_305_510)">  
 <rect width="1440" height="1068" fill="#FFFEF6"/>

@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview", 
-    "deploy": "npm run build && gh-pages -d dist"
+    // "deploy": "npm run build && gh-pages -d dist"
+    "deploy-old": "REPO=sari-sari-website npm run build && gh-pages -d dist -b gh-pages -r https://github.com/your-username/sari-sari-website.git",
+    "deploy-new": "REPO=sari-sari-website-tests npm run build && gh-pages -d dist -b gh-pages -r https://github.com/your-username/new-repo-name.git"
+  
 
   },
   "dependencies": {

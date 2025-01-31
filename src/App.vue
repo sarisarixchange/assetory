@@ -1,5 +1,7 @@
 <template>
-   <home-complete/>
+   <!-- <home-complete-two/> -->
+
+<home-complete/>
     <!-- <xyz-graph />
     <connectors-right />
     <home-menu />

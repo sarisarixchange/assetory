@@ -11,13 +11,32 @@ body  {
     display: none;
 } 
 
+.svg-text {
+    font-stretch: 0%;
+    font-size: 1em;
+  white-space: nowrap; /* Prevents text wrapping */
+}
 
+.svg-container {
+  width: 100%; /* Makes sure the container does not stretch */
+  height: 100%; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background-color: red;
+}
 
 svg {
         display: block;
         margin: auto;
         width:100%;
        }
+
+.thinned {
+  vector-effect: non-scaling-stroke;
+  font-size: 24px;
+  font-stretch: 200%;
+}
 
 @keyframes marquee {
     0% { transform: translateX(-50%); }  /* Start centered */
@@ -61,6 +80,11 @@ svg {
 }
 
 
+.accessibilityIconIdle{
+    vector-effect: non-scaling-stroke;
+ 
+
+}
 
 
                
@@ -101,9 +125,28 @@ svg {
                     collectionsNodeShadow:"#F1AFDD", 
                     eventsNodeShadow:"#F1AFDD", 
 
-                    fontSize:"1vh"
+                    fontSize:"24px", 
+                    viewBoxWidth: 1440,  // Replace with your actual SVG viewBox width
+                    viewBoxHeight: 1068,
                 };
             },
+
+            computed: {
+    scaleFactors() {
+        const scaleX = this.svgWidth / this.viewBoxWidth;
+        const scaleY = this.svgHeight / this.viewBoxHeight;
+        // Instead of using the minimum scale, let's try using scaleX 
+        // since we primarily want to fix horizontal stretching
+        return {
+            x: scaleX,
+            y: scaleY,
+            // Adding a slightly larger scale to make text more visible
+            // uniform: scaleX * 1.5  // Adjust this multiplier as needed
+            uniform: scaleY * 1.5  // Adjust this multiplier as needed
+
+        };
+    }
+},
             
             methods: {
 
@@ -118,7 +161,7 @@ svg {
                     this.currentIndex = (this.currentIndex - 1 + this.images.length) % this.images.length;
                 }, 
 
-                updateSize() {
+            updateSize() {
             this.svgWidth = window.innerWidth;
             this.svgHeight = window.innerHeight;
         }, 
@@ -169,10 +212,6 @@ svg {
             this.openEventsFill ="#FFEDF4"
             this.eventsNodeShadow="#FFEDF4"
         }, 
-
-
-
-
     },
 
                 mounted() {
@@ -189,7 +228,8 @@ svg {
 <template>
 <!-- <svg  :width="svgWidth" :height="svgHeight" viewBox="0 0 1440 1068" preserveAspectRatio="xMidYMid meet" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
 <!-- <svg  :width="svgWidth" :height="svgHeight" viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> -->
-<svg viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
+    <svg viewBox="0 0 1440 1068" preserveAspectRatio="none" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"> 
+    
 <g id="Home [Auto Layout]" clip-path="url(#clip0_305_510)">  
 <rect width="1440" height="1068" fill="#FFFEF6"/>
 <g id="Frame 27" clip-path="url(#clip1_305_510)">
@@ -254,7 +294,7 @@ svg {
 </g>
 <g id="Menu [Home]">
 <rect id="Border" x="0.5" y="-0.5" width="1408" height="76" rx="29.5" transform="matrix(1 0 0 -1 15.5 90)" fill="#FFFEF6" stroke="#D400A6"/>
-<g id="Accessibility Icon Idle" v-on:click="openAccessibilityTools">
+<g id="accessibilityIconIdle" v-on:click="openAccessibilityTools">
 <g id="Outline">
 <rect id="Rectangle 2" x="1358" y="35.5" width="49" height="34" rx="15.5" fill="#FFFEF6" stroke="#F1AFDD"/>
 </g>
@@ -319,6 +359,26 @@ svg {
 <path id="* (Stroke)_5" fill-rule="evenodd" clip-rule="evenodd" d="M549.626 147.136H547.662V151.41C547.662 152.195 547.139 152.718 546.353 152.718H545.699C544.914 152.718 544.39 152.195 544.39 151.41V147.136H542.383V149.316C542.383 150.101 541.86 150.625 541.074 150.625H540.42C539.634 150.625 539.111 150.101 539.111 149.316V148.444C539.111 147.659 539.634 147.136 540.42 147.136H541.074C541.34 147.136 541.576 147.075 541.772 146.965C541.958 146.861 542.108 146.711 542.213 146.525C542.323 146.329 542.383 146.093 542.383 145.827V145.173C542.383 144.907 542.323 144.671 542.213 144.475C542.108 144.289 541.958 144.139 541.772 144.035C541.576 143.925 541.34 143.864 541.074 143.864H540.42C539.634 143.864 539.111 143.341 539.111 142.556V141.684C539.111 140.899 539.634 140.375 540.42 140.375H541.074C541.86 140.375 542.383 140.899 542.383 141.684V143.864H544.39V139.59C544.39 138.805 544.914 138.282 545.699 138.282H546.353C547.139 138.282 547.662 138.805 547.662 139.59V143.864H549.626V141.684C549.626 140.899 550.149 140.375 550.935 140.375H551.633C552.418 140.375 552.942 140.899 552.942 141.684V142.556C552.942 143.341 552.418 143.864 551.633 143.864H550.935C550.669 143.864 550.432 143.925 550.237 144.035C550.05 144.139 549.901 144.289 549.796 144.475C549.686 144.671 549.626 144.907 549.626 145.173V145.827C549.626 146.093 549.686 146.329 549.796 146.525C549.901 146.711 550.05 146.861 550.237 146.965C550.432 147.075 550.669 147.136 550.935 147.136H551.633C552.418 147.136 552.942 147.659 552.942 148.444V149.316C552.942 150.101 552.418 150.625 551.633 150.625H550.935C550.149 150.625 549.626 150.101 549.626 149.316V147.136ZM549.015 147.746H548.273V151.41C548.273 151.941 548.093 152.431 547.734 152.79C547.375 153.149 546.885 153.329 546.353 153.329H545.699C545.168 153.329 544.677 153.149 544.318 152.79C543.959 152.431 543.779 151.941 543.779 151.41V147.746H542.994V149.316C542.994 149.848 542.814 150.338 542.455 150.697C542.096 151.056 541.606 151.235 541.074 151.235H540.42C539.888 151.235 539.398 151.056 539.039 150.697C538.68 150.338 538.5 149.848 538.5 149.316V148.444C538.5 147.913 538.68 147.423 539.039 147.064C539.398 146.705 539.888 146.525 540.42 146.525H541.074C541.328 146.525 541.492 146.443 541.591 146.344C541.69 146.245 541.772 146.081 541.772 145.827V145.173C541.772 144.919 541.69 144.755 541.591 144.656C541.492 144.557 541.328 144.475 541.074 144.475H540.42C539.888 144.475 539.398 144.295 539.039 143.936C538.68 143.577 538.5 143.087 538.5 142.556V141.684C538.5 141.152 538.68 140.662 539.039 140.303C539.398 139.944 539.888 139.765 540.42 139.765H541.074C541.606 139.765 542.096 139.944 542.455 140.303C542.814 140.662 542.994 141.152 542.994 141.684V143.254H543.779V139.59C543.779 139.059 543.959 138.569 544.318 138.21C544.677 137.851 545.168 137.671 545.699 137.671H546.353C546.885 137.671 547.375 137.851 547.734 138.21C548.093 138.569 548.273 139.059 548.273 139.59V143.254H549.015V141.684C549.015 141.152 549.195 140.662 549.554 140.303C549.913 139.944 550.403 139.765 550.935 139.765H551.633C552.164 139.765 552.655 139.944 553.014 140.303C553.373 140.662 553.553 141.152 553.553 141.684V142.556C553.553 143.087 553.373 143.577 553.014 143.936C552.655 144.295 552.164 144.475 551.633 144.475H550.935C550.681 144.475 550.517 144.557 550.418 144.656C550.319 144.755 550.237 144.919 550.237 145.173V145.827C550.237 146.081 550.319 146.245 550.418 146.344C550.517 146.443 550.681 146.525 550.935 146.525H551.633C552.164 146.525 552.655 146.705 553.014 147.064C553.373 147.423 553.553 147.913 553.553 148.444V149.316C553.553 149.848 553.373 150.338 553.014 150.697C552.655 151.056 552.164 151.235 551.633 151.235H550.935C550.403 151.235 549.913 151.056 549.554 150.697C549.195 150.338 549.015 149.848 549.015 149.316V147.746Z" fill="#FFFEF6"/>
 </g>
 <text id="Artists" fill="#FFFEF6" xml:space="preserve" style="white-space: pre" font-family="Doto" :font-size="fontSize" letter-spacing="-0.01em" font-weight="900"><tspan x="561.552" y="153.8">Artists</tspan></text>
+<!-- 
+<g :transform="'scale(' + scaleFactors.uniform + ',' + scaleFactors.uniform + ')'">
+  <text 
+    id="Artists" 
+    fill="#FFFEF6" 
+    xml:space="preserve" 
+    style="white-space: pre" 
+    font-family="Doto" 
+    :font-size="fontSize"
+    letter-spacing="-0.01em"
+    font-weight="900"
+  >
+    <tspan 
+      :x="561.552 / scaleFactors.uniform" 
+      :y="153.8 / scaleFactors.uniform"
+    >Artists</tspan>
+  </text>
+</g> -->
+
+
 </g>
 <g id="Frame 29_2">
 <rect x="530.5" y="170" width="378" height="35" rx="8" fill="#FFEDF4"/>
@@ -594,6 +654,7 @@ svg {
 </defs>
 </g>
 <!-- accessibility tools end here -->
+
 
 <!-- defs -->
 <defs>

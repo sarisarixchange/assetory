@@ -6,6 +6,8 @@ import XYZGraph from './components/XYZGraph.vue'
 import ConnectorsRight from './components/ConnectorsRight.vue'
 import Frame26 from './components/Frame26.vue'
 import HomeComplete from './components/HomeComplete.vue'
+// import HomeCompleteTwo from './components/HomeCompleteTwo.vue'
+
 
 const app = createApp(App)
 // app.component('home-menu', HomeMenu)
@@ -13,5 +15,6 @@ const app = createApp(App)
 // app.component('connectors-right', ConnectorsRight)
 // app.component('frame-twentysix', Frame26)
 app.component('home-complete', HomeComplete)
+// app.component('home-complete-two', HomeCompleteTwo)
 
 app.mount('#app')

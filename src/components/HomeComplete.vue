@@ -538,7 +538,7 @@ svg {
 
 <!-- accessibility tools -->
 <!-- <svg width="344" height="401" viewBox="0 0 344 401" transform="translate(11 45.5)" fill="none" xmlns="http://www.w3.org/2000/svg"> -->
-<g v-show="accessibilityToolsVisibility" transform="translate(1110, 98)">
+<g v-show="accessibilityToolsVisibility" transform="translate(1083, 98)">
 <g filter="url(#filter0_d_332_346)">
 <path d="M14 16C14 7.71572 20.7157 1 29 1H324C332.284 1 339 7.71573 339 16V387C339 389.761 336.761 392 334 392H19C16.2386 392 14 389.761 14 387V16Z" fill="#FFFEF6" shape-rendering="crispEdges"/>
 <path d="M14 16C14 7.71572 20.7157 1 29 1H324C332.284 1 339 7.71573 339 16V387C339 389.761 336.761 392 334 392H19C16.2386 392 14 389.761 14 387V16Z" stroke="#D400A6" shape-rendering="crispEdges"/>

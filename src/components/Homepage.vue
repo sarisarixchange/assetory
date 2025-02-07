@@ -5,9 +5,31 @@
             zoomLevel: 1, // Initial zoom level
             isMenuVisible: false,
             fontSize: 1, // Default scale (1 = 100%)
-            currentClass: "defaultColorPalette"
-                }
-    }, 
+            currentHeaderColorPalette: 'headerDefaultColorPalette',
+            currentLogoColorPalette: 'logoDefaultColorPalette',
+            currentNavButtonColorPalette: 'navButtonDefaultColorPalette',
+            currentNavAccessibiltyButtonColorPalette: 'navAccessibilityButtonDefaultColorPalette',
+            currentaccessibilityButtonDivColorPalette: 'accessibilityButtonDivDefaultColorPalette',
+            currentaccessiblityToolsHeadingColorPalette: 'accessiblityToolsHeadingDefaultColorPalette', 
+            currentIncreaseTextIcon: 'increaseTextIcon', 
+            currentDecreaseTextIcon: 'decreaseTextIcon', 
+            currentGrayScaleIcon: 'grayScaleIcon', 
+            currentHightContrastIcon: 'hightContrastIcon', 
+            currentLinksUnderLineIcon: 'linksUnderLineIcon', 
+            currentReadableFontIcon: 'readableFontIcon', 
+            currentWcagColoursIcon: 'wcagColoursIcon', 
+            currentResetIcon: 'resetIcon', 
+            // leftbox
+            isPinkCardIconVisible: true,
+            isGrayCardIconVisible: false,
+            currentLeftBoxGrayscale: 'left-box',
+            currentLeftBoxHeadingGrayscale: 'left-box-heading', 
+            currentLeftBoxParagraphGrayscale: 'left-box-paragraph',
+            currentLeftBoxActionCallGrayscale: 'left-box-action-call',
+           
+                
+    } 
+  },
 
     methods: {
 
@@ -53,12 +75,54 @@
           resetTextSize() {
             this.fontSize = 1;
             document.body.style.fontSize = ""; // Resets to default
+
+            this.currentHeaderColorPalette = 'headerDefaultColorPalette'
+            this.currentLogoColorPalette = 'logoDefaultColorPalette'
+            this.currentNavButtonColorPalette =  'navButtonDefaultColorPalette'
+            this.currentNavAccessibiltyButtonColorPalette = 'navAccessibilityButtonDefaultColorPalette'
+            this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivDefaultColorPalette'
+            this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingDefaultColorPalette'
+            this.currentIncreaseTextIcon = 'increaseTextIcon'
+            this.currentDecreaseTextIcon = 'decreaseTextIcon'
+            this.currentGrayScaleIcon = 'grayScaleIcon'
+            this.currentHightContrastIcon = 'hightContrastIcon' 
+            this.currentLinksUnderLineIcon = 'linksUnderLineIcon'
+            this.currentReadableFontIcon = 'readableFontIcon' 
+            this.currentWcagColoursIcon = 'wcagColoursIcon'
+            this.currentResetIcon = 'resetIcon'
+            // leftbox
+            this.isPinkCardIconVisible = true
+            this.isGrayCardIconVisible = false
+            this.currentLeftBoxGrayscale = 'left-box'
+            this.currentLeftBoxHeadingGrayscale = 'left-box-heading' 
+            this.currentLeftBoxParagraphGrayscale = 'left-box-paragraph'
+            this.currentLeftBoxActionCallGrayscale = 'left-box-action-call'
         }, 
 
         changeTograyscale(){
-          this.currentClass = "grayscaleColorPalette"
-          
-        
+          this.currentNavButtonColorPalette = "navButtonGrayscale"
+          this.currentNavAccessibiltyButtonColorPalette = "navAccessibilityButtonGrayscaleColorPalette"
+          this.currentHeaderColorPalette = "headerGrayscaleColorPalette"
+          this.currentLogoColorPalette = "logoGrayscaleColorPalette"
+          this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivGrayscaleColorPalette'
+          this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingGrayscaleColorPalette'
+          // acc menu icons
+          this.currentIncreaseTextIcon = 'increaseTextIconGray'
+            this.currentDecreaseTextIcon = 'decreaseTextIconGray'
+            this.currentGrayScaleIcon = 'grayScaleIconGray'
+            this.currentHightContrastIcon = 'hightContrastIconGray'
+            this.currentLinksUnderLineIcon = 'linksUnderLineIconGray'
+            this.currentReadableFontIcon = 'readableFontIconGray'
+            this.currentWcagColoursIcon = 'wcagColoursIconGray'
+            this.currentResetIcon = 'resetIconGray'    
+            
+            // left box
+            this.isPinkCardIconVisible = false
+            this.isGrayCardIconVisible = true
+            this.currentLeftBoxGrayscale = 'left-box-grayscale'
+            this.currentLeftBoxHeadingGrayscale = 'left-box-heading-grayscale'
+            this.currentLeftBoxParagraphGrayscale = 'left-box-paragraph-grayscale'
+            this.currentLeftBoxActionCallGrayscale = 'left-box-action-call-grayscale'
         }
 
     }, 
@@ -102,7 +166,7 @@
         border-bottom: 1px solid #eee;
         background-color: white;
         border: solid 1px #D400A6;
-        border-radius: 23px;
+        border-radius: 17px;
       }
 
       .logo-section {
@@ -112,8 +176,8 @@
       }
 
       .logo {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         background-image: url('/logo.svg'); 
         background-size: contain;
         background-repeat: no-repeat;    
@@ -144,7 +208,7 @@
         background: none;
         color: #D400A6;
         border-radius: 20px;
-        font-size: 0.60em;
+        font-size: 0.65em;
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.2s;
@@ -282,8 +346,8 @@
   background-color: white;
   border-radius: 10px;
   position: absolute;
-  right: 1vw;
-  top: 11vh;
+  right: 0.5vw;
+  top: 7vh;
   width: 20vw;
   /* height: 10vh; */
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -294,7 +358,7 @@
         padding: 1em;
         border-radius: 10px;
         margin-bottom: 0.25em;
-        background-color: #D400A6;
+        /* background-color: #D400A6; */
         color: white;
         font-size: 0.75em;
         font-family: Doto;
@@ -306,7 +370,7 @@
 .dropdown-content p {
   border-radius: 5px;
   margin-bottom: 0.125em;
-  color: #D400A6;
+  /* color: #D400A6; */
   font-family: 'Inter', sans-serif;
   padding: 0.4em;
   text-decoration: none;
@@ -318,20 +382,22 @@
 
 .accessibilityButtonDiv {
   display: flex;
-  background-image: url("/accessibilityUnionNonHover.svg");
+  /* background-image: url("/accessibilityUnionNonHover.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: center; */
+  background-color: #FFEDF4;
+
   
 }
 
 
 .accessibilityButtonDiv:hover {
-  background-image: url("/accessibilityUnionHover.svg");
+  /* background-image: url("/accessibilityUnionHover.svg");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
-  
+  background-position: center; */
+  background-color: #D400A6;
 }
 
 .accessibilityButtonDiv:hover p{
@@ -347,6 +413,15 @@
   margin-right: 0.10em;
 }
 
+.increaseTextIconGray{
+  width: 1em;
+  background-image: url("/IncreaseTextIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
 .decreaseTextIcon{
   width: 1em;
   background-image: url("/decreaseTextIconPink.svg");
@@ -354,7 +429,15 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+.decreaseTextIconGray{
+  width: 1em;
+  background-image: url("/decreaseTextIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .grayscaleIcon{
@@ -364,7 +447,15 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+.grayscaleIconGray{
+  width: 1em;
+  background-image: url("/grayscaleIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .highContrastIcon{
@@ -374,7 +465,15 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+.highContrastIconGray{
+  width: 1em;
+  background-image: url("/highContrastIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .linksUnderlineIcon{
@@ -384,7 +483,15 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+.linksUnderlineIconGray{
+  width: 1em;
+  background-image: url("/linksUnderlineIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .readableFontIcon {
@@ -394,7 +501,15 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+.readableFontIconGray {
+  width: 1em;
+  background-image: url("/readableFontIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .wcagColoursIcon {
@@ -404,7 +519,15 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+.wcagColoursIconGray {
+  width: 1em;
+  background-image: url("/wcagColorsIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .resetIcon {
@@ -414,7 +537,16 @@
   background-size: contain;
   background-position: center;
   margin-right: 0.10em;
+}
 
+
+.resetIconGray {
+  width: 1em;
+  background-image: url("/resetIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
 }
 
 .accessibilityButtonDiv:hover .increaseTextIcon{
@@ -494,16 +626,16 @@
 .left-box-paragraph{
   border-radius: 8px;
   background-color: #FCFCCE;
-  color: #D400A6;
-  
+  color: #D400A6;  
   margin-bottom: 0.35em;
 }
 
 .left-box-paragraph p {
   padding: 0.75em;
   font-family: 'Inter', sans-serif;
-  font-size: 0.70em;
+  font-size: 0.7em;
   font-weight: 350;
+  min-height:  16vh;
 }
 
 .left-box-action-call{
@@ -513,17 +645,19 @@
   color: #D400A6;
   font-weight: 900;
   font-size: 0.8em;
-  background-image: url("/learnMoreUnionLightYellow.svg");
+  background-color: #FCFCCE;
+  /* background-image: url("/learnMoreUnionLightYellow.svg");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  background-position: center; */
 }
 
 .left-box-action-call:hover {
-  background-image: url("/learnMoreUnionYellow.svg");
+  /* background-image: url("/learnMoreUnionYellow.svg");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  background-position: center; */
+  background-color: #E7EB17;
 }
 
 .call-action{
@@ -571,7 +705,7 @@ width:90%;
 .other-box-photos {
     display: block;  /* Ensures it behaves like a normal div */
     width: 100%;
-    min-height: 17vh;
+    min-height: 16vh;
     border-radius: 8px;
     background-color: #FFEDF4;
     margin-bottom: 0.35em;
@@ -589,17 +723,19 @@ width:90%;
   color: #D400A6;
   font-weight: 900;
   font-size: 0.8em;
-  background-image: url("/unionCallToActionOtherBoxesLightPink.svg");
+  /* background-image: url("/unionCallToActionOtherBoxesLightPink.svg");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  background-position: center; */
+  background-color: #FFEDF4;
 }
 
 .other-box-action-call:hover {
-  background-image: url("/unionCallToActionOtherBoxesPink.svg");
+  /* background-image: url("/unionCallToActionOtherBoxesPink.svg");
   background-repeat: no-repeat;
   background-size: 100%;
-  background-position: center;
+  background-position: center; */
+  background-color: #D400A6;
 }
 
 .other-call-action{
@@ -648,73 +784,236 @@ color:white
       
       }
 
-    .defaultColorPalette {
+      /* defaultscale */
+
+    .headerDefaultColorPalette {
+      border-color: #D400A6;
+    }
+
+    .logo {
+        background-image: url('/logo.svg'); 
+        background-size: contain;
+        background-repeat: no-repeat;    
+      }
+
+    
+
+      .navButtonDefaultColorPalette {
+        color: #D400A6;
+        border-color: #D400A6;
+      }
+
+      .navButtonDefaultColorPalette:hover {
+        background-color: #D400A6
+      }
+
+      .navAccessibilityButtonDefaultColorPalette {
+        border-color: #D400A6;
+      background-image: url('/person.svg'); 
+      background-size: contain;
+      background-repeat: no-repeat;    
+      background-position: center;
+      }
+
+    .navAccessibilityButtonDefaultColorPalette:hover {
+      background-image: url('/personIconWhite.svg'); 
+      background-size: contain;
+      background-repeat: no-repeat;    
+      background-position: center;
+    }
+
+
+    .accessibilityButtonDivDefaultColorPalette  {
+        background-color: #FFEDF4 ;
+        color: #D400A6;
+      }
+
+      .accessibilityButtonDivDefaultColorPalette:hover  {
+        background-color: #D400A6;
+        color: white;
+      }
+
+      .accessiblityToolsHeadingDefaultColorPalette {
+        background-color: #D400A6;
+        color: white;
+      }
+
+      /* default left card colors */
+      .left-box-heading{
+      background-color: #E7EB17;
+      color: #D400A6;
+      }
+
+
+
+.left-box-paragraph{
+  background-color: #FCFCCE;
+  color: #D400A6;  
+
+}
+
+/* .left-box-paragraph p {
+  
+} */
+
+.left-box-action-call{
+  color: #D400A6;
+  background-color: #FCFCCE;
+
+}
+
+.left-box-action-call:hover {
+  background-color: #E7EB17;
+}
+
+
+
+
+    /* grayscale */
+
+    .headerGrayscaleColorPalette {
+      border-color: #3E3E3E;
+    }
+
+    .logoGrayscaleColorPalette {
+        background-image: url('/logoGray.svg'); 
+        background-size: contain;
+        background-repeat: no-repeat;    
+      }
+
+      .navButtonGrayscale {
+        border-color: #3E3E3E;
+        color: #3E3E3E;
+      }
+     
+      .navButtonGrayscale:hover{
+      background-color: #3E3E3E
+      }
+      
+
+      .navAccessibilityButtonGrayscaleColorPalette {
+      border-color: #3E3E3E;
+      background-image: url('/personGray.svg'); 
+      background-size: contain;
+      background-repeat: no-repeat;    
+      background-position: center;
+      }
+
+    .navAccessibilityButtonGrayscaleColorPalette:hover {
+      background-color: #3E3E3E;
+      background-image: url('/personIconWhite.svg'); 
+      background-size: contain;
+      background-repeat: no-repeat;    
+      background-position: center;
+    }
+
+.accessibilityButtonDivGrayscaleColorPalette {
+        background-color: #F3F3F3;
+        color: #3E3E3E;
+      }
+
+.accessibilityButtonDivGrayscaleColorPalette:hover {
+        background-color: #3E3E3E;
+        color: white;
+      }
+
+  .accessiblityToolsHeadingGrayscaleColorPalette{
+        background-color: #3E3E3E;
+        color: white;
 
       }
 
-    .grayscaleColorPalette {
+  /* grayscale left card colors */
+      .left-box-heading-grayscale{
+      background-color: #D2D2D2;
       color: #3E3E3E;
-    }
+      }
 
-    .highContrastPalette {}
+
+
+.left-box-paragraph-grayscale{
+  background-color: #F3F3F3;
+  color: #3E3E3E;  
+
+}
+
+/* .left-box-paragraph p {
+  
+} */
+
+.left-box-action-call-grayscale{
+  color: #3E3E3E;
+  background-color: #F3F3F3;
+
+}
+
+.left-box-action-call-grayscale:hover {
+  background-color: #D2D2D2;
+}
+
+
+
 
     </style>
 
     <template>
       <div class="grid-container" :style="{ fontSize: size + 'em' }">
-      <div :class="['header', currentClass]">
+      <div :class="['header', currentHeaderColorPalette]">
         <div class="logo-section">
-          <div class="logo"></div>
+          <div :class="['logo' , currentLogoColorPalette]"></div>
           <!-- <span class="library-text">ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY</span> -->
         </div>
         <div class="nav-buttons" >
-          <button :class="['nav-button', currentClass]">About</button>
-          <button :class="['nav-button', currentClass]">Accessibility Statement</button>
-          <button :class="['nav-button', currentClass]">Terms of Use</button>
-          <button :class="['nav-buttonAccessibilityIcon', currentClass]" @click="accessibilityMenuVisibility" aria-label="Accessibility Options" ></button>
-            <div v-show="isMenuVisible" class="dropdown-content">
+          <button :class="['nav-button', currentNavButtonColorPalette]">About</button>
+          <button :class="['nav-button', currentNavButtonColorPalette]">Accessibility Statement</button>
+          <button :class="['nav-button', currentNavButtonColorPalette]">Terms of Use</button>
+          <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibiltyButtonColorPalette]" @click="accessibilityMenuVisibility" aria-label="Accessibility Options" ></button>
+          
+          <div v-show="isMenuVisible" class="dropdown-content">
             <div>
-              <h3 class="accessiblityToolsHeading">Accessibility Tools</h3>
+              <h3 :class="['accessiblityToolsHeading', currentaccessiblityToolsHeadingColorPalette]">Accessibility Tools</h3>
             </div>
               <div  
               @click="increaseTextSize" 
-              class="accessibilityButtonDiv">
+              :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
               <p>Increase Text</p>
-              <div class="increaseTextIcon"></div>
+              <div :class="['increaseTextIcon', currentIncreaseTextIcon]"></div>
               </div>
-                  <div  @click="decreaseTextSize" class="accessibilityButtonDiv">
+
+
+                  <div  @click="decreaseTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Decrease Text</p>
-                  <div class="decreaseTextIcon"></div>
+                  <div :class="['decreaseTextIcon', currentDecreaseTextIcon]"></div>
                   </div>
 
-                  <div @click="changeTograyscale" class="accessibilityButtonDiv">
+                  <div @click="changeTograyscale" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Grayscale</p>
-                  <div class="grayscaleIcon"></div>
+                  <div :class="['grayscaleIcon', currentGrayScaleIcon]"></div>
                   </div>
 
-                  <div class="accessibilityButtonDiv">
+                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>High Contrast</p>
-                  <div class="highContrastIcon"></div>
+                  <div :class="['highContrastIcon', currentHightContrastIcon]"></div>
                   </div>
 
-                  <div class="accessibilityButtonDiv">
+                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                    <p>Links Underline</p>
-                   <div class="linksUnderlineIcon"></div>
+                   <div :class="['linksUnderlineIcon', currentLinksUnderLineIcon]"></div>
                   </div>
 
-                  <div class="accessibilityButtonDiv">
+                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Readable Font</p>
-                  <div class="readableFontIcon"></div>
+                  <div :class="['readableFontIcon', currentReadableFontIcon]"></div>
                   </div>
 
-                  <div class="accessibilityButtonDiv">
+                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>WCAG AAA Colours</p>
-                  <div class="wcagColoursIcon"></div>
+                  <div :class="['wcagColoursIcon', currentWcagColoursIcon]"></div>
                   </div>
 
-                  <div @click="resetTextSize" class="accessibilityButtonDiv">
+                  <div @click="resetTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Reset</p>
-                  <div class="resetIcon"></div>
+                  <div :class="['resetIcon', currentResetIcon]"></div>
                   </div>
             </div>          
         </div>
@@ -724,22 +1023,24 @@ color:white
         <div class="background-image"></div>
         <div class="grid-background"></div>
         
-        <div class="left-box">
-          <div class="left-box-heading">
-            <img src="/greaterThanBracketsPink.svg">
+        <div :class="['left-box', currentLeftBoxGrayscale]">
+          <div :class="['left-box-heading', currentLeftBoxHeadingGrayscale]">
+            <img v-show="isPinkCardIconVisible" src="/greaterThanBracketsPink.svg">
+            <img v-show="isGrayCardIconVisible" src="/greaterThanBracketsGray.svg">
             <h5>Sari-Sari Xchange</h5></div>
-          <div class="left-box-paragraph">
+          <div :class="['left-box-paragraph', currentLeftBoxParagraphGrayscale]">
             <p>SSX is a community-building research & creation project using Extended Reality (XR) (ie. Virtual,
                Augmented, Mixed Realities) to foster new works by artists from the Asian diaspora. 
                <br><br>
                Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created with and for the Asian diaspora community.</p>
           </div>
-          <div class="left-box-action-call">
-            <p class="call-action">Learn More</p>
+          <div :class="['left-box-action-call', currentLeftBoxActionCallGrayscale]">
+            <p :class="['call-action', currentCallActionGrayscale]">Learn More</p>
             <p class="goto-action">OK</p>
-          
           </div>
         </div>
+
+        
 
         <div class="center-top-box">
           <div class="other-box-heading">

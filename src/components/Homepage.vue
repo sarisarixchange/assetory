@@ -92,13 +92,13 @@
 
       /* Header styles from previous implementation */
       .header {
-        margin-top: 0.5em;
-        margin-left: 0.5em;
-        margin-right: 0.5em;
+        margin-top: 0.25em;
+        margin-left: 0.25em;
+        margin-right: 0.25em;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.25rem 0.5rem;
+        padding: 0.5rsem 0.5rem;
         border-bottom: 1px solid #eee;
         background-color: white;
         border: solid 1px #D400A6;
@@ -112,14 +112,15 @@
       }
 
       .logo {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
         background-image: url('/logo.svg'); 
         background-size: contain;
         background-repeat: no-repeat;    
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: 0.5em;
       }
 
       .library-text {
@@ -143,7 +144,7 @@
         background: none;
         color: #D400A6;
         border-radius: 20px;
-        font-size: 0.70em;
+        font-size: 0.60em;
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.2s;
@@ -154,13 +155,7 @@
         background-color: #D400A6;
       }
 
-      /* .accessibilityIcon{
-        width: 60%;
-        background-image: url('/person.svg'); 
-        background-size: contain;
-        background-repeat: no-repeat;    
-        background-position: center;
-      } */
+  
     
   .nav-buttonAccessibilityIcon {
     color: #D400A6;
@@ -237,13 +232,18 @@
       .grid-container {
             display: grid;
             grid-template-columns: repeat(8, 1fr);
-            grid-template-rows: repeat(9, 1fr);
+            grid-template-rows: 7% repeat(8, 1fr);
             width: 100vw;
             height: 100vh;
         }
 
          
-        .header {grid-column: 1/9; grid-row: 1 / 2;}
+        .header {grid-column: 1/9; grid-row: 1 / 2; 
+            /* Aligns to the top of the row */
+          /* align-self: start;    */
+          /* Takes up only half of the row height */
+          /* height: 50%;           */
+        }
         .left-box { grid-column: 2 / 4; grid-row: 4 / 6; align-self: center;   }
         .right-box { grid-column: 6 / 8; grid-row: 4 / 6; align-self: center;  }
         .center-top-box { grid-column: 4 / 6; grid-row: 3 / 5; align-self: center; }
@@ -254,7 +254,7 @@
 
 
  
-      .dropbtn {
+  .dropbtn {
   background-color: #3498DB;
   color: white;
   padding: 16px;
@@ -502,7 +502,7 @@
 .left-box-paragraph p {
   padding: 0.75em;
   font-family: 'Inter', sans-serif;
-  font-size: 0.60em;
+  font-size: 0.70em;
   font-weight: 350;
 }
 
@@ -571,11 +571,11 @@ width:90%;
 .other-box-photos {
     display: block;  /* Ensures it behaves like a normal div */
     width: 100%;
-    height: auto;
+    min-height: 17vh;
     border-radius: 8px;
     background-color: #FFEDF4;
     margin-bottom: 0.35em;
-  /* min-height: 1px; */
+    
 }
 
 .other-box-photos img {
@@ -769,7 +769,7 @@ color:white
             <p class="other-box-subtitle">Assets created during SSX events.</p>
           </div>
           <div class="other-box-photos">
-            <img src="/sample-images-artists.png">
+            <!-- <img src="/sample-images-artists.png"> -->
 
           
             </div>
@@ -788,7 +788,7 @@ color:white
             <p class="other-box-subtitle">Explore collections by SSX.</p>
           </div>
           <div class="other-box-photos">
-            <img src="/sample-images-artists.png">
+            <!-- <img src="/sample-images-artists.png"> -->
 
 
             </div>

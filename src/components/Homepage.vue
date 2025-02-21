@@ -13,19 +13,46 @@
             currentaccessiblityToolsHeadingColorPalette: 'accessiblityToolsHeadingDefaultColorPalette', 
             currentIncreaseTextIcon: 'increaseTextIcon', 
             currentDecreaseTextIcon: 'decreaseTextIcon', 
-            currentGrayScaleIcon: 'grayScaleIcon', 
-            currentHightContrastIcon: 'hightContrastIcon', 
-            currentLinksUnderLineIcon: 'linksUnderLineIcon', 
+            currentGrayScaleIcon: 'grayscaleIcon', 
+            currentHighContrastIcon: 'highContrastIcon', 
+            currentLinksUnderlineIcon: 'linksUnderlineIcon', 
             currentReadableFontIcon: 'readableFontIcon', 
             currentWcagColoursIcon: 'wcagColoursIcon', 
             currentResetIcon: 'resetIcon', 
             // leftbox
-            isPinkCardIconVisible: true,
-            isGrayCardIconVisible: false,
-            currentLeftBoxGrayscale: 'left-box',
-            currentLeftBoxHeadingGrayscale: 'left-box-heading', 
-            currentLeftBoxParagraphGrayscale: 'left-box-paragraph',
-            currentLeftBoxActionCallGrayscale: 'left-box-action-call',
+            isPinkLeftCardIconVisible: true,
+            isGrayLeftCardIconVisible: false,
+            currentLeftBox: 'left-box',
+            currentLeftBoxHeading: 'left-box-heading', 
+            currentLeftBoxParagraph: 'left-box-paragraph',
+            currentLeftBoxActionCall: 'left-box-action-call',
+            currentLeftBoxCallAction: 'call-action', 
+            currentLeftBoxGotoAction: 'goto-action',
+            // center-top-box
+
+            arePinkTopCenterCardSampleImagesVisible: true,
+            areGrayTopCenterCardSampleImagesVisible: false,
+            areHighContrastTopCenterCardSampleImagesVisible: false,
+
+            // other boxes
+            currentOtherBox: 'other-box',
+            currentOtherBoxHeading: 'other-box-heading', 
+            currentOtherBoxSubtitle: 'other-box-subtitle',
+            currentOtherBoxPhotos: 'other-box-photos', 
+            currentOtherBoxActionCall: 'other-box-action-call',
+            currentOtherBoxCallAction: 'other-call-action', 
+            currentOtherBoxGotoAction: 'other-goto-action',
+
+            // links decoration
+
+            isUnderlined: false,
+
+            // readable font
+
+            isReadableFont: false,
+
+          
+
            
                 
     } 
@@ -84,20 +111,48 @@
             this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingDefaultColorPalette'
             this.currentIncreaseTextIcon = 'increaseTextIcon'
             this.currentDecreaseTextIcon = 'decreaseTextIcon'
-            this.currentGrayScaleIcon = 'grayScaleIcon'
-            this.currentHightContrastIcon = 'hightContrastIcon' 
-            this.currentLinksUnderLineIcon = 'linksUnderLineIcon'
+            this.currentGrayScaleIcon = 'grayscaleIcon'
+            this.currentHighContrastIcon = 'highContrastIcon' 
+            this.currentLinksUnderlineIcon = 'linksUnderlineIcon'
             this.currentReadableFontIcon = 'readableFontIcon' 
             this.currentWcagColoursIcon = 'wcagColoursIcon'
             this.currentResetIcon = 'resetIcon'
             // leftbox
-            this.isPinkCardIconVisible = true
-            this.isGrayCardIconVisible = false
-            this.currentLeftBoxGrayscale = 'left-box'
-            this.currentLeftBoxHeadingGrayscale = 'left-box-heading' 
-            this.currentLeftBoxParagraphGrayscale = 'left-box-paragraph'
-            this.currentLeftBoxActionCallGrayscale = 'left-box-action-call'
+            this.isPinkLeftCardIconVisible = true
+            this.isGrayLeftCardIconVisible = false
+            this.currentLeftBox = 'left-box'
+            this.currentLeftBoxHeading = 'left-box-heading' 
+            this.currentLeftBoxParagraph = 'left-box-paragraph'
+            this.currentLeftBoxActionCall = 'left-box-action-call', 
+            this.currentLeftBoxCallAction= 'call-action', 
+            this.currentLeftBoxGotoAction= 'goto-action',
+
+            // top center box
+            this.arePinkTopCenterCardSampleImagesVisible= true
+            this.areGrayTopCenterCardSampleImagesVisible= false
+            this.areHighContrastTopCenterCardSampleImagesVisible = false
+
+            // other boxes
+            this.currentOtherBox= 'other-box'
+           this.currentOtherBoxHeading= 'other-box-heading'
+           this.currentOtherBoxSubtitle= 'other-box-subtitle'
+           this.currentOtherBoxPhotos= 'other-box-photos'
+           this.currentOtherBoxActionCall= 'other-box-action-call'
+           this.currentOtherBoxCallAction= 'other-call-action', 
+           this.currentOtherBoxGotoAction= 'other-goto-action',
+          //  reset links underline
+
+          
+            this.isUnderlined = false;
+            document.documentElement.style.setProperty("--link-decoration", "none");
+
+            this.isReadableFont = false;
+            document.documentElement.style.setProperty("--font-family", "'Lakonet', sans-serif");
+    
         }, 
+
+        // reset readable font
+
 
         changeTograyscale(){
           this.currentNavButtonColorPalette = "navButtonGrayscale"
@@ -108,22 +163,132 @@
           this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingGrayscaleColorPalette'
           // acc menu icons
           this.currentIncreaseTextIcon = 'increaseTextIconGray'
-            this.currentDecreaseTextIcon = 'decreaseTextIconGray'
-            this.currentGrayScaleIcon = 'grayScaleIconGray'
-            this.currentHightContrastIcon = 'hightContrastIconGray'
-            this.currentLinksUnderLineIcon = 'linksUnderLineIconGray'
-            this.currentReadableFontIcon = 'readableFontIconGray'
-            this.currentWcagColoursIcon = 'wcagColoursIconGray'
-            this.currentResetIcon = 'resetIconGray'    
+          this.currentDecreaseTextIcon = 'decreaseTextIconGray'
+          this.currentGrayScaleIcon = 'grayscaleIconGray'
+          this.currentHighContrastIcon = 'highContrastIconGray'
+          this.currentLinksUnderlineIcon = 'linksUnderlineIconGray'
+          this.currentReadableFontIcon = 'readableFontIconGray'
+          this.currentWcagColoursIcon = 'wcagColoursIconGray'
+          this.currentResetIcon = 'resetIconGray'    
             
             // left box
-            this.isPinkCardIconVisible = false
-            this.isGrayCardIconVisible = true
-            this.currentLeftBoxGrayscale = 'left-box-grayscale'
-            this.currentLeftBoxHeadingGrayscale = 'left-box-heading-grayscale'
-            this.currentLeftBoxParagraphGrayscale = 'left-box-paragraph-grayscale'
-            this.currentLeftBoxActionCallGrayscale = 'left-box-action-call-grayscale'
-        }
+            this.isPinkLeftCardIconVisible = false
+            this.isGrayLeftCardIconVisible = true
+            this.currentLeftBox = 'left-box-grayscale'
+            this.currentLeftBoxHeading = 'left-box-heading-grayscale'
+            this.currentLeftBoxParagraph = 'left-box-paragraph-grayscale'
+            this.currentLeftBoxActionCall = 'left-box-action-call-grayscale' 
+            this.currentLeftBoxCallAction= 'call-action-grayscale', 
+            this.currentLeftBoxGotoAction= 'goto-action-grayscale',
+
+            
+            // center top box
+            this.arePinkTopCenterCardSampleImagesVisible= false
+            this.areGrayTopCenterCardSampleImagesVisible= true
+            this.areHighContrastTopCenterCardSampleImagesVisible = false
+            // other-boxes
+            this.currentOtherBox= 'other-box-grayscale'
+            this.currentOtherBoxHeading = 'other-box-heading-grayscale'
+            this.currentOtherBoxSubtitle = 'other-box-subtitle-grayscale'
+            this.currentOtherBoxPhotos= 'other-box-photos-grayscale'
+            this.currentOtherBoxActionCall = 'other-box-action-call-grayscale', 
+            this.currentOtherBoxCallAction= 'other-call-action-grayscale', 
+            this.currentOtherBoxGotoAction= 'other-goto-action-grayscale'
+        }, 
+
+        changeToHighContrast(){
+          this.currentNavButtonColorPalette = "navButtonHighContrast"
+          this.currentNavAccessibiltyButtonColorPalette = "navAccessibilityButtonHighContrastColorPalette"
+          this.currentHeaderColorPalette = "headerHighContrastColorPalette"
+          this.currentLogoColorPalette = "logoHighContrastColorPalette"
+          this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivHighContrastColorPalette'
+          this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingHighContrastColorPalette'
+          // acc menu icons
+          this.currentIncreaseTextIcon = 'increaseTextIconHighContrast'
+          this.currentDecreaseTextIcon = 'decreaseTextIconHighContrast'
+          this.currentGrayScaleIcon = 'grayscaleIconHighContrast'
+          this.currentHighContrastIcon = 'highContrastIconHighContrast'
+          this.currentLinksUnderlineIcon = 'linksUnderlineIconHighContrast'
+          this.currentReadableFontIcon = 'readableFontIconHighContrast'
+          this.currentWcagColoursIcon = 'wcagColoursIconHighContrast'
+          this.currentResetIcon = 'resetIconHighContrast'    
+            
+            // left box
+            this.isPinkLeftCardIconVisible = false
+            this.isGrayLeftCardIconVisible = true
+            this.currentLeftBox = 'left-box-highContrast'
+            this.currentLeftBoxHeading = 'left-box-heading-highContrast'
+            this.currentLeftBoxParagraph = 'left-box-paragraph-highContrast'
+            this.currentLeftBoxActionCall = 'left-box-action-call-highContrast', 
+            this.currentLeftBoxCallAction= 'call-action-highContrast', 
+            this.currentLeftBoxGotoAction= 'goto-action-highContrast',
+            
+            // center top box
+            this.arePinkTopCenterCardSampleImagesVisible= false
+            this.areGrayTopCenterCardSampleImagesVisible= false
+            this.areHighContrastTopCenterCardSampleImagesVisible = true
+            // other-boxes
+            this.currentOtherBox= 'other-box-highContrast'
+            this.currentOtherBoxHeading = 'other-box-heading-highContrast'
+            this.currentOtherBoxSubtitle = 'other-box-subtitle-highContrast'
+            this.currentOtherBoxPhotos= 'other-box-photos-highContrast'
+            this.currentOtherBoxActionCall = 'other-box-action-call-highContrast', 
+            this.currentOtherBoxCallAction= 'other-call-action-highContrast', 
+            this.currentOtherBoxGotoAction= 'other-goto-action-highContrast'
+        }, 
+
+        changeToWCAGcolors(){
+          this.currentNavButtonColorPalette = "navButtonWCAGcolorPalette"
+          this.currentNavAccessibiltyButtonColorPalette = "navAccessibilityButtonWCAGcolorPalette"
+          this.currentHeaderColorPalette = "headerWCAGcolorPalette"
+          this.currentLogoColorPalette = "logoWCAGcolors"
+          this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivWCAGcolorPalette'
+          this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingWCAGcolorPalette'
+          // acc menu icons
+          this.currentIncreaseTextIcon = 'increaseTextIconWCAG'
+          this.currentDecreaseTextIcon = 'decreaseTextIconWCAG'
+          this.currentGrayScaleIcon = 'grayscaleIconWCAG'
+          this.currentHighContrastIcon = 'highContrastIconWCAG'
+          this.currentLinksUnderlineIcon = 'linksUnderlineIconWCAG'
+          this.currentReadableFontIcon = 'readableFontIconWCAG'
+          this.currentWcagColoursIcon = 'wcagColoursIconWCAG' 
+          this.currentResetIcon = 'resetIconWCAG'    
+            
+            // left box
+            this.isPinkLeftCardIconVisible = false
+            this.isGrayLeftCardIconVisible = true
+            this.currentLeftBox = 'left-box-WCAGcolors'
+            this.currentLeftBoxHeading = 'left-box-heading-WCAGcolors'
+            this.currentLeftBoxParagraph = 'left-box-paragraph-WCAGcolors'
+            this.currentLeftBoxActionCall = 'left-box-action-call-WCAGcolors', 
+            this.currentLeftBoxCallAction= 'call-action-WCAGcolors', 
+            this.currentLeftBoxGotoAction= 'goto-action-WCAGcolors',
+            
+            // center top box
+            this.arePinkTopCenterCardSampleImagesVisible= false
+            this.areGrayTopCenterCardSampleImagesVisible= false
+            this.areHighContrastTopCenterCardSampleImagesVisible = true
+
+            // other-boxes
+            this.currentOtherBox= 'other-box-WCAGcolors'
+            this.currentOtherBoxHeading = 'other-box-heading-WCAGcolors'
+            this.currentOtherBoxSubtitle = 'other-box-subtitle-WCAGcolors'
+            this.currentOtherBoxPhotos= 'other-box-photos-WCAGcolors'
+            this.currentOtherBoxActionCall = 'other-box-action-call-WCAGcolors', 
+            this.currentOtherBoxCallAction= 'other-call-action-WCAGcolors', 
+            this.currentOtherBoxGotoAction= 'other-goto-action-WCAGcolors'
+
+        },
+
+        activateLinksUnderline() {
+            this.isUnderlined = true;
+            document.documentElement.style.setProperty("--link-decoration","underline");
+    }, 
+
+        activateReadableFont(){
+            this.isReadableFont = true;
+            document.documentElement.style.setProperty("--font-family", "'Inter', sans-serif");
+    }
 
     }, 
 
@@ -138,6 +303,12 @@
         box-sizing: border-box;
       }
 
+      @font-face {
+        font-family: 'Lakonet';
+        src: url('/fonts/Lakonet.otf') format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        }
 
       body {
             /* display: flex; */
@@ -198,8 +369,7 @@
       .nav-buttons {
         display: flex;
         gap: 1rem;
-        padding: 0.5%;
-        
+        padding: 0.5%;            
       }
 
       .nav-button {
@@ -213,6 +383,11 @@
         cursor: pointer;
         transition: background-color 0.2s;
       }
+
+      a {
+       text-decoration: var(--link-decoration, none); /* Default: No underline */
+      }
+
 
       .nav-button:hover {
         color: white;
@@ -361,8 +536,9 @@
         /* background-color: #D400A6; */
         color: white;
         font-size: 0.75em;
-        font-family: Doto;
-        font-weight: 900;
+        font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+        /* font-family: Doto; */
+        /* font-weight: 900; */
         text-align: center;
       }
 
@@ -386,9 +562,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center; */
-  background-color: #FFEDF4;
-
-  
+  background-color: #FFEDF4;  
 }
 
 
@@ -400,9 +574,9 @@
   background-color: #D400A6;
 }
 
-.accessibilityButtonDiv:hover p{
+/* .accessibilityButtonDiv:hover p{
   color: white;
-}
+} */
 
 .increaseTextIcon{
   width: 1em;
@@ -416,6 +590,25 @@
 .increaseTextIconGray{
   width: 1em;
   background-image: url("/IncreaseTextIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+
+.increaseTextIconHighContrast{
+  width: 1em;
+  background-image: url("/IncreaseTextIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.increaseTextIconWCAG{
+  width: 1em;
+  background-image: url("/IncreaseTextIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -440,9 +633,30 @@
   margin-right: 0.10em;
 }
 
-.grayscaleIcon{
+
+.decreaseTextIconHighContrast{
+  width: 1em;
+  background-image: url("/decreaseTextIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+
+.decreaseTextIconWCAG{
+  width: 1em;
+  background-image: url("/decreaseTextIconWCAG.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.grayscaleIcon {  
   width: 1em;
   background-image: url("/grayscaleIconPink.svg");
+  /* background-image: url("/decreaseTextIconGray.svg"); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -457,6 +671,25 @@
   background-position: center;
   margin-right: 0.10em;
 }
+
+.grayscaleIconHighContrast{
+  width: 1em;
+  background-image: url("/grayscaleIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.grayscaleIconWCAG{
+  width: 1em;
+  background-image: url("/grayscaleIconWCAG.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
 
 .highContrastIcon{
   width: 1em;
@@ -476,6 +709,26 @@
   margin-right: 0.10em;
 }
 
+.highContrastIconHighContrast{
+  width: 1em;
+  background-image: url("/highContrastIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+
+.highContrastIconWCAG{
+  width: 1em;
+  background-image: url("/highContrastIconWCAG.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+
 .linksUnderlineIcon{
   width: 1em;
   background-image: url("/linksUnderlineIconPink.svg");
@@ -488,6 +741,24 @@
 .linksUnderlineIconGray{
   width: 1em;
   background-image: url("/linksUnderlineIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.linksUnderlineIconHighContrast{
+  width: 1em;
+  background-image: url("/linksUnderlineIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.linksUnderlineIconWCAG{
+  width: 1em;
+  background-image: url("/linksUnderlineIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -512,6 +783,24 @@
   margin-right: 0.10em;
 }
 
+.readableFontIconHighContrast {
+  width: 1em;
+  background-image: url("/readableFontIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.readableFontIconWCAG {
+  width: 1em;
+  background-image: url("/readableFontIconWCAG.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
 .wcagColoursIcon {
   width: 1em;
   background-image: url("/wcagColorsIconPink.svg");
@@ -524,6 +813,24 @@
 .wcagColoursIconGray {
   width: 1em;
   background-image: url("/wcagColorsIconGray.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.wcagColoursIconHighContrast {
+  width: 1em;
+  background-image: url("/wcagColorsIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.wcagColoursIconWCAG {
+  width: 1em;
+  background-image: url("/wcagColorsIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -549,51 +856,70 @@
   margin-right: 0.10em;
 }
 
-.accessibilityButtonDiv:hover .increaseTextIcon{
+.resetIconHighContrast {
+  width: 1em;
+  background-image: url("/resetIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.resetIconWCAG {
+  width: 1em;
+  background-image: url("/resetIconWCAG.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  margin-right: 0.10em;
+}
+
+.accessibilityButtonDiv:hover .increaseTextIcon, .accessibilityButtonDiv:hover .increaseTextIconWCAG{
   background-image: url("/IncreaseTextIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .decreaseTextIcon{
+.accessibilityButtonDiv:hover .decreaseTextIcon, .accessibilityButtonDiv:hover .decreaseTextIconGray,  .accessibilityButtonDiv:hover .decreaseTextIconWCAG{
   background-image: url("/decreaseTextIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .grayscaleIcon{
+.accessibilityButtonDiv:hover .grayscaleIcon, .accessibilityButtonDiv:hover .grayscaleIconGray, .accessibilityButtonDiv:hover .grayscaleIconWCAG{
   background-image: url("/grayscaleIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
-.accessibilityButtonDiv:hover .highContrastIcon{
+
+.accessibilityButtonDiv:hover .highContrastIcon, .accessibilityButtonDiv:hover .highContrastIconGray, .accessibilityButtonDiv:hover .highContrastIconWCAG{
   background-image: url("/highContrastIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
-.accessibilityButtonDiv:hover .linksUnderlineIcon{
+.accessibilityButtonDiv:hover .linksUnderlineIcon, .accessibilityButtonDiv:hover .linksUnderlineIconGray, .accessibilityButtonDiv:hover .linksUnderlineIconWCAG{
   background-image: url("/linksUnderlineIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
-.accessibilityButtonDiv:hover .readableFontIcon{
+.accessibilityButtonDiv:hover .readableFontIcon, .accessibilityButtonDiv:hover .readableFontIconGray, .accessibilityButtonDiv:hover .readableFontIconWCAG{
   background-image: url("/readableFontIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
-.accessibilityButtonDiv:hover .wcagColoursIcon{
+.accessibilityButtonDiv:hover .wcagColoursIcon, .accessibilityButtonDiv:hover .wcagColoursIconGray, .accessibilityButtonDiv:hover .wcagColoursIconWCAG{
   background-image: url("/wcagColorsIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
-.accessibilityButtonDiv:hover .resetIcon{
+.accessibilityButtonDiv:hover .resetIcon, .accessibilityButtonDiv:hover .resetIconGray, .accessibilityButtonDiv:hover .resetIconWCAG{
   background-image: url("/resetIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -609,9 +935,10 @@
   display: flex;
   border-radius: 8px;
   background-color: #E7EB17;
-  font-family: 'Doto';
+  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  /* font-family: 'Doto'; */
   color: #D400A6;
-  font-weight: 900;
+  /* font-weight: 100; */
   font-size: 1.15em;
   margin-bottom: 0.35em;
 }
@@ -641,9 +968,10 @@
 .left-box-action-call{
   display: flex;
   border-radius: 8px;
-  font-family: 'Doto';
+  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  /* font-family: 'Doto'; */
   color: #D400A6;
-  font-weight: 900;
+  /* font-weight: 900; */
   font-size: 0.8em;
   background-color: #FCFCCE;
   /* background-image: url("/learnMoreUnionLightYellow.svg");
@@ -651,6 +979,8 @@
   background-size: 100%;
   background-position: center; */
 }
+
+
 
 .left-box-action-call:hover {
   /* background-image: url("/learnMoreUnionYellow.svg");
@@ -663,11 +993,14 @@
 .call-action{
 margin-left: 0.5em;
 width:90%;
+color: #D400A6;
 }
 
-.goto-action{
-  
+.goto-action {
+  color: #D400A6;
 }
+
+
 
 /* Other boxes */
 
@@ -675,9 +1008,10 @@ width:90%;
   display: flex;
   border-radius: 8px;
   background-color: #D400A6;
-  font-family: 'Doto';
+  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  /* font-family: 'Doto'; */
   color: white;
-  font-weight: 900;
+  /* font-weight: 900; */
   font-size: 1.15em;
   margin-bottom: 0.35em;
 }
@@ -710,7 +1044,10 @@ width:90%;
     background-color: #FFEDF4;
     margin-bottom: 0.35em;
     
+    
 }
+
+
 
 .other-box-photos img {
   width: 100%;
@@ -719,9 +1056,10 @@ width:90%;
 .other-box-action-call{
   display: flex;
   border-radius: 8px;
-  font-family: 'Doto';
+  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  /* font-family: 'Doto'; */
   color: #D400A6;
-  font-weight: 900;
+  /* font-weight: 900; */
   font-size: 0.8em;
   /* background-image: url("/unionCallToActionOtherBoxesLightPink.svg");
   background-repeat: no-repeat;
@@ -741,15 +1079,16 @@ width:90%;
 .other-call-action{
 margin-left: 0.5em;
 width:92%;
+color:#D400A6
 }
 
 .other-box-action-call:hover .other-call-action{
 color:white
 }
 
-.other-goto-action{
+/* .other-goto-action{
   
-}
+} */
 
 .other-box-action-call:hover  .other-goto-action{
   color:white
@@ -868,11 +1207,10 @@ color:white
 
 
 
-
     /* grayscale */
 
     .headerGrayscaleColorPalette {
-      border-color: #3E3E3E;
+      border-color: #525252;
     }
 
     .logoGrayscaleColorPalette {
@@ -882,17 +1220,17 @@ color:white
       }
 
       .navButtonGrayscale {
-        border-color: #3E3E3E;
+        border-color: #525252;
         color: #3E3E3E;
       }
      
       .navButtonGrayscale:hover{
-      background-color: #3E3E3E
+      background-color: #525252
       }
       
 
       .navAccessibilityButtonGrayscaleColorPalette {
-      border-color: #3E3E3E;
+      border-color: #525252;
       background-image: url('/personGray.svg'); 
       background-size: contain;
       background-repeat: no-repeat;    
@@ -900,7 +1238,7 @@ color:white
       }
 
     .navAccessibilityButtonGrayscaleColorPalette:hover {
-      background-color: #3E3E3E;
+      background-color: #525252;
       background-image: url('/personIconWhite.svg'); 
       background-size: contain;
       background-repeat: no-repeat;    
@@ -909,31 +1247,37 @@ color:white
 
 .accessibilityButtonDivGrayscaleColorPalette {
         background-color: #F3F3F3;
-        color: #3E3E3E;
+        color: #525252;
       }
 
 .accessibilityButtonDivGrayscaleColorPalette:hover {
-        background-color: #3E3E3E;
+        background-color: #525252;
         color: white;
       }
 
   .accessiblityToolsHeadingGrayscaleColorPalette{
-        background-color: #3E3E3E;
+        background-color: #525252;
         color: white;
 
       }
 
   /* grayscale left card colors */
-      .left-box-heading-grayscale{
-      background-color: #D2D2D2;
-      color: #3E3E3E;
-      }
+
+.left-box-grayscale {
+    border-color: #D2D2D2;
+  }
+
+  .left-box-heading-grayscale{
+background-color: #D2D2D2;
+color: #525252;
+}
 
 
 
 .left-box-paragraph-grayscale{
   background-color: #F3F3F3;
-  color: #3E3E3E;  
+  color: #525252;  
+  border-color: #525252;
 
 }
 
@@ -942,7 +1286,7 @@ color:white
 } */
 
 .left-box-action-call-grayscale{
-  color: #3E3E3E;
+  color: #525252;
   background-color: #F3F3F3;
 
 }
@@ -951,22 +1295,328 @@ color:white
   background-color: #D2D2D2;
 }
 
+.call-action-grayscale, .goto-action-grayscale{
+  color: #525252;
+}
 
 
+/* other-box-grayscale */
+
+.other-box-grayscale {
+    border-color: #525252;
+  }
+
+.other-box-heading-grayscale{
+      color: #FDFDFD;
+      background-color: #525252
+      }
+
+
+.other-box-photos-grayscale {
+  background-color: #F3F3F3;
+}
+
+.other-box-subtitle-grayscale{
+  background-color: #F3F3F3;
+  color: #525252;  
+
+}
+
+.other-box-action-call-grayscale{
+  color: #525252;
+  background-color: #F3F3F3;
+
+}
+
+.other-box-action-call-grayscale:hover {
+  background-color: #525252;
+  color: #FFFFFF
+}
+
+.other-call-action-grayscale, .other-goto-action-grayscale{
+  color: #525252;
+}
+
+
+ 
+/* high contrast */
+
+
+.headerHighContrastColorPalette {
+      border-color: #000000;
+    }
+
+.logoHighContrastColorPalette {
+    background-image: url('/logoBlack.svg'); 
+    background-size: contain;
+    background-repeat: no-repeat;    
+  }
+
+.navButtonHighContrast {
+  border-color: #FF42D6;
+  color: #000000;
+}
+
+.navButtonHighContrast:hover{
+  background-color: #FF42D6;
+  color: #000000;
+
+}
+
+
+.navAccessibilityButtonHighContrastColorPalette {
+border-color: #FF42D6;
+background-image: url('/personBlack.svg'); 
+background-size: contain;
+background-repeat: no-repeat;    
+background-position: center;
+}
+
+.navAccessibilityButtonHighContrastColorPalette:hover {
+background-color: #FF42D6;
+background-image: url('/personBlack.svg'); 
+background-size: contain;
+background-repeat: no-repeat;    
+background-position: center;
+}
+
+.accessibilityButtonDivHighContrastColorPalette {
+  background-color: #FFFFFF;
+  color: #000000;
+}
+
+.accessibilityButtonDivHighContrastColorPalette:hover {
+        background-color: #FF42D6;
+        color: #000000;
+      }
+
+  .accessiblityToolsHeadingHighContrastColorPalette{
+        background-color: #000000;
+        color: #FFFFFF;
+
+      }
+
+  /* highcontrast left card colors */
+
+.left-box-highContrast {
+    border-color: #000000;
+  }
+
+  .left-box-heading-highContrast {
+background-color: #000000;
+color: #FFFFFF;
+}
+
+
+
+.left-box-paragraph-highContrast {
+  background-color: #FFFFFF;
+  color: #000000;  
+  border-color: #525252;
+
+}
+
+
+.left-box-action-call-highContrast{
+  color: #000000;
+  background-color: #FFFFFF;
+  border: 1px solid #FF42D6
+
+}
+
+.left-box-action-call-highContrast:hover {
+  background-color: #FF42D6;
+}
+
+.call-action-highContrast, .goto-action-highContrast{
+  color: #000000;
+}
+
+/* other box highContrast */
+
+.other-box-highContrast {
+    border-color: #000000;
+  }
+
+.other-box-heading-highContrast {
+      color: #FFFFFF;
+      background-color: #000000
+      }
+
+
+.other-box-photos-highContrast {
+  background-color: #FFFFFF;
+}
+
+.other-box-subtitle-highContrast {
+  background-color: #FFFFFF;
+  color: #000000;  
+
+}
+
+.other-box-action-call-highContrast {
+  color: #000000;
+  background-color: #FFFFFF;
+  border: 1px solid #FF42D6
+
+
+}
+
+.other-box-action-call-highContrast:hover .other-call-action-highContrast, .other-box-action-call-highContrast:hover .other-goto-action-highContrast  {
+  background-color: #FF42D6;
+  color: #000000
+}
+
+.other-call-action-highContrast, .other-goto-action-highContrast{
+  color: #000000;
+}
+
+
+/* WCAG  */
+
+.headerDefaultColorPalette {
+      border-color: #A80084;
+    }
+
+    .logoWCAGcolors {
+        background-image: url('/logoWCAG.svg'); 
+        background-size: contain;
+        background-repeat: no-repeat;    
+      }
+
+    
+
+      .navButtonWCAGcolorPalette {
+        color: #A80084;
+        border-color: #A80084;
+        
+      }
+
+      .navButtonWCAGcolorPalette:hover {
+        background-color: #A80084
+      }
+
+      .navAccessibilityButtonWCAGcolorPalette {
+      border-color: #A80084;
+      background-image: url('/personWCAG.svg'); 
+      background-size: contain;
+      background-repeat: no-repeat;    
+      background-position: center;
+      }
+
+    .navAccessibilityButtonWCAGcolorPalette:hover {
+      background-image: url('/personIconWhite.svg'); 
+      background-size: contain;
+      background-repeat: no-repeat;    
+      background-position: center;
+      background-color: #A80084
+
+    }
+
+
+    .accessibilityButtonDivWCAGcolorPalette  {
+        background-color: #FFEDF4 ;
+        color: #A80084;
+      }
+
+      .accessibilityButtonDivWCAGcolorPalette:hover  {
+        background-color: #A80084;
+        color: white;
+      }
+
+      .accessiblityToolsHeadingWCAGcolorPalette {
+        background-color: #A80084;
+        color: white;
+      }
+
+      /* default left card colors */
+      .left-box-heading-WCAGcolors{
+      background-color: #E7EB17;
+      color: #A80084;
+      }
+
+
+
+.left-box-paragraph-WCAGcolors{
+  background-color: #FCFCCE;
+  color: #A80084;  
+
+}
+
+.left-box-action-call-WCAGcolors{
+  color: #A80084;
+  background-color: #FCFCCE;
+
+}
+
+.left-box-action-call-WCAGcolors:hover {
+  background-color: #E7EB17;
+}
+
+
+
+.call-action-WCAGcolors{
+color: #A80084;
+}
+
+.goto-action-WCAGcolors {
+  color: #A80084;
+}
+
+
+
+/* Other boxes */
+
+.other-box-heading-WCAGcolors{
+  background-color: #A80084;
+  color: white;
+}
+
+.other-box-subtitle-WCAGcolors {
+  background-color: #FFEDF4;
+  color:#A80084;
+}
+
+.other-box-photos-WCAGcolors {
+    background-color: #FFEDF4;    
+}
+
+
+.other-box-action-call-WCAGcolors {
+  color: #A80084;
+  background-color: #FFEDF4;
+}
+
+.other-box-action-call-WCAGcolors:hover {
+  background-color: #A80084;
+}
+
+.other-call-action-WCAGcolors{
+color:#A80084
+}
+
+.other-box-action-call-WCAGcolors:hover .other-call-action-WCAGcolors{
+color:white
+}
+
+
+.other-box-action-call-WCAGcolors:hover  .other-goto-action-WCAGcolors{
+  color:white
+}
 
     </style>
 
     <template>
-      <div class="grid-container" :style="{ fontSize: size + 'em' }">
+      <div class="grid-container">
       <div :class="['header', currentHeaderColorPalette]">
         <div class="logo-section">
           <div :class="['logo' , currentLogoColorPalette]"></div>
           <!-- <span class="library-text">ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY</span> -->
         </div>
         <div class="nav-buttons" >
-          <button :class="['nav-button', currentNavButtonColorPalette]">About</button>
-          <button :class="['nav-button', currentNavButtonColorPalette]">Accessibility Statement</button>
-          <button :class="['nav-button', currentNavButtonColorPalette]">Terms of Use</button>
+          <a href="" :class="['nav-button', currentNavButtonColorPalette]">About</a>
+          <a href="" :class="['nav-button', currentNavButtonColorPalette]">Accessibility Statement</a>
+          <a href="" :class="['nav-button', currentNavButtonColorPalette]">Terms of Use</a>
           <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibiltyButtonColorPalette]" @click="accessibilityMenuVisibility" aria-label="Accessibility Options" ></button>
           
           <div v-show="isMenuVisible" class="dropdown-content">
@@ -977,43 +1627,43 @@ color:white
               @click="increaseTextSize" 
               :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
               <p>Increase Text</p>
-              <div :class="['increaseTextIcon', currentIncreaseTextIcon]"></div>
+              <div :class="currentIncreaseTextIcon"></div>
               </div>
 
 
                   <div  @click="decreaseTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Decrease Text</p>
-                  <div :class="['decreaseTextIcon', currentDecreaseTextIcon]"></div>
+                  <div :class="currentDecreaseTextIcon"></div>
                   </div>
 
                   <div @click="changeTograyscale" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Grayscale</p>
-                  <div :class="['grayscaleIcon', currentGrayScaleIcon]"></div>
+                  <div :class="currentGrayScaleIcon"></div>
                   </div>
 
-                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
+                  <div @click="changeToHighContrast" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>High Contrast</p>
-                  <div :class="['highContrastIcon', currentHightContrastIcon]"></div>
+                  <div :class="currentHighContrastIcon"></div>
                   </div>
 
-                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
+                  <div @click="activateLinksUnderline" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                    <p>Links Underline</p>
-                   <div :class="['linksUnderlineIcon', currentLinksUnderLineIcon]"></div>
+                   <div :class="currentLinksUnderlineIcon"></div>
                   </div>
 
-                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
+                  <div @click="activateReadableFont" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Readable Font</p>
-                  <div :class="['readableFontIcon', currentReadableFontIcon]"></div>
+                  <div :class="currentReadableFontIcon"></div>
                   </div>
 
-                  <div :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
+                  <div @click="changeToWCAGcolors" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>WCAG AAA Colours</p>
-                  <div :class="['wcagColoursIcon', currentWcagColoursIcon]"></div>
+                  <div :class="currentWcagColoursIcon"></div>
                   </div>
 
                   <div @click="resetTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Reset</p>
-                  <div :class="['resetIcon', currentResetIcon]"></div>
+                  <div :class="currentResetIcon"></div>
                   </div>
             </div>          
         </div>
@@ -1023,79 +1673,88 @@ color:white
         <div class="background-image"></div>
         <div class="grid-background"></div>
         
-        <div :class="['left-box', currentLeftBoxGrayscale]">
-          <div :class="['left-box-heading', currentLeftBoxHeadingGrayscale]">
-            <img v-show="isPinkCardIconVisible" src="/greaterThanBracketsPink.svg">
-            <img v-show="isGrayCardIconVisible" src="/greaterThanBracketsGray.svg">
+        <div :class="['left-box', currentLeftBox]">
+          <div :class="['left-box-heading', currentLeftBoxHeading]">
+            <img v-show="isPinkLeftCardIconVisible" src="/greaterThanBracketsPink.svg">
+            <img v-show="isGrayLeftCardIconVisible" src="/greaterThanBracketsGray.svg">
             <h5>Sari-Sari Xchange</h5></div>
-          <div :class="['left-box-paragraph', currentLeftBoxParagraphGrayscale]">
+          <div :class="['left-box-paragraph', currentLeftBoxParagraph]">
             <p>SSX is a community-building research & creation project using Extended Reality (XR) (ie. Virtual,
                Augmented, Mixed Realities) to foster new works by artists from the Asian diaspora. 
                <br><br>
                Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created with and for the Asian diaspora community.</p>
           </div>
-          <div :class="['left-box-action-call', currentLeftBoxActionCallGrayscale]">
-            <p :class="['call-action', currentCallActionGrayscale]">Learn More</p>
-            <p class="goto-action">OK</p>
+          <div :class="['left-box-action-call', currentLeftBoxActionCall]">
+            <a href="" :class="['call-action', currentLeftBoxCallAction]">Learn More</a>
+            <a href="" :class="['goto-action', currentLeftBoxGotoAction]">OK</a>
           </div>
         </div>
 
         
-
-        <div class="center-top-box">
-          <div class="other-box-heading">
+     
+        <div :class="['center-top-box', currentOtherBox]">
+          <div :class="['other-box-heading', currentOtherBoxHeading]">
             <img src="/asteriskWhite.svg">
             <h5>Artists</h5>
           </div>
           <div>
-            <p class="other-box-subtitle">Explore community assets created by artists.</p>
+            <p :class="['other-box-subtitle', currentOtherBoxSubtitle]">Explore community assets created by artists.</p>
           </div>
-          <div class="other-box-photos">
-          <img src="/sample-images-artists.png">
+          <div :class="['other-box-photos', currentOtherBoxPhotos]">
+          <img v-show="arePinkTopCenterCardSampleImagesVisible" src="/sample-images-artists.png">
+          <img v-show="areGrayTopCenterCardSampleImagesVisible" src="/sample-images-artists-grayscale.png">
+          <img v-show="areHighContrastTopCenterCardSampleImagesVisible" src="/sample-images-artists-highContrast.png">
 
             </div>
             
-          <div class="other-box-action-call">
-            <p class="other-call-action">Open Artists</p>
-            <p class="other-goto-action">></p>
+          <div :class="['other-box-action-call', currentOtherBoxActionCall]">
+            <a href="" :class="['other-call-action', currentOtherBoxCallAction]">Open Artists</a>
+            <a href="" :class="['other-goto-action',  currentOtherBoxGotoAction]">></a>
           </div>
         </div>
 
-        <div class="center-bottom-box">
-          <div class="other-box-heading">
+
+        
+
+        <div :class="['center-bottom-box', currentOtherBox]">
+          <div :class="['other-box-heading', currentOtherBoxHeading]">
             <img src="/asteriskWhite.svg">
             <h5>Events</h5>
           </div>
           <div>
-            <p class="other-box-subtitle">Assets created during SSX events.</p>
+            <p :class="['other-box-subtitle', currentOtherBoxSubtitle]">Assets created during SSX events.</p>
           </div>
-          <div class="other-box-photos">
+          <div :class="['other-box-photos', currentOtherBoxPhotos]">
             <!-- <img src="/sample-images-artists.png"> -->
 
           
             </div>
-          <div class="other-box-action-call">
-            <p class="other-call-action">Open Events</p>
-            <p class="other-goto-action">></p>
+          <div :class="['other-box-action-call', currentOtherBoxActionCall]">
+            <a :class="['other-call-action', currentOtherBoxCallAction]">Open Events</a>
+            <a href="" :class="['other-goto-action',  currentOtherBoxGotoAction]">></a>
           </div>
         </div>
 
-        <div class="right-box">
-          <div class="other-box-heading">
+
+        <!-- currentOtherBoxHeading: 'other-box-heading', 
+            currentOtherBoxSubtitle: 'other-box-subtitle',
+            currentOtherBoxActionCall: 'other-box-action-call', -->
+        <div :class="['right-box', currentOtherBox]">
+          <div :class="['other-box-heading', currentOtherBoxHeading]">
             <img src="/asteriskWhite.svg">
-            <h5>Collection</h5>
+            <h5>Collections</h5>
           </div>
           <div>
-            <p class="other-box-subtitle">Explore collections by SSX.</p>
+            <p :class="['other-box-subtitle', currentOtherBoxSubtitle]">Explore collections by SSX.</p>
           </div>
-          <div class="other-box-photos">
+          <div :class="['other-box-photos', currentOtherBoxPhotos]">
             <!-- <img src="/sample-images-artists.png"> -->
 
 
             </div>
-          <div class="other-box-action-call">
-            <p class="other-call-action">Open Collections</p>
-            <p class="other-goto-action">></p>
+          <div :class="['other-box-action-call', currentOtherBoxActionCall]">
+            <a href="" :class="['other-call-action', currentOtherBoxCallAction]">Open Collections</a>
+            <a href="" :class="['other-goto-action',  currentOtherBoxGotoAction]">></a>
           </div>
         </div>
       

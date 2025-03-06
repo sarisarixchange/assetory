@@ -405,8 +405,8 @@
       }
 
       .logo {
-        width: 35px;
-        height: 35px;
+        width: 2.7vw;
+        height: 2.7vw;
         background-image: url('/logo.svg'); 
         background-size: contain;
         background-repeat: no-repeat;    

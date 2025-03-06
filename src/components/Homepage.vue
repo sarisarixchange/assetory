@@ -7,6 +7,7 @@
             fontSize: 1, // Default scale (1 = 100%)
             currentHeaderColorPalette: 'headerDefaultColorPalette',
             currentLogoColorPalette: 'logoDefaultColorPalette',
+            currentMarqueeColorPalette: 'marqueeItem',
             currentNavButtonColorPalette: 'navButtonDefaultColorPalette',
             currentNavAccessibiltyButtonColorPalette: 'navAccessibilityButtonDefaultColorPalette',
             currentaccessibilityButtonDivColorPalette: 'accessibilityButtonDivDefaultColorPalette',
@@ -22,6 +23,8 @@
             // leftbox
             isPinkLeftCardIconVisible: true,
             isGrayLeftCardIconVisible: false,
+            isHighContrastLeftCardIconVisible: false,
+            isWCAGLeftCardIconVisible: false,
             currentLeftBox: 'left-box',
             currentLeftBoxHeading: 'left-box-heading', 
             currentLeftBoxParagraph: 'left-box-paragraph',
@@ -51,7 +54,11 @@
 
             isReadableFont: false,
 
-          
+          // footer images
+          areFooterImagesDefaultVisible: true,
+          areFooterImagesGrayscaleVisible: false, 
+          areFooterImagesHighContrastVisible: false,
+          areFooterImagesWCAGcolorsVisible: false         
 
            
                 
@@ -99,13 +106,14 @@
             }
           },
 
-          resetTextSize() {
+          reset() {
             this.fontSize = 1;
             document.body.style.fontSize = ""; // Resets to default
 
             this.currentHeaderColorPalette = 'headerDefaultColorPalette'
             this.currentLogoColorPalette = 'logoDefaultColorPalette'
             this.currentNavButtonColorPalette =  'navButtonDefaultColorPalette'
+            this.currentMarqueeColorPalette= 'marqueeItem'
             this.currentNavAccessibiltyButtonColorPalette = 'navAccessibilityButtonDefaultColorPalette'
             this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivDefaultColorPalette'
             this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingDefaultColorPalette'
@@ -120,6 +128,9 @@
             // leftbox
             this.isPinkLeftCardIconVisible = true
             this.isGrayLeftCardIconVisible = false
+            this.isHighContrastLeftCardIconVisible= false
+            this.isWCAGLeftCardIconVisible = false
+
             this.currentLeftBox = 'left-box'
             this.currentLeftBoxHeading = 'left-box-heading' 
             this.currentLeftBoxParagraph = 'left-box-paragraph'
@@ -146,12 +157,21 @@
             this.isUnderlined = false;
             document.documentElement.style.setProperty("--link-decoration", "none");
 
+
             this.isReadableFont = false;
             document.documentElement.style.setProperty("--font-family", "'Lakonet', sans-serif");
-    
+            document.documentElement.style.setProperty("--marquee-item-margin-right", "-2rem");
+
+
+            // reset footer images
+           this.areFooterImagesDefaultVisible= true;
+           this.areFooterImagesGrayscaleVisible= false;
+           this.areFooterImagesHighContrastVisible= false;
+           this.areFooterImagesWCAGcolorsVisible= false
+
+          
         }, 
 
-        // reset readable font
 
 
         changeTograyscale(){
@@ -159,6 +179,8 @@
           this.currentNavAccessibiltyButtonColorPalette = "navAccessibilityButtonGrayscaleColorPalette"
           this.currentHeaderColorPalette = "headerGrayscaleColorPalette"
           this.currentLogoColorPalette = "logoGrayscaleColorPalette"
+          this.currentMarqueeColorPalette= 'marqueeItemGrayscale',
+
           this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivGrayscaleColorPalette'
           this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingGrayscaleColorPalette'
           // acc menu icons
@@ -174,6 +196,9 @@
             // left box
             this.isPinkLeftCardIconVisible = false
             this.isGrayLeftCardIconVisible = true
+            this.isHighContrastLeftCardIconVisible= false
+            this.isWCAGLeftCardIconVisible= false
+
             this.currentLeftBox = 'left-box-grayscale'
             this.currentLeftBoxHeading = 'left-box-heading-grayscale'
             this.currentLeftBoxParagraph = 'left-box-paragraph-grayscale'
@@ -194,6 +219,13 @@
             this.currentOtherBoxActionCall = 'other-box-action-call-grayscale', 
             this.currentOtherBoxCallAction= 'other-call-action-grayscale', 
             this.currentOtherBoxGotoAction= 'other-goto-action-grayscale'
+
+            // footer images
+
+            this.areFooterImagesDefaultVisible= false
+            this.areFooterImagesGrayscaleVisible= true
+            this.areFooterImagesHighContrastVisible= false
+            this.areFooterImagesWCAGcolorsVisible= false     
         }, 
 
         changeToHighContrast(){
@@ -201,6 +233,8 @@
           this.currentNavAccessibiltyButtonColorPalette = "navAccessibilityButtonHighContrastColorPalette"
           this.currentHeaderColorPalette = "headerHighContrastColorPalette"
           this.currentLogoColorPalette = "logoHighContrastColorPalette"
+          this.currentMarqueeColorPalette = 'marqueeItemHighContrast'
+
           this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivHighContrastColorPalette'
           this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingHighContrastColorPalette'
           // acc menu icons
@@ -215,7 +249,11 @@
             
             // left box
             this.isPinkLeftCardIconVisible = false
-            this.isGrayLeftCardIconVisible = true
+            this.isGrayLeftCardIconVisible = false
+            this.isHighContrastLeftCardIconVisible = true
+            this.isWCAGLeftCardIconVisible = false
+
+
             this.currentLeftBox = 'left-box-highContrast'
             this.currentLeftBoxHeading = 'left-box-heading-highContrast'
             this.currentLeftBoxParagraph = 'left-box-paragraph-highContrast'
@@ -235,6 +273,12 @@
             this.currentOtherBoxActionCall = 'other-box-action-call-highContrast', 
             this.currentOtherBoxCallAction= 'other-call-action-highContrast', 
             this.currentOtherBoxGotoAction= 'other-goto-action-highContrast'
+            // footer images
+
+            this.areFooterImagesDefaultVisible=false
+            this.areFooterImagesGrayscaleVisible= false     
+            this.areFooterImagesHighContrastVisible= true
+            this.areFooterImagesWCAGcolorsVisible= false
         }, 
 
         changeToWCAGcolors(){
@@ -242,6 +286,8 @@
           this.currentNavAccessibiltyButtonColorPalette = "navAccessibilityButtonWCAGcolorPalette"
           this.currentHeaderColorPalette = "headerWCAGcolorPalette"
           this.currentLogoColorPalette = "logoWCAGcolors"
+          this.currentMarqueeColorPalette= 'marqueeItemWCAGcolors'
+
           this.currentaccessibilityButtonDivColorPalette = 'accessibilityButtonDivWCAGcolorPalette'
           this.currentaccessiblityToolsHeadingColorPalette = 'accessiblityToolsHeadingWCAGcolorPalette'
           // acc menu icons
@@ -256,7 +302,10 @@
             
             // left box
             this.isPinkLeftCardIconVisible = false
-            this.isGrayLeftCardIconVisible = true
+            this.isGrayLeftCardIconVisible = false
+            this.isHighContrastLeftCardIconVisible = false
+            this.isWCAGLeftCardIconVisible= true
+
             this.currentLeftBox = 'left-box-WCAGcolors'
             this.currentLeftBoxHeading = 'left-box-heading-WCAGcolors'
             this.currentLeftBoxParagraph = 'left-box-paragraph-WCAGcolors'
@@ -278,6 +327,13 @@
             this.currentOtherBoxCallAction= 'other-call-action-WCAGcolors', 
             this.currentOtherBoxGotoAction= 'other-goto-action-WCAGcolors'
 
+            // footer images
+            this.areFooterImagesDefaultVisible = false
+            this.areFooterImagesGrayscaleVisible = false   
+            this.areFooterImagesHighContrastVisible = false
+            this.areFooterImagesWCAGcolorsVisible = true  
+
+
         },
 
         activateLinksUnderline() {
@@ -288,6 +344,8 @@
         activateReadableFont(){
             this.isReadableFont = true;
             document.documentElement.style.setProperty("--font-family", "'Inter', sans-serif");
+            document.documentElement.style.setProperty("--marquee-item-margin-right", "6.5rem");
+
     }
 
     }, 
@@ -333,9 +391,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: 0.5rsem 0.5rem;
+        /* padding: 0.5rsem 0.5rem; */
         border-bottom: 1px solid #eee;
-        background-color: white;
+        background-color: transparent;
         border: solid 1px #D400A6;
         border-radius: 17px;
       }
@@ -357,14 +415,34 @@
         justify-content: center;
         margin-left: 0.5em;
       }
-
-      .library-text {
-        font-family: 'Inter', monospace;
-        color: #D400A6;
-        font-size: 14px;
+    
+        .marquee {
+        overflow: hidden;
+        width: 65%;
+        display: flex;
         white-space: nowrap;
-        letter-spacing: 1px;
+        }
+
+        .marqueeItem { 
+        font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+        color:#D400A6;
+        display: flex;
+        align-items: center;
+        /* flex-shrink: 0; */
+        min-width: 100%; /* Ensures each item takes the full width */
+        animation: marquee-scroll 30s linear infinite;
+        margin-right: var(--marquee-item-margin-right);
       }
+
+        @keyframes marquee-scroll {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(0%);
+          }
+        }
+
 
       .nav-buttons {
         display: flex;
@@ -469,12 +547,26 @@
       } 
 
       .grid-container {
+        
             display: grid;
             grid-template-columns: repeat(8, 1fr);
             grid-template-rows: 7% repeat(8, 1fr);
             width: 100vw;
-            height: 100vh;
+            height: 100vh;     
+            position: relative;
+       
         }
+
+      .background-layer {
+          grid-column: 1 / 9; /* Full width */
+          grid-row: 1 / 9; /* Covers rows 2 to 9 */
+          background-image: url("/graph.svg");
+          background-repeat: no-repeat;
+          background-size: contain;
+          /* background-position: center; */
+          z-index: -1; /* Sends it to the background */
+      }
+
 
          
         .header {grid-column: 1/9; grid-row: 1 / 2; 
@@ -483,10 +575,41 @@
           /* Takes up only half of the row height */
           /* height: 50%;           */
         }
-        .left-box { grid-column: 2 / 4; grid-row: 4 / 6; align-self: center;   }
-        .right-box { grid-column: 6 / 8; grid-row: 4 / 6; align-self: center;  }
-        .center-top-box { grid-column: 4 / 6; grid-row: 3 / 5; align-self: center; }
-        .center-bottom-box { grid-column: 4 / 6; grid-row:  6/ 9; align-self: center;  }
+
+        .left-box { 
+          grid-column: 2 / 4; 
+          grid-row: 3 / 6; 
+          align-self: center;
+          position: relative;
+          top: 15%;
+          right: 20%;
+           }
+
+        .right-box { 
+          grid-column: 6 / 8; 
+          grid-row: 4 / 6;
+          align-self: center;
+          position: relative;
+          top: 20%;
+          left: 20%;
+            }
+
+        .center-top-box { 
+          grid-column: 4 / 6; 
+          grid-row: 2 / 5; 
+          align-self: center; 
+          position: relative;
+          top: 3%;
+        }
+
+        .center-bottom-box {
+           grid-column: 4 / 6;
+           grid-row:  6/ 9; 
+           align-self: center; 
+           position: relative;
+           left: 13%;
+          }
+
         .footer{grid-column: 1/9; grid-row: 9/10} 
 
 
@@ -1115,15 +1238,15 @@ color:white
 
       @keyframes scroll {
         0% {
-          transform: translateX(0);
+          transform: translateX(-100%);
         }
         100% {
-          transform: translateX(-50%);
+          transform: translateX(0%);
         }
       
       }
 
-      /* defaultscale */
+      /* default Color palette */
 
     .headerDefaultColorPalette {
       border-color: #D400A6;
@@ -1205,6 +1328,9 @@ color:white
   background-color: #E7EB17;
 }
 
+.marqueeItem {
+  color: #D400A6;
+}
 
 
     /* grayscale */
@@ -1337,6 +1463,9 @@ color: #525252;
   color: #525252;
 }
 
+.marqueeItemGrayscale {
+  color: #525252;
+}
 
  
 /* high contrast */
@@ -1471,6 +1600,9 @@ color: #FFFFFF;
   color: #000000;
 }
 
+.marqueeItemHighContrast {
+  color: #000000;
+}
 
 /* WCAG  */
 
@@ -1604,15 +1736,27 @@ color:white
   color:white
 }
 
+.marqueeItemWCAGcolors {
+  color: #A80084;
+}
+
     </style>
 
     <template>
       <div class="grid-container">
+        <div class="background-layer"></div> <!-- New background layer -->
       <div :class="['header', currentHeaderColorPalette]">
         <div class="logo-section">
           <div :class="['logo' , currentLogoColorPalette]"></div>
-          <!-- <span class="library-text">ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY</span> -->
-        </div>
+          </div>
+          <div class="marquee">
+            <div :class="['marqueeItem', currentMarqueeColorPalette]">
+              ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * 
+            </div> 
+            <div :class="['marqueeItem', currentMarqueeColorPalette]">
+              ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY *
+            </div>
+          </div>
         <div class="nav-buttons" >
           <a href="" :class="['nav-button', currentNavButtonColorPalette]">About</a>
           <a href="" :class="['nav-button', currentNavButtonColorPalette]">Accessibility Statement</a>
@@ -1661,7 +1805,7 @@ color:white
                   <div :class="currentWcagColoursIcon"></div>
                   </div>
 
-                  <div @click="resetTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
+                  <div @click="reset" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
                   <p>Reset</p>
                   <div :class="currentResetIcon"></div>
                   </div>
@@ -1677,6 +1821,8 @@ color:white
           <div :class="['left-box-heading', currentLeftBoxHeading]">
             <img v-show="isPinkLeftCardIconVisible" src="/greaterThanBracketsPink.svg">
             <img v-show="isGrayLeftCardIconVisible" src="/greaterThanBracketsGray.svg">
+            <img v-show="isHighContrastLeftCardIconVisible" src="/sariSariIconWhite.svg">
+            <img v-show="isWCAGLeftCardIconVisible" src="/greaterThanBracketsHighContrast.svg">
             <h5>Sari-Sari Xchange</h5></div>
           <div :class="['left-box-paragraph', currentLeftBoxParagraph]">
             <p>SSX is a community-building research & creation project using Extended Reality (XR) (ie. Virtual,
@@ -1718,7 +1864,7 @@ color:white
 
         <div :class="['center-bottom-box', currentOtherBox]">
           <div :class="['other-box-heading', currentOtherBoxHeading]">
-            <img src="/asteriskWhite.svg">
+            <img src="/eventsIconWhite.svg">
             <h5>Events</h5>
           </div>
           <div>
@@ -1741,7 +1887,7 @@ color:white
             currentOtherBoxActionCall: 'other-box-action-call', -->
         <div :class="['right-box', currentOtherBox]">
           <div :class="['other-box-heading', currentOtherBoxHeading]">
-            <img src="/asteriskWhite.svg">
+            <img src="/collectionsIconWhite.svg">
             <h5>Collections</h5>
           </div>
           <div>
@@ -1760,27 +1906,167 @@ color:white
       
 
       <div class="footer">
-        <div class="footer-images">
+        <div v-show="areFooterImagesDefaultVisible" class="footer-images">
           <!-- First set of images -->
           <img src="/item1.png" alt="item 1" class="footer-image">
           <img src="/item2.png" alt="item 2" class="footer-image">
           <img src="/item3.png" alt="item 3" class="footer-image">
           <img src="/item4.png" alt="item 4" class="footer-image">
-          <img src="/item11.png" alt="item 11" class="footer-image">
+          <img src="/item5.png" alt="item 11" class="footer-image">
           <img src="/item6.png" alt="item 6" class="footer-image">
           <img src="/item7.png" alt="item 7" class="footer-image">
           <img src="/item8.png" alt="item 8" class="footer-image">
           
           <!-- Duplicate set for smooth infinite scroll -->
-          <img src="/item10.png" alt="item 10" class="footer-image">
-          <img src="/item11.png" alt="item 11" class="footer-image">
           <img src="/item1.png" alt="item 1" class="footer-image">
           <img src="/item2.png" alt="item 2" class="footer-image">
           <img src="/item3.png" alt="item 3" class="footer-image">
           <img src="/item4.png" alt="item 4" class="footer-image">
-          <img src="/item11.png" alt="item 11" class="footer-image">
+          <img src="/item5.png" alt="item 11" class="footer-image">
           <img src="/item6.png" alt="item 6" class="footer-image">
+          <img src="/item7.png" alt="item 7" class="footer-image">
+          <img src="/item8.png" alt="item 8" class="footer-image">
+
+           <!-- Duplicate set for smooth infinite scroll -->
+          <img src="/item1.png" alt="item 1" class="footer-image">
+          <img src="/item2.png" alt="item 2" class="footer-image">
+          <img src="/item3.png" alt="item 3" class="footer-image">
+          <img src="/item4.png" alt="item 4" class="footer-image">
+          <img src="/item5.png" alt="item 11" class="footer-image">
+          <img src="/item6.png" alt="item 6" class="footer-image">
+          <img src="/item7.png" alt="item 7" class="footer-image">
+          <img src="/item8.png" alt="item 8" class="footer-image">
+
+           <!-- Duplicate set for smooth infinite scroll -->
+           <img src="/item1.png" alt="item 1" class="footer-image">
+          <img src="/item2.png" alt="item 2" class="footer-image">
+          <img src="/item3.png" alt="item 3" class="footer-image">
+          <img src="/item4.png" alt="item 4" class="footer-image">
+          <img src="/item5.png" alt="item 11" class="footer-image">
+          <img src="/item6.png" alt="item 6" class="footer-image">
+          <img src="/item7.png" alt="item 7" class="footer-image">
+          <img src="/item8.png" alt="item 8" class="footer-image">
         </div>
+
+
+        <div v-show="areFooterImagesGrayscaleVisible" class="footer-images">
+        
+          <img src="/item1-gray.png" alt="item 1" class="footer-image">
+          <img src="/item2-gray.png" alt="item 2" class="footer-image">
+          <img src="/item3-gray.png" alt="item 3" class="footer-image">
+          <img src="/item4-gray.png" alt="item 4" class="footer-image">
+          <img src="/item5-gray.png" alt="item 11" class="footer-image">
+          <img src="/item6-gray.png" alt="item 6" class="footer-image">
+          <img src="/item7-gray.png" alt="item 7" class="footer-image">
+          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+    
+          <img src="/item1-gray.png" alt="item 1" class="footer-image">
+          <img src="/item2-gray.png" alt="item 2" class="footer-image">
+          <img src="/item3-gray.png" alt="item 3" class="footer-image">
+          <img src="/item4-gray.png" alt="item 4" class="footer-image">
+          <img src="/item5-gray.png" alt="item 11" class="footer-image">
+          <img src="/item6-gray.png" alt="item 6" class="footer-image">
+          <img src="/item7-gray.png" alt="item 7" class="footer-image">
+          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+
+           <img src="/item1-gray.png" alt="item 1" class="footer-image">
+          <img src="/item2-gray.png" alt="item 2" class="footer-image">
+          <img src="/item3-gray.png" alt="item 3" class="footer-image">
+          <img src="/item4-gray.png" alt="item 4" class="footer-image">
+          <img src="/item5-gray.png" alt="item 11" class="footer-image">
+          <img src="/item6-gray.png" alt="item 6" class="footer-image">
+          <img src="/item7-gray.png" alt="item 7" class="footer-image">
+          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+
+           <img src="/item1-gray.png" alt="item 1" class="footer-image">
+          <img src="/item2-gray.png" alt="item 2" class="footer-image">
+          <img src="/item3-gray.png" alt="item 3" class="footer-image">
+          <img src="/item4-gray.png" alt="item 4" class="footer-image">
+          <img src="/item5-gray.png" alt="item 11" class="footer-image">
+          <img src="/item6-gray.png" alt="item 6" class="footer-image">
+          <img src="/item7-gray.png" alt="item 7" class="footer-image">
+          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+        </div>
+
+        <div v-show="areFooterImagesHighContrastVisible" class="footer-images">
+        
+        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
+        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
+        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
+        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
+        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
+        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
+        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
+        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+  
+        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
+        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
+        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
+        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
+        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
+        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
+        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
+        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+
+        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
+        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
+        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
+        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
+        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
+        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
+        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
+        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+         
+        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
+        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
+        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
+        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
+        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
+        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
+        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
+        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+      </div>
+
+
+      <div v-show="areFooterImagesWCAGcolorsVisible" class="footer-images">
+        
+        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
+        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
+        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
+        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
+        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
+        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
+        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
+        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+  
+        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
+        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
+        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
+        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
+        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
+        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
+        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
+        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+
+        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
+        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
+        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
+        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
+        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
+        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
+        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
+        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+         
+        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
+        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
+        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
+        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
+        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
+        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
+        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
+        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+      </div>
+
       </div>
     </div>
 </template>

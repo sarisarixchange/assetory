@@ -160,7 +160,7 @@
 
             this.isReadableFont = false;
             document.documentElement.style.setProperty("--font-family", "'Lakonet', sans-serif");
-            document.documentElement.style.setProperty("--marquee-item-margin-right", "-2rem");
+            document.documentElement.style.setProperty("--marquee-item-gap", "1.5vw");
 
 
             // reset footer images
@@ -344,7 +344,7 @@
         activateReadableFont(){
             this.isReadableFont = true;
             document.documentElement.style.setProperty("--font-family", "'Inter', sans-serif");
-            document.documentElement.style.setProperty("--marquee-item-margin-right", "6.5rem");
+            document.documentElement.style.setProperty("--marquee-item-gap", "12vw");
 
     }
 
@@ -416,22 +416,24 @@
         margin-left: 0.5em;
       }
     
-        .marquee {
+    .marquee {
         overflow: hidden;
         width: 65%;
         display: flex;
         white-space: nowrap;
+        cursor: default;
+        gap: var(--marquee-item-gap, 1.5vw);
         }
 
-        .marqueeItem { 
-        font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+      .marqueeItem { 
+        font-family: var(--font-family, 'Lakonet'), sans-serif; 
+        font-size: 1.25vw;
         color:#D400A6;
         display: flex;
         align-items: center;
-        /* flex-shrink: 0; */
         min-width: 100%; /* Ensures each item takes the full width */
         animation: marquee-scroll 30s linear infinite;
-        margin-right: var(--marquee-item-margin-right);
+        /* margin-right: var(--marquee-item-margin-right); */
       }
 
         @keyframes marquee-scroll {
@@ -487,6 +489,7 @@
     background-color: white;
     border: 1px solid #D400A6;
     transition: background-color 0.2s;
+    cursor: pointer;
 }
       
     .nav-buttonAccessibilityIcon:hover {
@@ -511,18 +514,24 @@
       .left-box, .right-box, .center-top-box, .center-bottom-box {
         z-index: 3; /* Place content above grid and background */
         margin: 1em;
+        cursor: default;
+        box-shadow: 
+        -6px 6px 0 #F1AFDD,  /* Thick left border */
+        0 6px 1px #F1AFDD;   /* Thick bottom border */
       }
 
+    
       .cardTitles {
         font-weight: bold;
       }
 
       .left-box {
         padding: 1.8%;
-        /* width: 80%; */
         border-radius: 12px;
         border: 1px solid #D400A6;
+     
       }
+
 
 
       .right-box {
@@ -530,6 +539,7 @@
         /* width: 80%; */
         border-radius: 12px;
         border: 1px solid #D400A6;
+        
       }
 
       .center-top-box {
@@ -650,6 +660,7 @@
   /* height: 10vh; */
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 4;
+  cursor:pointer;
 }
 
 .accessiblityToolsHeading {
@@ -663,6 +674,7 @@
         /* font-family: Doto; */
         /* font-weight: 900; */
         text-align: center;
+        cursor: default;
       }
 
 /* Links inside the dropdown */
@@ -1059,18 +1071,19 @@
   border-radius: 8px;
   background-color: #E7EB17;
   font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
-  /* font-family: 'Doto'; */
   color: #D400A6;
-  /* font-weight: 100; */
-  font-size: 1.15em;
-  margin-bottom: 0.35em;
+  align-items: center; /* Ensures vertical alignment */
+  font-size: 1.5vw;
+  padding: 1%;
+  padding-top: 2%;
+  margin-bottom: 0.35em; 
+  gap: 0.25em;
 }
 
 .left-box-heading img {
-  width: 8%;
-  padding: 0.5%;
-  margin-right: 0.2em;
-  margin-left: 0.2em;
+  width: 1.5vw; /* Using em to scale with text */
+  margin-bottom: 0.1em;
+  margin-left: 0.25em;
 }
 
 .left-box-paragraph{
@@ -1092,15 +1105,11 @@
   display: flex;
   border-radius: 8px;
   font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
-  /* font-family: 'Doto'; */
   color: #D400A6;
-  /* font-weight: 900; */
   font-size: 0.8em;
   background-color: #FCFCCE;
-  /* background-image: url("/learnMoreUnionLightYellow.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center; */
+  font-size: 1vw;
+  padding: 1.75%;
 }
 
 
@@ -1128,15 +1137,24 @@ color: #D400A6;
 /* Other boxes */
 
 .other-box-heading{
-  display: flex;
+  display: flex; 
   border-radius: 8px;
   background-color: #D400A6;
   font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
-  /* font-family: 'Doto'; */
   color: white;
-  /* font-weight: 900; */
-  font-size: 1.15em;
-  margin-bottom: 0.35em;
+  align-items: center; /* Ensures vertical alignment */
+  font-size: 1.5vw;
+  padding: 1%;
+  padding-top: 2%;
+  margin-bottom: 0.35em; 
+  gap: 0.25em;
+}
+
+
+.other-box-heading img {
+  width: 1vw; /* Using em to scale with text */
+  margin-bottom: 0.1em;
+  margin-left: 0.25em;
 }
 
 .other-box-subtitle {
@@ -1151,12 +1169,6 @@ color: #D400A6;
 
 }
 
-.other-box-heading img {
-  width: 5%;
-  padding: 0.5%;
-  margin-right: 0.2em;
-  margin-left: 0.2em;
-}
 
 
 .other-box-photos {
@@ -1180,27 +1192,20 @@ color: #D400A6;
   display: flex;
   border-radius: 8px;
   font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
-  /* font-family: 'Doto'; */
   color: #D400A6;
-  /* font-weight: 900; */
-  font-size: 0.8em;
-  /* background-image: url("/unionCallToActionOtherBoxesLightPink.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center; */
+  font-size: 1vw;
+  padding: 0.5%;
   background-color: #FFEDF4;
+  align-items: center;
 }
 
 .other-box-action-call:hover {
-  /* background-image: url("/unionCallToActionOtherBoxesPink.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center; */
   background-color: #D400A6;
 }
 
 .other-call-action{
 margin-left: 0.5em;
+
 width:92%;
 color:#D400A6
 }
@@ -1209,9 +1214,10 @@ color:#D400A6
 color:white
 }
 
-/* .other-goto-action{
-  
-} */
+.other-goto-action{
+ font-size: 1.5vw; 
+ color:#D400A6
+}
 
 .other-box-action-call:hover  .other-goto-action{
   color:white
@@ -1391,6 +1397,10 @@ color:white
 
 .left-box-grayscale {
     border-color: #D2D2D2;
+    box-shadow: 
+        -6px 6px 0 #C8C8C8,  /* Thick left border */
+        0 6px 1px #C8C8C8;   /* Thick bottom border */
+      
   }
 
   .left-box-heading-grayscale{
@@ -1404,6 +1414,7 @@ color: #525252;
   background-color: #F3F3F3;
   color: #525252;  
   border-color: #525252;
+  
 
 }
 
@@ -1430,6 +1441,11 @@ color: #525252;
 
 .other-box-grayscale {
     border-color: #525252;
+    box-shadow: 
+        -6px 6px 0 #C8C8C8,  /* Thick left border */
+        0 6px 1px #C8C8C8;   /* Thick bottom border */
+      
+    
   }
 
 .other-box-heading-grayscale{
@@ -1529,6 +1545,9 @@ background-position: center;
 
 .left-box-highContrast {
     border-color: #000000;
+    box-shadow: 
+        0 0 0 transparent,  /* Thick left border */
+        0 0 0 transparent;   /* Thick bottom border */
   }
 
   .left-box-heading-highContrast {
@@ -1565,6 +1584,10 @@ color: #FFFFFF;
 
 .other-box-highContrast {
     border-color: #000000;
+    box-shadow: 
+        -6px 6px 0 transparent,  /* Thick left border */
+        0 6px 1px transparent;   /* Thick bottom border */
+      
   }
 
 .other-box-heading-highContrast {

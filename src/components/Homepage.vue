@@ -41,6 +41,10 @@
             currentOtherBox: 'other-box',
             currentOtherBoxHeading: 'other-box-heading', 
             currentOtherBoxSubtitle: 'other-box-subtitle',
+            isDecoractionCardSubtitlePink: true,
+            isDecoractionCardSubtitleGray: false,
+            isDecoractionCardSubtitleHighContrast:false,
+            isDecoractionCardSubtitleWCAG: false,
             currentOtherBoxPhotos: 'other-box-photos', 
             currentOtherBoxActionCall: 'other-box-action-call',
             currentOtherBoxCallAction: 'other-call-action', 
@@ -147,6 +151,12 @@
             this.currentOtherBox= 'other-box'
            this.currentOtherBoxHeading= 'other-box-heading'
            this.currentOtherBoxSubtitle= 'other-box-subtitle'
+
+           this.isDecoractionCardSubtitlePink= true
+           this.isDecoractionCardSubtitleGray= false
+           this.isDecoractionCardSubtitleHighContrast=false
+           this.isDecoractionCardSubtitleWCAG= false
+
            this.currentOtherBoxPhotos= 'other-box-photos'
            this.currentOtherBoxActionCall= 'other-box-action-call'
            this.currentOtherBoxCallAction= 'other-call-action', 
@@ -215,6 +225,12 @@
             this.currentOtherBox= 'other-box-grayscale'
             this.currentOtherBoxHeading = 'other-box-heading-grayscale'
             this.currentOtherBoxSubtitle = 'other-box-subtitle-grayscale'
+
+            this.isDecoractionCardSubtitlePink= false
+           this.isDecoractionCardSubtitleGray= true
+           this.isDecoractionCardSubtitleHighContrast=false
+           this.isDecoractionCardSubtitleWCAG= false
+
             this.currentOtherBoxPhotos= 'other-box-photos-grayscale'
             this.currentOtherBoxActionCall = 'other-box-action-call-grayscale', 
             this.currentOtherBoxCallAction= 'other-call-action-grayscale', 
@@ -269,6 +285,13 @@
             this.currentOtherBox= 'other-box-highContrast'
             this.currentOtherBoxHeading = 'other-box-heading-highContrast'
             this.currentOtherBoxSubtitle = 'other-box-subtitle-highContrast'
+
+            this.isDecoractionCardSubtitlePink= false
+           this.isDecoractionCardSubtitleGray= false
+           this.isDecoractionCardSubtitleHighContrast=true
+           this.isDecoractionCardSubtitleWCAG= false
+
+
             this.currentOtherBoxPhotos= 'other-box-photos-highContrast'
             this.currentOtherBoxActionCall = 'other-box-action-call-highContrast', 
             this.currentOtherBoxCallAction= 'other-call-action-highContrast', 
@@ -322,6 +345,13 @@
             this.currentOtherBox= 'other-box-WCAGcolors'
             this.currentOtherBoxHeading = 'other-box-heading-WCAGcolors'
             this.currentOtherBoxSubtitle = 'other-box-subtitle-WCAGcolors'
+
+            this.isDecoractionCardSubtitlePink= false
+           this.isDecoractionCardSubtitleGray= false
+           this.isDecoractionCardSubtitleHighContrast=false
+           this.isDecoractionCardSubtitleWCAG= true
+
+
             this.currentOtherBoxPhotos= 'other-box-photos-WCAGcolors'
             this.currentOtherBoxActionCall = 'other-box-action-call-WCAGcolors', 
             this.currentOtherBoxCallAction= 'other-call-action-WCAGcolors', 
@@ -449,10 +479,11 @@
       .nav-buttons {
         display: flex;
         gap: 1rem;
-        padding: 0.5%;            
+        padding: 0.5%;          
       }
 
       .nav-button {
+        text-align: center;  
         padding: 0.5rem 1rem;
         border: 1px solid #D400A6;
         background: none;
@@ -1158,18 +1189,21 @@ color: #D400A6;
 }
 
 .other-box-subtitle {
+  display: flex;
   padding: 0.5em;
   border-radius: 8px;
   background-color: #FFEDF4;
   font-family: 'Inter', sans-serif;
   color:#D400A6;
-  font-size: 0.60em;
+  gap: 0.5vw;
+  font-size: 0.80vw;
   font-weight: 350;
   margin-bottom: 0.35em;
-
 }
 
-
+.other-box-subtitle img {
+  width: 1vw;
+}
 
 .other-box-photos {
     display: block;  /* Ensures it behaves like a normal div */
@@ -1866,8 +1900,13 @@ color:white
             <img src="/asteriskWhite.svg">
             <h5>Artists</h5>
           </div>
-          <div>
-            <p :class="['other-box-subtitle', currentOtherBoxSubtitle]">Explore community assets created by artists.</p>
+          <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
+            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg">
+            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg">
+            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg">
+            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg">
+            <p >Explore community assets created by artists.</p>
+            
           </div>
           <div :class="['other-box-photos', currentOtherBoxPhotos]">
           <img v-show="arePinkTopCenterCardSampleImagesVisible" src="/sample-images-artists.png">
@@ -1890,8 +1929,12 @@ color:white
             <img src="/eventsIconWhite.svg">
             <h5>Events</h5>
           </div>
-          <div>
-            <p :class="['other-box-subtitle', currentOtherBoxSubtitle]">Assets created during SSX events.</p>
+            <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
+              <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg">
+            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg">
+            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg">
+            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg">
+            <p>Assets created during SSX events.</p>
           </div>
           <div :class="['other-box-photos', currentOtherBoxPhotos]">
             <!-- <img src="/sample-images-artists.png"> -->
@@ -1905,16 +1948,17 @@ color:white
         </div>
 
 
-        <!-- currentOtherBoxHeading: 'other-box-heading', 
-            currentOtherBoxSubtitle: 'other-box-subtitle',
-            currentOtherBoxActionCall: 'other-box-action-call', -->
         <div :class="['right-box', currentOtherBox]">
           <div :class="['other-box-heading', currentOtherBoxHeading]">
             <img src="/collectionsIconWhite.svg">
             <h5>Collections</h5>
           </div>
-          <div>
-            <p :class="['other-box-subtitle', currentOtherBoxSubtitle]">Explore collections by SSX.</p>
+          <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
+            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg">
+            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg">
+            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg">
+            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg">
+            <p>Explore collections by SSX.</p>
           </div>
           <div :class="['other-box-photos', currentOtherBoxPhotos]">
             <!-- <img src="/sample-images-artists.png"> -->

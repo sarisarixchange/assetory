@@ -62,9 +62,10 @@
           areFooterImagesDefaultVisible: true,
           areFooterImagesGrayscaleVisible: false, 
           areFooterImagesHighContrastVisible: false,
-          areFooterImagesWCAGcolorsVisible: false         
+          areFooterImagesWCAGcolorsVisible: false,         
 
-           
+          //  background image
+          currentBackgroundLayer: 'background-layer'
                 
     } 
   },
@@ -179,6 +180,8 @@
            this.areFooterImagesHighContrastVisible= false;
            this.areFooterImagesWCAGcolorsVisible= false
 
+              // background image
+            this.currentBackgroundLayer= 'background-layer'
           
         }, 
 
@@ -242,6 +245,9 @@
             this.areFooterImagesGrayscaleVisible= true
             this.areFooterImagesHighContrastVisible= false
             this.areFooterImagesWCAGcolorsVisible= false     
+
+            // background image
+            this.currentBackgroundLayer= 'background-layer-grayscale'
         }, 
 
         changeToHighContrast(){
@@ -302,6 +308,10 @@
             this.areFooterImagesGrayscaleVisible= false     
             this.areFooterImagesHighContrastVisible= true
             this.areFooterImagesWCAGcolorsVisible= false
+
+
+            // background image
+            this.currentBackgroundLayer= 'background-layer-highContrast'
         }, 
 
         changeToWCAGcolors(){
@@ -363,6 +373,9 @@
             this.areFooterImagesHighContrastVisible = false
             this.areFooterImagesWCAGcolorsVisible = true  
 
+
+            // background image
+            this.currentBackgroundLayer= 'background-layer'
 
         },
 
@@ -601,12 +614,35 @@
       .background-layer {
           grid-column: 1 / 9; /* Full width */
           grid-row: 1 / 9; /* Covers rows 2 to 9 */
-          background-image: url("/graph.svg");
+          background-image: url("/xyz.svg"); 
           background-repeat: no-repeat;
           background-size: contain;
           /* background-position: center; */
           z-index: -1; /* Sends it to the background */
       }
+
+      .background-layer-grayscale {
+        grid-column: 1 / 9; /* Full width */
+          grid-row: 1 / 9; /* Covers rows 2 to 9 */
+          background-image: url("/xyz-gray.svg"); 
+          background-repeat: no-repeat;
+          background-size: contain;
+          /* background-position: center; */
+          z-index: -1; /* Sends it to the background */
+      }
+
+      
+      .background-layer-highContrast{
+        grid-column: 1 / 9; /* Full width */
+          grid-row: 1 / 9; /* Covers rows 2 to 9 */
+          background-image: url("/xyz-highContrast.svg"); 
+          background-repeat: no-repeat;
+          background-size: contain;
+          /* background-position: center; */
+          z-index: -1; /* Sends it to the background */
+      }
+
+      
 
 
          
@@ -1801,7 +1837,7 @@ color:white
 
     <template>
       <div class="grid-container">
-        <div class="background-layer"></div> <!-- New background layer -->
+        <div :class="[background-layer, currentBackgroundLayer]"></div> <!-- New background layer -->
       <div :class="['header', currentHeaderColorPalette]">
         <div class="logo-section">
           <div :class="['logo' , currentLogoColorPalette]"></div>

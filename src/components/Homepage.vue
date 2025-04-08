@@ -170,8 +170,8 @@
 
 
             this.isReadableFont = false;
-            document.documentElement.style.setProperty("--font-family", "'Lakonet', sans-serif");
-            document.documentElement.style.setProperty("--marquee-item-gap", "1.5vw");
+            document.documentElement.style.setProperty("--font-family", "'Handjet', sans-serif");
+            document.documentElement.style.setProperty("--marquee-item-gap", "18rem");
 
 
             // reset footer images
@@ -387,7 +387,7 @@
         activateReadableFont(){
             this.isReadableFont = true;
             document.documentElement.style.setProperty("--font-family", "'Inter', sans-serif");
-            document.documentElement.style.setProperty("--marquee-item-gap", "12vw");
+            document.documentElement.style.setProperty("--marquee-item-gap", "50rem");
 
     }
 
@@ -405,26 +405,46 @@
       }
 
       @font-face {
-        font-family: 'Lakonet';
-        src: url('/fonts/Lakonet.otf') format('opentype');
+        font-family: 'Handjet';
+        src: url('/fonts/Handjet.ttf') format('opentype');
         font-weight: normal;
         font-style: normal;
         }
 
       body {
-            /* display: flex; */
-            /* justify-content: center; */
-            /* align-items: center; */
-            height: 100vh;
-            margin: 0;
-            background-color: #f9f9f9;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px; /* 1rem = 16px */
+        background: white;
+        height: 100vh;
+        margin: 0;
+        background-color: #f9f9f9;
+          }
+
+       /* Increase root font size for larger screens */
+       @media (min-width: 600px) {
+          html {
+            font-size: 12px; /* 1rem = 12px */
+          }
         }
 
-      body {
-        font-family: 'Inter', sans-serif;
-        background: white;
-        /* padding: 1em;  */
-      }
+        /* Increase root font size for larger screens */
+        @media (min-width: 768px) {
+          html {
+            font-size: 18px; /* 1rem = 18px */
+          }
+        }
+
+        /* Further increase root font size for very large screens */
+        @media (min-width: 1200px) {
+          html {
+            font-size: 20px; /* 1rem = 20px */
+          }
+        }
+
+    h2 {
+      font-size: 1rem; 
+      font-weight: normal; 
+    }
 
       /* Header styles from previous implementation */
       .header {
@@ -459,18 +479,29 @@
         margin-left: 0.5em;
       }
     
+      .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+    white-space: nowrap; /* Prevents screen readers from pausing mid-sentence */
+}
     .marquee {
         overflow: hidden;
         width: 65%;
         display: flex;
         white-space: nowrap;
         cursor: default;
-        gap: var(--marquee-item-gap, 1.5vw);
-        }
+        gap: var(--marquee-item-gap, 18rem); /* adjust rem as needed */
+      }
 
       .marqueeItem { 
-        font-family: var(--font-family, 'Lakonet'), sans-serif; 
-        font-size: 1.25vw;
+        font-family: var(--font-family, 'Handjet'), sans-serif; 
+        font-size: 0.84rem;
         color:#D400A6;
         display: flex;
         align-items: center;
@@ -497,12 +528,12 @@
 
       .nav-button {
         text-align: center;  
-        padding: 0.5rem 1rem;
+        padding: 0.45rem 0.75rem;
         border: 1px solid #D400A6;
         background: none;
         color: #D400A6;
         border-radius: 20px;
-        font-size: 0.65em;
+        font-size: 0.50rem;
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.2s;
@@ -697,7 +728,7 @@
   background-color: #3498DB;
   color: white;
   padding: 16px;
-  font-size: 16px;
+  font-size: 1rem;
   border: none;
   cursor: pointer;
 }
@@ -731,13 +762,13 @@
 }
 
 .accessiblityToolsHeading {
-        padding: 1em;
+        padding: 0.30em;
         border-radius: 10px;
         margin-bottom: 0.25em;
         /* background-color: #D400A6; */
         color: white;
-        font-size: 0.75em;
-        font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+        /* font-size: 0.75em; */
+        font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
         /* font-family: Doto; */
         /* font-weight: 900; */
         text-align: center;
@@ -754,17 +785,19 @@
   text-decoration: none;
   text-align: left;
   display: block;
-  font-size: 0.75em;
+  font-size: 0.5rem;
 
 }
 
 .accessibilityButtonDiv {
+  font-size: 0.60rem;
+  width: 100%;
+  padding: 0.5em;
   display: flex;
-  /* background-image: url("/accessibilityUnionNonHover.svg");
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center; */
+  border: none;
   background-color: #FFEDF4;  
+  justify-content: space-between; /* Pushes first item left, second item right */
+  align-items: center;
 }
 
 
@@ -780,32 +813,35 @@
   color: white;
 } */
 
-.increaseTextIcon{
+.increaseTextIcon {
   width: 1em;
+  height: 1em; 
   background-image: url("/IncreaseTextIcon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
 }
+
 
 .increaseTextIconGray{
   width: 1em;
+  height: 1em; 
   background-image: url("/IncreaseTextIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 
 .increaseTextIconHighContrast{
   width: 1em;
+  height: 1em; 
   background-image: url("/IncreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .increaseTextIconWCAG{
@@ -814,77 +850,83 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .decreaseTextIcon{
   width: 1em;
+  height: 1em; 
   background-image: url("/decreaseTextIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .decreaseTextIconGray{
   width: 1em;
+  height: 1em; 
   background-image: url("/decreaseTextIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 
 .decreaseTextIconHighContrast{
   width: 1em;
+  height: 1em; 
   background-image: url("/decreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 
 .decreaseTextIconWCAG{
   width: 1em;
+  height: 1em; 
   background-image: url("/decreaseTextIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .grayscaleIcon {  
   width: 1em;
+  height: 1em; 
   background-image: url("/grayscaleIconPink.svg");
-  /* background-image: url("/decreaseTextIconGray.svg"); */
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .grayscaleIconGray{
   width: 1em;
+  height: 1em; 
   background-image: url("/grayscaleIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
 }
 
 .grayscaleIconHighContrast{
   width: 1em;
+  height: 1em; 
   background-image: url("/grayscaleIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .grayscaleIconWCAG{
   width: 1em;
+  height: 1em; 
   background-image: url("/grayscaleIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -895,185 +937,205 @@
 
 .highContrastIcon{
   width: 1em;
+  height: 1em; 
   background-image: url("/highContrastIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .highContrastIconGray{
   width: 1em;
+  height: 1em; 
   background-image: url("/highContrastIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .highContrastIconHighContrast{
   width: 1em;
+  height: 1em; 
   background-image: url("/highContrastIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 
 .highContrastIconWCAG{
   width: 1em;
+  height: 1em; 
   background-image: url("/highContrastIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 
 .linksUnderlineIcon{
   width: 1em;
+  height: 1em; 
   background-image: url("/linksUnderlineIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .linksUnderlineIconGray{
   width: 1em;
+  height: 1em; 
   background-image: url("/linksUnderlineIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .linksUnderlineIconHighContrast{
   width: 1em;
+  height: 1em; 
   background-image: url("/linksUnderlineIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .linksUnderlineIconWCAG{
   width: 1em;
+  height: 1em; 
   background-image: url("/linksUnderlineIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .readableFontIcon {
   width: 1em;
+  height: 1em; 
   background-image: url("/readableFontIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .readableFontIconGray {
   width: 1em;
+  height: 1em; 
   background-image: url("/readableFontIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .readableFontIconHighContrast {
   width: 1em;
+  height: 1em; 
   background-image: url("/readableFontIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .readableFontIconWCAG {
   width: 1em;
+  height: 1em; 
   background-image: url("/readableFontIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIcon {
   width: 1em;
+  height: 1em; 
   background-image: url("/wcagColorsIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIconGray {
   width: 1em;
+  height: 1em; 
   background-image: url("/wcagColorsIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIconHighContrast {
   width: 1em;
+  height: 1em; 
   background-image: url("/wcagColorsIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIconWCAG {
   width: 1em;
+  height: 1em; 
   background-image: url("/wcagColorsIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .resetIcon {
   width: 1em;
+  height: 1em; 
   background-image: url("/resetIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 
 .resetIconGray {
   width: 1em;
+  height: 1em; 
   background-image: url("/resetIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .resetIconHighContrast {
   width: 1em;
+  height: 1em; 
   background-image: url("/resetIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .resetIconWCAG {
   width: 1em;
+  height: 1em; 
   background-image: url("/resetIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  margin-right: 0.10em;
+  /* margin-right: 0.10em; */
 }
 
 .accessibilityButtonDiv:hover .increaseTextIcon, .accessibilityButtonDiv:hover .increaseTextIconWCAG{
@@ -1137,7 +1199,7 @@
   display: flex;
   border-radius: 8px;
   background-color: #E7EB17;
-  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color: #D400A6;
   align-items: center; /* Ensures vertical alignment */
   font-size: 1.5vw;
@@ -1163,7 +1225,7 @@
 .left-box-paragraph p {
   padding: 0.75em;
   font-family: 'Inter', sans-serif;
-  font-size: 0.7em;
+  font-size: 0.6rem;
   font-weight: 350;
   min-height:  16vh;
 }
@@ -1171,21 +1233,16 @@
 .left-box-action-call{
   display: flex;
   border-radius: 8px;
-  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color: #D400A6;
-  font-size: 0.8em;
+  font-size: 0.8rem;
   background-color: #FCFCCE;
-  font-size: 1vw;
   padding: 1.75%;
 }
 
 
 
 .left-box-action-call:hover {
-  /* background-image: url("/learnMoreUnionYellow.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position: center; */
   background-color: #E7EB17;
 }
 
@@ -1193,6 +1250,13 @@
 margin-left: 0.5em;
 width:90%;
 color: #D400A6;
+display: flex;
+justify-content: space-between; /* or use margin-left: auto on .ok-action */
+width: 100%; /* or any fixed width you prefer */
+}
+
+.ok-action {
+  margin-left: auto;
 }
 
 .goto-action {
@@ -1207,7 +1271,7 @@ color: #D400A6;
   display: flex; 
   border-radius: 8px;
   background-color: #D400A6;
-  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color: white;
   align-items: center; /* Ensures vertical alignment */
   font-size: 1.5vw;
@@ -1232,7 +1296,7 @@ color: #D400A6;
   font-family: 'Inter', sans-serif;
   color:#D400A6;
   gap: 0.5vw;
-  font-size: 0.80vw;
+  font-size: 0.5rem;
   font-weight: 350;
   margin-bottom: 0.35em;
 }
@@ -1261,10 +1325,10 @@ color: #D400A6;
 .other-box-action-call{
   display: flex;
   border-radius: 8px;
-  font-family: var(--font-family, 'Lakonet'), sans-serif; /* Uses Lakonet by default */
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color: #D400A6;
-  font-size: 1vw;
-  padding: 0.5%;
+  font-size: 0.8rem;
+  padding: 1.75%;
   background-color: #FFEDF4;
   align-items: center;
 }
@@ -1275,19 +1339,25 @@ color: #D400A6;
 
 .other-call-action{
 margin-left: 0.5em;
-
 width:92%;
-color:#D400A6
+color:#D400A6;
+display: flex;
+  justify-content: space-between; /* or use margin-left: auto on .ok-action */
+  width: 100%; /* or any fixed width you prefer */
 }
+
+
+.other-goto-action {
+  font-size: 1.5vw; 
+  margin-left: auto;
+}
+
 
 .other-box-action-call:hover .other-call-action{
 color:white
 }
 
-.other-goto-action{
- font-size: 1.5vw; 
- color:#D400A6
-}
+
 
 .other-box-action-call:hover  .other-goto-action{
   color:white
@@ -1295,32 +1365,36 @@ color:white
 
       /* New Footer Styles */
       .footer {
-        background-color: transparent;
-        width: 100%;    
-      }
+    background-color: transparent;
+    width: 100%;
+    height: 15vh;
+    overflow: hidden; /* Prevent horizontal overflow */
+}
 
-      .footer-images {
-        display: flex;
-        gap: 1rem;
-        animation: scroll 20s linear infinite;
-      }
+.footer-images {
+    display: flex;
+    gap: 1rem;
+    animation: scroll 30s linear infinite;
 
-      .footer-image {
-        /* height: 50%; */
-        width: 5%;
-        object-fit: contain;
-        flex-shrink: 0;
-      }
+    flex-wrap: nowrap; /* Keep images in a single line */
+}
 
-      @keyframes scroll {
-        0% {
-          transform: translateX(-100%);
-        }
-        100% {
-          transform: translateX(0%);
-        }
-      
-      }
+.footer-image {
+    width: 5%;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%); /* Scroll by 100% of the container width */
+    }
+}
+
+
 
       /* default Color palette */
 
@@ -1837,123 +1911,162 @@ color:white
 
     <template>
       <div class="grid-container">
-        <div :class="[background-layer, currentBackgroundLayer]"></div> <!-- New background layer -->
+        <div :class="[background-layer, currentBackgroundLayer]" aria-hidden="true"></div> <!-- New background layer -->
       <div :class="['header', currentHeaderColorPalette]">
         <div class="logo-section">
-          <div :class="['logo' , currentLogoColorPalette]"></div>
+          <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
+          <div :class="['logo' , currentLogoColorPalette]" aria-hidden="true"></div>
           </div>
-          <div class="marquee">
-            <div :class="['marqueeItem', currentMarqueeColorPalette]">
-              ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * 
+          
+          <!-- top marquee -->
+          <div class="marquee" aria-hidden="true">
+            <div :class="['marqueeItem', currentMarqueeColorPalette]" >
+              ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * 
             </div> 
             <div :class="['marqueeItem', currentMarqueeColorPalette]">
+              ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY *
+            </div>
+            <!-- <div :class="['marqueeItem', currentMarqueeColorPalette]">
               ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY *
             </div>
+            <div :class="['marqueeItem', currentMarqueeColorPalette]">
+              ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY *
+            </div> -->
           </div>
+
+          <!-- navigation menu -->
         <div class="nav-buttons" >
           <a href="" :class="['nav-button', currentNavButtonColorPalette]">About</a>
           <a href="" :class="['nav-button', currentNavButtonColorPalette]">Accessibility Statement</a>
           <a href="" :class="['nav-button', currentNavButtonColorPalette]">Terms of Use</a>
-          <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibiltyButtonColorPalette]" @click="accessibilityMenuVisibility" aria-label="Accessibility Options" ></button>
-          
-          <div v-show="isMenuVisible" class="dropdown-content">
+          <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibiltyButtonColorPalette]" @click="accessibilityMenuVisibility" aria-label="Accessibility Menu" ></button>
+          <!-- accessibility menu -->
+          <div 
+              v-show="isMenuVisible" 
+              class="dropdown-content" 
+              role="dialog" 
+              aria-modal="true" 
+              aria-labelledby="accessibility tools heading"
+              ref="accessibilityMenu"
+            >
             <div>
-              <h3 :class="['accessiblityToolsHeading', currentaccessiblityToolsHeadingColorPalette]">Accessibility Tools</h3>
+              <h2 :class="['accessiblityToolsHeading', currentaccessiblityToolsHeadingColorPalette]">
+                Accessibility Tools
+              </h2>
             </div>
-              <div  
-              @click="increaseTextSize" 
-              :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-              <p>Increase Text</p>
-              <div :class="currentIncreaseTextIcon"></div>
-              </div>
+            <button  
+                  @click="increaseTextSize" 
+                  :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                >
+                  <span>Increase Text</span>
+                  <span :class="currentIncreaseTextIcon" aria-hidden="true"></span>
+                </button>
 
+                  <button
+                    @click="decreaseTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                    >
+                  <span>Decrease Text</span>
+                  <span :class="currentDecreaseTextIcon" aria-hidden="true"></span>
+                  </button> 
 
-                  <div  @click="decreaseTextSize" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                  <p>Decrease Text</p>
-                  <div :class="currentDecreaseTextIcon"></div>
-                  </div>
+                  <button
+                   @click="changeTograyscale" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                   >
+                  <span>Grayscale</span>
+                  <span :class="currentGrayScaleIcon" aria-hidden="true"></span>
+                </button>
 
-                  <div @click="changeTograyscale" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                  <p>Grayscale</p>
-                  <div :class="currentGrayScaleIcon"></div>
-                  </div>
+                  <button
+                   @click="changeToHighContrast" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                   >
+                  <span>High Contrast</span>
+                  <span :class="currentHighContrastIcon" aria-hidden="true"></span>
+              </button>
 
-                  <div @click="changeToHighContrast" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                  <p>High Contrast</p>
-                  <div :class="currentHighContrastIcon"></div>
-                  </div>
+                  <button
+                   @click="activateLinksUnderline" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                   >
+                   <span>Links Underline</span>
+                   <span :class="currentLinksUnderlineIcon" aria-hidden="true"></span>
+            </button>
 
-                  <div @click="activateLinksUnderline" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                   <p>Links Underline</p>
-                   <div :class="currentLinksUnderlineIcon"></div>
-                  </div>
+                  <button 
+                  @click="activateReadableFont" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                  >
+                  <span>Readable Font</span>
+                  <span :class="currentReadableFontIcon" aria-hidden="true"></span>
+          </button>
 
-                  <div @click="activateReadableFont" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                  <p>Readable Font</p>
-                  <div :class="currentReadableFontIcon"></div>
-                  </div>
+                  <button 
+                   @click="changeToWCAGcolors" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                   >
+                  <span>WCAG AAA Colours</span>
+                  <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
+        </button>
 
-                  <div @click="changeToWCAGcolors" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                  <p>WCAG AAA Colours</p>
-                  <div :class="currentWcagColoursIcon"></div>
-                  </div>
-
-                  <div @click="reset" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]">
-                  <p>Reset</p>
-                  <div :class="currentResetIcon"></div>
-                  </div>
+                  <button
+                   @click="reset" :class="['accessibilityButtonDiv', currentaccessibilityButtonDivColorPalette]"
+                   >
+                  <span>Reset</span>
+                  <span :class="currentResetIcon" aria-hidden="true"></span>
+      </button>
             </div>          
         </div>
       </div>
 
-       <!-- <div class="content-container"> -->
-        <div class="background-image"></div>
-        <div class="grid-background"></div>
+<!-- background image -->
+        <div class="background-image" aria-hidden="true"></div>
+        <div class="grid-background" aria-hidden="true"></div>
         
+
+        <!-- cards -->
         <div :class="['left-box', currentLeftBox]">
           <div :class="['left-box-heading', currentLeftBoxHeading]">
-            <img v-show="isPinkLeftCardIconVisible" src="/greaterThanBracketsPink.svg">
-            <img v-show="isGrayLeftCardIconVisible" src="/greaterThanBracketsGray.svg">
-            <img v-show="isHighContrastLeftCardIconVisible" src="/sariSariIconWhite.svg">
-            <img v-show="isWCAGLeftCardIconVisible" src="/greaterThanBracketsHighContrast.svg">
-            <h5>Sari-Sari Xchange</h5></div>
+            <img v-show="isPinkLeftCardIconVisible" src="/greaterThanBracketsPink.svg" alt="">
+            <img v-show="isGrayLeftCardIconVisible" src="/greaterThanBracketsGray.svg" alt="">
+            <img v-show="isHighContrastLeftCardIconVisible" src="/sariSariIconWhite.svg" alt="">
+            <img v-show="isWCAGLeftCardIconVisible" src="/greaterThanBracketsHighContrast.svg" alt="">
+            <h2>Sari-Sari Xchange</h2></div>
           <div :class="['left-box-paragraph', currentLeftBoxParagraph]">
             <p>SSX is a community-building research & creation project using Extended Reality (XR) (ie. Virtual,
                Augmented, Mixed Realities) to foster new works by artists from the Asian diaspora. 
                <br><br>
                Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created with and for the Asian diaspora community.</p>
           </div>
-          <div :class="['left-box-action-call', currentLeftBoxActionCall]">
-            <a href="" :class="['call-action', currentLeftBoxCallAction]">Learn More</a>
-            <a href="" :class="['goto-action', currentLeftBoxGotoAction]">OK</a>
-          </div>
+        <div :class="['left-box-action-call', currentLeftBoxActionCall]">
+         <a href="" :class="['call-action', currentLeftBoxCallAction]" >
+        <span class="learn-more">Learn More</span> <span class="ok-action" aria-hidden="true">OK</span>
+    </a>
+</div>
+
         </div>
 
         
      
         <div :class="['center-top-box', currentOtherBox]">
           <div :class="['other-box-heading', currentOtherBoxHeading]">
-            <img src="/asteriskWhite.svg">
-            <h5>Artists</h5>
+            <img src="/asteriskWhite.svg" alt="">
+            <h2>Artists</h2>
           </div>
           <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
-            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg">
-            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg">
-            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg">
-            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg">
+            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
             <p >Explore community assets created by artists.</p>
             
           </div>
-          <div :class="['other-box-photos', currentOtherBoxPhotos]">
-          <img v-show="arePinkTopCenterCardSampleImagesVisible" src="/sample-images-artists.png">
-          <img v-show="areGrayTopCenterCardSampleImagesVisible" src="/sample-images-artists-grayscale.png">
-          <img v-show="areHighContrastTopCenterCardSampleImagesVisible" src="/sample-images-artists-highContrast.png">
+          <div :class="['other-box-photos', currentOtherBoxPhotos]" aria-hidden="true">
+          <img v-show="arePinkTopCenterCardSampleImagesVisible" src="/sample-images-artists.png" alt="">
+          <img v-show="areGrayTopCenterCardSampleImagesVisible" src="/sample-images-artists-grayscale.png" alt="">
+          <img v-show="areHighContrastTopCenterCardSampleImagesVisible" src="/sample-images-artists-highContrast.png" alt="">
 
             </div>
             
           <div :class="['other-box-action-call', currentOtherBoxActionCall]">
-            <a href="" :class="['other-call-action', currentOtherBoxCallAction]">Open Artists</a>
-            <a href="" :class="['other-goto-action',  currentOtherBoxGotoAction]">></a>
+            <a href="" :class="['other-call-action', currentOtherBoxCallAction]" >
+              <span >Open Artists</span> <span class="call-goto-action" aria-hidden="true">></span>
+            </a>
           </div>
         </div>
 
@@ -1962,14 +2075,14 @@ color:white
 
         <div :class="['center-bottom-box', currentOtherBox]">
           <div :class="['other-box-heading', currentOtherBoxHeading]">
-            <img src="/eventsIconWhite.svg">
-            <h5>Events</h5>
+            <img src="/eventsIconWhite.svg" alt="">
+            <h2>Events</h2>
           </div>
             <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
-              <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg">
-            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg">
-            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg">
-            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg">
+              <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
             <p>Assets created during SSX events.</p>
           </div>
           <div :class="['other-box-photos', currentOtherBoxPhotos]">
@@ -1978,22 +2091,23 @@ color:white
           
             </div>
           <div :class="['other-box-action-call', currentOtherBoxActionCall]">
-            <a :class="['other-call-action', currentOtherBoxCallAction]">Open Events</a>
-            <a href="" :class="['other-goto-action',  currentOtherBoxGotoAction]">></a>
+            <a  href="" :class="['other-call-action', currentOtherBoxCallAction]">
+              <span>Open Events</span> <span class="call-goto-action" aria-hidden="true">></span>
+            </a>
           </div>
         </div>
 
 
         <div :class="['right-box', currentOtherBox]">
           <div :class="['other-box-heading', currentOtherBoxHeading]">
-            <img src="/collectionsIconWhite.svg">
-            <h5>Collections</h5>
+            <img src="/collectionsIconWhite.svg" alt="">
+            <h2>Collections</h2>
           </div>
           <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
-            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg">
-            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg">
-            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg">
-            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg">
+            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="" >
+            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
+            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
             <p>Explore collections by SSX.</p>
           </div>
           <div :class="['other-box-photos', currentOtherBoxPhotos]">
@@ -2002,172 +2116,173 @@ color:white
 
             </div>
           <div :class="['other-box-action-call', currentOtherBoxActionCall]">
-            <a href="" :class="['other-call-action', currentOtherBoxCallAction]">Open Collections</a>
-            <a href="" :class="['other-goto-action',  currentOtherBoxGotoAction]">></a>
-          </div>
+            <a href="" :class="['other-call-action', currentOtherBoxCallAction]">
+              <span>Open Collections</span> <span class="call-goto-action" aria-hidden="true">></span>
+            </a>  
+            </div>
         </div>
       
 
       <div class="footer">
         <div v-show="areFooterImagesDefaultVisible" class="footer-images">
           <!-- First set of images -->
-          <img src="/item1.png" alt="item 1" class="footer-image">
-          <img src="/item2.png" alt="item 2" class="footer-image">
-          <img src="/item3.png" alt="item 3" class="footer-image">
-          <img src="/item4.png" alt="item 4" class="footer-image">
-          <img src="/item5.png" alt="item 11" class="footer-image">
-          <img src="/item6.png" alt="item 6" class="footer-image">
-          <img src="/item7.png" alt="item 7" class="footer-image">
-          <img src="/item8.png" alt="item 8" class="footer-image">
+          <img src="/item1.png" alt="" class="footer-image">
+          <img src="/item2.png" alt="" class="footer-image">
+          <img src="/item3.png" alt="" class="footer-image">
+          <img src="/item4.png" alt="" class="footer-image">
+          <img src="/item5.png" alt="" class="footer-image">
+          <img src="/item6.png" alt="" class="footer-image">
+          <img src="/item7.png" alt="" class="footer-image">
+          <img src="/item8.png" alt="" class="footer-image">
           
           <!-- Duplicate set for smooth infinite scroll -->
-          <img src="/item1.png" alt="item 1" class="footer-image">
-          <img src="/item2.png" alt="item 2" class="footer-image">
-          <img src="/item3.png" alt="item 3" class="footer-image">
-          <img src="/item4.png" alt="item 4" class="footer-image">
-          <img src="/item5.png" alt="item 11" class="footer-image">
-          <img src="/item6.png" alt="item 6" class="footer-image">
-          <img src="/item7.png" alt="item 7" class="footer-image">
-          <img src="/item8.png" alt="item 8" class="footer-image">
+          <img src="/item1.png" alt="" class="footer-image">
+          <img src="/item2.png" alt="" class="footer-image">
+          <img src="/item3.png" alt="" class="footer-image">
+          <img src="/item4.png" alt="" class="footer-image">
+          <img src="/item5.png" alt="" class="footer-image">
+          <img src="/item6.png" alt="" class="footer-image">
+          <img src="/item7.png" alt="" class="footer-image">
+          <img src="/item8.png" alt="" class="footer-image">
 
            <!-- Duplicate set for smooth infinite scroll -->
-          <img src="/item1.png" alt="item 1" class="footer-image">
-          <img src="/item2.png" alt="item 2" class="footer-image">
-          <img src="/item3.png" alt="item 3" class="footer-image">
-          <img src="/item4.png" alt="item 4" class="footer-image">
-          <img src="/item5.png" alt="item 11" class="footer-image">
-          <img src="/item6.png" alt="item 6" class="footer-image">
-          <img src="/item7.png" alt="item 7" class="footer-image">
-          <img src="/item8.png" alt="item 8" class="footer-image">
+           <img src="/item1.png" alt="" class="footer-image">
+          <img src="/item2.png" alt="" class="footer-image">
+          <img src="/item3.png" alt="" class="footer-image">
+          <img src="/item4.png" alt="" class="footer-image">
+          <img src="/item5.png" alt="" class="footer-image">
+          <img src="/item6.png" alt="" class="footer-image">
+          <img src="/item7.png" alt="" class="footer-image">
+          <img src="/item8.png" alt="" class="footer-image">
 
-           <!-- Duplicate set for smooth infinite scroll -->
-           <img src="/item1.png" alt="item 1" class="footer-image">
-          <img src="/item2.png" alt="item 2" class="footer-image">
-          <img src="/item3.png" alt="item 3" class="footer-image">
-          <img src="/item4.png" alt="item 4" class="footer-image">
-          <img src="/item5.png" alt="item 11" class="footer-image">
-          <img src="/item6.png" alt="item 6" class="footer-image">
-          <img src="/item7.png" alt="item 7" class="footer-image">
-          <img src="/item8.png" alt="item 8" class="footer-image">
+                <!-- Duplicate set for smooth infinite scroll -->
+                <img src="/item1.png" alt="" class="footer-image">
+          <img src="/item2.png" alt="" class="footer-image">
+          <img src="/item3.png" alt="" class="footer-image">
+          <img src="/item4.png" alt="" class="footer-image">
+          <img src="/item5.png" alt="" class="footer-image">
+          <img src="/item6.png" alt="" class="footer-image">
+          <img src="/item7.png" alt="" class="footer-image">
+          <img src="/item8.png" alt="" class="footer-image">
         </div>
 
 
         <div v-show="areFooterImagesGrayscaleVisible" class="footer-images">
         
-          <img src="/item1-gray.png" alt="item 1" class="footer-image">
-          <img src="/item2-gray.png" alt="item 2" class="footer-image">
-          <img src="/item3-gray.png" alt="item 3" class="footer-image">
-          <img src="/item4-gray.png" alt="item 4" class="footer-image">
-          <img src="/item5-gray.png" alt="item 11" class="footer-image">
-          <img src="/item6-gray.png" alt="item 6" class="footer-image">
-          <img src="/item7-gray.png" alt="item 7" class="footer-image">
-          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+          <img src="/item1-gray.png" alt="" class="footer-image">
+          <img src="/item2-gray.png" alt="" class="footer-image">
+          <img src="/item3-gray.png" alt="" class="footer-image">
+          <img src="/item4-gray.png" alt="" class="footer-image">
+          <img src="/item5-gray.png" alt="" class="footer-image">
+          <img src="/item6-gray.png" alt="" class="footer-image">
+          <img src="/item7-gray.png" alt="" class="footer-image">
+          <img src="/item8-gray.png" alt="" class="footer-image">
     
-          <img src="/item1-gray.png" alt="item 1" class="footer-image">
-          <img src="/item2-gray.png" alt="item 2" class="footer-image">
-          <img src="/item3-gray.png" alt="item 3" class="footer-image">
-          <img src="/item4-gray.png" alt="item 4" class="footer-image">
-          <img src="/item5-gray.png" alt="item 11" class="footer-image">
-          <img src="/item6-gray.png" alt="item 6" class="footer-image">
-          <img src="/item7-gray.png" alt="item 7" class="footer-image">
-          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+          <img src="/item1-gray.png" alt="" class="footer-image">
+          <img src="/item2-gray.png" alt="" class="footer-image">
+          <img src="/item3-gray.png" alt="" class="footer-image">
+          <img src="/item4-gray.png" alt="" class="footer-image">
+          <img src="/item5-gray.png" alt="" class="footer-image">
+          <img src="/item6-gray.png" alt="" class="footer-image">
+          <img src="/item7-gray.png" alt="" class="footer-image">
+          <img src="/item8-gray.png" alt="" class="footer-image">
 
-           <img src="/item1-gray.png" alt="item 1" class="footer-image">
-          <img src="/item2-gray.png" alt="item 2" class="footer-image">
-          <img src="/item3-gray.png" alt="item 3" class="footer-image">
-          <img src="/item4-gray.png" alt="item 4" class="footer-image">
-          <img src="/item5-gray.png" alt="item 11" class="footer-image">
-          <img src="/item6-gray.png" alt="item 6" class="footer-image">
-          <img src="/item7-gray.png" alt="item 7" class="footer-image">
-          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+          <img src="/item1-gray.png" alt="" class="footer-image">
+          <img src="/item2-gray.png" alt="" class="footer-image">
+          <img src="/item3-gray.png" alt="" class="footer-image">
+          <img src="/item4-gray.png" alt="" class="footer-image">
+          <img src="/item5-gray.png" alt="" class="footer-image">
+          <img src="/item6-gray.png" alt="" class="footer-image">
+          <img src="/item7-gray.png" alt="" class="footer-image">
+          <img src="/item8-gray.png" alt="" class="footer-image">
 
-           <img src="/item1-gray.png" alt="item 1" class="footer-image">
-          <img src="/item2-gray.png" alt="item 2" class="footer-image">
-          <img src="/item3-gray.png" alt="item 3" class="footer-image">
-          <img src="/item4-gray.png" alt="item 4" class="footer-image">
-          <img src="/item5-gray.png" alt="item 11" class="footer-image">
-          <img src="/item6-gray.png" alt="item 6" class="footer-image">
-          <img src="/item7-gray.png" alt="item 7" class="footer-image">
-          <img src="/item8-gray.png" alt="item 8" class="footer-image">
+          <img src="/item1-gray.png" alt="" class="footer-image">
+          <img src="/item2-gray.png" alt="" class="footer-image">
+          <img src="/item3-gray.png" alt="" class="footer-image">
+          <img src="/item4-gray.png" alt="" class="footer-image">
+          <img src="/item5-gray.png" alt="" class="footer-image">
+          <img src="/item6-gray.png" alt="" class="footer-image">
+          <img src="/item7-gray.png" alt="" class="footer-image">
+          <img src="/item8-gray.png" alt="" class="footer-image">
         </div>
 
         <div v-show="areFooterImagesHighContrastVisible" class="footer-images">
         
-        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
-        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
-        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
-        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
-        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
-        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
-        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
-        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+        <img src="/item1-highContrast.png" alt="" class="footer-image">
+        <img src="/item2-highContrast.png" alt="" class="footer-image">
+        <img src="/item3-highContrast.png" alt="" class="footer-image">
+        <img src="/item4-highContrast.png" alt="" class="footer-image">
+        <img src="/item5-highContrast.png" alt="" class="footer-image">
+        <img src="/item6-highContrast.png" alt="" class="footer-image">
+        <img src="/item7-highContrast.png" alt="" class="footer-image">
+        <img src="/item8-highContrast.png" alt="" class="footer-image">
   
-        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
-        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
-        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
-        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
-        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
-        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
-        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
-        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+        <img src="/item1-highContrast.png" alt="" class="footer-image">
+        <img src="/item2-highContrast.png" alt="" class="footer-image">
+        <img src="/item3-highContrast.png" alt="" class="footer-image">
+        <img src="/item4-highContrast.png" alt="" class="footer-image">
+        <img src="/item5-highContrast.png" alt="" class="footer-image">
+        <img src="/item6-highContrast.png" alt="" class="footer-image">
+        <img src="/item7-highContrast.png" alt="" class="footer-image">
+        <img src="/item8-highContrast.png" alt="" class="footer-image">
 
-        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
-        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
-        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
-        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
-        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
-        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
-        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
-        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+        <img src="/item1-highContrast.png" alt="" class="footer-image">
+        <img src="/item2-highContrast.png" alt="" class="footer-image">
+        <img src="/item3-highContrast.png" alt="" class="footer-image">
+        <img src="/item4-highContrast.png" alt="" class="footer-image">
+        <img src="/item5-highContrast.png" alt="" class="footer-image">
+        <img src="/item6-highContrast.png" alt="" class="footer-image">
+        <img src="/item7-highContrast.png" alt="" class="footer-image">
+        <img src="/item8-highContrast.png" alt="" class="footer-image">
          
-        <img src="/item1-highContrast.png" alt="item 1" class="footer-image">
-        <img src="/item2-highContrast.png" alt="item 2" class="footer-image">
-        <img src="/item3-highContrast.png" alt="item 3" class="footer-image">
-        <img src="/item4-highContrast.png" alt="item 4" class="footer-image">
-        <img src="/item5-highContrast.png" alt="item 11" class="footer-image">
-        <img src="/item6-highContrast.png" alt="item 6" class="footer-image">
-        <img src="/item7-highContrast.png" alt="item 7" class="footer-image">
-        <img src="/item8-highContrast.png" alt="item 8" class="footer-image">
+        <img src="/item1-highContrast.png" alt="" class="footer-image">
+        <img src="/item2-highContrast.png" alt="" class="footer-image">
+        <img src="/item3-highContrast.png" alt="" class="footer-image">
+        <img src="/item4-highContrast.png" alt="" class="footer-image">
+        <img src="/item5-highContrast.png" alt="" class="footer-image">
+        <img src="/item6-highContrast.png" alt="" class="footer-image">
+        <img src="/item7-highContrast.png" alt="" class="footer-image">
+        <img src="/item8-highContrast.png" alt="" class="footer-image">
       </div>
 
 
       <div v-show="areFooterImagesWCAGcolorsVisible" class="footer-images">
         
-        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
-        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
-        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
-        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
-        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
-        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
-        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
-        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+        <img src="/item1-wcag.png" alt="" class="footer-image">
+        <img src="/item2-wcag.png" alt="" class="footer-image">
+        <img src="/item3-wcag.png" alt="" class="footer-image">
+        <img src="/item4-wcag.png" alt="" class="footer-image">
+        <img src="/item5-wcag.png" alt="" class="footer-image">
+        <img src="/item6-wcag.png" alt="" class="footer-image">
+        <img src="/item7-wcag.png" alt="" class="footer-image">
+        <img src="/item8-wcag.png" alt="" class="footer-image">
   
-        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
-        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
-        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
-        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
-        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
-        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
-        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
-        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+        <img src="/item1-wcag.png" alt="" class="footer-image">
+        <img src="/item2-wcag.png" alt="" class="footer-image">
+        <img src="/item3-wcag.png" alt="" class="footer-image">
+        <img src="/item4-wcag.png" alt="" class="footer-image">
+        <img src="/item5-wcag.png" alt="" class="footer-image">
+        <img src="/item6-wcag.png" alt="" class="footer-image">
+        <img src="/item7-wcag.png" alt="" class="footer-image">
+        <img src="/item8-wcag.png" alt="" class="footer-image">
 
-        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
-        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
-        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
-        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
-        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
-        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
-        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
-        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+        <img src="/item1-wcag.png" alt="" class="footer-image">
+        <img src="/item2-wcag.png" alt="" class="footer-image">
+        <img src="/item3-wcag.png" alt="" class="footer-image">
+        <img src="/item4-wcag.png" alt="" class="footer-image">
+        <img src="/item5-wcag.png" alt="" class="footer-image">
+        <img src="/item6-wcag.png" alt="" class="footer-image">
+        <img src="/item7-wcag.png" alt="" class="footer-image">
+        <img src="/item8-wcag.png" alt="" class="footer-image">
          
-        <img src="/item1-wcag.png" alt="item 1" class="footer-image">
-        <img src="/item2-wcag.png" alt="item 2" class="footer-image">
-        <img src="/item3-wcag.png" alt="item 3" class="footer-image">
-        <img src="/item4-wcag.png" alt="item 4" class="footer-image">
-        <img src="/item5-wcag.png" alt="item 11" class="footer-image">
-        <img src="/item6-wcag.png" alt="item 6" class="footer-image">
-        <img src="/item7-wcag.png" alt="item 7" class="footer-image">
-        <img src="/item8-wcag.png" alt="item 8" class="footer-image">
+        <img src="/item1-wcag.png" alt="" class="footer-image">
+        <img src="/item2-wcag.png" alt="" class="footer-image">
+        <img src="/item3-wcag.png" alt="" class="footer-image">
+        <img src="/item4-wcag.png" alt="" class="footer-image">
+        <img src="/item5-wcag.png" alt="" class="footer-image">
+        <img src="/item6-wcag.png" alt="" class="footer-image">
+        <img src="/item7-wcag.png" alt="" class="footer-image">
+        <img src="/item8-wcag.png" alt="" class="footer-image">
       </div>
 
       </div>

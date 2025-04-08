@@ -4,7 +4,8 @@
         return {
             zoomLevel: 1, // Initial zoom level
             isMenuVisible: false,
-            fontSize: 1, // Default scale (1 = 100%)
+            fontSize: 1, // This is now a scale factor (1 = 16px)
+            baseFontSize: null, // Default root font size in pixels
             currentHeaderColorPalette: 'headerDefaultColorPalette',
             currentLogoColorPalette: 'logoDefaultColorPalette',
             currentMarqueeColorPalette: 'marqueeItem',
@@ -70,6 +71,11 @@
     } 
   },
 
+  mounted() {
+  // Get the actual current root font size when component mounts
+  this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+},
+
     methods: {
 
         accessibilityMenuVisibility(){
@@ -98,23 +104,26 @@
         },
         
         increaseTextSize() {
-            if (this.fontSize < 2) { // Prevents excessive scaling
-                this.fontSize += 0.1;
-                document.body.style.fontSize = `${this.fontSize}em`; // Apply scaling
-            }
-        },
-
-        decreaseTextSize() {
-            if (this.fontSize > 0.5) { // Prevents text from being too small
-                this.fontSize -= 0.1;
-                document.body.style.fontSize = `${this.fontSize}em`;
-            }
-          },
-
-          reset() {
-            this.fontSize = 1;
-            document.body.style.fontSize = ""; // Resets to default
-
+    if (this.fontSize < 2) {
+      this.fontSize += 0.1;
+      this.updateFontSize();
+    }
+  },
+  decreaseTextSize() {
+    if (this.fontSize > 0.5) {
+      this.fontSize -= 0.1;
+      this.updateFontSize();
+    }
+  },
+  updateFontSize() {
+    const pixelSize = this.baseFontSize * this.fontSize;
+    document.documentElement.style.fontSize = `${pixelSize}px`;
+  },
+  reset() {
+    this.fontSize = 1;
+    document.documentElement.style.fontSize = "";
+    // After resetting to default, update our base size reference
+    this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
             this.currentHeaderColorPalette = 'headerDefaultColorPalette'
             this.currentLogoColorPalette = 'logoDefaultColorPalette'
             this.currentNavButtonColorPalette =  'navButtonDefaultColorPalette'

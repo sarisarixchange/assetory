@@ -2,10 +2,12 @@
  export default {
     data() {
         return {
-            zoomLevel: 1, // Initial zoom level
             isMenuVisible: false,
+            isNotificationVisible: true,
             fontSize: 1, // This is now a scale factor (1 = 16px)
             baseFontSize: null, // Default root font size in pixels
+            baseGap: 18, // Store the base gap value
+            baseGapUnit: 'rem',
             currentHeaderColorPalette: 'headerDefaultColorPalette',
             currentLogoColorPalette: 'logoDefaultColorPalette',
             currentMarqueeColorPalette: 'marqueeItem',
@@ -53,11 +55,11 @@
 
             // links decoration
 
-            isUnderlined: false,
+            linkDecoration: "none", // Stores the value of --link-decoration
 
             // readable font
 
-            isReadableFont: false,
+            readableFont: "",
 
           // footer images
           areFooterImagesDefaultVisible: true,
@@ -72,58 +74,227 @@
   },
 
   mounted() {
+  // call saved accessibility settings
+  this.loadSettings();
   // Get the actual current root font size when component mounts
   this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+  
+  // Get the initial computed gap size from CSS
+  const computedStyle = getComputedStyle(document.documentElement);
+  const initialGap = computedStyle.getPropertyValue('--marquee-item-gap');
+  this.baseGap = parseFloat(initialGap);
 },
 
     methods: {
 
-        accessibilityMenuVisibility(){
-            this.isMenuVisible =! this.isMenuVisible
-            console.log("test")
+      saveSettings() {
+        const settings = {
+            isMenuVisible: this.isMenuVisible,
+            isNotificationVisible: this.isNotificationVisible,
+            // Save the font size and gap size
+            fontSize: this.fontSize,
+            baseFontSize: this.baseFontSize, // Store the base font size
+            baseGap: this.baseGap, // Store the base gap size
+            baseGapUnit: this.baseGapUnit,
+            currentHeaderColorPalette: this.currentHeaderColorPalette,
+            currentLogoColorPalette: this.currentLogoColorPalette,
+            currentMarqueeColorPalette: this.currentMarqueeColorPalette,
+            currentNavButtonColorPalette: this.currentNavButtonColorPalette,
+            currentNavAccessibiltyButtonColorPalette: this.currentNavAccessibiltyButtonColorPalette,
+            currentaccessibilityButtonDivColorPalette: this.currentaccessibilityButtonDivColorPalette,
+            currentaccessiblityToolsHeadingColorPalette: this.currentaccessiblityToolsHeadingColorPalette, 
+            currentIncreaseTextIcon: this.currentIncreaseTextIcon,
+            currentDecreaseTextIcon: this.currentDecreaseTextIcon,
+            currentGrayScaleIcon: this.currentGrayScaleIcon, 
+            currentHighContrastIcon: this.currentHighContrastIcon,
+            currentLinksUnderlineIcon: this.currentLinksUnderlineIcon,
+            currentReadableFontIcon: this.currentReadableFontIcon,
+            currentWcagColoursIcon: this.currentWcagColoursIcon,
+            currentResetIcon: this.currentResetIcon, 
+             // leftbox
+            isPinkLeftCardIconVisible: this.isPinkLeftCardIconVisible,
+            isGrayLeftCardIconVisible: this.isGrayLeftCardIconVisible,
+            isHighContrastLeftCardIconVisible: this.isHighContrastLeftCardIconVisible,
+            isWCAGLeftCardIconVisible: this.isWCAGLeftCardIconVisible,
+            currentLeftBox: this.currentLeftBox,
+            currentLeftBoxHeading: this.currentLeftBoxHeading,
+            currentLeftBoxParagraph: this.currentLeftBoxParagraph,
+            currentLeftBoxActionCall: this.currentLeftBoxActionCall,
+            currentLeftBoxCallAction: this.currentLeftBoxCallAction,
+            currentLeftBoxGotoAction: this.currentLeftBoxGotoAction,
+            // center-top-box
+            arePinkTopCenterCardSampleImagesVisible: this.arePinkTopCenterCardSampleImagesVisible,
+            areGrayTopCenterCardSampleImagesVisible: this.areGrayTopCenterCardSampleImagesVisible,
+            areHighContrastTopCenterCardSampleImagesVisible: this.areHighContrastTopCenterCardSampleImagesVisible,
+            // other boxes
+            currentOtherBox: this.currentOtherBox,
+            currentOtherBoxHeading: this.currentOtherBoxHeading,
+            currentOtherBoxSubtitle: this.currentOtherBoxSubtitle,
+            isDecoractionCardSubtitlePink: this.isDecoractionCardSubtitlePink,
+            isDecoractionCardSubtitleGray: this.isDecoractionCardSubtitleGray,
+            isDecoractionCardSubtitleHighContrast: this.isDecoractionCardSubtitleHighContrast,
+            isDecoractionCardSubtitleWCAG: this.isDecoractionCardSubtitleWCAG,
+            currentOtherBoxPhotos: this.currentOtherBoxPhotos,
+            currentOtherBoxActionCall: this.currentOtherBoxActionCall,
+            currentOtherBoxCallAction: this.currentOtherBoxCallAction,
+            currentOtherBoxGotoAction: this.currentOtherBoxGotoAction,
+            // links decoration
+            linkDecoration: this.linkDecoration,
+            // readable font
+            readableFont:   this.readableFont,
+            readableFont: this.readableFont,
+          // footer images
+          areFooterImagesDefaultVisible: this.areFooterImagesDefaultVisible,
+          areFooterImagesGrayscaleVisible: this.areFooterImagesGrayscaleVisible,
+          areFooterImagesHighContrastVisible: this.areFooterImagesHighContrastVisible,
+          areFooterImagesWCAGcolorsVisible: this.areFooterImagesWCAGcolorsVisible,
+          //  background image
+          currentBackgroundLayer: this.currentBackgroundLayer
+        };
+        localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
+      },
 
+/////
+
+           
+      // /////
+
+        loadSettings() {
+          const savedSettings = localStorage.getItem('accessibilitySettings');
+          if (savedSettings) {
+            const settings = JSON.parse(savedSettings);
+
+            this.isMenuVisible= settings.isMenuVisible ?? this.isMenuVisible,
+            this.isNotificationVisible= settings.isNotificationVisible ?? this.isNotificationVisible,
+             // Load the font size and apply it
+            this.baseFontSize= settings.baseFontSize || this.baseFontSize, // Store the base font size
+            this.fontSize = settings.fontSize || this.fontSize;
+            const pixelSize = this.baseFontSize * this.fontSize;
+            document.documentElement.style.fontSize = `${pixelSize}px`;
+            
+            this.baseGap = settings.baseGap || this.baseGap, // Store the base gap size
+            this.baseGapUnit = settings.baseGapUnit || this.baseGapUnit,
+            this.currentHeaderColorPalette = settings.currentHeaderColorPalette || this.currentHeaderColorPalette,
+            this.currentLogoColorPalette= settings.currentLogoColorPalette || this.currentLogoColorPalette,
+            this.currentMarqueeColorPalette = settings.currentMarqueeColorPalette || this.currentMarqueeColorPalette,
+            this.currentNavButtonColorPalette = settings.currentNavButtonColorPalette || this.currentNavButtonColorPalette,
+            this.currentNavAccessibiltyButtonColorPalette = settings.currentNavAccessibiltyButtonColorPalette || this.currentNavAccessibiltyButtonColorPalette,
+            this.currentaccessibilityButtonDivColorPalette = settings.currentaccessibilityButtonDivColorPalette || this.currentaccessibilityButtonDivColorPalette,
+            this.currentaccessiblityToolsHeadingColorPalette = settings.currentaccessiblityToolsHeadingColorPalette || this.currentaccessiblityToolsHeadingColorPalette, 
+            this.currentIncreaseTextIcon = settings.currentIncreaseTextIcon || this.currentIncreaseTextIcon,
+            this.currentDecreaseTextIcon = settings.currentDecreaseTextIcon || this.currentDecreaseTextIcon,
+            this.currentGrayScaleIcon = settings.currentGrayScaleIcon || this.currentGrayScaleIcon, 
+            this.currentHighContrastIcon = settings.currentHighContrastIcon || this.currentHighContrastIcon,
+            this.currentLinksUnderlineIcon = settings.currentLinksUnderlineIcon || this.currentLinksUnderlineIcon,
+            this.currentReadableFontIcon = settings.currentReadableFontIcon || this.currentReadableFontIcon,
+            this.currentWcagColoursIcon = settings.currentWcagColoursIcon || this.currentWcagColoursIcon,
+            this.currentResetIcon = settings.currentResetIcon || this.currentResetIcon, 
+             // leftbox
+             this.isPinkLeftCardIconVisible = settings.isPinkLeftCardIconVisible ?? this.isPinkLeftCardIconVisible,
+             this.isGrayLeftCardIconVisible = settings.isGrayLeftCardIconVisible ?? this.isGrayLeftCardIconVisible,
+             this.isHighContrastLeftCardIconVisible = settings.isHighContrastLeftCardIconVisible ?? this.isHighContrastLeftCardIconVisible,
+             this.isWCAGLeftCardIconVisible = settings.isWCAGLeftCardIconVisible ?? this.isWCAGLeftCardIconVisible,
+             this.currentLeftBox = settings.currentLeftBox || this.currentLeftBox,
+             this.currentLeftBoxHeading = settings.currentLeftBoxHeading || this.currentLeftBoxHeading,
+             this.currentLeftBoxParagraph = settings.currentLeftBoxParagraph || this.currentLeftBoxParagraph,
+             this.currentLeftBoxActionCall = settings.currentLeftBoxActionCall || this.currentLeftBoxActionCall,
+             this.currentLeftBoxCallAction = settings.currentLeftBoxCallAction || this.currentLeftBoxCallAction,
+             this.currentLeftBoxGotoAction = settings.currentLeftBoxGotoAction || this.currentLeftBoxGotoAction,
+            // center-top-box
+            this.arePinkTopCenterCardSampleImagesVisible = settings.arePinkTopCenterCardSampleImagesVisible ?? this.arePinkTopCenterCardSampleImagesVisible,
+            this.areGrayTopCenterCardSampleImagesVisible = settings.areGrayTopCenterCardSampleImagesVisible ?? this.areGrayTopCenterCardSampleImagesVisible,
+            this.areHighContrastTopCenterCardSampleImagesVisible = settings.areHighContrastTopCenterCardSampleImagesVisible ?? this.areHighContrastTopCenterCardSampleImagesVisible,
+            // other boxes
+            this.currentOtherBox = settings.currentOtherBox || this.currentOtherBox,
+            this.currentOtherBoxHeading = settings.currentOtherBoxHeading || this.currentOtherBoxHeading,
+            this.currentOtherBoxSubtitle = settings.currentOtherBoxSubtitle || this.currentOtherBoxSubtitle,
+            this.isDecoractionCardSubtitlePink = settings.isDecoractionCardSubtitlePink ?? this.isDecoractionCardSubtitlePink,
+            this.isDecoractionCardSubtitleGray = settings.isDecoractionCardSubtitleGray ?? this.isDecoractionCardSubtitleGray,
+            this.isDecoractionCardSubtitleHighContrast = settings.isDecoractionCardSubtitleHighContrast ?? this.isDecoractionCardSubtitleHighContrast,
+            this.isDecoractionCardSubtitleWCAG = settings.isDecoractionCardSubtitleWCAG ?? this.isDecoractionCardSubtitleWCAG,
+            this.currentOtherBoxPhotos = settings.currentOtherBoxPhotos || this.currentOtherBoxPhotos,
+            this.currentOtherBoxActionCall = settings.currentOtherBoxActionCall || this.currentOtherBoxActionCall,
+            this.currentOtherBoxCallAction = settings.currentOtherBoxCallAction || this.currentOtherBoxCallAction,
+            this.currentOtherBoxGotoAction = settings.currentOtherBoxGotoAction || this.currentOtherBoxGotoAction,
+            // links decoration
+            this.linkDecoration = settings.linkDecoration || this.linkDecoration,
+            document.documentElement.style.setProperty("--link-decoration", this.linkDecoration);
+            // readable font
+            this.readableFont = settings.readableFont ||  this.readableFont,
+            document.documentElement.style.setProperty("--font-family", this.readableFont);
+            
+            // footer images
+            this.areFooterImagesDefaultVisible = settings.areFooterImagesDefaultVisible ?? this.areFooterImagesDefaultVisible,
+            this.areFooterImagesGrayscaleVisible = settings.areFooterImagesGrayscaleVisible ?? this.areFooterImagesGrayscaleVisible,
+            this.areFooterImagesHighContrastVisible = settings.areFooterImagesHighContrastVisible ?? this.areFooterImagesHighContrastVisible,
+            this.areFooterImagesWCAGcolorsVisible = settings.areFooterImagesWCAGcolorsVisible ?? this.areFooterImagesWCAGcolorsVisible,
+            //  background image
+            this.currentBackgroundLayer = settings.currentBackgroundLayer || this.currentBackgroundLayer
+          }
+          },
+
+
+
+      dismissNotification() {
+      this.isNotificationVisible = false; // Hides the notification
+      this.saveSettings();
+    },
+
+        accessibilityMenuVisibility(){
+            this.isMenuVisible =! this.isMenuVisible;
+            this.saveSettings();
         }, 
 
-        increaseZoom() {
-            if (this.zoomLevel < 2) { // Prevent excessive zoom
-                this.zoomLevel += 0.1;
-                document.body.style.zoom = this.zoomLevel;
-            }
-        },
-
-        decreaseZoom() {
-            if (this.zoomLevel > 0.5) { // Prevent too much shrinking
-                this.zoomLevel -= 0.1;
-                document.body.style.zoom = this.zoomLevel;
-            }
-          }, 
-
-        resetZoom() {
-        this.zoomLevel = 1;
-        document.body.style.zoom = "1"; // Reset zoom to default
-        },
         
+        // increase text size
         increaseTextSize() {
-    if (this.fontSize < 2) {
-      this.fontSize += 0.1;
-      this.updateFontSize();
-    }
-  },
-  decreaseTextSize() {
-    if (this.fontSize > 0.5) {
-      this.fontSize -= 0.1;
-      this.updateFontSize();
-    }
-  },
-  updateFontSize() {
-    const pixelSize = this.baseFontSize * this.fontSize;
-    document.documentElement.style.fontSize = `${pixelSize}px`;
-  },
-  reset() {
-    this.fontSize = 1;
-    document.documentElement.style.fontSize = "";
-    // After resetting to default, update our base size reference
-    this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+          if (this.fontSize < 2) { // Limit the maximum font size
+            this.fontSize += 0.1; // Increment font size
+            this.updateFontSize(); // Apply the updated font size
+            this.saveSettings(); // Save the updated font size to localStorage
+          }
+        },
+
+        // decrease text size
+        decreaseTextSize() {
+          if (this.fontSize > 0.5) { // Limit the minimum font size
+            this.fontSize -= 0.1; // Decrement font size
+            this.updateFontSize(); // Apply the updated font size
+            this.saveSettings(); // Save the updated font size to localStorage
+          }
+        },
+
+        updateFontSize() {
+            const pixelSize = this.baseFontSize * this.fontSize; // Calculate the new font size in pixels
+            document.documentElement.style.fontSize = `${pixelSize}px`; // Apply the font size to the root element
+            this.updateGap(); // Update the gap size proportionally
+            this.saveSettings(); // Save the updated font size to localStorage
+          },
+
+        updateGap() {
+          // Scale the gap proportionally with the font size
+          // document.documentElement.style.setProperty('--marquee-item-gap', `${this.baseGap * this.fontSize}rem`);
+          document.documentElement.style.setProperty('--marquee-item-gap', `${this.baseGap * this.fontSize}rem`);
+          console.log(this.baseGap * this.fontSize)
+          this.saveSettings();
+        },
+
+        reset() {
+          this.fontSize = 1;
+          document.documentElement.style.fontSize = "";
+          // Also reset the gap
+          document.documentElement.style.setProperty('--marquee-item-gap', '');
+
+          // accessibility notification window
+          this.isNotificationVisible = true; // Show the notification
+    
+          // Update our base values after reset
+          this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+          
+          const computedStyle = getComputedStyle(document.documentElement);
+          const initialGap = computedStyle.getPropertyValue('--marquee-item-gap');
+          this.baseGap = parseFloat(initialGap);
+
             this.currentHeaderColorPalette = 'headerDefaultColorPalette'
             this.currentLogoColorPalette = 'logoDefaultColorPalette'
             this.currentNavButtonColorPalette =  'navButtonDefaultColorPalette'
@@ -172,14 +343,13 @@
            this.currentOtherBoxCallAction= 'other-call-action', 
            this.currentOtherBoxGotoAction= 'other-goto-action',
           //  reset links underline
+            this.linkDecoration = "none";
+            document.documentElement.style.setProperty("--link-decoration", this.linkDecoration);
 
-          
-            this.isUnderlined = false;
-            document.documentElement.style.setProperty("--link-decoration", "none");
+            // reset readable font
 
-
-            this.isReadableFont = false;
-            document.documentElement.style.setProperty("--font-family", "'Handjet', sans-serif");
+            this.readableFont = "'Handjet', sans-serif";
+            document.documentElement.style.setProperty("--font-family", this.readableFont);
             document.documentElement.style.setProperty("--marquee-item-gap", "18rem");
 
 
@@ -191,7 +361,8 @@
 
               // background image
             this.currentBackgroundLayer= 'background-layer'
-          
+          // Save the updated setting
+            this.saveSettings();
         }, 
 
 
@@ -257,6 +428,9 @@
 
             // background image
             this.currentBackgroundLayer= 'background-layer-grayscale'
+
+             // Save the updated setting
+             this.saveSettings();
         }, 
 
         changeToHighContrast(){
@@ -321,6 +495,8 @@
 
             // background image
             this.currentBackgroundLayer= 'background-layer-highContrast'
+             // Save the updated setting
+             this.saveSettings();
         }, 
 
         changeToWCAGcolors(){
@@ -385,23 +561,30 @@
 
             // background image
             this.currentBackgroundLayer= 'background-layer'
+             // Save the updated setting
+             this.saveSettings();
 
         },
 
-        activateLinksUnderline() {
-            this.isUnderlined = true;
-            document.documentElement.style.setProperty("--link-decoration","underline");
-    }, 
+       activateLinksUnderline() {
+          this.linkDecoration = "underline"; // Update the property
+          document.documentElement.style.setProperty("--link-decoration", this.linkDecoration);
+          // Save the updated setting
+          this.saveSettings();
+        },
 
+        //redable font
         activateReadableFont(){
-            this.isReadableFont = true;
-            document.documentElement.style.setProperty("--font-family", "'Inter', sans-serif");
+            this.readableFont = "'Inter', sans-serif";
+            document.documentElement.style.setProperty("--font-family", this.readableFont);
             document.documentElement.style.setProperty("--marquee-item-gap", "50rem");
-
+          // Save the updated setting
+            this.saveSettings();
+  
     }
 
+    // do not erase curly brackets below
     }, 
-
 }
 
 </script>
@@ -420,6 +603,10 @@
         font-style: normal;
         }
 
+        :root {
+          --base-gap: 18rem; /* Base gap size */
+        }
+        
       body {
         font-family: 'Inter', sans-serif;
         font-size: 16px; /* 1rem = 16px */
@@ -505,7 +692,7 @@
         display: flex;
         white-space: nowrap;
         cursor: default;
-        gap: var(--marquee-item-gap, 18rem); /* adjust rem as needed */
+        gap: var(--marquee-item-gap, var(--base-gap)); /* adjust rem as needed */
       }
 
       .marqueeItem { 
@@ -1372,6 +1559,43 @@ color:white
   color:white
 }
 
+/* notification window */
+.notification-window {
+  display: flex;
+  position: fixed; /* Ensures it's positioned relative to the viewport */
+  bottom: 0vh; /* Adjust to place it above the footer */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Center alignment */
+  background-color: #f9f9f9;
+  color: #525252;
+  border: 2px solid #d400a6;
+  border-bottom: none; /* Removes the bottom border */
+  border-radius: 60px 60px 0 0; /* Top-left and top-right corners rounded */
+  padding: 1rem;
+  width: 80%;
+  /* max-width: 600px; */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10; /* Ensure it appears above other elements */
+  /* text-align: center; */
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
+
+.notification-dismiss-button {
+  margin-top: 0.5rem;
+  background-color: #d400a6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.notification-dismiss-button:hover {
+  background-color: #a80084;
+}
+
       /* New Footer Styles */
       .footer {
     background-color: transparent;
@@ -2125,13 +2349,22 @@ color:white
 
             </div>
           <div :class="['other-box-action-call', currentOtherBoxActionCall]">
-            <a href="" :class="['other-call-action', currentOtherBoxCallAction]">
+            <router-link :to="{ name: 'Collections' }" :class="['other-call-action', currentOtherBoxCallAction]">
               <span>Open Collections</span> <span class="call-goto-action" aria-hidden="true">></span>
-            </a>  
+              </router-link>
             </div>
         </div>
-      
+    
+    
+    <!-- Notification Window -->
+    <div v-if="isNotificationVisible" class="notification-window">
+      <p style="padding-left:0.25rem;padding-right:0.25rem;">
+        This website stores accessibility menu settings you select in your browser to enhance your experience. No cookies or tracking are used.
+      </p>
+      <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
+    </div>
 
+    <!-- footer -->
       <div class="footer">
         <div v-show="areFooterImagesDefaultVisible" class="footer-images">
           <!-- First set of images -->

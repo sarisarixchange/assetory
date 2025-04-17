@@ -1,10 +1,8 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { createApp } from 'vue';
+import App from './App.vue';
+import router from './router'; // Import the router
 
-// import HomeComplete from './components/HomeComplete.vue'
-import Homepage from './components/Homepage.vue'
+const app = createApp(App);
 
-const app = createApp(App)
-// app.component('home-complete', HomeComplete)
-app.component('homepage', Homepage)
-app.mount('#app')
+app.use(router); // Use the router in the Vue app
+app.mount('#app');

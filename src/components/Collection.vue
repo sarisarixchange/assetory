@@ -70,36 +70,24 @@
           //  background image
           currentBackgroundLayer: 'background-layer',
 
-          // collections
-          searchQuery: "", // Holds the user's search input
-          collections: [
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-      ],
+       
       currentLeftBoxActionCall: "left-box-action-call",
       currentLeftBoxCallAction: "call-action",
 
-                
+      collection: null, // Holds the data for the selected collection
+      collections: [
+        { id: 0, title: "Collection Title 1", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
+        { id: 1, title: "Collection Title 2", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
+        { id: 2, title: "Collection Title 3", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
+      
+        // Add more collections as needed
+      ],
+     
+      
     } 
   },
 
-  computed: {
-    filteredCollections() {
-      // Filter collections based on the search query
-      return this.collections.filter((collection) =>
-        collection.linkText.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    },
-  },
-
-
+  
   mounted() {
   // call saved accessibility settings
   this.loadSettings();
@@ -110,6 +98,14 @@
   const computedStyle = getComputedStyle(document.documentElement);
   const initialGap = computedStyle.getPropertyValue('--marquee-item-gap');
   this.baseGap = parseFloat(initialGap);
+
+
+  // Get the ID from the route
+  const collectionId = parseInt(this.$route.params.id, 10);
+
+// Find the collection data based on the ID
+this.collection = this.collections.find((item) => item.id === collectionId);
+
 },
 
     methods: {
@@ -1249,84 +1245,131 @@
 }
 
 
-/* searchbar */
-
-.heading-and-searchbar{
-  color:#D400A6;
-  width: 100%;
-  margin-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center; 
+/* return button */
+.returnButton {
+    padding-left: 0.25rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.heading-and-searchbar input[type=text]{
-  font-family: 'Inter', sans-serif;
- border: 1px solid #D400A6;
- border-radius: 2rem;
- font-size: 0.75rem;
- padding: 0.25rem;
-}
-
-.collections-heading h2{
-  font-family: var(--font-family, 'Handjet'), sans-serif; 
-}
-
-.collections-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 columns */
-  gap: 1rem; /* Space between cards */
-  margin-top: 1.5rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
-}
-
-.collectionCard {
-  padding: 1.8%;
-  border-radius: 12px;
+.returnButton button {
+ 
+  background-color: transparent;
+  color: #D400A6;
   border: 1px solid #D400A6;
-  box-shadow: -6px 6px 0 #F1AFDD, 0 6px 1px #F1AFDD;
-  background-color: #fff;
+  font-family: 'Inter', sans-serif;
+  border-radius: 8px;
+  padding: 0.125rem;
+  cursor: pointer;
+  /* transition: background-color 0.3s ease; */
 }
 
-.collectionCardContent {
+
+/* collection details */
+.collection-details-container{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 12rem;
+  margin-right: 12rem;
+  margin-bottom: 2rem;
+  color: #D400A6;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+}
+
+.image-banner {
+  width: 100%;
+  height: 7rem; /* Adjust height as needed */
+  border: 1px solid #D400A6;
+  border-radius: 20px;
+  overflow: hidden; /* Ensures the image doesn't overflow the container */
+  display: flex; /* Optional: Ensures proper alignment */
+  align-items: center; /* Optional: Centers the image vertically */
+  justify-content: center; /* Optional: Centers the image horizontally */
+  padding: 0.25rem;
+}
+
+.image-banner img {
+  
+  width: 100%; /* Make the image fill the container horizontally */
+  height: 100%; /* Make the image fill the container vertically */
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  background-color:#FFEDF4;
+  border-radius: 20px;
+}
+
+.collection-details{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #D400A6;
+    border-radius: 20px; 
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.collection-details h2{
+    font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
+}
+
+.collection-top-description{
+    display: flex;    
+    gap: 1rem; 
+    
+}
+
+.collection-top-description p {
+  flex: 1; /* Make the paragraph take up 50% of the container */
+}
+
+.collection-top-description img {
+  flex: 1; /* Make the image take up 50% of the container */
+  max-width: 100%; /* Ensure the image doesn't overflow */
+  height: auto; /* Maintain the aspect ratio of the image */
+  background-color:#FFEDF4;
+  border-radius: 20px; 
+}
+    
+
+.collection-middle-image{
+    width: 100%;
+    height: 7rem;
+    background-color:#FFEDF4;
+    border-radius: 20px; 
+
+}
+    
+/* .collection-bottom-description{
+
+} */
+
+
+.collection-assets {
+    text-align: center;
+
+}
+
+.collection-assets h2{
+    font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
+}
+
+.collection-assets-card-container{
+   display: flex;
+   gap: 1rem;
+}
+
+.collection-assets-card {
   width: 18.30rem;
   height: 15rem;
+  border: 1px solid #D400A6;
   border-radius: 8px;
   background-color: #FFEDF4;
   color: #D400A6;
   margin-bottom: 0.35em;
   padding: 1rem;
 }
-
-.collectionCardContentGoTo{
-  display: flex;
-  border-radius: 8px;
-  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
-  color: #D400A6;
-  font-size: 0.8rem;
-  background-color: #FFEDF4;
-  padding: 1.75%;
-}
-
-.collectionCardContentLink{
-margin-left: 0.5em;
-width:90%;
-color: #D400A6;
-display: flex;
-justify-content: space-between; /* or use margin-left: auto on .ok-action */
-width: 100%; /* or any fixed width you prefer */
-}
-
-.collectionCardContentGoTo:hover {
-  background-color: #D400A6;
-}
-
-.collectionCardContentGoTo:hover .collectionCardContentLink {
-  color: white; /* Apply white color to the link */
-}
+    
+/* back to top button */
 
 .backTop{
   display: flex;
@@ -1344,9 +1387,7 @@ width: 100%; /* or any fixed width you prefer */
   /* transition: background-color 0.3s ease; */
 }
 
-/* .backTop button:hover {
-  background-color: #A80084;
-} */
+/* footer */
 
 .non-homepage-footer {
   display: flex;
@@ -1502,42 +1543,57 @@ width: 100%; /* or any fixed width you prefer */
         </div>
       </div>
 
-      <!-- collections heading and searchbar -->
-      <div class="heading-and-searchbar">
-        <div class="collections-heading">
-        <h2>Collections</h2>
-        <p>Curated assets created by the community.</p>
+            <!-- return button -->
+            <div class="">
+        <div class="returnButton">
+        <router-link to="/collections" :class="['nav-button', currentNavButtonColorPalette]">Return <</router-link>          
         </div>
-<!-- searchbar -->
-<!-- Searchbar -->
-<input
-    type="text"
-    placeholder="Search ..."
-    v-model="searchQuery" 
-  />      </div>
+   </div>
 
- <!-- Collections Grid -->
- <div class="collections-grid">
-      <div class="collectionCard" v-for="(collection, index) in filteredCollections" :key="index">
-        <div class="collectionCardContent">
-          <img :src="collection.image" alt="Collection Image" class="collectionCardContentImage">
-        </div>
-        <div class="collectionCardContentGoTo">
-          <router-link
-        :to="{ name: 'Collection', params: { id: index } }"
-        class="collectionCardContentLink"
-      >     
-            <span class="learn-more">{{ collection.linkText }}</span>
-            <span class="ok-action" aria-hidden="true">></span>
-          </router-link>
-        </div>
-      </div>
-    </div>
       
-    <div class="backTop">
+      <div v-if="collection" class="collection-details-container">
+      <!-- Image banner -->  
+      <div class="image-banner">
+        <img :src="collection.firstImage" alt="Banner Image" class="banner-image">
+      </div>
+
+      <!-- Collection details -->
+
+      <div class="collection-details">
+        <h2>{{ collection.title }}</h2>
+        <div class="collection-top-description">
+            <p>{{ collection.topDescription }}</p>
+            <img :src="collection.secondImage" alt="Collection Image" class="collection-right-image">
+        </div>
+
+        <div class="collection-middle-image">
+            <img :src="collection.thirdImage" alt="Collection Image" class="collection">
+            </div>
+
+        <div class="collection-bottom-description">
+            <p>{{ collection.bottomDescription }}</p>  
+              </div>
+        </div>
+
+        <div class="collection-assets">
+            <h2>Assets</h2>
+            <div class="collection-assets-card-container">
+            <div class="collection-assets-card"></div>
+            <div class="collection-assets-card"></div>
+            <div class="collection-assets-card"></div>
+        </div>
+        </div>
+    </div>
+    <div v-else class="collection-details-container">
+    <p>Collection not found.</p>
+  </div>
+
+  <!-- back to top button -->
+  <div class="backTop">
       <div style="width:93%"></div>
       <button @click="scrollToTop">^ Back to Top</button>
         </div>
+
       <!-- footer -->
 
       <footer class="non-homepage-footer">

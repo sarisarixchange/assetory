@@ -8,9 +8,10 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
     Footer, // Register the Footer component
     Topbar, // Register the Topbar component
   },
-  
+   
     data() {
         return {          
+          currentTheme: { theme: 'default' }, // Default theme
           // collections
           searchQuery: "", // Holds the user's search input
           collections: [
@@ -27,6 +28,8 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
     } 
   },
 
+  
+
   computed: {
     filteredCollections() {
       // Filter collections based on the search query
@@ -37,6 +40,10 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
   },
 
     methods: {     
+      updateTheme(payload) {
+      this.currentTheme = payload; // Update the theme
+    },
+    
     scrollToTop() {
     window.scrollTo({
       top: 0, // Scroll to the top of the page
@@ -159,7 +166,7 @@ width: 100%; /* or any fixed width you prefer */
         <!-- <div :class="[background-layer, currentBackgroundLayer]" aria-hidden="true"></div> New background layer -->
 
 <!-- top bar -->
- <Topbar />
+<Topbar @theme-changed="updateTheme" />
 
       <!-- collections heading and searchbar -->
       <div class="heading-and-searchbar">
@@ -198,6 +205,6 @@ width: 100%; /* or any fixed width you prefer */
         </div>
       <!-- footer -->
 
-     <Footer />
-</div>
+      <Footer :theme="currentTheme" />
+      </div>
 </template>

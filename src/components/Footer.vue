@@ -1,6 +1,52 @@
 <script>
 export default {
   name: 'Footer',
+  props: {
+  theme: {
+    type: Object,
+    default: () => ({ theme: 'default' }), // Default theme
+  },
+},
+
+watch: {
+  theme(newTheme) {
+    this.updateTheme(newTheme);
+  },
+},
+
+  data() {
+    return {
+      isDefaultTheme: true,
+      isGrayscaleTheme: false,
+      isHighContrastTheme: false,
+      isWCAGTheme: false,
+    };
+  },
+
+ 
+
+  methods: {
+    updateTheme(payload) {
+      console.log('Theme updated in Footer:', payload);
+
+      // Reset all theme flags
+      this.isDefaultTheme = false;
+      this.isGrayscaleTheme = false;
+      this.isHighContrastTheme = false;
+      this.isWCAGTheme = false;
+
+      // Update theme based on the payload
+      if (payload.theme === 'default') {
+        this.isDefaultTheme = true;
+      } else if (payload.theme === 'grayscale') {
+        this.isGrayscaleTheme = true;
+      } else if (payload.theme === 'high-contrast') {
+        this.isHighContrastTheme = true;
+      } else if (payload.theme === 'wcag') {
+        this.isWCAGTheme = true;
+      }
+    },
+  },
 };
 </script>
 
@@ -67,7 +113,10 @@ export default {
         <div class="leftSideFooter">
         <div class="leftSideFooterInfo">
           <div class="footerLogo">
-        <img src="/logo.svg" alt="Footer Logo">
+        <img v-show="isDefaultTheme" src="/logo.svg" alt="Footer Logo">
+        <img v-show="isGrayscaleTheme" src="/logoGray.svg" alt="Footer Logo">
+        <img v-show="isHighContrastTheme" src="/logoBlack.svg" alt="Footer Logo">
+        <img v-show="isWCAGTheme" src="/logoWCAG.svg" alt="Footer Logo">
         </div>
         <div class="footerCopyright">
         <h2>Sari-Sari XChange</h2>

@@ -2,6 +2,13 @@
 
 export default {
     name: 'AccessibilityMenu',
+    emits: ['theme-changed', 'update-notification-visible'], // Declare the custom events
+    props: {
+    isNotificationVisible: {
+      type: Boolean,
+      default: true,
+    },
+  },
     data() {
         return {
             isMenuVisible: false,
@@ -9,6 +16,9 @@ export default {
             baseFontSize: null, // Default root font size in pixels
             baseGap: 18, // Store the base gap value
             baseGapUnit: 'rem',
+            currentTheme: 'default', // Default theme
+            localNotificationVisible: this.isNotificationVisible,
+
            
             currentNavAccessibilityIcon: 'nav-buttonAccessibilityIcon',
             currentIncreaseTextIcon: 'increaseTextIcon', 
@@ -52,6 +62,8 @@ export default {
   const root = document.documentElement;
 
   if (theme === 'grayscale') {   // grayscale Theme
+    this.currentTheme = 'grayscale'; // Update currentTheme
+
     root.style.setProperty('--primary-color', '#525252');
     root.style.setProperty('--secondary-color', '#F3F3F3');
     root.style.setProperty('--shadow', '#C8C8C8');
@@ -65,11 +77,9 @@ export default {
     root.style.setProperty('--hover-text-color-left-box', '#525252');
 
 
-
-  
     // event emission 
     this.$emit('theme-changed', {
-        currentLogoColorPalette: 'logoGrayscaleColorPalette',
+        theme: 'grayscale',
         currentBackgroundLayer: 'background-layer-grayscale',
     });
     // acc menu and icons
@@ -84,14 +94,13 @@ export default {
     this.currentResetIcon = 'resetIconGray'            
 
   } else if (theme === 'high-contrast') {  // high contrast theme
+    this.currentTheme = 'high-contrast'; // Update currentTheme
     root.style.setProperty('--primary-color', '#000000');
     root.style.setProperty('--secondary-color', '#FFFFFF');
     root.style.setProperty('--shadow', 'transparent');
     root.style.setProperty('--hover-color', '#FF42D6');
     root.style.setProperty('--hover-text-color', '#000000');
     
-
-
     root.style.setProperty('--primary-color-left-box', '#000000');
     root.style.setProperty('--secondary-color-left-box', '#FFFFFF');
     root.style.setProperty('--text-color-left-box', '#FFFFFF');
@@ -99,11 +108,9 @@ export default {
     root.style.setProperty('--hover-text-color-left-box', '#000000');
 
 
-
-
     // event emission
     this.$emit('theme-changed', {
-        currentLogoColorPalette: 'logoHighContrastColorPalette',
+       theme: 'high-contrast',
         currentBackgroundLayer: 'background-layer-highContrast',
     });
      // acc menu icons
@@ -117,7 +124,8 @@ export default {
     this.currentWcagColoursIcon = 'wcagColoursIconHighContrast'
     this.currentResetIcon = 'resetIconHighContrast'    
 
-  } else if (theme === 'wgac-colors') { // WCAG colors theme
+  } else if (theme === 'wcag') { // WCAG colors theme
+    this.currentTheme = 'wcag'; // Update currentTheme
     root.style.setProperty('--primary-color', '#A80084');
     root.style.setProperty('--secondary-color', '#FFEDF4');
     root.style.setProperty('--shadow', '#F1AFDD');
@@ -125,18 +133,19 @@ export default {
     root.style.setProperty('--hover-text-color', '#FFFFFF');
 
 
-    root.style.setProperty('--primary-color-left-box', '#A80084');
-    root.style.setProperty('--secondary-color-left-box', '#FFEDF4');
-    root.style.setProperty('--text-color-left-box', '#FFFFFF');
-    root.style.setProperty('--hover-color-left-box', '#A80084'); 
-    root.style.setProperty('--hover-text-color-left-box', '#FFFFFF');
 
+    root.style.setProperty('--primary-color-left-box', '#E7EB17');
+    root.style.setProperty('--secondary-color-left-box', '#FCFCCE');
+    root.style.setProperty('--text-color-left-box', '#A80084');
+    root.style.setProperty('--hover-color-left-box', '#E7EB17'); 
+    root.style.setProperty('--hover-text-color-left-box', '#A80084');
 
     // event emission
     this.$emit('theme-changed', {
-        currentLogoColorPalette: 'logoWCAGcolors',
+        theme: 'wcag',
         currentBackgroundLayer: 'background-layer',
     });
+
       // acc menu icons
       this.currentNavAccessibilityIcon = 'navAccessibilityButtonWCAGcolorPalette'
        this.currentIncreaseTextIcon = 'increaseTextIconWCAG'
@@ -150,13 +159,13 @@ export default {
 
   } else {
     // Default theme
+    this.currentTheme = 'default'; // Update currentTheme
+
     root.style.setProperty('--primary-color', '#D400A6');
     root.style.setProperty('--secondary-color', '#FFEDF4');
     root.style.setProperty('--shadow', '#F1AFDD');
     root.style.setProperty('--hover-color', '#D400A6');
     root.style.setProperty('--hover-text-color', '#FFFFFF');
-
-
     
     root.style.setProperty('--primary-color-left-box', '#E7EB17');
     root.style.setProperty('--secondary-color-left-box', '#FCFCCE');
@@ -164,10 +173,11 @@ export default {
     root.style.setProperty('--hover-color-left-box', '#E7EB17'); 
     root.style.setProperty('--hover-text-color-left-box', '#D400A6');
 
-
-
     // event emission
-    this.$emit('theme-changed', 'logo'); // Emit event
+        this.$emit('theme-changed', {
+        theme: 'default',
+        currentBackgroundLayer: 'background-layer',
+    });
 
 
     this.currentNavAccessibilityIcon = 'nav-buttonAccessibilityIcon'
@@ -183,30 +193,41 @@ export default {
   }
 },
 
-      saveSettings() {
-        const settings = {
-            isMenuVisible: this.isMenuVisible,
-            // Save the font size and gap size
-            fontSize: this.fontSize,
-            baseFontSize: this.baseFontSize, // Store the base font size
-            baseGap: this.baseGap, // Store the base gap size
-            baseGapUnit: this.baseGapUnit,
-            // links decoration
-            linkDecoration: this.linkDecoration,
-            // readable font
-            readableFont:   this.readableFont,       
-            
-            currentIncreaseTextIcon: this.currentIncreaseTextIcon,
-            currentDecreaseTextIcon: this.currentDecreaseTextIcon,
-            currentGrayScaleIcon: this.currentGrayScaleIcon, 
-            currentHighContrastIcon: this.currentHighContrastIcon,
-            currentLinksUnderlineIcon: this.currentLinksUnderlineIcon,
-            currentReadableFontIcon: this.currentReadableFontIcon,
-            currentWcagColoursIcon: this.currentWcagColoursIcon,
-            currentResetIcon: this.currentResetIcon, 
-        };
-        localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
-      },
+
+  saveSettings(additionalSettings = {}) {
+    // Get existing settings from localStorage
+    const existingSettings = JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+
+    // Merge existing settings with new settings
+    const settings = {
+      ...existingSettings,
+      isMenuVisible: this.isMenuVisible,
+      fontSize: this.fontSize,
+      baseFontSize: this.baseFontSize,
+      baseGap: this.baseGap,
+      baseGapUnit: this.baseGapUnit,
+      linkDecoration: this.linkDecoration,
+      readableFont: this.readableFont,
+      currentTheme: this.currentTheme,
+      currentIncreaseTextIcon: this.currentIncreaseTextIcon,
+      currentDecreaseTextIcon: this.currentDecreaseTextIcon,
+      currentGrayScaleIcon: this.currentGrayScaleIcon,
+      currentHighContrastIcon: this.currentHighContrastIcon,
+      currentLinksUnderlineIcon: this.currentLinksUnderlineIcon,
+      currentReadableFontIcon: this.currentReadableFontIcon,
+      currentWcagColoursIcon: this.currentWcagColoursIcon,
+      currentResetIcon: this.currentResetIcon,
+      ...additionalSettings, // Merge additional settings (e.g., isNotificationVisible)
+    };
+
+    // Save the merged settings back to localStorage
+    try {
+      localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
+    } catch (error) {
+      console.error('Failed to save settings to localStorage:', error);
+    }
+  },
+
 
 /////
 
@@ -214,6 +235,8 @@ export default {
           const savedSettings = localStorage.getItem('accessibilitySettings');
           if (savedSettings) {
             const settings = JSON.parse(savedSettings);
+            console.log('AccessibilityMenu: Loaded settings from localStorage:', settings);
+
 
             this.isMenuVisible= settings.isMenuVisible ?? this.isMenuVisible,
              // Load the font size and apply it
@@ -231,7 +254,12 @@ export default {
             // readable font
             this.readableFont = settings.readableFont ||  this.readableFont,
             document.documentElement.style.setProperty("--font-family", this.readableFont);
-            
+            // load current theme
+            this.currentTheme = settings.currentTheme || this.currentTheme; // Load the current theme
+            this.applyTheme(this.currentTheme); // Apply the loaded theme
+
+
+
             this.currentIncreaseTextIcon = settings.currentIncreaseTextIcon || this.currentIncreaseTextIcon
             this.currentDecreaseTextIcon = settings.currentDecreaseTextIcon || this.currentDecreaseTextIcon
             this.currentGrayScaleIcon = settings.currentGrayScaleIcon || this.currentGrayScaleIcon
@@ -244,6 +272,11 @@ export default {
           }
           },
 
+      dismissNotification() {
+      this.localNotificationVisible = false;
+      this.saveSettings({ isNotificationVisible: this.localNotificationVisible });
+    },
+  
 
         accessibilityMenuVisibility(){
             this.isMenuVisible =! this.isMenuVisible;
@@ -310,11 +343,17 @@ export default {
             this.readableFont = "'Handjet', sans-serif";
             document.documentElement.style.setProperty("--font-family", this.readableFont);
             document.documentElement.style.setProperty("--marquee-item-gap", "18rem");
+ 
+            // Reset the notification window
+            this.localNotificationVisible = true;
+            // Emit an event to notify the parent component
+            this.$emit('update-notification-visible', this.localNotificationVisible);
 
-            // 
-            
-            // Save the updated setting
-            this.saveSettings();
+
+               
+           // Save the updated settings, including the notification state
+  this.saveSettings({ isNotificationVisible: this.localNotificationVisible });
+
         }, 
 
 
@@ -333,7 +372,7 @@ export default {
         }, 
 
         changeToWCAGcolors(){
-          this.applyTheme('wgac-colors');       
+          this.applyTheme('wcag');       
              // Save the updated setting
           this.saveSettings();
 

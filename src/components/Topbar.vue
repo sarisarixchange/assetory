@@ -3,11 +3,18 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 
  export default {
     name: 'Topbar',
+    props: {
+    isNotificationVisible: {
+      type: Boolean,
+      default: true,
+    },
+  },
     components: {
     AccessibilityMenu, // Register the AccessibilityMenu component
   },
      data() {
         return {
+          currentLogoColorPalette: 'logo',
         }
       }, 
 
@@ -15,9 +22,33 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
     // Check if the current route is the homepage
     isHomepage() {
       return this.$route.path === '/';
+    }, 
+  }, 
+
+  methods: {
+    updateTheme(payload) {
+       // Update theme based on the payload
+       if (payload.theme === 'default') {
+        this.currentLogoColorPalette = 'logo';
+      } else if (payload.theme === 'grayscale') {
+        this.currentLogoColorPalette = 'logoGrayscaleColorPalette';
+      } else if (payload.theme === 'high-contrast') {
+        this.currentLogoColorPalette = 'logoHighContrastColorPalette';
+      } else if (payload.theme === 'wcag') {
+        this.currentLogoColorPalette = 'logoWCAGcolors';
+      }
     },
-  }
+    
+    handleThemeChange(payload) {
+      // Handle the event locally
+      this.updateTheme(payload);
+
+      // Propagate the event to the parent
+      this.$emit('theme-changed', payload);
+    },
+  // dont erase curly brackets below
     }
+  }
 
 </script>
 
@@ -145,11 +176,11 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 </style>
 
 <template>
-     <div :class="['header', currentHeaderColorPalette]">
+     <div class="header">
         <div class="logo-section">
           <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
           <div :class="['logo' , currentLogoColorPalette]" aria-hidden="true"></div>
-          <router-link  v-if="!isHomepage" to="/" :class="['nav-button', currentNavButtonColorPalette]">Home</router-link> 
+          <router-link  v-if="!isHomepage" to="/" class="nav-button">Home</router-link> 
            </div>
 
              <!-- top marquee -->
@@ -166,15 +197,20 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 
           <!-- navigation menu -->
         <div class="nav-buttons" >
-          <a v-if="!isHomepage" href="" :class="['nav-button', currentNavButtonColorPalette]">Artists</a>
-          <a v-if="!isHomepage" href="" :class="['nav-button', currentNavButtonColorPalette]">Collections</a>
-          <a v-if="!isHomepage" href="" :class="['nav-button', currentNavButtonColorPalette]">Events</a>
-          <a href="" :class="['nav-button', currentNavButtonColorPalette]">About</a>
-          <a href="" :class="['nav-button', currentNavButtonColorPalette]">Accessibility Statement</a>
-          <a href="" :class="['nav-button', currentNavButtonColorPalette]">Terms of Use</a>
+          <a v-if="!isHomepage" href="" class="nav-button">Artists</a>
+          <a v-if="!isHomepage" href="" class="nav-button">Collections</a>
+          <a v-if="!isHomepage" href="" class="nav-button">Events</a>
+          <a href="" class="nav-button">About</a>
+          <a href="" class="nav-button">Accessibility Statement</a>
+          <a href="" class="nav-button">Terms of Use</a>
      
           <!-- Accessibility Menu -->
-           <AccessibilityMenu/>
+          <AccessibilityMenu
+          ref="accessibilityMenu"
+      :is-notification-visible="isNotificationVisible"
+      @update-notification-visible="$emit('update-notification-visible', $event)"
+      @theme-changed="handleThemeChange"
+    />                       
         </div>
       </div>
 

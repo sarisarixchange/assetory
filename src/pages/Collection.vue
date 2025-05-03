@@ -10,6 +10,7 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
  },
   data() {
         return {
+      currentTheme: { theme: 'default' }, // Default theme
       collection: null, // Holds the data for the selected collection
       collections: [
         { id: 0, title: "Collection Title 1", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
@@ -35,6 +36,10 @@ this.collection = this.collections.find((item) => item.id === collectionId);
 },
 
     methods: {
+
+      updateTheme(payload) {
+      this.currentTheme = payload; // Update the theme
+    },
 
     scrollToTop() {
     window.scrollTo({
@@ -215,12 +220,12 @@ this.collection = this.collections.find((item) => item.id === collectionId);
     
                 
         <!-- top bar -->
-        <Topbar />
+        <Topbar @theme-changed="updateTheme" />
 
             <!-- return button -->
             <div class="">
         <div class="returnButton">
-        <router-link to="/collections" :class="['nav-button', currentNavButtonColorPalette]">Return <</router-link>          
+        <router-link to="/collections" class="nav-button">Return <</router-link>          
         </div>
    </div>
 
@@ -277,6 +282,6 @@ this.collection = this.collections.find((item) => item.id === collectionId);
 
       <!-- footer -->
 
-    <Footer/>
+    <Footer :theme="currentTheme"/>
 </div>
 </template>

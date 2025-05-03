@@ -9,10 +9,8 @@ import Topbar from '../components/Topbar.vue';
   },
     data() {
         return {
-          
+
             isNotificationVisible: true,       
-            //  topbar 
-            currentLogoColorPalette: 'logo',
                       
             // leftbox
             isPinkLeftCardIconVisible: true,
@@ -21,21 +19,17 @@ import Topbar from '../components/Topbar.vue';
             isWCAGLeftCardIconVisible: false,
            
 
-            // center-top-box
+            // center-top-box images
             arePinkTopCenterCardSampleImagesVisible: true,
             areGrayTopCenterCardSampleImagesVisible: false,
             areHighContrastTopCenterCardSampleImagesVisible: false,
 
-            // other boxes
-          
+            // other boxes icons
             isDecoractionCardSubtitlePink: true,
             isDecoractionCardSubtitleGray: false,
             isDecoractionCardSubtitleHighContrast:false,
             isDecoractionCardSubtitleWCAG: false,
-            currentOtherBoxPhotos: 'other-box-photos', 
            
-
-            
           // footer images
           areFooterImagesDefaultVisible: true,
           areFooterImagesGrayscaleVisible: false, 
@@ -47,105 +41,132 @@ import Topbar from '../components/Topbar.vue';
                 
     } 
   },
-
   mounted() {
-  // call saved accessibility settings
-  this.loadSettings();
+  this.loadNotificationState(); // Load the notification state when the component is mounted
 },
 
+ 
     methods: {
+      dismissNotification() {
+  try {
+    this.isNotificationVisible = false; // Update the state
+
+    // Check if refs are available
+    if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
+      this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
+        isNotificationVisible: this.isNotificationVisible,
+      });
+    } else {
+    }
+  } catch (error) {
+    console.error('Error in dismissNotification:', error);
+  }
+},
+  
+  loadNotificationState() {
+    try {
+      const savedSettings =
+        JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+      this.isNotificationVisible =
+        savedSettings.isNotificationVisible ?? true; // Load the notification state
+    } catch (error) {
+      console.error('Error in loadNotificationState:', error);
+    }
+  },
       updateTheme(payload) {
-      // Update multiple properties based on the payload
-      this.currentLogoColorPalette = payload.currentLogoColorPalette;
-      this.currentBackgroundLayer = payload.currentBackgroundLayer;
-      },
-
-      saveSettings() {
-        const settings = {
-            isNotificationVisible: this.isNotificationVisible,
-            
-            // topbar
-            currentLogoColorPalette: this.currentLogoColorPalette,
-           
-           
-             // leftbox
-            isPinkLeftCardIconVisible: this.isPinkLeftCardIconVisible,
-            isGrayLeftCardIconVisible: this.isGrayLeftCardIconVisible,
-            isHighContrastLeftCardIconVisible: this.isHighContrastLeftCardIconVisible,
-            isWCAGLeftCardIconVisible: this.isWCAGLeftCardIconVisible,
-                      
-            // center-top-box
-            arePinkTopCenterCardSampleImagesVisible: this.arePinkTopCenterCardSampleImagesVisible,
-            areGrayTopCenterCardSampleImagesVisible: this.areGrayTopCenterCardSampleImagesVisible,
-            areHighContrastTopCenterCardSampleImagesVisible: this.areHighContrastTopCenterCardSampleImagesVisible,
-            // other boxes
-           
-            isDecoractionCardSubtitlePink: this.isDecoractionCardSubtitlePink,
-            isDecoractionCardSubtitleGray: this.isDecoractionCardSubtitleGray,
-            isDecoractionCardSubtitleHighContrast: this.isDecoractionCardSubtitleHighContrast,
-            isDecoractionCardSubtitleWCAG: this.isDecoractionCardSubtitleWCAG,
-            currentOtherBoxPhotos: this.currentOtherBoxPhotos,
-           
-          
+        if (payload.theme === "default"){
+          this.currentBackgroundLayer = 'background-layer';
+          // leftbox
+          this.isPinkLeftCardIconVisible = true
+          this.isGrayLeftCardIconVisible = false
+          this.isHighContrastLeftCardIconVisible = false
+          this.isWCAGLeftCardIconVisible = false
+          // center-top-box images
+          this.arePinkTopCenterCardSampleImagesVisible = true
+          this.areGrayTopCenterCardSampleImagesVisible = false
+          this.areHighContrastTopCenterCardSampleImagesVisible = false
+          // other boxes icons
+          this.isDecoractionCardSubtitlePink = true;
+          this.isDecoractionCardSubtitleGray = false;
+          this.isDecoractionCardSubtitleHighContrast = false;
+          this.isDecoractionCardSubtitleWCAG = false;
           // footer images
-          areFooterImagesDefaultVisible: this.areFooterImagesDefaultVisible,
-          areFooterImagesGrayscaleVisible: this.areFooterImagesGrayscaleVisible,
-          areFooterImagesHighContrastVisible: this.areFooterImagesHighContrastVisible,
-          areFooterImagesWCAGcolorsVisible: this.areFooterImagesWCAGcolorsVisible,
-          //  background image
-          currentBackgroundLayer: this.currentBackgroundLayer
-        };
-        localStorage.setItem('accessibilitySettings', JSON.stringify(settings));
-      },
+          this.areFooterImagesDefaultVisible = true;
+          this.areFooterImagesGrayscaleVisible= false;
+          this.areFooterImagesHighContrastVisible= false;
+          this.areFooterImagesWCAGcolorsVisible= false;     
 
-      // /////
+    } else if (payload.theme === "grayscale") {
+        
+          this.isPinkLeftCardIconVisible = false;
+          this.isGrayLeftCardIconVisible = true;
+          this.isHighContrastLeftCardIconVisible = false;
+          this.isWCAGLeftCardIconVisible = false;
+          // center-top-box
+          this.arePinkTopCenterCardSampleImagesVisible = false;
+          this.areGrayTopCenterCardSampleImagesVisible = true;
+          this.areHighContrastTopCenterCardSampleImagesVisible = false;
+           // other boxes icons
+           this.isDecoractionCardSubtitlePink = false;
+          this.isDecoractionCardSubtitleGray = true;
+          this.isDecoractionCardSubtitleHighContrast = false;
+          this.isDecoractionCardSubtitleWCAG = false;
+           // footer images
+          this.areFooterImagesDefaultVisible = false;
+          this.areFooterImagesGrayscaleVisible= true;
+          this.areFooterImagesHighContrastVisible= false;
+          this.areFooterImagesWCAGcolorsVisible= false;   
+           // background image
+        this.currentBackgroundLayer = 'background-layer-grayscale';  
 
-        loadSettings() {
-          const savedSettings = localStorage.getItem('accessibilitySettings');
-          if (savedSettings) {
-            const settings = JSON.parse(savedSettings);
+    } else if (payload.theme === "high-contrast") {
+          this.isPinkLeftCardIconVisible = false;
+          this.isGrayLeftCardIconVisible = false;
+          this.isHighContrastLeftCardIconVisible = true;
+          this.isWCAGLeftCardIconVisible = false;
+           // center-top-box
+           this.arePinkTopCenterCardSampleImagesVisible = false;
+          this.areGrayTopCenterCardSampleImagesVisible = false;
+          this.areHighContrastTopCenterCardSampleImagesVisible = true;
+          // other boxes icons
+          this.isDecoractionCardSubtitlePink = false;
+          this.isDecoractionCardSubtitleGray = false;
+          this.isDecoractionCardSubtitleHighContrast = true;
+          this.isDecoractionCardSubtitleWCAG = false;
+           // footer images
+           this.areFooterImagesDefaultVisible = false;
+          this.areFooterImagesGrayscaleVisible= false;
+          this.areFooterImagesHighContrastVisible= true;
+          this.areFooterImagesWCAGcolorsVisible= false;  
+          // background image
+          this.currentBackgroundLayer = 'background-layer-highContrast';
 
-            this.isNotificationVisible= settings.isNotificationVisible ?? this.isNotificationVisible,
-              // topbar
-           
-            this.currentLogoColorPalette= settings.currentLogoColorPalette || this.currentLogoColorPalette,
-           
-            
-             // leftbox
-             this.isPinkLeftCardIconVisible = settings.isPinkLeftCardIconVisible ?? this.isPinkLeftCardIconVisible,
-             this.isGrayLeftCardIconVisible = settings.isGrayLeftCardIconVisible ?? this.isGrayLeftCardIconVisible,
-             this.isHighContrastLeftCardIconVisible = settings.isHighContrastLeftCardIconVisible ?? this.isHighContrastLeftCardIconVisible,
-             this.isWCAGLeftCardIconVisible = settings.isWCAGLeftCardIconVisible ?? this.isWCAGLeftCardIconVisible,
-          
-          
-            // center-top-box
-            this.arePinkTopCenterCardSampleImagesVisible = settings.arePinkTopCenterCardSampleImagesVisible ?? this.arePinkTopCenterCardSampleImagesVisible,
-            this.areGrayTopCenterCardSampleImagesVisible = settings.areGrayTopCenterCardSampleImagesVisible ?? this.areGrayTopCenterCardSampleImagesVisible,
-            this.areHighContrastTopCenterCardSampleImagesVisible = settings.areHighContrastTopCenterCardSampleImagesVisible ?? this.areHighContrastTopCenterCardSampleImagesVisible,
-            // other boxes
-          
-            this.isDecoractionCardSubtitlePink = settings.isDecoractionCardSubtitlePink ?? this.isDecoractionCardSubtitlePink,
-            this.isDecoractionCardSubtitleGray = settings.isDecoractionCardSubtitleGray ?? this.isDecoractionCardSubtitleGray,
-            this.isDecoractionCardSubtitleHighContrast = settings.isDecoractionCardSubtitleHighContrast ?? this.isDecoractionCardSubtitleHighContrast,
-            this.isDecoractionCardSubtitleWCAG = settings.isDecoractionCardSubtitleWCAG ?? this.isDecoractionCardSubtitleWCAG,
-            this.currentOtherBoxPhotos = settings.currentOtherBoxPhotos || this.currentOtherBoxPhotos,
-          
+    } else if (payload.theme === "wcag") {
+          this.isPinkLeftCardIconVisible = false
+          this.isGrayLeftCardIconVisible = false
+          this.isHighContrastLeftCardIconVisible = false
+          this.isWCAGLeftCardIconVisible = true
+          // center-top-box
+          this.arePinkTopCenterCardSampleImagesVisible = true;
+          this.areGrayTopCenterCardSampleImagesVisible = false;
+          this.areHighContrastTopCenterCardSampleImagesVisible = false;
+           // other boxes icons
+           this.isDecoractionCardSubtitlePink = false;
+          this.isDecoractionCardSubtitleGray = false;
+          this.isDecoractionCardSubtitleHighContrast = false;
+          this.isDecoractionCardSubtitleWCAG = true;
             // footer images
-            this.areFooterImagesDefaultVisible = settings.areFooterImagesDefaultVisible ?? this.areFooterImagesDefaultVisible,
-            this.areFooterImagesGrayscaleVisible = settings.areFooterImagesGrayscaleVisible ?? this.areFooterImagesGrayscaleVisible,
-            this.areFooterImagesHighContrastVisible = settings.areFooterImagesHighContrastVisible ?? this.areFooterImagesHighContrastVisible,
-            this.areFooterImagesWCAGcolorsVisible = settings.areFooterImagesWCAGcolorsVisible ?? this.areFooterImagesWCAGcolorsVisible,
-            //  background image
-            this.currentBackgroundLayer = settings.currentBackgroundLayer || this.currentBackgroundLayer
-          }
-          },
+            this.areFooterImagesDefaultVisible = false;
+          this.areFooterImagesGrayscaleVisible= false;
+          this.areFooterImagesHighContrastVisible= false;
+          this.areFooterImagesWCAGcolorsVisible= true; 
+          // background image
+          this.currentBackgroundLayer = 'background-layer-wcag';
 
+    }
+  },    
 
-
-          dismissNotification() {
-          this.isNotificationVisible = false; // Hides the notification
-          this.saveSettings();
-        },
+     
 
    
   
@@ -529,8 +550,12 @@ color:var(--hover-text-color)
       <div class="grid-container">
         <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div> <!-- New background layer -->
      
-        <Topbar />
-      
+  <Topbar
+  ref="topbar"
+  :is-notification-visible="isNotificationVisible"
+  @update-notification-visible="isNotificationVisible = $event"
+  @theme-changed="updateTheme"
+/>      
 
 <!-- background image -->
         <div class="background-image" aria-hidden="true"></div>
@@ -574,7 +599,7 @@ color:var(--hover-text-color)
             <p >Explore community assets created by artists.</p>
             
           </div>
-          <div :class="['other-box-photos', currentOtherBoxPhotos]" aria-hidden="true">
+          <div class="other-box-photos" aria-hidden="true">
           <img v-show="arePinkTopCenterCardSampleImagesVisible" src="/sample-images-artists.png" alt="">
           <img v-show="areGrayTopCenterCardSampleImagesVisible" src="/sample-images-artists-grayscale.png" alt="">
           <img v-show="areHighContrastTopCenterCardSampleImagesVisible" src="/sample-images-artists-highContrast.png" alt="">
@@ -603,13 +628,13 @@ color:var(--hover-text-color)
             <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
             <p>Assets created during SSX events.</p>
           </div>
-          <div :class="['other-box-photos', currentOtherBoxPhotos]">
+          <div class="other-box-photos">
             <!-- <img src="/sample-images-artists.png"> -->
 
           
             </div>
           <div class="other-box-action-call">
-            <a  href="" :class="['other-call-action', currentOtherBoxCallAction]">
+            <a  href="" class="other-call-action">
               <span>Open Events</span> <span class="call-goto-action" aria-hidden="true">></span>
             </a>
           </div>
@@ -621,20 +646,20 @@ color:var(--hover-text-color)
             <img src="/collectionsIconWhite.svg" alt="">
             <h2>Collections</h2>
           </div>
-          <div :class="['other-box-subtitle', currentOtherBoxSubtitle]">
+          <div class="other-box-subtitle">
             <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="" >
             <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
             <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
             <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
             <p>Explore collections by SSX.</p>
           </div>
-          <div :class="['other-box-photos', currentOtherBoxPhotos]">
-            <!-- <img src="/sample-images-artists.png"> -->
+          <div class="other-box-photos">
+                        <!-- <img src="/sample-images-artists.png"> -->
 
 
             </div>
           <div class="other-box-action-call">
-            <router-link :to="{ name: 'Collections' }" :class="['other-call-action', currentOtherBoxCallAction]">
+            <router-link :to="{ name: 'Collections' }" class="other-call-action">
               <span>Open Collections</span> <span class="call-goto-action" aria-hidden="true">></span>
               </router-link>
             </div>

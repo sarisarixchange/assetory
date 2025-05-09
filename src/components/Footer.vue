@@ -51,19 +51,23 @@ watch: {
 </script>
 
 <style>
+
+
+
 .non-homepage-footer {
   display: flex;
   border-top: 1px solid var(--primary-color);
   border-left: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
   border-bottom: none; /* No bottom border */
-  border-radius: 20px 20px 0 0; /* Top-left and top-right rounded, bottom corners straight */
+  border-radius: 0.5rem 0.5rem 0 0; /* Top-left and top-right rounded, bottom corners straight */
   padding: 1rem;
-  margin-left: 1rem; /* Add margin to the left */
-  margin-right: 1rem; /* Add margin to the right */
+  margin-left: 0.5rem; /* Add margin to the left */
+  margin-right: 0.5rem; /* Add margin to the right */
   color: var(--primary-color);
   font-family: 'Inter', sans-serif;
   font-size: 0.65rem;
+  margin-top: auto;
 }
 
 .leftSideFooter{

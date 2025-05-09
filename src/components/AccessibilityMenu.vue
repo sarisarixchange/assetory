@@ -66,6 +66,7 @@ export default {
 
     root.style.setProperty('--primary-color', '#525252');
     root.style.setProperty('--secondary-color', '#F3F3F3');
+    root.style.setProperty('--navigation-buttons-border-color', '#C8C8C8');
     root.style.setProperty('--shadow', '#C8C8C8');
     root.style.setProperty('--hover-color', '#525252');
     root.style.setProperty('--hover-text-color', '#FFFFFF');
@@ -97,6 +98,7 @@ export default {
     this.currentTheme = 'high-contrast'; // Update currentTheme
     root.style.setProperty('--primary-color', '#000000');
     root.style.setProperty('--secondary-color', '#FFFFFF');
+    root.style.setProperty('--navigation-buttons-border-color', '#FF42D6');
     root.style.setProperty('--shadow', 'transparent');
     root.style.setProperty('--hover-color', '#FF42D6');
     root.style.setProperty('--hover-text-color', '#000000');
@@ -128,6 +130,8 @@ export default {
     this.currentTheme = 'wcag'; // Update currentTheme
     root.style.setProperty('--primary-color', '#A80084');
     root.style.setProperty('--secondary-color', '#FFEDF4');
+    root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
+
     root.style.setProperty('--shadow', '#F1AFDD');
     root.style.setProperty('--hover-color', '#A80084');
     root.style.setProperty('--hover-text-color', '#FFFFFF');
@@ -163,6 +167,8 @@ export default {
 
     root.style.setProperty('--primary-color', '#D400A6');
     root.style.setProperty('--secondary-color', '#FFEDF4');
+    root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
+
     root.style.setProperty('--shadow', '#F1AFDD');
     root.style.setProperty('--hover-color', '#D400A6');
     root.style.setProperty('--hover-text-color', '#FFFFFF');
@@ -404,6 +410,7 @@ export default {
 :root {
   --primary-color: #D400A6; /* Main pink color */
   --secondary-color: #FFEDF4; /* Light pink background */
+  --navigation-buttons-border-color:#F1AFDD;
   --hover-color: #A80084; /* Darker pink for hover states */
   --hover-text-color: #FFFFFF;
   --shadow: #F1AFDD; /* Shadow color */
@@ -431,7 +438,7 @@ export default {
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--background-color);
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--navigation-buttons-border-color);
   transition: background-color 0.2s;
   cursor: pointer;
 }

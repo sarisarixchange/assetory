@@ -13,12 +13,49 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
       currentTheme: { theme: 'default' }, // Default theme
       collection: null, // Holds the data for the selected collection
       collections: [
-        { id: 0, title: "Collection Title 1", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
-        { id: 1, title: "Collection Title 2", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
-        { id: 2, title: "Collection Title 3", firstImage: "", secondImage:"", topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit", bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam gravida, dui nec tempor hendrerit, ligula eros vehicula dui, ut mattis odio orci id metus. Phasellus ornare diam nibh, in vehicula tortor volutpat nec. Nam luctus tincidunt enim, id vehicula ligula egestas efficitur. Aliquam fermentum id eros sit amet pretium. Nunc sit amet dolor eget justo maximus porta id non velit. Vivamus in gravida risus. Ut nec urna fringilla, aliquam turpis et, volutpat lacus. Maecenas ornare mattis felis, quis hendrerit tortor vulputate sit amet. Donec sed consectetur risus, ut venenatis tortor. Vestibulum feugiat lacinia scelerisque. Donec pulvinar arcu neque, nec blandit sapien cursus quis. Suspendisse dui libero, venenatis ac sollicitudin quis, hendrerit" },
-      
-        // Add more collections as needed
-      ],
+      {
+        id: 0,
+        title: "Collection Title 1",
+        firstImage: "/path/to/firstImage1.jpg",
+        secondImage: "/path/to/secondImage1.jpg",
+        thirdImage: "/path/to/thirdImage1.jpg",
+        topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        assets: [
+          { id: 1, image: "/path/to/asset1.jpg", name: "Asset 1" },
+          { id: 2, image: "/path/to/asset2.jpg", name: "Asset 2" },
+          { id: 3, image: "/path/to/asset3.jpg", name: "Asset 3" },
+        ],
+      },
+      {
+        id: 1,
+        title: "Collection Title 2",
+        firstImage: "/path/to/firstImage2.jpg",
+        secondImage: "/path/to/secondImage2.jpg",
+        thirdImage: "/path/to/thirdImage2.jpg",
+        topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        assets: [
+          { id: 1, image: "/path/to/asset4.jpg", name: "Asset 1" },
+          { id: 2, image: "/path/to/asset5.jpg", name: "Asset 2" },
+          { id: 3, image: "/path/to/asset6.jpg", name: "Asset 3" },
+        ],
+      },
+      {
+        id: 2,
+        title: "Collection Title 3",
+        firstImage: "/path/to/firstImage3.jpg",
+        secondImage: "/path/to/secondImage3.jpg",
+        thirdImage: "/path/to/thirdImage3.jpg",
+        topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        assets: [
+          { id: 1, image: "/path/to/asset7.jpg", name: "Asset 1" },
+          { id: 2, image: "/path/to/asset8.jpg", name: "Asset 2" },
+          { id: 3, image: "/path/to/asset9.jpg", name: "Asset 3" },
+        ],
+      },
+    ],
      
       
     } 
@@ -258,7 +295,20 @@ this.collection = this.collections.find((item) => item.id === collectionId);
             <h2>Assets</h2>
             <div class="collection-assets-card-container">
               
-            <div class="collection-assets-card">
+              <div
+      v-for="(asset, index) in collection.assets"
+      :key="index"
+      class="collection-assets-card"
+    >
+    <router-link
+  :to="{ name: 'Asset', params: { collectionId: collection.id, id: asset.id } }"
+  class="collection-assets-link"
+>
+  <img :src="asset.image" :alt="asset.name" class="collection-assets-image" />
+</router-link>
+
+    </div>
+            <!-- <div class="collection-assets-card">
               <img src="" alt="Asset 1" class="collection-assets-image">
             </div>          
             <div class="collection-assets-card">
@@ -266,7 +316,7 @@ this.collection = this.collections.find((item) => item.id === collectionId);
             </div>            
             <div class="collection-assets-card">
               <img src="" alt="Asset 3" class="collection-assets-image">
-            </div>
+            </div> -->
         </div>
         </div>
     </div>

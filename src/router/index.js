@@ -7,8 +7,14 @@ import Asset from '../pages/Asset.vue';
 const routes = [
   { path: '/', component: Homepage, name: 'Homepage' },
   { path: '/collections', component: Collections, name: 'Collections' },
-  { path: '/collection/:id', component: Collection, name: 'Collection' },
-  { path: '/Asset', component: Asset, name: 'Asset' },
+  { path: '/collection/:id',  component: Collection, name: 'Collection', props: true },
+  { path: '/asset/:collectionId/:id', component: Asset, name: 'Asset', 
+    props: (route) => ({
+      collectionId: Number(route.params.collectionId), // Convert collectionId to a number
+      id: Number(route.params.id), // Convert id to a number
+    }),
+}
+  
 ]
 
 const router = createRouter({

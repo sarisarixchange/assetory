@@ -153,7 +153,7 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
       .nav-button {
         text-align: center;  
         padding: 0.45rem 0.75rem;
-        border: 1px solid  var(--primary-color);;
+        border: 1px solid  var(--navigation-buttons-border-color);
         background: none;
         color:  var(--primary-color);
         border-radius: 20px;

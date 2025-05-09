@@ -15,11 +15,15 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
       collections: [
       {
         id: 0,
-        title: "Collection Title 1",
-        firstImage: "/path/to/firstImage1.jpg",
+        title: "Collection Serena",
+        bannerImage: "/path/to/firstImage1.jpg",
         secondImage: "/path/to/secondImage1.jpg",
         thirdImage: "/path/to/thirdImage1.jpg",
-        topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
+        topDescription: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
+        <br><br>
+        
+        <h1>This is a Heading!!!</h1>
+        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
         bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
         assets: [
           { id: 1, image: "/path/to/asset1.jpg", name: "Asset 1" },
@@ -278,7 +282,7 @@ this.collection = this.collections.find((item) => item.id === collectionId);
       <div class="collection-details">
         <h2>{{ collection.title }}</h2>
         <div class="collection-top-description">
-            <p>{{ collection.topDescription }}</p>
+            <p v-html="collection.topDescription"</p>
             <img :src="collection.secondImage" alt="Collection Image" class="collection-right-image">
         </div>
 

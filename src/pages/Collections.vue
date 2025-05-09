@@ -10,20 +10,14 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
   },
    
     data() {
-        return {          
+        return {       
+          basePath: 'collections/',   
           currentTheme: { theme: 'default' }, // Default theme
           // collections
           searchQuery: "", // Holds the user's search input
           collections: [
-        { image: "", linkText: "Luis Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
-        { image: "", linkText: "Collection Title" },
+        { image: 'asian-fruit-market/serena.png', linkText: "Asian Fruit Market" },        
+        
       ],          
     } 
   },
@@ -31,13 +25,19 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
   
 
   computed: {
-    filteredCollections() {
-      // Filter collections based on the search query
-      return this.collections.filter((collection) =>
-        collection.linkText.toLowerCase().includes(this.searchQuery.toLowerCase())
-      );
-    },
+  filteredCollections() {
+    // Filter collections based on the search query
+    return this.collections.filter((collection) =>
+      collection.linkText.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
   },
+  collectionsWithFullPath() {
+    return this.collections.map((collection) => ({
+      ...collection,
+      image: this.basePath + collection.image, // Prepend basePath to image
+    }));
+  },
+},
 
     methods: {     
       updateTheme(payload) {
@@ -109,6 +109,15 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
   color: var(--primary-color);
   margin-bottom: 0.35em;
   padding: 1rem;
+}
+
+.collectionCardContentImage {
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-color);
+  object-fit: cover; /* Ensures the image covers the container without distortion */
+  box-sizing: border-box; /* Includes padding in the element's total size */
+  border-radius: 8px; /* Optional: Add rounded corners */
 }
 
 .collectionCardContentGoTo{
@@ -183,9 +192,14 @@ width: 100%; /* or any fixed width you prefer */
 
  <!-- Collections Grid -->
  <div class="collections-grid">
-      <div class="collectionCard" v-for="(collection, index) in filteredCollections" :key="index">
+      <div 
+      class="collectionCard" 
+      v-for="(collection, index) in collectionsWithFullPath" 
+      :key="index">
         <div class="collectionCardContent">
-          <img :src="collection.image" alt="Collection Image" class="collectionCardContentImage">
+          <img :src="collection.image" 
+          alt="Collection Image" 
+          class="collectionCardContentImage">
         </div>
         <div class="collectionCardContentGoTo">
           <router-link

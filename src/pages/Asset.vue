@@ -27,10 +27,10 @@ export default {
       collections: [
         {
           id: 0,
-          title: 'Collection Title 1',
+          title: 'Collection Serena',
           assets: [
             { id: 1,
-             name: 'Asset 1',              
+             name: 'Bunny',              
              creator: 'Serena',  
              tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
              description: 'A beautiful vase.', 
@@ -40,7 +40,7 @@ export default {
              fileSize: '25 MB',
              copyright: 'CC BY-NC 4.0 DEED',   
              gltfModel: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-            downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
+             downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
            
              },
 
@@ -80,7 +80,7 @@ export default {
           title: 'Collection Title 2',
           assets: [
             { id: 1, 
-            name: 'Asset 1', 
+            name: 'Haoran Vase', 
             tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
             creator: 'Alice', description: 'A modern artwork.', 
             description: 'A classic sculpture.', 
@@ -107,6 +107,8 @@ export default {
             downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
 
           },
+
+        
 
           // add other assets here
           

@@ -16,7 +16,7 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
           // collections
           searchQuery: "", // Holds the user's search input
           collections: [
-        { image: 'asian-fruit-market/serena.png', linkText: "Asian Fruit Market" },        
+        { image: 'chinese-antiques/vase.png', linkText: "Chinese Antiques" },        
         
       ],          
     } 

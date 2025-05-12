@@ -1,0 +1,68 @@
+[
+    {
+      "id": 0,
+      "title": "Chinese Antiques",
+      "thumbnail": "collections/thumbnails/title1.png",
+      "bannerImage": "collections/images/title1-banner.jpg",
+      "secondImage": "collections/images/title1-second.jpg",
+      "thirdImage": "collections/images/title1-third.jpg",
+      "topDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "bottomDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "assets": [
+        {
+          "id": 1,
+          "name": "Bunny",
+          "creator": "Haoran",
+          "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
+          "description": "A beautiful vase.",
+          "assetType": "3D Model",
+          "creationMethod": "Photogrammetry",
+          "acknowledgement": "AGH",
+          "fileSize": "25 MB",
+          "copyright": "CC BY-NC 4.0 DEED",
+          "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
+          "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
+        },
+        {
+          "id": 2,
+          "name": "Asset 2",
+          "creator": "Luis",
+          "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
+          "description": "A stunning sculpture.",
+          "assetType": "3D Model",
+          "creationMethod": "Photogrammetry",
+          "acknowledgement": "AGH",
+          "fileSize": "25 MB",
+          "copyright": "CC BY-NC 4.0 DEED",
+          "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
+          "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Collection Title 2",
+      "thumbnail": "collections/thumbnails/title2.png",
+      "bannerImage": "collections/images/title2-banner.jpg",
+      "secondImage": "collections/images/title2-second.jpg",
+      "thirdImage": "collections/images/title2-third.jpg",
+      "topDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      "bottomDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "assets": [
+        {
+          "id": 1,
+          "name": "Haoran Vase",
+          "creator": "Alice",
+          "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
+          "description": "A modern artwork.",
+          "assetType": "3D Model",
+          "creationMethod": "Photogrammetry",
+          "acknowledgement": "AGH",
+          "fileSize": "25 MB",
+          "copyright": "CC BY-NC 4.0 DEED",
+          "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
+          "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
+        }
+      ]
+    }
+  ]

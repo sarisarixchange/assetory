@@ -10,9 +10,19 @@ const repo = process.env.REPO || 'sari-sari-website'; // Default to your current
 export default defineConfig({
   plugins: [vue(), vueDevTools()],
   base: `/${repo}/`, // Sets the correct base path dynamically
-  resolve: {
-    alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
+  // resolve: {
+  //   alias: {
+  //     '@': fileURLToPath(new URL('./src', import.meta.url)),
+  //   },
+  // },
+  server: {
+    historyApiFallback: true, // Enable fallback for development
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: undefined, // Ensure single-page app behavior
+      },
     },
   },
 });

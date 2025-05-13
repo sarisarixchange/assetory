@@ -1,6 +1,8 @@
 <script>
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import collectionsData from '../data/collections.json';
+
 
 
  export default {
@@ -15,22 +17,18 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
           currentTheme: { theme: 'default' }, // Default theme
           // collections
           searchQuery: "", // Holds the user's search input
-          collections: [
-        { image: 'chinese-antiques/vase.png', linkText: "Chinese Antiques" },        
-        
-      ],          
+          collections: collectionsData
     } 
   },
 
   
 
   computed: {
-  filteredCollections() {
-    // Filter collections based on the search query
-    return this.collections.filter((collection) =>
-      collection.linkText.toLowerCase().includes(this.searchQuery.toLowerCase())
-    );
-  },
+    filteredCollections() {
+      return this.collections.filter((collection) =>
+        collection.title.toLowerCase().includes(this.searchQuery.toLowerCase())
+      );
+    },
   collectionsWithFullPath() {
     return this.collections.map((collection) => ({
       ...collection,
@@ -171,8 +169,7 @@ width: 100%; /* or any fixed width you prefer */
 
 
 <template>
-  <div class="container">
-        <!-- <div :class="[background-layer, currentBackgroundLayer]" aria-hidden="true"></div> New background layer -->
+  <div class="page-container">
 
 <!-- top bar -->
 <Topbar @theme-changed="updateTheme" />
@@ -197,7 +194,7 @@ width: 100%; /* or any fixed width you prefer */
       v-for="(collection, index) in collectionsWithFullPath" 
       :key="index">
         <div class="collectionCardContent">
-          <img :src="collection.image" 
+          <img :src="collection.thumbnail" 
           alt="Collection Image" 
           class="collectionCardContentImage">
         </div>
@@ -206,7 +203,7 @@ width: 100%; /* or any fixed width you prefer */
         :to="{ name: 'Collection', params: { id: index } }"
         class="collectionCardContentLink"
       >     
-            <span class="learn-more">{{ collection.linkText }}</span>
+            <span class="learn-more">{{ collection.title }}</span>
             <span class="ok-action" aria-hidden="true">></span>
           </router-link>
         </div>

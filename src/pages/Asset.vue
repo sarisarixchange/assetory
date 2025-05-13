@@ -1,6 +1,7 @@
 <script >
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import collectionsData from '../data/collections.json';
 import 'aframe';
 
 export default {
@@ -21,130 +22,23 @@ export default {
   data() {
         return {
       currentTheme: { theme: 'default' }, // Default theme
-      
-    
       asset: null, // Holds the data for the selected asset
-      collections: [
-        {
-          id: 0,
-          title: 'Collection Serena',
-          assets: [
-            { id: 1,
-             name: 'Bunny',              
-             creator: 'Serena',  
-             tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
-             description: 'A beautiful vase.', 
-             assetType: '3D Model',
-             creationMethod: 'Photogrammetry',
-             acknowledgement: 'AGH',
-             fileSize: '25 MB',
-             copyright: 'CC BY-NC 4.0 DEED',   
-             gltfModel: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-             downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-           
-             },
-
-            { id: 2, 
-            name: 'Asset 2', 
-            creator: 'Luis', 
-            tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
-            description: 'A stunning sculpture.', 
-            assetType: '3D Model',
-             creationMethod: 'Photogrammetry',
-             acknowledgement: 'AGH',
-             fileSize: '25 MB',
-             copyright: 'CC BY-NC 4.0 DEED',
-             gltfModel: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-            downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-
-             },
-
-            { id: 3, 
-            name: 'Asset 3', 
-            creator: 'Hanan', 
-            tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
-            description: 'An intricate painting.', 
-            assetType: '3D Model',
-             creationMethod: 'Photogrammetry',
-             acknowledgement: 'AGH',
-             fileSize: '25 MB',
-             copyright: 'CC BY-NC 4.0 DEED',
-             gltfModel: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-            downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-
-            },
-          ],
-        },
-        {
-          id: 1,
-          title: 'Collection Title 2',
-          assets: [
-            { id: 1, 
-            name: 'Haoran Vase', 
-            tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
-            creator: 'Alice', description: 'A modern artwork.', 
-            description: 'A classic sculpture.', 
-            assetType: '3D Model',
-            creationMethod: 'Photogrammetry',
-            acknowledgement: 'AGH',
-            fileSize: '25 MB',
-            copyright: 'CC BY-NC 4.0 DEED',
-            gltfModel: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-            downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-
-            },
-            { id: 2, 
-            name: 'Asset 2', 
-            creator: 'Bob', 
-            tags: ['Porcelain', 'Kangxi', 'Vase', 'Blue'],
-            description: 'A classic sculpture.', 
-            assetType: '3D Model',
-            creationMethod: 'Photogrammetry',
-            acknowledgement: 'AGH',
-            fileSize: '25 MB',
-            copyright: 'CC BY-NC 4.0 DEED',
-            gltfModel: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-            downloadLink: 'https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb',
-
-          },
-
-        
-
-          // add other assets here
-          
-
-
-          // do not erase curly brackets below
-          ],
-        },
-      ],
+     
+     
     };
 
   
 },
-// mounted() {
-//     // Find the collection based on the collectionId
-//     const collection = this.collections.find((item) => item.id === this.collectionId);
-
-//     // Find the asset within the collection based on the asset id
-//     if (collection) {
-//       this.asset = collection.assets.find((item) => item.id === this.id);
-//     }
-//   },
-
 mounted() {
-  console.log('collectionId:', this.collectionId, 'Type:', typeof this.collectionId);
-  console.log('id:', this.id, 'Type:', typeof this.id);
+    const collectionId = parseInt(this.$route.params.collectionId, 10);
+    const assetId = parseInt(this.$route.params.id, 10);
 
-  // Find the collection based on the collectionId
-  const collection = this.collections.find((item) => item.id === this.collectionId);
+    const collection = collectionsData.find((item) => item.id === collectionId);
+    if (collection) {
+      this.asset = collection.assets.find((item) => item.id === assetId);
+    }
+  },
 
-  if (collection) {
-    this.asset = collection.assets.find((item) => item.id === this.id);
-  } else {
-    console.warn('Collection not found for collectionId:', this.collectionId);
-  }
-},
 
 methods: {
 

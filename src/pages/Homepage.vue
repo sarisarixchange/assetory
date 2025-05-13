@@ -9,6 +9,8 @@ import Topbar from '../components/Topbar.vue';
   },
     data() {
         return {
+             iconBasePath: 'icons/', // Base path for icons
+             marqueeBasePath: 'images/marquee/', 
 
             isNotificationVisible: true,       
                       
@@ -236,7 +238,7 @@ import Topbar from '../components/Topbar.vue';
       .background-layer {
           grid-column: 1 / 9; /* Full width */
           grid-row: 1 / 9; /* Covers rows 2 to 9 */
-          background-image: url("/xyz.svg"); 
+          background-image: url("icons/xyz.svg"); 
           background-repeat: no-repeat;
           background-size: contain;
           /* background-position: center; */
@@ -246,7 +248,7 @@ import Topbar from '../components/Topbar.vue';
       .background-layer-grayscale {
         grid-column: 1 / 9; /* Full width */
           grid-row: 1 / 9; /* Covers rows 2 to 9 */
-          background-image: url("/xyz-gray.svg"); 
+          background-image: url("icons/xyz-gray.svg"); 
           background-repeat: no-repeat;
           background-size: contain;
           /* background-position: center; */
@@ -257,7 +259,7 @@ import Topbar from '../components/Topbar.vue';
       .background-layer-highContrast{
         grid-column: 1 / 9; /* Full width */
           grid-row: 1 / 9; /* Covers rows 2 to 9 */
-          background-image: url("/xyz-highContrast.svg"); 
+          background-image: url("icons/xyz-highContrast.svg"); 
           background-repeat: no-repeat;
           background-size: contain;
           /* background-position: center; */
@@ -565,10 +567,10 @@ color:var(--hover-text-color)
         <!-- cards -->
         <div class="left-box">
           <div class="left-box-heading">
-            <img v-show="isPinkLeftCardIconVisible" src="/greaterThanBracketsPink.svg" alt="">
-            <img v-show="isGrayLeftCardIconVisible" src="/greaterThanBracketsGray.svg" alt="">
-            <img v-show="isHighContrastLeftCardIconVisible" src="/sariSariIconWhite.svg" alt="">
-            <img v-show="isWCAGLeftCardIconVisible" src="/greaterThanBracketsHighContrast.svg" alt="">
+            <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath  + 'greaterThanBracketsPink.svg'" alt="">
+            <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath  + 'greaterThanBracketsGray.svg'" alt="">
+            <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath  + 'sariSariIconWhite.svg'" alt="">
+            <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath  + 'greaterThanBracketsHighContrast.svg'" alt="">
             <h2>Sari-Sari Xchange</h2></div>
           <div class="left-box-paragraph">
             <p>SSX is a community-building research & creation project using Extended Reality (XR) (ie. Virtual,
@@ -588,21 +590,21 @@ color:var(--hover-text-color)
      
         <div class="center-top-box">
           <div class="other-box-heading">
-            <img src="/asteriskWhite.svg" alt="">
+            <img :src="iconBasePath  + 'asteriskWhite.svg'" alt="">
             <h2>Artists</h2>
           </div>
           <div class="other-box-subtitle">
-            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
+            <img v-show="isDecoractionCardSubtitlePink" :src="iconBasePath  + 'decorationCardSubtitlePink.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath  + 'decorationCardSubtitleGray.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleHighContrast" :src="iconBasePath  + 'decorationCardSubtitleHighContrast.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath  + 'decorationCardSubtitleWCAG.svg'" alt="">
             <p >Explore community assets created by artists.</p>
             
           </div>
           <div class="other-box-photos" aria-hidden="true">
-          <img v-show="arePinkTopCenterCardSampleImagesVisible" src="/sample-images-artists.png" alt="">
-          <img v-show="areGrayTopCenterCardSampleImagesVisible" src="/sample-images-artists-grayscale.png" alt="">
-          <img v-show="areHighContrastTopCenterCardSampleImagesVisible" src="/sample-images-artists-highContrast.png" alt="">
+          <img v-show="arePinkTopCenterCardSampleImagesVisible" :src="iconBasePath  + 'sample-images-artists.png'" alt="">
+          <img v-show="areGrayTopCenterCardSampleImagesVisible" :src="iconBasePath  + 'sample-images-artists-grayscale.png'" alt="">
+          <img v-show="areHighContrastTopCenterCardSampleImagesVisible" :src="iconBasePath  + 'sample-images-artists-highContrast.png'" alt="">
 
             </div>
             
@@ -618,18 +620,18 @@ color:var(--hover-text-color)
 
         <div class="center-bottom-box">
           <div class="other-box-heading">
-            <img src="/eventsIconWhite.svg" alt="">
+            <img :src="iconBasePath  + 'eventsIconWhite.svg'" alt="">
             <h2>Events</h2>
           </div>
             <div class="other-box-subtitle">
-            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
+            <img v-show="isDecoractionCardSubtitlePink" :src="iconBasePath  + 'decorationCardSubtitlePink.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath  + 'decorationCardSubtitleGray.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleHighContrast" :src="iconBasePath  + 'decorationCardSubtitleHighContrast.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath  + 'decorationCardSubtitleWCAG.svg'" alt="">
             <p>Assets created during SSX events.</p>
           </div>
           <div class="other-box-photos">
-            <!-- <img src="/sample-images-artists.png"> -->
+            <!-- <img :src="/sample-images-artists.png"> -->
 
           
             </div>
@@ -643,18 +645,18 @@ color:var(--hover-text-color)
 
         <div class="right-box">
           <div class="other-box-heading">
-            <img src="/collectionsIconWhite.svg" alt="">
+            <img :src="iconBasePath  + 'collectionsIconWhite.svg'" alt="">
             <h2>Collections</h2>
           </div>
           <div class="other-box-subtitle">
-            <img v-show="isDecoractionCardSubtitlePink" src="/decorationCardSubtitlePink.svg" alt="" >
-            <img v-show="isDecoractionCardSubtitleGray" src="/decorationCardSubtitleGray.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleHighContrast" src="/decorationCardSubtitleHighContrast.svg" alt="">
-            <img v-show="isDecoractionCardSubtitleWCAG" src="/decorationCardSubtitleWCAG.svg" alt="">
+            <img v-show="isDecoractionCardSubtitlePink" :src="iconBasePath  + 'decorationCardSubtitlePink.svg'" alt="" >
+            <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath  + 'decorationCardSubtitleGray.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleHighContrast" :src="iconBasePath  + 'decorationCardSubtitleHighContrast.svg'" alt="">
+            <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath  + 'decorationCardSubtitleWCAG.svg'" alt="">
             <p>Explore collections by SSX.</p>
           </div>
           <div class="other-box-photos">
-                        <!-- <img src="/sample-images-artists.png"> -->
+                        <!-- <img :src="/sample-images-artists.png"> -->
 
 
             </div>
@@ -678,163 +680,165 @@ color:var(--hover-text-color)
       <div class="footer">
         <div v-show="areFooterImagesDefaultVisible" class="footer-images">
           <!-- First set of images -->
-          <img src="/item1.png" alt="" class="footer-image">
-          <img src="/item2.png" alt="" class="footer-image">
-          <img src="/item3.png" alt="" class="footer-image">
-          <img src="/item4.png" alt="" class="footer-image">
-          <img src="/item5.png" alt="" class="footer-image">
-          <img src="/item6.png" alt="" class="footer-image">
-          <img src="/item7.png" alt="" class="footer-image">
-          <img src="/item8.png" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
           
           <!-- Duplicate set for smooth infinite scroll -->
-          <img src="/item1.png" alt="" class="footer-image">
-          <img src="/item2.png" alt="" class="footer-image">
-          <img src="/item3.png" alt="" class="footer-image">
-          <img src="/item4.png" alt="" class="footer-image">
-          <img src="/item5.png" alt="" class="footer-image">
-          <img src="/item6.png" alt="" class="footer-image">
-          <img src="/item7.png" alt="" class="footer-image">
-          <img src="/item8.png" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
 
            <!-- Duplicate set for smooth infinite scroll -->
-           <img src="/item1.png" alt="" class="footer-image">
-          <img src="/item2.png" alt="" class="footer-image">
-          <img src="/item3.png" alt="" class="footer-image">
-          <img src="/item4.png" alt="" class="footer-image">
-          <img src="/item5.png" alt="" class="footer-image">
-          <img src="/item6.png" alt="" class="footer-image">
-          <img src="/item7.png" alt="" class="footer-image">
-          <img src="/item8.png" alt="" class="footer-image">
+           <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
+
 
                 <!-- Duplicate set for smooth infinite scroll -->
-                <img src="/item1.png" alt="" class="footer-image">
-          <img src="/item2.png" alt="" class="footer-image">
-          <img src="/item3.png" alt="" class="footer-image">
-          <img src="/item4.png" alt="" class="footer-image">
-          <img src="/item5.png" alt="" class="footer-image">
-          <img src="/item6.png" alt="" class="footer-image">
-          <img src="/item7.png" alt="" class="footer-image">
-          <img src="/item8.png" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
+
         </div>
 
 
         <div v-show="areFooterImagesGrayscaleVisible" class="footer-images">
         
-          <img src="/item1-gray.png" alt="" class="footer-image">
-          <img src="/item2-gray.png" alt="" class="footer-image">
-          <img src="/item3-gray.png" alt="" class="footer-image">
-          <img src="/item4-gray.png" alt="" class="footer-image">
-          <img src="/item5-gray.png" alt="" class="footer-image">
-          <img src="/item6-gray.png" alt="" class="footer-image">
-          <img src="/item7-gray.png" alt="" class="footer-image">
-          <img src="/item8-gray.png" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
     
-          <img src="/item1-gray.png" alt="" class="footer-image">
-          <img src="/item2-gray.png" alt="" class="footer-image">
-          <img src="/item3-gray.png" alt="" class="footer-image">
-          <img src="/item4-gray.png" alt="" class="footer-image">
-          <img src="/item5-gray.png" alt="" class="footer-image">
-          <img src="/item6-gray.png" alt="" class="footer-image">
-          <img src="/item7-gray.png" alt="" class="footer-image">
-          <img src="/item8-gray.png" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
 
-          <img src="/item1-gray.png" alt="" class="footer-image">
-          <img src="/item2-gray.png" alt="" class="footer-image">
-          <img src="/item3-gray.png" alt="" class="footer-image">
-          <img src="/item4-gray.png" alt="" class="footer-image">
-          <img src="/item5-gray.png" alt="" class="footer-image">
-          <img src="/item6-gray.png" alt="" class="footer-image">
-          <img src="/item7-gray.png" alt="" class="footer-image">
-          <img src="/item8-gray.png" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
 
-          <img src="/item1-gray.png" alt="" class="footer-image">
-          <img src="/item2-gray.png" alt="" class="footer-image">
-          <img src="/item3-gray.png" alt="" class="footer-image">
-          <img src="/item4-gray.png" alt="" class="footer-image">
-          <img src="/item5-gray.png" alt="" class="footer-image">
-          <img src="/item6-gray.png" alt="" class="footer-image">
-          <img src="/item7-gray.png" alt="" class="footer-image">
-          <img src="/item8-gray.png" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
+          <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
         </div>
 
         <div v-show="areFooterImagesHighContrastVisible" class="footer-images">
         
-        <img src="/item1-highContrast.png" alt="" class="footer-image">
-        <img src="/item2-highContrast.png" alt="" class="footer-image">
-        <img src="/item3-highContrast.png" alt="" class="footer-image">
-        <img src="/item4-highContrast.png" alt="" class="footer-image">
-        <img src="/item5-highContrast.png" alt="" class="footer-image">
-        <img src="/item6-highContrast.png" alt="" class="footer-image">
-        <img src="/item7-highContrast.png" alt="" class="footer-image">
-        <img src="/item8-highContrast.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
   
-        <img src="/item1-highContrast.png" alt="" class="footer-image">
-        <img src="/item2-highContrast.png" alt="" class="footer-image">
-        <img src="/item3-highContrast.png" alt="" class="footer-image">
-        <img src="/item4-highContrast.png" alt="" class="footer-image">
-        <img src="/item5-highContrast.png" alt="" class="footer-image">
-        <img src="/item6-highContrast.png" alt="" class="footer-image">
-        <img src="/item7-highContrast.png" alt="" class="footer-image">
-        <img src="/item8-highContrast.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
 
-        <img src="/item1-highContrast.png" alt="" class="footer-image">
-        <img src="/item2-highContrast.png" alt="" class="footer-image">
-        <img src="/item3-highContrast.png" alt="" class="footer-image">
-        <img src="/item4-highContrast.png" alt="" class="footer-image">
-        <img src="/item5-highContrast.png" alt="" class="footer-image">
-        <img src="/item6-highContrast.png" alt="" class="footer-image">
-        <img src="/item7-highContrast.png" alt="" class="footer-image">
-        <img src="/item8-highContrast.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
          
-        <img src="/item1-highContrast.png" alt="" class="footer-image">
-        <img src="/item2-highContrast.png" alt="" class="footer-image">
-        <img src="/item3-highContrast.png" alt="" class="footer-image">
-        <img src="/item4-highContrast.png" alt="" class="footer-image">
-        <img src="/item5-highContrast.png" alt="" class="footer-image">
-        <img src="/item6-highContrast.png" alt="" class="footer-image">
-        <img src="/item7-highContrast.png" alt="" class="footer-image">
-        <img src="/item8-highContrast.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
       </div>
 
 
       <div v-show="areFooterImagesWCAGcolorsVisible" class="footer-images">
         
-        <img src="/item1-wcag.png" alt="" class="footer-image">
-        <img src="/item2-wcag.png" alt="" class="footer-image">
-        <img src="/item3-wcag.png" alt="" class="footer-image">
-        <img src="/item4-wcag.png" alt="" class="footer-image">
-        <img src="/item5-wcag.png" alt="" class="footer-image">
-        <img src="/item6-wcag.png" alt="" class="footer-image">
-        <img src="/item7-wcag.png" alt="" class="footer-image">
-        <img src="/item8-wcag.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
   
-        <img src="/item1-wcag.png" alt="" class="footer-image">
-        <img src="/item2-wcag.png" alt="" class="footer-image">
-        <img src="/item3-wcag.png" alt="" class="footer-image">
-        <img src="/item4-wcag.png" alt="" class="footer-image">
-        <img src="/item5-wcag.png" alt="" class="footer-image">
-        <img src="/item6-wcag.png" alt="" class="footer-image">
-        <img src="/item7-wcag.png" alt="" class="footer-image">
-        <img src="/item8-wcag.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
 
-        <img src="/item1-wcag.png" alt="" class="footer-image">
-        <img src="/item2-wcag.png" alt="" class="footer-image">
-        <img src="/item3-wcag.png" alt="" class="footer-image">
-        <img src="/item4-wcag.png" alt="" class="footer-image">
-        <img src="/item5-wcag.png" alt="" class="footer-image">
-        <img src="/item6-wcag.png" alt="" class="footer-image">
-        <img src="/item7-wcag.png" alt="" class="footer-image">
-        <img src="/item8-wcag.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
          
-        <img src="/item1-wcag.png" alt="" class="footer-image">
-        <img src="/item2-wcag.png" alt="" class="footer-image">
-        <img src="/item3-wcag.png" alt="" class="footer-image">
-        <img src="/item4-wcag.png" alt="" class="footer-image">
-        <img src="/item5-wcag.png" alt="" class="footer-image">
-        <img src="/item6-wcag.png" alt="" class="footer-image">
-        <img src="/item7-wcag.png" alt="" class="footer-image">
-        <img src="/item8-wcag.png" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
+        <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
       </div>
 
       </div>

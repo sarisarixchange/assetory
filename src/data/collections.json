@@ -2,10 +2,10 @@
     {
       "id": 0,
       "title": "Chinese Antiques",
-      "thumbnail": "collections/thumbnails/title1.png",
-      "bannerImage": "collections/images/title1-banner.jpg",
-      "secondImage": "collections/images/title1-second.jpg",
-      "thirdImage": "collections/images/title1-third.jpg",
+      "thumbnail": "images/collections/thumbnails/title1.png",
+      "bannerImage": "images/collections/images/title1-banner.jpg",
+      "secondImage": "images/collections/images/title1-second.jpg",
+      "thirdImage": "images/collections/images/title1-third.jpg",
       "topDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       "bottomDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
       "assets": [

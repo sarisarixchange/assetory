@@ -1,6 +1,7 @@
 <script>
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import collectionsData from '../data/collections.json';
 
 
  export default {
@@ -11,57 +12,7 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
   data() {
         return {
       currentTheme: { theme: 'default' }, // Default theme
-      collection: null, // Holds the data for the selected collection
-      collections: [
-      {
-        id: 0,
-        title: "Collection Serena",
-        bannerImage: "/path/to/firstImage1.jpg",
-        secondImage: "/path/to/secondImage1.jpg",
-        thirdImage: "/path/to/thirdImage1.jpg",
-        topDescription: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. 
-        <br><br>
-        
-        <h1>This is a Heading!!!</h1>
-        It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.`,
-        bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        assets: [
-          { id: 1, image: "/path/to/asset1.jpg", name: "Asset 1" },
-          { id: 2, image: "/path/to/asset2.jpg", name: "Asset 2" },
-          { id: 3, image: "/path/to/asset3.jpg", name: "Asset 3" },
-        ],
-      },
-      {
-        id: 1,
-        title: "Collection Title 2",
-        firstImage: "/path/to/firstImage2.jpg",
-        secondImage: "/path/to/secondImage2.jpg",
-        thirdImage: "/path/to/thirdImage2.jpg",
-        topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        assets: [
-          { id: 1, image: "/path/to/asset4.jpg", name: "Asset 1" },
-          { id: 2, image: "/path/to/asset5.jpg", name: "Asset 2" },
-          { id: 3, image: "/path/to/asset6.jpg", name: "Asset 3" },
-        ],
-      },
-      {
-        id: 2,
-        title: "Collection Title 3",
-        firstImage: "/path/to/firstImage3.jpg",
-        secondImage: "/path/to/secondImage3.jpg",
-        thirdImage: "/path/to/thirdImage3.jpg",
-        topDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        bottomDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit...",
-        assets: [
-          { id: 1, image: "/path/to/asset7.jpg", name: "Asset 1" },
-          { id: 2, image: "/path/to/asset8.jpg", name: "Asset 2" },
-          { id: 3, image: "/path/to/asset9.jpg", name: "Asset 3" },
-        ],
-      },
-    ],
-     
-      
+      collection: null, // Holds the data for the selected    
     } 
   },
 
@@ -72,7 +23,7 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
   const collectionId = parseInt(this.$route.params.id, 10);
 
 // Find the collection data based on the ID
-this.collection = this.collections.find((item) => item.id === collectionId);
+this.collection = collectionsData.find((item) => item.id === collectionId);
 
 },
 
@@ -256,9 +207,8 @@ this.collection = this.collections.find((item) => item.id === collectionId);
  
 
 <template>
-  <div class="container">
-        <!-- <div :class="[background-layer, currentBackgroundLayer]" aria-hidden="true"></div> New background layer -->
-    
+  <div class="page-container">
+           
                 
         <!-- top bar -->
         <Topbar @theme-changed="updateTheme" />
@@ -274,7 +224,7 @@ this.collection = this.collections.find((item) => item.id === collectionId);
       <div v-if="collection" class="collection-details-container">
       <!-- Image banner -->  
       <div class="image-banner">
-        <img :src="collection.firstImage" alt="Banner Image" class="banner-image">
+        <img :src="collection.bannerImage" alt="Banner Image" class="banner-image">
       </div>
 
       <!-- Collection details -->

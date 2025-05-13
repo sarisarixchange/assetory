@@ -76,7 +76,7 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
       .logo {
         width: 2.7vw;
         height: 2.7vw;
-        background-image: url('/logo.svg'); 
+        background-image: url('icons/logo.svg'); 
         background-size: contain;
         background-repeat: no-repeat;    
         display: flex;
@@ -86,19 +86,19 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
       }
     
       .logoGrayscaleColorPalette {
-        background-image: url('/logoGray.svg'); 
+        background-image: url('icons/logoGray.svg'); 
         background-size: contain;
         background-repeat: no-repeat;    
       }
 
       .logoHighContrastColorPalette {
-        background-image: url('/logoBlack.svg'); 
+        background-image: url('icons/logoBlack.svg'); 
         background-size: contain;
         background-repeat: no-repeat;    
       }
 
       .logoWCAGcolors {
-            background-image: url('/logoWCAG.svg'); 
+            background-image: url('icons/logoWCAG.svg'); 
             background-size: contain;
             background-repeat: no-repeat;    
           }

@@ -1,16 +1,8 @@
 # Adding Data to the Assetory
 
-## Initial Setup (only the first time)
+## Part 1: Initial Setup (only the first time)
 
 > The following steps to set up Vue are done once. Run the following commands in the project using the VS Code terminal:
-
-
-### Clone the assetory repository (folder) to your computer
-
-```sh
-git clone https://github.com/sarisarixchange/assetory.git
-cd assetory
-```
 
 ### Install Node.js
 
@@ -49,6 +41,12 @@ git --version
     git --version
     ```
 
+### Clone the assetory repository (folder) to your computer
+
+```sh
+git clone https://github.com/sarisarixchange/assetory.git
+cd assetory
+```
 
 ### Install Project
 
@@ -56,7 +54,7 @@ git --version
 npm install
 ```
 
-##  Modify the Project Locally (Each time you modify the codebase)
+## Part 2: Modify the Project Locally (Each time you modify the codebase)
 
 > The following steps are followed each time you modify the project codebase. 
 

@@ -1,14 +1,14 @@
 {
-  "name": "website-demo",
+  "name": "assetory",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "deploy": "REPO=sari-sari-website npm run build && gh-pages -d dist -b gh-pages -r https://github.com/luisnavarrodelangel/sari-sari-website.git"
-    
+    "preview": "vite preview",    
+    "deploy": "REPO=assetory npm run build && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git"
+
   },
   "dependencies": {
     "aframe": "^1.7.1",

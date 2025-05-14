@@ -238,7 +238,7 @@ import Topbar from '../components/Topbar.vue';
       .background-layer {
           grid-column: 1 / 9; /* Full width */
           grid-row: 1 / 9; /* Covers rows 2 to 9 */
-          background-image: url("icons/xyz.svg"); 
+          background-image: url("/icons/xyz.svg"); 
           background-repeat: no-repeat;
           background-size: contain;
           /* background-position: center; */

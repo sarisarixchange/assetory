@@ -487,14 +487,14 @@ background-position: center;
 
 .navAccessibilityButtonWCAGcolorPalette {
       border-color: #A80084;
-      background-image: url('icons/personWCAG.svg'); 
+      background-image: url('/icons/personWCAG.svg'); 
       background-size: contain;
       background-repeat: no-repeat;    
       background-position: center;
       }
 
     .navAccessibilityButtonWCAGcolorPalette:hover {
-      background-image: url('/personIconWhite.svg'); 
+      background-image: url('/icons/personIconWhite.svg'); 
       background-size: contain;
       background-repeat: no-repeat;    
       background-position: center;

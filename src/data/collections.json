@@ -2,67 +2,89 @@
     {
       "id": 0,
       "title": "Chinese Antiques",
-      "thumbnail": "images/collections/thumbnails/title1.png",
-      "bannerImage": "images/collections/images/title1-banner.jpg",
-      "secondImage": "images/collections/images/title1-second.jpg",
-      "thirdImage": "images/collections/images/title1-third.jpg",
-      "topDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "bottomDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "assets": [
-        {
-          "id": 1,
-          "name": "Bunny",
-          "creator": "Haoran",
-          "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
-          "description": "A beautiful vase.",
-          "assetType": "3D Model",
-          "creationMethod": "Photogrammetry",
-          "acknowledgement": "AGH",
-          "fileSize": "25 MB",
-          "copyright": "CC BY-NC 4.0 DEED",
-          "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
-          "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
-        },
-        {
-          "id": 2,
-          "name": "Asset 2",
-          "creator": "Luis",
-          "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
-          "description": "A stunning sculpture.",
-          "assetType": "3D Model",
-          "creationMethod": "Photogrammetry",
-          "acknowledgement": "AGH",
-          "fileSize": "25 MB",
-          "copyright": "CC BY-NC 4.0 DEED",
-          "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
-          "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
-        }
-      ]
-    },
-    {
-      "id": 1,
-      "title": "Collection Title 2",
-      "thumbnail": "collections/thumbnails/title2.png",
-      "bannerImage": "collections/images/title2-banner.jpg",
-      "secondImage": "collections/images/title2-second.jpg",
-      "thirdImage": "collections/images/title2-third.jpg",
-      "topDescription": "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      "bottomDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-      "assets": [
-        {
-          "id": 1,
-          "name": "Haoran Vase",
-          "creator": "Alice",
-          "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
-          "description": "A modern artwork.",
-          "assetType": "3D Model",
-          "creationMethod": "Photogrammetry",
-          "acknowledgement": "AGH",
-          "fileSize": "25 MB",
-          "copyright": "CC BY-NC 4.0 DEED",
-          "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
-          "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
-        }
-      ]
+      "thumbnail": "chinese-antiques/vase.png",
+      "bannerImage": "chinese-antiques/banner.png",
+      "cards": [
+                  {
+                    "heading": "What are Chinese Antiques",
+                    "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
+                    "image": "",
+                    "youtubeUrl": "https://www.youtube.com/watch?v=rYsl7m6NUY4",
+                    "contentSideBySide": true
+
+                  },
+                  {
+                    "heading": "What is the importance of Chinese Antiques",
+                    "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
+                    "image": "",
+                    "youtubeUrl": "",
+                    "contentSideBySide": true
+
+                  },
+                  { 
+                    "heading": "Examples of Chinese Antiques",
+                    "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
+                    "image": "chinese-antiques/vase.png",
+                    "youtubeUrl": "", 
+                    "contentSideBySide": true
+
+                  }
+                ],
+     "assets": [
+                  {
+                    "id": 1,
+                    "name": "Adobo Squid Plate",
+                    "thumbnail": "chinese-antiques/adobo-thumbnail.png",
+                    "creator": "Haoran",
+                    "tags": ["Adobo", "Philippines"],
+                    "description": "An adobo plate.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "AGH",
+                    "fileSize": "25 MB",
+                    "copyright": "CC BY-NC 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Adobo Squid Plate.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Adobo Squid Plate.glb"
+                  },
+                  {
+                    "id": 2,
+                    "name": "Asset 2",
+                    "thumbnail": "chinese-antiques/vase.png",
+
+                    "creator": "Luis",
+                    "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
+                    "description": "A stunning sculpture.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "AGH",
+                    "fileSize": "25 MB",
+                    "copyright": "CC BY-NC 4.0 DEED",
+                    "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
+                    "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
+                  }, 
+                  {
+                    "id": 3,
+                    "name": "Asset 3",
+                    "thumbnail": "chinese-antiques/vase.png",
+                    "creator": "Serena",
+                    "tags": ["Porcelain", "Kangxi", "Vase", "Blue"],
+                    "description": "A stunning sculpture.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "AGH",
+                    "fileSize": "25 MB",
+                    "copyright": "CC BY-NC 4.0 DEED",
+                    "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
+                    "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
+                  }
+                ]
     }
+
+
+
+
+
+
+
+
   ]

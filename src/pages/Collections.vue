@@ -20,9 +20,7 @@ import collectionsData from '../data/collections.json';
           collections: collectionsData
     } 
   },
-
   
-
   computed: {
     filteredCollections() {
       return this.collections.filter((collection) =>
@@ -32,10 +30,11 @@ import collectionsData from '../data/collections.json';
   collectionsWithFullPath() {
     return this.collections.map((collection) => ({
       ...collection,
-      image: this.basePath + collection.image, // Prepend basePath to image
+      thumbnail: `images/collections/` + collection.thumbnail
     }));
+  }
   },
-},
+
 
     methods: {     
       updateTheme(payload) {

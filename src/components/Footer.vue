@@ -16,7 +16,6 @@ watch: {
 
   data() {
     return {
-      iconBasePath: 'icons/', // Base path for icons
 
       isDefaultTheme: true,
       isGrayscaleTheme: false,
@@ -119,10 +118,10 @@ watch: {
         <div class="leftSideFooter">
         <div class="leftSideFooterInfo">
           <div class="footerLogo">
-        <img v-show="isDefaultTheme" :src="iconBasePath + 'logo.svg'" alt="Footer Logo">
-        <img v-show="isGrayscaleTheme" :src="iconBasePath + 'logoGray.svg'" alt="Footer Logo">
-        <img v-show="isHighContrastTheme" :src="iconBasePath + 'logoBlack.svg'" alt="Footer Logo">
-        <img v-show="isWCAGTheme" :src="iconBasePath + 'logoWCAG.svg'" alt="Footer Logo">
+        <img v-show="isDefaultTheme" src="/icons/logo.svg" alt="Footer Logo">
+        <img v-show="isGrayscaleTheme" src="/icons/logoGray.svg" alt="Footer Logo">
+        <img v-show="isHighContrastTheme" src="/icons/logoBlack.svg" alt="Footer Logo">
+        <img v-show="isWCAGTheme" src="/icons/logoWCAG.svg" alt="Footer Logo">
         </div>
         <div class="footerCopyright">
         <h2>Sari-Sari XChange</h2>

@@ -13,8 +13,11 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
     AccessibilityMenu, // Register the AccessibilityMenu component
   },
      data() {
-        return {
-          currentLogoColorPalette: 'logo',
+        return {          
+          isDefaultLogoIconVisible: true,
+          isGrayscaleLogoIconVisible: false,
+          isHighContrastLogoIconVisible: false,
+          isWCAGLogoIconVisible: false,
         }
       }, 
 
@@ -29,13 +32,25 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
     updateTheme(payload) {
        // Update theme based on the payload
        if (payload.theme === 'default') {
-        this.currentLogoColorPalette = 'logo';
+        this.isDefaultLogoIconVisible = true;
+        this.isGrayscaleLogoIconVisible = false;
+        this.isHighContrastLogoIconVisible = false;
+        this.isWCAGLogoIconVisible = false;
       } else if (payload.theme === 'grayscale') {
-        this.currentLogoColorPalette = 'logoGrayscaleColorPalette';
+        this.isDefaultLogoIconVisible = false;
+        this.isGrayscaleLogoIconVisible = true;
+        this.isHighContrastLogoIconVisible = false;
+        this.isWCAGLogoIconVisible = false;
       } else if (payload.theme === 'high-contrast') {
-        this.currentLogoColorPalette = 'logoHighContrastColorPalette';
+        this.isDefaultLogoIconVisible = false;
+        this.isGrayscaleLogoIconVisible = false;
+        this.isHighContrastLogoIconVisible = true;
+        this.isWCAGLogoIconVisible = false;
       } else if (payload.theme === 'wcag') {
-        this.currentLogoColorPalette = 'logoWCAGcolors';
+        this.isDefaultLogoIconVisible = false;
+        this.isGrayscaleLogoIconVisible = false;
+        this.isHighContrastLogoIconVisible = false;
+        this.isWCAGLogoIconVisible = true;
       }
     },
     
@@ -76,32 +91,16 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
       .logo {
         width: 2.7vw;
         height: 2.7vw;
-        background-image: url('icons/logo.svg'); 
+        /* background-image: url('icons/logo.svg'); 
         background-size: contain;
-        background-repeat: no-repeat;    
+        background-repeat: no-repeat;     */
         display: flex;
         align-items: center;
         justify-content: center;
         margin-left: 0.5em;
       }
     
-      .logoGrayscaleColorPalette {
-        background-image: url('icons/logoGray.svg'); 
-        background-size: contain;
-        background-repeat: no-repeat;    
-      }
-
-      .logoHighContrastColorPalette {
-        background-image: url('icons/logoBlack.svg'); 
-        background-size: contain;
-        background-repeat: no-repeat;    
-      }
-
-      .logoWCAGcolors {
-            background-image: url('icons/logoWCAG.svg'); 
-            background-size: contain;
-            background-repeat: no-repeat;    
-          }
+     
 
       .visually-hidden {
     position: absolute;
@@ -179,7 +178,12 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
      <div class="header">
         <div class="logo-section">
           <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
-          <div :class="['logo' , currentLogoColorPalette]" aria-hidden="true"></div>
+          <div class="logo" aria-hidden="true">
+            <img v-show="isDefaultLogoIconVisible" src="/icons/logo.svg" alt="Sari-Sari Asset Library Logo" class="logo" />
+            <img v-show="isGrayscaleLogoIconVisible" src="/icons/logoGray.svg" alt="Sari-Sari Asset Library Logo" class="logo" />
+            <img v-show="isHighContrastLogoIconVisible" src="/icons/logoBlack.svg" alt="Sari-Sari Asset Library Logo" class="logo" />
+            <img v-show="isWCAGLogoIconVisible" src="/icons/logoWCAG.svg" alt="Sari-Sari Asset Library Logo" class="logo" />
+          </div>
           <router-link  v-if="!isHomepage" to="/" class="nav-button">Home</router-link> 
            </div>
 

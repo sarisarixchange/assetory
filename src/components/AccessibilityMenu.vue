@@ -77,7 +77,7 @@ export default {
     root.style.setProperty('--hover-color-left-box', '#D2D2D2'); 
     root.style.setProperty('--hover-text-color-left-box', '#525252');
 
-
+ 
     // event emission 
     this.$emit('theme-changed', {
         theme: 'grayscale',
@@ -433,7 +433,7 @@ export default {
   padding: 0.5rem 1rem;
   width: 5%;
   height: auto;
-  background-image: url('icons/person.svg');
+  background-image: url('/icons/person.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -444,7 +444,7 @@ export default {
 }
 
 .nav-buttonAccessibilityIcon:hover {
-  background-image: url('icons/personIconWhite.svg');
+  background-image: url('/icons/personIconWhite.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -454,7 +454,7 @@ export default {
 
 
 .navAccessibilityButtonGrayscaleColorPalette {
-      background-image: url('icons/personGray.svg'); 
+      background-image: url('/icons/personGray.svg'); 
       background-size: contain;
       background-repeat: no-repeat;    
       background-position: center;
@@ -463,7 +463,7 @@ export default {
       
   .navAccessibilityButtonGrayscaleColorPalette:hover {
       background-color: #525252;
-      background-image: url('icons/personIconWhite.svg'); 
+      background-image: url('/icons/personIconWhite.svg'); 
       background-size: contain;
       background-repeat: no-repeat;    
       background-position: center;
@@ -471,7 +471,7 @@ export default {
   
     .navAccessibilityButtonHighContrastColorPalette {
 border-color: #FF42D6;
-background-image: url('icons/personBlack.svg'); 
+background-image: url('/icons/personBlack.svg'); 
 background-size: contain;
 background-repeat: no-repeat;    
 background-position: center;
@@ -479,7 +479,7 @@ background-position: center;
 
 .navAccessibilityButtonHighContrastColorPalette:hover {
 background-color: #FF42D6;
-background-image: url('icons/personBlack.svg'); 
+background-image: url('/icons/personBlack.svg'); 
 background-size: contain;
 background-repeat: no-repeat;    
 background-position: center;
@@ -589,7 +589,7 @@ a {
 .increaseTextIcon {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/IncreaseTextIcon.svg");
+  background-image: url("/icons/IncreaseTextIcon.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -599,7 +599,7 @@ a {
 .increaseTextIconGray{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/IncreaseTextIconGray.svg");
+  background-image: url("/icons/IncreaseTextIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -610,7 +610,7 @@ a {
 .increaseTextIconHighContrast{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/IncreaseTextIconBlack.svg");
+  background-image: url("/icons/IncreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -619,7 +619,7 @@ a {
 
 .increaseTextIconWCAG{
   width: 1em;
-  background-image: url("icons/IncreaseTextIconWCAG.svg");
+  background-image: url("/icons/IncreaseTextIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -630,7 +630,7 @@ a {
 .decreaseTextIcon{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/decreaseTextIconPink.svg");
+  background-image: url("/icons/decreaseTextIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -640,7 +640,7 @@ a {
 .decreaseTextIconGray{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/decreaseTextIconGray.svg");
+  background-image: url("/icons/decreaseTextIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -651,7 +651,7 @@ a {
 .decreaseTextIconHighContrast{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/decreaseTextIconBlack.svg");
+  background-image: url("/icons/decreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -662,7 +662,7 @@ a {
 .decreaseTextIconWCAG{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/decreaseTextIconWCAG.svg");
+  background-image: url("/icons/decreaseTextIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -672,7 +672,7 @@ a {
 .grayscaleIcon {  
   width: 1em;
   height: 1em; 
-  background-image: url("icons/grayscaleIconPink.svg");
+  background-image: url("/icons/grayscaleIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -682,7 +682,7 @@ a {
 .grayscaleIconGray{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/grayscaleIconGray.svg");
+  background-image: url("/icons/grayscaleIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -691,7 +691,7 @@ a {
 .grayscaleIconHighContrast{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/grayscaleIconBlack.svg");
+  background-image: url("/icons/grayscaleIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -701,7 +701,7 @@ a {
 .grayscaleIconWCAG{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/grayscaleIconWCAG.svg");
+  background-image: url("/icons/grayscaleIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -712,7 +712,7 @@ a {
 .highContrastIcon{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/highContrastIconPink.svg");
+  background-image: url("/icons/highContrastIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -722,7 +722,7 @@ a {
 .highContrastIconGray{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/highContrastIconGray.svg");
+  background-image: url("/icons/highContrastIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -732,7 +732,7 @@ a {
 .highContrastIconHighContrast{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/highContrastIconBlack.svg");
+  background-image: url("/icons/highContrastIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -743,7 +743,7 @@ a {
 .highContrastIconWCAG{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/highContrastIconWCAG.svg");
+  background-image: url("/icons/highContrastIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -754,7 +754,7 @@ a {
 .linksUnderlineIcon{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/linksUnderlineIconPink.svg");
+  background-image: url("/icons/linksUnderlineIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -764,7 +764,7 @@ a {
 .linksUnderlineIconGray{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/linksUnderlineIconGray.svg");
+  background-image: url("/icons/linksUnderlineIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -774,7 +774,7 @@ a {
 .linksUnderlineIconHighContrast{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/linksUnderlineIconBlack.svg");
+  background-image: url("/icons/linksUnderlineIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -784,7 +784,7 @@ a {
 .linksUnderlineIconWCAG{
   width: 1em;
   height: 1em; 
-  background-image: url("icons/linksUnderlineIconWCAG.svg");
+  background-image: url("/icons/linksUnderlineIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -794,7 +794,7 @@ a {
 .readableFontIcon {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/readableFontIconPink.svg");
+  background-image: url("/icons/readableFontIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -804,7 +804,7 @@ a {
 .readableFontIconGray {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/readableFontIconGray.svg");
+  background-image: url("/icons/readableFontIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -814,7 +814,7 @@ a {
 .readableFontIconHighContrast {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/readableFontIconBlack.svg");
+  background-image: url("/icons/readableFontIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -824,7 +824,7 @@ a {
 .readableFontIconWCAG {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/readableFontIconWCAG.svg");
+  background-image: url("/icons/readableFontIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -834,7 +834,7 @@ a {
 .wcagColoursIcon {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/wcagColorsIconPink.svg");
+  background-image: url("/icons/wcagColorsIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -844,7 +844,7 @@ a {
 .wcagColoursIconGray {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/wcagColorsIconGray.svg");
+  background-image: url("/icons/wcagColorsIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -854,7 +854,7 @@ a {
 .wcagColoursIconHighContrast {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/wcagColorsIconBlack.svg");
+  background-image: url("/icons/wcagColorsIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -864,7 +864,7 @@ a {
 .wcagColoursIconWCAG {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/wcagColorsIconWCAG.svg");
+  background-image: url("/icons/wcagColorsIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -874,7 +874,7 @@ a {
 .resetIcon {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/resetIconPink.svg");
+  background-image: url("/icons/resetIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -885,7 +885,7 @@ a {
 .resetIconGray {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/resetIconGray.svg");
+  background-image: url("/icons/resetIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -895,7 +895,7 @@ a {
 .resetIconHighContrast {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/resetIconBlack.svg");
+  background-image: url("/icons/resetIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -905,7 +905,7 @@ a {
 .resetIconWCAG {
   width: 1em;
   height: 1em; 
-  background-image: url("icons/resetIconWCAG.svg");
+  background-image: url("/icons/resetIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -913,47 +913,47 @@ a {
 }
 
 .accessibilityButtonDiv:hover .increaseTextIcon,  .accessibilityButtonDiv:hover .increaseTextIconGray,  .accessibilityButtonDiv:hover .increaseTextIconHighContrast, .accessibilityButtonDiv:hover .increaseTextIconWCAG{
-  background-image: url("icons/IncreaseTextIconWhite.svg");
+  background-image: url("/icons/IncreaseTextIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .accessibilityButtonDiv:hover .decreaseTextIcon, .accessibilityButtonDiv:hover .decreaseTextIconGray,  .accessibilityButtonDiv:hover .decreaseTextIconHighContrast, .accessibilityButtonDiv:hover .decreaseTextIconWCAG{
-  background-image: url("icons/decreaseTextIconWhite.svg");
+  background-image: url("/icons/decreaseTextIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .accessibilityButtonDiv:hover .grayscaleIcon, .accessibilityButtonDiv:hover .grayscaleIconGray,  .accessibilityButtonDiv:hover .grayscaleIconHighContrast, .accessibilityButtonDiv:hover .grayscaleIconWCAG{
-  background-image: url("icons/grayscaleIconWhite.svg");
+  background-image: url("/icons/grayscaleIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .accessibilityButtonDiv:hover .highContrastIcon, .accessibilityButtonDiv:hover .highContrastIconGray, .accessibilityButtonDiv:hover .highContrastIconHighContrast, .accessibilityButtonDiv:hover .highContrastIconWCAG{
-  background-image: url("icons/highContrastIconWhite.svg");
+  background-image: url("/icons/highContrastIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 
 .accessibilityButtonDiv:hover .wcagColoursIcon, .accessibilityButtonDiv:hover .wcagColoursIconGray, accessibilityButtonDiv:hover .wcagColoursIconHighContrast, .accessibilityButtonDiv:hover .wcagColoursIconWCAG{
-  background-image: url("icons/wcagColorsIconWhite.svg");
+  background-image: url("/icons/wcagColorsIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 
 .accessibilityButtonDiv:hover .linksUnderlineIcon, .accessibilityButtonDiv:hover .linksUnderlineIconGray, .accessibilityButtonDiv:hover .linksUnderlineIconHighContrast, .accessibilityButtonDiv:hover .linksUnderlineIconWCAG{
-  background-image: url("icons/linksUnderlineIconWhite.svg");
+  background-image: url("/icons/linksUnderlineIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
 }
 .accessibilityButtonDiv:hover .readableFontIcon, .accessibilityButtonDiv:hover .readableFontIconGray, .accessibilityButtonDiv:hover .readableFontIconHighContrast, .accessibilityButtonDiv:hover .readableFontIconWCAG{
-  background-image: url("icons/readableFontIconWhite.svg");
+  background-image: url("/icons/readableFontIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -961,7 +961,7 @@ a {
 
 }
 .accessibilityButtonDiv:hover .resetIcon, .accessibilityButtonDiv:hover .resetIconGray, .accessibilityButtonDiv:hover .resetIconHighContrast, .accessibilityButtonDiv:hover .resetIconWCAG{
-  background-image: url("icons/resetIconWhite.svg");
+  background-image: url("/icons/resetIconWhite.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;

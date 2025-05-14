@@ -18,17 +18,53 @@ import collectionsData from '../data/collections.json';
 
   
   mounted() {
-
-  // Get the ID from the route
   const collectionId = parseInt(this.$route.params.id, 10);
+  this.collection = collectionsData.find((item) => item.id === collectionId);
+  // console.log('Loaded collection:', this.collection);
+  // if (this.collection) {
+  //   console.log('Banner Image:', this.collection.bannerImage);
+  // }
+},
 
-// Find the collection data based on the ID
-this.collection = collectionsData.find((item) => item.id === collectionId);
+computed: {
 
+  resolvedBannerImage() {
+    return this.collection ? `../images/collections/` + this.collection.bannerImage : '';
+  }, 
+  
+  // resolvedYoutubeUrl() {
+  //   return this.collection && this.collection.youtubeUrl
+  //     ? `https://www.youtube.com/embed/${this.extractYoutubeId(this.collection.youtubeUrl)}`
+  //     : '';
+  // },
+  resolvedAssets() {
+    return this.collection
+      ? this.collection.assets.map((asset) => ({
+          ...asset,
+          thumbnail: `../images/collections/${asset.thumbnail}`, // Resolve the full path for the thumbnail
+        }))
+      : [];
+  },
 },
 
     methods: {
 
+  resolveCardImage(imagePath) {
+    return imagePath ? `../images/collections/${imagePath}` : '';
+  },
+
+
+      resolveYoutubeUrl(url) {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+  },
+
+      extractYoutubeId(url) {
+    const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+    const match = url.match(regex);
+    return match ? match[1] : null;
+  },
       updateTheme(payload) {
       this.currentTheme = payload; // Update the theme
     },
@@ -84,7 +120,7 @@ this.collection = collectionsData.find((item) => item.id === collectionId);
 
 .image-banner {
   width: 100%;
-  height: 7rem; /* Adjust height as needed */
+  
   border: 1px solid var(--primary-color);;
   border-radius: 20px;
   overflow: hidden; /* Ensures the image doesn't overflow the container */
@@ -94,11 +130,9 @@ this.collection = collectionsData.find((item) => item.id === collectionId);
   padding: 0.25rem;
 }
 
-.image-banner img {
-  
-  width: 100%; /* Make the image fill the container horizontally */
-  height: 100%; /* Make the image fill the container vertically */
-  object-fit: cover; /* Ensures the image covers the container without distortion */
+.banner-image {  
+  width: 50%; /* Make the image fill the container horizontally */
+  /* object-fit: cover; */
   background-color: var(--secondary-color);
   border-radius: 20px;
 }
@@ -113,40 +147,117 @@ this.collection = collectionsData.find((item) => item.id === collectionId);
 }
 
 .collection-details h2{
-    font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
+  font-size: 1.5rem;
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
+}
+
+.collection-details h3{
+  font-size: 1rem;
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
 }
 
 .collection-top-description{
     display: flex;    
     gap: 1rem; 
+    align-items: center; /* Vertically align items */
+
     
 }
 
-.collection-top-description p {
-  flex: 1; /* Make the paragraph take up 50% of the container */
+.collection-top-text {
+  flex: 1; /* Allow the text to take up available space */
 }
 
-.collection-top-description img {
+.collection-right-image {
   flex: 1; /* Make the image take up 50% of the container */
   max-width: 100%; /* Ensure the image doesn't overflow */
   height: auto; /* Maintain the aspect ratio of the image */
   background-color: var(--secondary-color);
   border-radius: 20px; 
 }
-    
 
-.collection-middle-image{
-    width: 100%;
-    height: 7rem;
-    background-color: var(--secondary-color);
-    border-radius: 20px; 
-
+.collection-right-video {
+  flex: 1; /* Allow the video to take up available space */
+  max-width: 100%; /* Ensure the video doesn't overflow */
+  height: auto; /* Maintain the aspect ratio */
+  aspect-ratio: 16 / 9; /* Ensure the video has a 16:9 aspect ratio */
+  border-radius: 20px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--secondary-color);
 }
-    
-/* .collection-bottom-description{
 
-} */
+/* Handle cases where only the text is present */
+.collection-top-description.no-image .collection-top-text {
+  flex: 1 1 100%; /* Take up the full width */
+}
 
+/* Handle cases where only the image is present */
+.collection-top-description.no-text .collection-right-image {
+  flex: 1 1 100%; /* Take up the full width */
+}
+
+/* collection cards */
+
+.collection-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; /* Space between cards */
+  margin-top: 2rem;
+}
+
+.collection-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: var(--secondary-color);
+}
+
+.collection-card-heading {
+  flex: 0 0 auto; /* Ensure the heading stays at the top */
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem; /* Add spacing below the heading */
+}
+
+.collection-card-content {
+  display: flex;
+  flex-direction: column; /* Default: stacked layout */
+  gap: 1rem;
+}
+
+ .side-by-side {
+  flex-direction: row; /* Side-by-side layout */
+  align-items: center; /* Vertically align items */
+}
+
+
+
+
+
+.collection-card-text {
+  
+  font-family: 'Inter', sans-serif;
+  color: var(--primary-color);
+}
+
+.collection-card-image {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.collection-card-video {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
+}
 
 .collection-assets {
     text-align: center;
@@ -154,6 +265,7 @@ this.collection = collectionsData.find((item) => item.id === collectionId);
 }
 
 .collection-assets h2{
+  font-size: 1.5rem;
     font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
 }
 
@@ -223,26 +335,56 @@ this.collection = collectionsData.find((item) => item.id === collectionId);
       
       <div v-if="collection" class="collection-details-container">
       <!-- Image banner -->  
+
       <div class="image-banner">
-        <img :src="collection.bannerImage" alt="Banner Image" class="banner-image">
+        <img :src="resolvedBannerImage" alt="Banner Image" class="banner-image">
+
       </div>
 
       <!-- Collection details -->
 
       <div class="collection-details">
         <h2>{{ collection.title }}</h2>
-        <div class="collection-top-description">
-            <p v-html="collection.topDescription"</p>
-            <img :src="collection.secondImage" alt="Collection Image" class="collection-right-image">
-        </div>
 
-        <div class="collection-middle-image">
-            <img :src="collection.thirdImage" alt="Collection Image" class="collection">
-            </div>
+        <div class="collection-cards">
+  <div
+    v-for="(card, index) in collection.cards"
+    :key="index"
+    class="collection-card"
 
-        <div class="collection-bottom-description">
-            <p>{{ collection.bottomDescription }}</p>  
-              </div>
+  >
+    <!-- Card heading -->
+      <h3 v-if="card.heading" v-html="card.heading"
+      class="collection-card-heading"></h3>
+
+      <!-- Card content (description, image, or video) -->
+  <div :class="{ 'side-by-side': card.contentSideBySide }" class="collection-card-content">
+
+    <!-- Card Description -->
+    <p v-if="card.description" v-html="card.description" class="collection-card-text"></p>
+
+    <!-- YouTube Video -->
+    <iframe
+      v-if="card.youtubeUrl"
+      :src="resolveYoutubeUrl(card.youtubeUrl)"
+      class="collection-card-video"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+
+    <!-- Image -->
+    <img
+      v-else-if="card.image"
+      :src="resolveCardImage(card.image)"
+      alt="Card Image"
+      class="collection-card-image"
+    >
+  </div>
+</div>
+</div>
+
+      
         </div>
 
         <div class="collection-assets">
@@ -250,27 +392,18 @@ this.collection = collectionsData.find((item) => item.id === collectionId);
             <div class="collection-assets-card-container">
               
               <div
-      v-for="(asset, index) in collection.assets"
-      :key="index"
-      class="collection-assets-card"
-    >
-    <router-link
-  :to="{ name: 'Asset', params: { collectionId: collection.id, id: asset.id } }"
-  class="collection-assets-link"
+  v-for="(asset, index) in resolvedAssets"
+  :key="index"
+  class="collection-assets-card"
 >
-  <img :src="asset.image" :alt="asset.name" class="collection-assets-image" />
-</router-link>
-
-    </div>
-            <!-- <div class="collection-assets-card">
-              <img src="" alt="Asset 1" class="collection-assets-image">
-            </div>          
-            <div class="collection-assets-card">
-              <img src="" alt="Asset 2" class="collection-assets-image">
-            </div>            
-            <div class="collection-assets-card">
-              <img src="" alt="Asset 3" class="collection-assets-image">
-            </div> -->
+  <router-link
+    :to="{ name: 'Asset', params: { collectionId: collection.id, id: asset.id } }"
+    class="collection-assets-link"
+  >
+    <img :src="asset.thumbnail" :alt="asset.name" class="collection-assets-image" />
+  </router-link>
+</div>
+  
         </div>
         </div>
     </div>

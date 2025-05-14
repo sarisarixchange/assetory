@@ -18,7 +18,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory('/sari-sari-website/'), // Set the base path here
+  history: createWebHistory('/assetory/'), // Set the base path here
   routes,
 });
 

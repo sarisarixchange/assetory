@@ -5,7 +5,7 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
-const repo = process.env.REPO || 'sari-sari-website'; // Default to your current repo
+const repo = process.env.REPO || 'assetory'; // Default to your current repo
 
 export default defineConfig({
   plugins: [vue(), vueDevTools()],

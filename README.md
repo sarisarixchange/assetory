@@ -29,13 +29,13 @@ npm -v
 
 ### Install Git
 
-Ensure Git is installed on their system. You can check by running:
+> Ensure Git is installed on their system. You can check by running:
 
 ```sh
 git --version
 ```
 
-If not installed, follow these steps:
+> If not installed, follow these steps:
 
 - Windows: Download Standalone Installer from [Git official site](https://git-scm.com/downloads/win), and install it following the installation wizard. When you reach the screen "Adjusting your PATH environment", select the option: "Git from the command line and also from 3rd-party software".
 

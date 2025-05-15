@@ -126,13 +126,13 @@ watch: {
         <div class="footerCopyright">
         <h2>Sari-Sari XChange</h2>
         <p>Assetory</p>
-        <p>© 2024</p>
+        <p>© 2025</p>
         </div>
         </div>
         <div>
           <p>☺ Made with care & curiosity</p>
           <p>Designed by Hanan Abbas</p>
-          <p>Developes by Luis Navarro</p>
+          <p>Developed by Luis Navarro</p>
         </div>
         </div>
 
@@ -156,7 +156,7 @@ watch: {
 
       <div class="footer-links">
           <h2>Contact</h2>
-          <a href="">email@email.com</a>
+          <a href="">sarisarixchange@email.com</a>
           <a href="">@sarisarixchange</a>
           
       </div>

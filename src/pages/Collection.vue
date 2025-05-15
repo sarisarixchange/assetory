@@ -120,7 +120,6 @@ computed: {
 
 .image-banner {
   width: 100%;
-  
   border: 1px solid var(--primary-color);;
   border-radius: 20px;
   overflow: hidden; /* Ensures the image doesn't overflow the container */
@@ -131,7 +130,7 @@ computed: {
 }
 
 .banner-image {  
-  width: 50%; /* Make the image fill the container horizontally */
+  width: 100%; /* Make the image fill the container horizontally */
   /* object-fit: cover; */
   background-color: var(--secondary-color);
   border-radius: 20px;
@@ -160,8 +159,6 @@ computed: {
     display: flex;    
     gap: 1rem; 
     align-items: center; /* Vertically align items */
-
-    
 }
 
 .collection-top-text {

@@ -1,31 +1,15 @@
 [
     {
       "id": 0,
-      "title": "Chinese Antiques",
-      "thumbnail": "chinese-antiques/vase.png",
-      "bannerImage": "chinese-antiques/banner.png",
+      "title": "Chinese Antique Store in Hamilton",
+      "thumbnail": "chinese-antiques/thumbnail_ChineseAntiques.png",
+      "bannerImage": "chinese-antiques/banner_ChineseAntiques.png",
       "cards": [
                   {
-                    "heading": "McMaster Museum of Art Chinese Antiques",
-                    "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
-                    "image": "",
-                    "youtubeUrl": "https://www.youtube.com/watch?v=rYsl7m6NUY4",
-                    "contentSideBySide": true
-
-                  },
-                  {
-                    "heading": "What is the importance of Chinese Antiques",
-                    "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
+                    "heading": "About this Collection",
+                    "description": "In this collection of Chinese antiques, you will find artifacts scanned from the McMaster Museum of Art and the Art Gallery of Hamilton. Collected from two major art institutions in Hamilton, Ontario, Canada, these artifacts explore how colonialism, white supremacy, and orientalism have shaped dominant perceptions of the Asian diaspora.",
                     "image": "",
                     "youtubeUrl": "",
-                    "contentSideBySide": true
-
-                  },
-                  { 
-                    "heading": "Examples of Chinese Antiques",
-                    "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
-                    "image": "chinese-antiques/vase.png",
-                    "youtubeUrl": "", 
                     "contentSideBySide": true
 
                   }
@@ -37,10 +21,10 @@
                     "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
                     "creator": "Serena Zen",
                     "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
-                    "description": "Scanned by Serena at the Mcmaster Museum of Art, this artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
+                    "description": "Scanned by Serena at the Mcmaster Museum of Art. This artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
                     "assetType": "3D Model",
                     "creationMethod": "Photogrammetry",
-                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "acknowledgement": "Support from the Art Gallery of Hamilton (AGH)",
                     "fileSize": "5.38 MB",
                     "copyright": "CC BY 4.0 DEED",
                     "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
@@ -55,7 +39,7 @@
                     "description": "Serena Scanned this at the Art Gallery of Hamilton from their Chinese art archives.",
                     "assetType": "3D Model",
                     "creationMethod": "Photogrammetry",
-                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "acknowledgement": "Support from the Art Gallery of Hamilton (AGH)",
                     "fileSize": "9.75 MB",
                     "copyright": "CC BY 4.0 DEED",
                     "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Celadon Vase AGH.glb",
@@ -67,10 +51,10 @@
                     "thumbnail": "chinese-antiques/Buddhist Lion (tea pot).png",
                     "creator": "Serena Zena",
                     "tags": ["qing dynasty", "porcelain", "teapot", "lion", "sculpture", "historic"],
-                    "description": "Serena scanned this at the McMaster Museum from their historical chinese art collection. ",
+                    "description": "Serena scanned this at the McMaster Museum of Art from their historical chinese art collection. ",
                     "assetType": "3D Model",
                     "creationMethod": "Photogrammetry",
-                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "acknowledgement": "Support from the McMaster Museum of Art",
                     "fileSize": "6.01 MB",
                     "copyright": "CC BY 4.0 DEED",
                     "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Buddhist Lion (tea pot).glb",
@@ -82,23 +66,181 @@
                     "thumbnail": "chinese-antiques/Blue and White Vase AGH.png",
                     "creator": "Serena Zena",
                     "tags": ["Kanxi Period", "blue and white porcelain", "Chinese", "Historical", "Vase"],
-                    "description": "Scanned at Art Gallery of Hamilton.",
+                    "description": "Scanned at the Art Gallery of Hamilton.",
                     "assetType": "3D Model",
                     "creationMethod": "Photogrammetry",
-                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "acknowledgement": "Support from the Art Gallery of Hamilton",
                     "fileSize": "12.4 MB",
                     "copyright": "CC BY 4.0 DEED",
                     "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Blue and White Vase AGH.glb",
                     "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Blue and White Vase AGH.glb"
+                  },
+                   {
+                    "id": 5,
+                    "name": "Female Attendant With Robe",
+                    "thumbnail": "chinese-antiques/Female Attendant With Robe.png",
+                    "creator": "Serena Zena",
+                    "tags": ["Tang Dynasty", "pottery", "ceramic", "art history", "figurine", "robed"],
+                    "description": "Scanned at the McMaster Museum of Art",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "Supprot from the McMaster Museum of Art",
+                    "fileSize": "24.8 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Female Attendant With Robe.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Female Attendant With Robe.glb"
+                  },
+                  {
+                    "id": 6,
+                    "name": "Figure of Han Xiangzi",
+                    "thumbnail": "chinese-antiques/Figure of Han Xiangzi.png",
+                    "creator": "Serena Zena",
+                    "tags": ["Qing Dynasty", "Ivory", "figurine", "historic", "art history"],
+                    "description": "This is one of the eight Daoist immortals. It was scanned at the McMaster museum of Art",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "Support from the McMaster Museum of Art",
+                    "fileSize": "8.78 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Figure of Han Xiangzi, one of the eight Daoist immortals.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibraryFigure of Han Xiangzi, one of the eight Daoist immortals.glb"
+                  },
+                  {
+                    "id": 7,
+                    "name": "Figure of Zhang Guolao",
+                    "thumbnail": "chinese-antiques/Figure of Zhang Guolao.png",
+                    "creator": "Serena Zena",
+                    "tags": ["Qing Dynasty", "Ivory", "figurine", "historic", "art history"],
+                    "description": "This is one of the eight Daoist immortals. It was scanned at the McMaster museum of Art",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "Support from the McMaster Museum of Art",
+                    "fileSize": "5.22 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Figure of Zhang Guolao, one of the eight Daoist immortals.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Figure of Zhang Guolao, one of the eight Daoist immortals.glb"
+                  },
+                  {
+                    "id":8,
+                    "name": "Tang Horse",
+                    "thumbnail": "chinese-antiques/Tang Horse.png",
+                    "creator": "Serena Zena",
+                    "tags": ["Tang Dynasty", "Horse", "Figurine", "Historic", "Art History", "Sculpture"],
+                    "description": "It was scanned at the McMaster Museum of Art",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "Support from the McMaster Museum of Art",
+                    "fileSize": "4.46 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Tang horse.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Tang horse.glb"
+                  },
+                {
+                  "id":9,
+                  "name":"Wine vessel in the form of an ancient ritual bronze Jue",
+                  "thumbnail": "chinese-antiques/Wine vessel in the form of an ancient ritual bronze Jue.png",
+                  "creator": "Serena Zena",
+                  "tags": ["Tang Dynasty", "Horse", "Figurine", "Historic", "Art History", "Sculpture"],
+                  "description": "This artefact was scanned at the Mcmaster Museum of Art. Serena says its the best scan she has done at the Mcmaster Museum of Art",
+                  "assetType": "3D Model",
+                  "creationMethod": "Photogrammetry",
+                  "acknowledgement": "Support from the McMaster Museum of Art",
+                  "fileSize": "7.54 MB",
+                  "copyright": "CC BY 4.0 DEED",
+                  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Wine vessel in the form of an ancient ritual bronze Jue.glb",
+                  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Wine vessel in the form of an ancient ritual bronze Jue.glb"
+                }
+                ]
+    },
+    {
+      "id": 1,
+      "title": "Chen-Style Tai Chi",
+      "thumbnail": "chinese-antiques/vase.png",
+      "bannerImage": "chinese-antiques/banner.png",
+      "cards": [
+                  {
+                    "heading": "Chen-Style Tai Chi Motion Capture Data",
+                    "description": "This is a Chen-style Tai Chi motion capture dataset created in collaboration with Jianhua Wu, president of the Hunan branch of the Chen-style Tai Chi Association. The database was captured using Rokoko Vision with two iPhone 13 Pros in Changsha, China, in January 2025. The movements are based on Chen Tai Chi Old Frame I, including the following postures: Beginning Posture, Vajra Pounds Mortar, Grasp and Tuck Clothes, Six Sealing, Four Closing, Single Whip, Vajra Pounds Mortar, White Goose Spreads Wings, Step Obliquely, Embrace Knee, Shan san bu, Hidden Hand Punch, Vajra Pounds Mortar, Draping Body Fist, Green Dragon Emerges From the Water, Two-Handed Push, Fist Under Blow, Step Back and Push with Arm, White Goose Spreads Wings, Step Obliquely, Flash the Back, Hidden Hand Punch, Lotus Kick, and Closing.",
+                    "contentSideBySide": true
+                  },
+                  {
+                    "heading": "What is Chen-Style Tai Chi?",
+                    "description": "Chen-style Tai Chi originated in Chen Jia Gou, Wen County, Henan Province. Its founder was Chen Wangting.",
+                    "image": "",
+                    "youtubeUrl": "",
+                    "contentSideBySide": true
+
+                  },
+                  { 
+                    "heading": "About the Contributor",
+                    "description": "My name is Wu Jianhua. I am the president of the Hunan branch of the Chen Style Tai Chi Association, the deputy secretary-general of the Hunan Martial Arts Association, and the vice president of the Hunan Tai Chi Association",
+                    "image": "chinese-antiques/vase.png",
+                    "youtubeUrl": "", 
+                    "contentSideBySide": true
+                  }
+                ],
+     "assets": [
+                  {
+                    "id": 5,
+                    "name": "Double Handled Ovoid Ewer",
+                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "creator": "Serena Zen",
+                    "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
+                    "description": "Scanned by Serena at the Mcmaster Museum of Art, this artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "fileSize": "5.38 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
+                  }
+                ]
+    },
+     {
+      "id": 2,
+      "title": "Asian Fruit Market",
+      "thumbnail": "chinese-antiques/vase.png",
+      "bannerImage": "chinese-antiques/banner.png",
+      "cards": [
+                  {
+                    "heading": "Chen-Style Tai Chi Motion Capture Data",
+                    "description": "This is a Chen-style Tai Chi motion capture dataset created in collaboration with Jianhua Wu, president of the Hunan branch of the Chen-style Tai Chi Association. The database was captured using Rokoko Vision with two iPhone 13 Pros in Changsha, China, in January 2025. The movements are based on Chen Tai Chi Old Frame I, including the following postures: Beginning Posture, Vajra Pounds Mortar, Grasp and Tuck Clothes, Six Sealing, Four Closing, Single Whip, Vajra Pounds Mortar, White Goose Spreads Wings, Step Obliquely, Embrace Knee, Shan san bu, Hidden Hand Punch, Vajra Pounds Mortar, Draping Body Fist, Green Dragon Emerges From the Water, Two-Handed Push, Fist Under Blow, Step Back and Push with Arm, White Goose Spreads Wings, Step Obliquely, Flash the Back, Hidden Hand Punch, Lotus Kick, and Closing.",
+                    "contentSideBySide": true
+                  },
+                  {
+                    "heading": "What is Chen-Style Tai Chi?",
+                    "description": "Chen-Style Tai Chi originated in Chen Jia Gou, Wen County, Henan Province. Its founvder was Chen Wang’ting Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
+                    "image": "",
+                    "youtubeUrl": "",
+                    "contentSideBySide": true
+
+                  },
+                  { 
+                    "heading": "About the Contributor",
+                    "description": "My name is Wu Jianhua. I am the president of the Hunan branch of the Chen Style Tai Chi Association, the deputy secretary-general of the Hunan Martial Arts Association, and the vice president of the Hunan Tai Chi Association",
+                    "image": "chinese-antiques/vase.png",
+                    "youtubeUrl": "", 
+                    "contentSideBySide": true
+                  }
+                ],
+     "assets": [
+                  {
+                    "id": 5,
+                    "name": "Double Handled Ovoid Ewer",
+                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "creator": "Serena Zen",
+                    "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
+                    "description": "Scanned by Serena at the Mcmaster Museum of Art, this artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "fileSize": "5.38 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
                   }
                 ]
     }
-
-
-
-
-
-
-
-
+    
   ]

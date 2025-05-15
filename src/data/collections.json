@@ -76,7 +76,7 @@
                     "copyright": "CC BY-NC 4.0 DEED",
                     "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
                     "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
-                  }
+                  },
                   {
                     "id": 4,
                     "name": "Blue and White Vase AGH",
@@ -87,10 +87,10 @@
                     "assetType": "3D Model",
                     "creationMethod": "Photogrammetry",
                     "acknowledgement": "AGH",
-                    "fileSize": "25 MB",
+                    "fileSize": "12.4 MB",
                     "copyright": "CC BY-NC 4.0 DEED",
-                    "gltfModel": "https://github.com/sarisarixchange/SSXAssetLibrary/blob/5b6708c817f78ff8103853c727e21d9ab4da56a9/Blue%20and%20White%20Vase%20AGH.glb",
-                    "downloadLink": "https://github.com/sarisarixchange/SSXAssetLibrary/blob/5b6708c817f78ff8103853c727e21d9ab4da56a9/Blue%20and%20White%20Vase%20AGH.glb"
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Blue and White Vase AGH.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Blue and White Vase AGH.glb"
                   }
                 ]
     }

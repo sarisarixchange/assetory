@@ -302,7 +302,7 @@ a-scene {
       </tr>
       <tr>
         <td><h3>Acknowledgement</h3></td>
-        <td><p>{{ asset.creationMethod }}</p></td>
+        <td><p>{{ asset.acknowledgement }}</p></td>
       </tr>
       <tr>
         <td><h3>File Size</h3></td>

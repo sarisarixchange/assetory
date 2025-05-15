@@ -6,7 +6,7 @@
       "bannerImage": "chinese-antiques/banner.png",
       "cards": [
                   {
-                    "heading": "What are Chinese Antiques",
+                    "heading": "McMaster Museum of Art Chinese Antiques",
                     "description": "Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
                     "image": "",
                     "youtubeUrl": "https://www.youtube.com/watch?v=rYsl7m6NUY4",
@@ -76,6 +76,21 @@
                     "copyright": "CC BY-NC 4.0 DEED",
                     "gltfModel": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb",
                     "downloadLink": "https://mediaart-3bb3.github.io/vr_assets_fall_2024/3d-models/Bunny.glb"
+                  }
+                  {
+                    "id": 4,
+                    "name": "Blue and White Vase AGH",
+                    "thumbnail": "chinese-antiques/vase.png",
+                    "creator": "Serena Zena",
+                    "tags": ["Kanxi Period", "blue and white porcelain", "Chinese", "Historical", "Vase"],
+                    "description": "Scanned at Art Gallery of Hamilton.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "AGH",
+                    "fileSize": "25 MB",
+                    "copyright": "CC BY-NC 4.0 DEED",
+                    "gltfModel": "https://github.com/sarisarixchange/SSXAssetLibrary/blob/5b6708c817f78ff8103853c727e21d9ab4da56a9/Blue%20and%20White%20Vase%20AGH.glb",
+                    "downloadLink": "https://github.com/sarisarixchange/SSXAssetLibrary/blob/5b6708c817f78ff8103853c727e21d9ab4da56a9/Blue%20and%20White%20Vase%20AGH.glb"
                   }
                 ]
     }

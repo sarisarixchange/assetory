@@ -58,13 +58,22 @@ npm install
 
 > The following steps are followed each time you modify the project codebase. 
 
+
 ### Open the Project Folder in VS Code
 
-> Start by opening the project folder by going to VS Code > File > Open Folder and choosing the project folder. 
+> Start by opening the project folder by going to VS Code > File > Open Folder and choosing the project folder.
+
+### Pull the recent changes from collaborators
+
+> Open the VS Code terminal and run the following commands in the project using the VS Code terminal to retrieve the recent changes from GitHub.
+
+```sh
+git pull origin main
+```
 
 ###  Run the Project Locally
 
-> Open the VS Code terminal and run the following commands in the project using the VS Code terminal:
+> Run the following commands in the project using the VS Code terminal:
 
 ```sh
 npm run dev
@@ -72,11 +81,6 @@ npm run dev
 
 > This will start the Vite development server, and the project will be accessible at the URL provided in the terminal (e.g., http://localhost:3000).
 
-### Compile for Publishing the Website
-
-```sh
-npm run build
-```
 
 ### Modify collections.json
 

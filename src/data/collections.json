@@ -1,7 +1,7 @@
 [
     {
       "id": 0,
-      "title": "Chinese Antique Store in Hamilton",
+      "title": "Chinese Antique in Hamilton",
       "thumbnail": "chinese-antiques/thumbnail_ChineseAntiques.png",
       "bannerImage": "chinese-antiques/banner_ChineseAntiques.png",
       "cards": [
@@ -155,8 +155,8 @@
     {
       "id": 1,
       "title": "Chen-Style Tai Chi",
-      "thumbnail": "chinese-antiques/vase.png",
-      "bannerImage": "chinese-antiques/banner.png",
+      "thumbnail": "chen-style-taichi/banner_chen-style-taichi.png",
+      "bannerImage": "chen-style-taichi/banner_chen-style-taichi.png",
       "cards": [
                   {
                     "heading": "Chen-Style Tai Chi Motion Capture Data",
@@ -167,29 +167,59 @@
                     "heading": "What is Chen-Style Tai Chi?",
                     "description": "Chen-style Tai Chi originated in Chen Jia Gou, Wen County, Henan Province. Its founder was Chen Wangting.",
                     "image": "",
-                    "youtubeUrl": "",
+                    "youtubeUrl": "https://youtu.be/BG-n26jR9_w",
                     "contentSideBySide": true
 
                   },
                   { 
                     "heading": "About the Contributor",
                     "description": "My name is Wu Jianhua. I am the president of the Hunan branch of the Chen Style Tai Chi Association, the deputy secretary-general of the Hunan Martial Arts Association, and the vice president of the Hunan Tai Chi Association",
-                    "image": "chinese-antiques/vase.png",
-                    "youtubeUrl": "", 
+                    "image": "",
+                    "youtubeUrl": "https://youtu.be/IfVrc9q_HsY", 
                     "contentSideBySide": true
                   }
                 ],
      "assets": [
                   {
-                    "id": 5,
-                    "name": "Double Handled Ovoid Ewer",
+                    "id": 1,
+                    "name": "Beginning Posture",
+                    "thumbnail": "chen-style-taichi/CSTC_BeginingPosture.png",
+                    "creator": "Haoran Chang",
+                    "tags": ["Tai Chi", "Motion Capture", ""],
+                    "description": "This is the first move of the Chen-Style Taichi: Begining Posture.",
+                    "assetType": "Motion Capture",
+                    "creationMethod": "Rokoko Vision",
+                    "acknowledgement": "In collaboration with Jianhua Wu. Thanks for the support from my parents and aunte who drive me over to the park, borrow an extra iphone, help me to set up equipment and do the test, and document the process.",
+                    "fileSize": "5.38 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/ChenStyleTaiChi_BeginingPosture.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/ChenStyleTaiChi_BeginingPosture.glb"
+                  },
+                  {
+                    "id": 2,
+                    "name": "Vajra Pounds Mortar",
                     "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
-                    "creator": "Serena Zen",
-                    "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
-                    "description": "Scanned by Serena at the Mcmaster Museum of Art, this artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
-                    "assetType": "3D Model",
-                    "creationMethod": "Photogrammetry",
-                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
+                    "creator": "Haoran Chang",
+                    "tags": ["Tai Chi", "Motion Capture", ""],
+                    "description": "This is the first move of the Chen-Style Taichi: Begining Posture.",
+                    "assetType": "Motion Capture",
+                    "creationMethod": "Rokoko Vision",
+                    "acknowledgement": "In collaboration with Jianhua Wu. Thanks for the support from my parents and aunte who drive me over to the park, borrow an extra iphone, help me to set up equipment and do the test, and document the process.",
+                    "fileSize": "5.38 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
+                  },
+                   {
+                    "id": 3,
+                    "name": "Vajra Pounds Mortar",
+                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "creator": "Haoran Chang",
+                    "tags": ["Tai Chi", "Motion Capture", ""],
+                    "description": "This is the first move of the Chen-Style Taichi: Begining Posture.",
+                    "assetType": "Motion Capture",
+                    "creationMethod": "Rokoko Vision",
+                    "acknowledgement": "In collaboration with Jianhua Wu. Thanks for the support from my parents and aunte who drive me over to the park, borrow an extra iphone, help me to set up equipment and do the test, and document the process.",
                     "fileSize": "5.38 MB",
                     "copyright": "CC BY 4.0 DEED",
                     "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
@@ -204,12 +234,7 @@
       "bannerImage": "chinese-antiques/banner.png",
       "cards": [
                   {
-                    "heading": "Chen-Style Tai Chi Motion Capture Data",
-                    "description": "This is a Chen-style Tai Chi motion capture dataset created in collaboration with Jianhua Wu, president of the Hunan branch of the Chen-style Tai Chi Association. The database was captured using Rokoko Vision with two iPhone 13 Pros in Changsha, China, in January 2025. The movements are based on Chen Tai Chi Old Frame I, including the following postures: Beginning Posture, Vajra Pounds Mortar, Grasp and Tuck Clothes, Six Sealing, Four Closing, Single Whip, Vajra Pounds Mortar, White Goose Spreads Wings, Step Obliquely, Embrace Knee, Shan san bu, Hidden Hand Punch, Vajra Pounds Mortar, Draping Body Fist, Green Dragon Emerges From the Water, Two-Handed Push, Fist Under Blow, Step Back and Push with Arm, White Goose Spreads Wings, Step Obliquely, Flash the Back, Hidden Hand Punch, Lotus Kick, and Closing.",
-                    "contentSideBySide": true
-                  },
-                  {
-                    "heading": "What is Chen-Style Tai Chi?",
+                    "heading": "Asian Fruit Market",
                     "description": "Chen-Style Tai Chi originated in Chen Jia Gou, Wen County, Henan Province. Its founvder was Chen Wang’ting Chinese antiques reflect over 5,000 years of artistic evolution, philosophical thought, and imperial heritage. From the elegant curves of Ming Dynasty porcelain to the intricate carvings of Qing Dynasty furniture, each piece tells a story of dynasties past.",
                     "image": "",
                     "youtubeUrl": "",
@@ -226,19 +251,64 @@
                 ],
      "assets": [
                   {
-                    "id": 5,
-                    "name": "Double Handled Ovoid Ewer",
-                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "id": 1,
+                    "name": "Dragon Fruit",
+                    "thumbnail": "asian-fruit-market/Dragon Fruit.png",
                     "creator": "Serena Zen",
-                    "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
-                    "description": "Scanned by Serena at the Mcmaster Museum of Art, this artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
+                    "tags": ["fruit", "purple", "supermarket", "food", "produce"],
+                    "description": "Scanned at McMaster, bought at nations, Serena always finds this kind of dragons fruit underwhelming, since the outside is so vibrant but it tastes a bit bland.",
                     "assetType": "3D Model",
                     "creationMethod": "Photogrammetry",
-                    "acknowledgement": "Supprot from Art Gallery of Hamilton (AGH)",
-                    "fileSize": "5.38 MB",
+                    "acknowledgement": "",
+                    "fileSize": "11.4 MB",
                     "copyright": "CC BY 4.0 DEED",
-                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
-                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Dragon Fruit.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Dragon Fruit.glb"
+                  },
+                  {
+                    "id": 2,
+                    "name": "Asian pear with sticker",
+                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "creator": "Serena Zen",
+                    "tags": ["fruit", "asian market","sticker", "supermarket", "food", "produce"],
+                    "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023. Highly coveterd in the early 80's because it was rare to find in the grocery stores out west (Canada).",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "",
+                    "fileSize": "2.75 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Asian Pear with Sticker.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Asian Pear with Sticker.glb"
+                  },
+                  {
+                    "id": 3,
+                    "name": "Starfruit",
+                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "creator": "Serena Zen",
+                    "tags": ["fruit", "asian market","sticker", "supermarket", "food", "produce"],
+                    "description": "Bought at Nations in hamiltonn, on, scanned at mcmaster u 2023. Great to look at (pretty food) moreso than it's taste. S loves the taste. C had a friend thst made paper with it and it was amazing because she ran thin slices (cross sections) through the press and dried - it was translucent in the light.",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "",
+                    "fileSize": "2.14 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Starfruit cross-section.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Starfruit cross-section.glb"
+                  },
+                  {
+                    "id":4,
+                    "name":"Lychee",
+                    "thumbnail": "chinese-antiques/Double Handled Ovoid Ewer.png",
+                    "creator": "Serena Zen",
+                    "tags": ["fruit", "asian market","supermarket", "food", "produce"],
+                    "description": "Bought at Nations, Hamilton, ON, scanned 2023 at McMaster University. S used to get a giant bag of Lychee at the outdoor market and eat them walking home with a friend in Toronto. A's favorite pop flavour. H- old story in China about a Queen who craved lychee. People had to transport lychee from southern China to northern China, but the horses were exhusted from the constant transport and died. (therefore not technically vegan)",
+                    "assetType": "3D Model",
+                    "creationMethod": "Photogrammetry",
+                    "acknowledgement": "",
+                    "fileSize": "1.38 MB",
+                    "copyright": "CC BY 4.0 DEED",
+                    "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Lychee.glb",
+                    "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Lychee.glb"
                   }
                 ]
     }

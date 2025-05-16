@@ -236,20 +236,21 @@ computed: {
 
 
 .collection-card-text {
-  
+  display: flex;
   font-family: 'Inter', sans-serif;
   color: var(--primary-color);
 }
 
 .collection-card-image {
-  width: 100%;
+  flex: 1;
+  width: 50%;
   height: auto;
   border-radius: 8px;
   object-fit: cover;
 }
 
 .collection-card-video {
-  width: 100%;
+  width: 50%;
   height: auto;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
@@ -267,9 +268,22 @@ computed: {
 }
 
 .collection-assets-card-container{
-   display: flex;
+   /* display: flex; */
+   display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
    gap: 1rem;
+
 }
+/* 
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem; 
+  margin-top: 1.5rem;
+  padding-left: 4rem;
+  padding-right: 4rem;
+} */
+
 
 .collection-assets-card {
   /* width: 18.30rem; */

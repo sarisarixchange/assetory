@@ -58,7 +58,6 @@ npm install
 
 > The following steps are followed each time you modify the project codebase. 
 
-
 ### Open the Project Folder in VS Code
 
 > Start by opening the project folder by going to VS Code > File > Open Folder and choosing the project folder.

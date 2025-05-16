@@ -3,6 +3,7 @@ import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import collectionsData from '../data/collections.json';
 import 'aframe';
+import 'aframe-extras';
 
 export default {
   components: {
@@ -333,9 +334,12 @@ a-scene {
 
     <!-- Add the 3D model -->
     <a-entity
+      
       position="0 0 -3"
-      scale="15 15 15"      
+      scale="15 15 15" 
+      rotation="0 100 0"     
       :gltf-model="asset.gltfModel"
+      animation-mixer
     ></a-entity>
 
   </a-scene>

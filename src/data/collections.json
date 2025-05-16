@@ -149,6 +149,7 @@
                   "copyright": "CC BY 4.0 DEED",
                   "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Wine vessel in the form of an ancient ritual bronze Jue.glb",
                   "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Wine vessel in the form of an ancient ritual bronze Jue.glb"
+                  
                 }
                 ]
     },
@@ -160,15 +161,17 @@
       "cards": [
                   {
                     "heading": "Chen-Style Tai Chi Motion Capture Data",
-                    "description": "This is a Chen-style Tai Chi motion capture dataset created in collaboration with Jianhua Wu, president of the Hunan branch of the Chen-style Tai Chi Association. The database was captured using Rokoko Vision with two iPhone 13 Pros in Changsha, China, in January 2025. The movements are based on Chen Tai Chi Old Frame I, including the following postures: Beginning Posture, Vajra Pounds Mortar, Grasp and Tuck Clothes, Six Sealing, Four Closing, Single Whip, Vajra Pounds Mortar, White Goose Spreads Wings, Step Obliquely, Embrace Knee, Shan san bu, Hidden Hand Punch, Vajra Pounds Mortar, Draping Body Fist, Green Dragon Emerges From the Water, Two-Handed Push, Fist Under Blow, Step Back and Push with Arm, White Goose Spreads Wings, Step Obliquely, Flash the Back, Hidden Hand Punch, Lotus Kick, and Closing.",
+                    "description": "This is a Chen-style Tai Chi motion capture dataset created in collaboration with Jianhua Wu, president of the Hunan branch of the Chen-style Tai Chi Association. The database was captured using Rokoko Vision with two iPhone 13 Pros in Changsha, China, in January 2025. <br><br> The movements are based on Chen Tai Chi Old Frame I, including the following postures: Beginning Posture, Vajra Pounds Mortar, Grasp and Tuck Clothes, Six Sealing, Four Closing, Single Whip, Vajra Pounds Mortar, White Goose Spreads Wings, Step Obliquely, Embrace Knee, Shan san bu, Hidden Hand Punch, Vajra Pounds Mortar, Draping Body Fist, Green Dragon Emerges From the Water, Two-Handed Push, Fist Under Blow, Step Back and Push with Arm, White Goose Spreads Wings, Step Obliquely, Flash the Back, Hidden Hand Punch, Lotus Kick, and Closing.",
+                    "image": "",
+                    "youtubeUrl": "",
                     "contentSideBySide": true
                   },
                   {
                     "heading": "What is Chen-Style Tai Chi?",
-                    "description": "Chen-style Tai Chi originated in Chen Jia Gou, Wen County, Henan Province. Its founder was Chen Wangting.",
+                    "description": "<span style=\"font-size: 2rem; color:green\"> Chen-style Tai Chi originated in Chen Jia Gou, Wen County, Henan Province. Its founder was Chen Wangting.</span>" ,               
                     "image": "",
                     "youtubeUrl": "https://youtu.be/BG-n26jR9_w",
-                    "contentSideBySide": true
+                    "contentSideBySide": false
 
                   },
                   { 

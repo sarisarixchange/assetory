@@ -6,12 +6,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",    
+    "preview": "vite preview",
     "deploy": "REPO=assetory npm run build && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git"
-
   },
   "dependencies": {
     "aframe": "^1.7.1",
+    "aframe-extras": "^7.5.4",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

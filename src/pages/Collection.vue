@@ -242,15 +242,14 @@ computed: {
 }
 
 .collection-card-image {
-  flex: 1;
-  width: 50%;
+  /* width: 50%; */
   height: auto;
   border-radius: 8px;
   object-fit: cover;
 }
 
 .collection-card-video {
-  width: 50%;
+  /* width: 50%; */
   height: auto;
   aspect-ratio: 16 / 9;
   border-radius: 8px;

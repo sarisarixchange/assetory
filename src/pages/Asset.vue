@@ -337,7 +337,6 @@ a-scene {
       
       position="0 0 -3"
       scale="15 15 15" 
-      rotation="0 100 0"     
       :gltf-model="asset.gltfModel"
       animation-mixer
     ></a-entity>

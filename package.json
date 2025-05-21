@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "REPO=assetory npm run build && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git"
+    "deploy": "npm run build && cp dist/index.html dist/404.html && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git"
+
   },
   "dependencies": {
     "aframe": "^1.7.1",

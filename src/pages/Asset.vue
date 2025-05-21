@@ -24,6 +24,9 @@ export default {
         return {
       currentTheme: { theme: 'default' }, // Default theme
       asset: null, // Holds the data for the selected asset
+      position: { x: 0, y: 0, z: -3 },
+      scale: { x: 15, y: 15, z: 15 },
+      rotation: { x: 0, y: 0, z: 0 },
      
      
     };
@@ -193,31 +196,57 @@ hr {
   font-size: 0.9rem;
   
 }
-
 .preview-and-download-button-wrapper {
-  display: flex;
-  flex-direction: column; /* Stack children vertically */
-  gap: 0.5rem; 
-  width: 100%;
-  
+  position: relative; /* Make the container a positioning context */
+  width: 100%; 
 }
-
 
 .preview {
-  flex: 0.90;
+  width: 100%;
+  height: 90%;
+  position: relative; /* Ensure the A-Frame scene stays in place */
   border: 1px solid var(--primary-color);
-  border-radius: 10px;
-  overflow: hidden;
-  /* position: relative; */
+  border-radius: 0.5rem;
 }
+
+.sliders.overlay {
+  accent-color: var(--primary-color);
+  position: absolute; /* Position the sliders on top of the scene */
+  top: 5px; /* Adjust the distance from the top */
+  left: 10px; /* Adjust the distance from the left */
+  background-color: transparent; /* Add a semi-transparent background */
+  padding: 10px;
+  border-radius: 0.5rem;
+  z-index: 10; /* Ensure the sliders are above the A-Frame scene */
+  color: var(--primary-color);
+  font-size: 0.5rem;
+}
+
+.sliders h3 {
+  margin-bottom: 0.25rem;
+}
+
+.sliders label {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+
+
+
 
 a-scene {
   width: 100%;
   height: 100%;
+  position: absolute; /* Ensure it fills the container */
+  top: 0;
+  left: 0;
+  z-index: 1; /* Place it below the sliders */
+  
 }
 
 .download-button {
-  flex: 0.10;
+  height: 8.5%;
   color: var(--primary-color); 
   border: 1px solid var(--primary-color);
   border-radius: 0.5rem;
@@ -226,11 +255,16 @@ a-scene {
   display: flex;
   align-items: center; /* Align items vertically */
   justify-content: center; /* Align items horizontally */
+margin-top: 0.5rem;
+margin-bottom: 0.5rem;
 }
 
 .download-button a {
   color: var(--primary-color); 
+  
 }
+
+
 
 </style>
 
@@ -321,7 +355,22 @@ a-scene {
 
 
 <div class="preview-and-download-button-wrapper">
-  
+  <div class="sliders overlay">
+  <h3>Position</h3>
+  <label>X: <input type="range" v-model="position.x" min="-10" max="10" step="0.1"></label>
+  <label>Y: <input type="range" v-model="position.y" min="-10" max="10" step="0.1"></label>
+  <label>Z: <input type="range" v-model="position.z" min="-10" max="10" step="0.1"></label>
+
+  <h3>Scale</h3>
+  <label>X: <input type="range" v-model="scale.x" min="1" max="30" step="0.1"></label>
+  <label>Y: <input type="range" v-model="scale.y" min="1" max="30" step="0.1"></label>
+  <label>Z: <input type="range" v-model="scale.z" min="1" max="30" step="0.1"></label>
+
+  <h3>Rotation</h3>
+  <label>X: <input type="range" v-model="rotation.x" min="0" max="360" step="1"></label>
+  <label>Y: <input type="range" v-model="rotation.y" min="0" max="360" step="1"></label>
+  <label>Z: <input type="range" v-model="rotation.z" min="0" max="360" step="1"></label>
+</div>
 
   <!-- 3D Model Preview -->
 <div class="preview">
@@ -334,14 +383,15 @@ a-scene {
 
     <!-- Add the 3D model -->
     <a-entity
-      
-      position="0 0 -3"
-      scale="15 15 15" 
-      :gltf-model="asset.gltfModel"
-      animation-mixer
+    :position="`${position.x} ${position.y} ${position.z}`"
+    :scale="`${scale.x} ${scale.y} ${scale.z}`"
+    :rotation="`${rotation.x} ${rotation.y} ${rotation.z}`"
+    :gltf-model="asset.gltfModel"
+    animation-mixer
     ></a-entity>
 
   </a-scene>
+  
 </div>
   <div class="download-button">
     <a :href="asset.downloadLink">Download</a>

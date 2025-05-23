@@ -5,6 +5,8 @@ import collectionsData from '../data/collections.json';
 import 'aframe';
 import 'aframe-extras';
 
+
+
 export default {
   components: {
     Footer, // Register the Footer component
@@ -129,10 +131,25 @@ this.currentTheme = payload; // Update the theme
   padding: 20px;
   border: 1px solid var(--primary-color);
   border-top: none; /* Remove the top border to connect with playButton */
+  border-left: none;
   border-radius: 0 0 0.5rem 0.5rem; /* Bottom corners rounded */
   margin-top: -1px; /* Prevent a visible gap between the two divs */
   margin-bottom: 0.5rem;
+  position: relative; /* Required for the pseudo-element to position correctly */
 }
+
+.assetDetails::before {
+  content: ''; /* Required to create the pseudo-element */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 97%;
+  width: 1px; /* Adjust the width of the left border */
+  background-color: var(--primary-color); /* Use the primary color for the border */
+  border-radius: 0 1rem 0 0; /* Optional: Add rounding to the bottom-left corner */
+  
+}
+
 
 
 
@@ -356,15 +373,15 @@ margin-bottom: 0.5rem;
 
 <div class="preview-and-download-button-wrapper">
   <div class="sliders overlay">
-  <h3>Position</h3>
+  <!-- <h3>Position</h3>
   <label>X: <input type="range" v-model="position.x" min="-10" max="10" step="0.1"></label>
   <label>Y: <input type="range" v-model="position.y" min="-10" max="10" step="0.1"></label>
-  <label>Z: <input type="range" v-model="position.z" min="-10" max="10" step="0.1"></label>
+  <label>Z: <input type="range" v-model="position.z" min="-10" max="10" step="0.1"></label> -->
 
-  <h3>Scale</h3>
-  <label>X: <input type="range" v-model="scale.x" min="1" max="30" step="0.1"></label>
-  <label>Y: <input type="range" v-model="scale.y" min="1" max="30" step="0.1"></label>
-  <label>Z: <input type="range" v-model="scale.z" min="1" max="30" step="0.1"></label>
+  <!-- <h3>Scale</h3> -->
+  <!-- <label>X: <input type="range" v-model="scale.x" min="1" max="30" step="0.1"></label> -->
+  <!-- <label>Y: <input type="range" v-model="scale.y" min="1" max="30" step="0.1"></label> -->
+  <!-- <label>Z: <input type="range" v-model="scale.z" min="1" max="30" step="0.1"></label> -->
 
   <h3>Rotation</h3>
   <label>X: <input type="range" v-model="rotation.x" min="0" max="360" step="1"></label>

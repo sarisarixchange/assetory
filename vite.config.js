@@ -9,7 +9,13 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 const repo = process.env.REPO || 'assetory'; // Default to your current repo
 
 export default defineConfig({
-  plugins: [vue(), vueDevTools()],
+  plugins: [vue({
+    template: {
+      compilerOptions: {
+        isCustomElement: tag => tag.startsWith('a-') // This tells Vue to ignore <a-scene>, <a-entity>, etc.
+      }
+    } 
+  }), vueDevTools()],
   base: `/${repo}/`, // Sets the correct base path dynamically
   // resolve: {
   //   alias: {

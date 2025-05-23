@@ -1,6 +1,8 @@
 <script>
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import BackTopButton from '../widgets/BackTopButton.vue';  
+
 import collectionsData from '../data/collections.json';
 
 
@@ -8,6 +10,7 @@ import collectionsData from '../data/collections.json';
   components: {
     Footer, // Register the Footer component
     Topbar, // Register the Topbar component
+    BackTopButton
  },
   data() {
         return {
@@ -422,10 +425,7 @@ computed: {
   </div>
 
   <!-- back to top button -->
-  <div class="backTop">
-      <div style="width:93%"></div>
-      <button @click="scrollToTop">^ Back to Top</button>
-        </div>
+<BackTopButton />
 
       <!-- footer -->
 

@@ -114,7 +114,7 @@ watch: {
 <template>
 
 <footer class="non-homepage-footer">
-        
+        z
         <div class="leftSideFooter">
         <div class="leftSideFooterInfo">
           <div class="footerLogo">

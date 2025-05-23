@@ -609,9 +609,9 @@ color:var(--hover-text-color)
             </div>
             
           <div class="other-box-action-call">
-            <a href="" class="other-call-action" >
+              <router-link :to="{ name: 'Artists' }" class="other-call-action">
               <span >Open Artists</span> <span class="call-goto-action" aria-hidden="true">></span>
-            </a>
+            </router-link>
           </div>
         </div>
 

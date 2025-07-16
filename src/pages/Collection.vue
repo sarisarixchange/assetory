@@ -4,6 +4,7 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import BackTopButton from '../widgets/BackTopButton.vue';  
 
 import collectionsData from '../data/collections.json';
+import artistsData from '../data/artists.json'; // Import artists data if needed
 
 
  export default {
@@ -23,35 +24,53 @@ import collectionsData from '../data/collections.json';
   mounted() {
   const collectionId = parseInt(this.$route.params.id, 10);
   this.collection = collectionsData.find((item) => item.id === collectionId);
-  // console.log('Loaded collection:', this.collection);
-  // if (this.collection) {
-  //   console.log('Banner Image:', this.collection.bannerImage);
-  // }
-},
+  
+  
+  },
 
 computed: {
 
   resolvedBannerImage() {
     return this.collection ? `../images/collections/` + this.collection.bannerImage : '';
   }, 
-  
-  // resolvedYoutubeUrl() {
-  //   return this.collection && this.collection.youtubeUrl
-  //     ? `https://www.youtube.com/embed/${this.extractYoutubeId(this.collection.youtubeUrl)}`
-  //     : '';
-  // },
-  resolvedAssets() {
-    return this.collection
-      ? this.collection.assets.map((asset) => ({
-          ...asset,
-          thumbnail: `../images/collections/${asset.thumbnail}`, // Resolve the full path for the thumbnail
-        }))
-      : [];
-  },
-},
 
+resolvedAssets() {
+  if (!this.collection) return [];
+
+  const assets = this.collection.assets.map((asset) => {
+          // Find the artist that owns the asset
+    const artist = artistsData.find((artist) =>
+       // artist.assets.some((a) => a.id === asset.artistAssetId)
+       artist.id === asset.artistId);
+
+        // Find the specific asset within the artist's assets
+
+  const artistAsset = artist?.assets.find((a) => a.id === asset.artistAssetId);
+  // console.log('Resolved Asset:', {asset, artist, artistAsset});
+  return {
+       ...asset, 
+       artist_id: artist?.id || null, // artist id
+       thumbnail: artistAsset ? `../images/artists/${artistAsset.thumbnail}` : '',
+       name: artistAsset?.name || 'Unknown Asset'  
+       };
+      });
+      return assets;
+  },
+       
+  // resolvedAssets() {
+  //   return this.collection
+  //     ? this.collection.assets.map((asset) => ({
+  //         ...asset,
+  //         thumbnail: `../images/artists/${asset.thumbnail}`, // Resolve the full path for the thumbnail
+  //       }))
+  //     : [];
+  // },
+
+  
+},
     methods: {
 
+  
   resolveCardImage(imagePath) {
     return imagePath ? `../images/collections/${imagePath}` : '';
   },
@@ -409,9 +428,20 @@ computed: {
   :key="index"
   class="collection-assets-card"
 >
+
   <router-link
-    :to="{ name: 'Asset', params: { collectionId: collection.id, id: asset.id } }"
+  :to="{ name: 'Asset', params: { 
+          // collectionId:  collection.id, // this should be artist id
+          // collectionAssetId: asset.id, // this should be asset id
+          artistId: asset.artistId,
+          artistAssetId: asset.artistAssetId
+         }, 
+         query: { fromArtist: false, 
+                  collectionId: collection.id
+          }
+        }"
     class="collection-assets-link"
+
   >
     <img :src="asset.thumbnail" :alt="asset.name" class="collection-assets-image" />
   </router-link>

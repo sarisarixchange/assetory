@@ -1,7 +1,8 @@
 <script >
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
-import collectionsData from '../data/collections.json';
+import artistsData from '../data/artists.json';
+import collectionsData from '../data/collections.json'; // Import collections data
 import 'aframe';
 import 'aframe-extras';
 
@@ -13,15 +14,25 @@ export default {
     Topbar, // Register the Topbar component
  },
  props: {
-    collectionId: {
+      artistId: {
       type: Number,
       required: true,
     },
-    id: {
+    artistAssetId: {
       type: Number,
       required: true,
     },
+   collectionId: {
+    type: Number,
+    required: true,
   },
+    fromArtist: {
+    type: Boolean,
+    required: true
+  }
+  },
+
+
   data() {
         return {
       currentTheme: { theme: 'default' }, // Default theme
@@ -36,15 +47,39 @@ export default {
   
 },
 mounted() {
-    const collectionId = parseInt(this.$route.params.collectionId, 10);
-    const assetId = parseInt(this.$route.params.id, 10);
+    //extract params from previous route/page, either from artist.vue or collection.vue
+    const artistId = parseInt(this.$route.params.artistId, 10);
+    const artistAssetId = parseInt(this.$route.params.artistAssetId, 10);
 
-    const collection = collectionsData.find((item) => item.id === collectionId);
-    if (collection) {
-      this.asset = collection.assets.find((item) => item.id === assetId);
+
+    //find collection if user came from an Artist
+    const artists = artistsData.find((item) => item.id === artistId);
+    // set local reactive value
+    if (artists) {
+      this.asset = artists.assets.find((item) => item.id === artistAssetId);
     }
-  },
+},
 
+  
+
+ computed: {
+  routeName() {
+    return this.fromArtist ? 'Artist' : 'Collection';
+    // console.log('Route Name:', name);
+    // return name;
+  },
+ 
+  routeId() {
+    return this.fromArtist ? this.artistId : this.collectionId // missing collection id
+  }, 
+
+  returnLink(){
+    return {
+      name: this.routeName,
+      params: {id : this. routeId}
+    };
+  }
+},
 
 methods: {
 
@@ -305,12 +340,13 @@ margin-bottom: 0.5rem;
         <div class="returnButtonAsset">
         <div class="returnButton">
 
-          <router-link
-  :to="{ name: 'Collection', params: { id: collectionId } }"
+          <router-link  :to="returnLink"
+
   class="nav-button"
 >
-  Return <
+  Returns <
 </router-link>
+
       </div>
         </div>
 
@@ -416,17 +452,19 @@ margin-bottom: 0.5rem;
 </div>
 
 </div>
-<div v-else>
         <!-- Fallback content when no asset is found -->
+<div v-else>
+
         <div class="no-asset">
           <h2>Asset Not Found</h2>
-          <p>The asset you are looking for does not exist or could not be loaded.</p>
-          <router-link
-  :to="{ name: 'Collection', params: { id: collectionId } }"
+          <p>The asset you are looking for does not exist or could not be loaded.</p>          
+          <router-link  :to="returnLink"
+
   class="nav-button"
 >
   Return <
-</router-link></div>
+</router-link>
+</div> 
 </div>
 
 

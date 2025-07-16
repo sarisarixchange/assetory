@@ -48,8 +48,11 @@ export default {
     <Topbar @theme-changed="updateTheme" />
 
     <!-- Collections Grid -->
-    <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data" :basePath="basePath"
-      :routeName="routeName" />
+    <GalleryGrid :galleryName="galleryName" 
+    :galleryDescription="galleryDescription" 
+    :items="data" 
+    :basePath="basePath"
+    :routeName="routeName" />
 
     <BackTopButton />
 

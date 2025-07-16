@@ -2,6 +2,7 @@
 import SearchBar from '../widgets/SearchBar.vue'; // Import the SearchBar component
 import { useSearchStore } from '../stores/searchStore';
 import collectionsData from '../data/collections.json';
+import artistsData from '../data/artists.json'; // Import artists data if needed
 
 
 

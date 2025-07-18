@@ -3,7 +3,7 @@ import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import BackTopButton from '../widgets/BackTopButton.vue';  
 
-import collectionsData from '../data/collections.json';
+import collectionsData from '../data/events.json';
 import artistsData from '../data/artists.json'; // Import artists data if needed
 
 
@@ -31,7 +31,7 @@ import artistsData from '../data/artists.json'; // Import artists data if needed
 computed: {
 
   resolvedBannerImage() {
-    return this.collection ? `../images/collections/` + this.collection.bannerImage : '';
+    return this.collection ? `../images/events/` + this.collection.bannerImage : '';
   }, 
 
 resolvedAssets() {
@@ -39,8 +39,8 @@ resolvedAssets() {
 
   const assets = this.collection.assets.map((asset) => {
           // Find the artist that owns the asset
-    const artist = artistsData.find((artist) =>
-              artist.id === asset.artistId);
+    const artist = artistsData.find((artist) =>       
+       artist.id === asset.artistId);
 
         // Find the specific asset within the artist's assets
 
@@ -359,7 +359,7 @@ resolvedAssets() {
             <!-- return button -->
             <div class="">
         <div class="returnButton">
-        <router-link to="/collections" class="nav-button">Return <</router-link>          
+        <router-link to="/events" class="nav-button">Return <</router-link>          
         </div>
    </div>
 
@@ -429,16 +429,13 @@ resolvedAssets() {
 >
 
   <router-link
-  :to="{ name: 'Asset', params: { 
-          // collectionId:  collection.id, // this should be artist id
-          // collectionAssetId: asset.id, // this should be asset id
+  :to="{ name: 'Asset', params: {    
           artistId: asset.artistId,
           artistAssetId: asset.name
-          // artistAssetId: asset.artistAssetId
          }, 
          query: { 
-            fromPage: 'Collection',
-            pageId: collection.id
+            fromPage: 'Event',
+            pageId: collection.id                  
           }
         }"
     class="collection-assets-link"

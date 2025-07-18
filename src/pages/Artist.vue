@@ -440,9 +440,11 @@ computed: {
   <router-link
     :to="{ name: 'Asset', params: { 
         artistId: collection.id,
-        artistAssetId: asset.id }, 
-        query: {fromArtist: true, 
-               collectionId: null
+        artistAssetId: asset.name 
+      }, 
+        query: {
+          fromPage: 'Artist',
+          pageId: collection.id
          }
          }"
 

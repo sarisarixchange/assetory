@@ -19,6 +19,7 @@ export default {
       type: String,
       required: true
     },
+    
     galleryDescription: {
       type: String,
       required: true

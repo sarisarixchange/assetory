@@ -1,0 +1,32 @@
+[
+    {
+      "id": 0,
+      "title": "Exhibition: Objects of Care",
+      "thumbnail": "objects-of-care/objects-of-care-thumbnail.png",
+      "bannerImage": "objects-of-care/objects-of-care-thumbnail.png",
+      "cards": [
+                  {
+                    "heading": "Exhibition: Objects of Care at Centre3",
+                    "description": "The artists in Objects of Care explore this theme in the modern context. Nuanced and personal, yet tethered to the digital world. Imagery of domesticity brings the works together, inviting you in. A randomized parental apology generator awaits a conversation at your dining room table. Your closet is flooded with colourful unnatural light, while your living room holds an array of intangible objects, some familiar, some not.",
+                    "image": "",
+                    "youtubeUrl": "",
+                    "contentSideBySide": true
+                  }
+                ],
+     "assets": [
+                  {
+                    "artistId": 0,
+                    "name": "Golden Dragon Fruit"
+                  }, 
+                  {
+                    "artistId": 0,
+                    "name": "Tang Horse"
+                  }, 
+                  {
+                    "artistId": 1,
+                    "name": "Beginning Posture"
+                  }
+                 
+                ]
+    }
+  ]

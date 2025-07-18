@@ -16,49 +16,41 @@
                 ],
      "assets": [
                   {
-                    "assetId": 0,        
                     "artistId": 0,
-                    "artistAssetId": 1
+                    "name": "Double Handled Ovoid Ewer"
                   }, 
                   {
-                    "assetId": 1,        
                     "artistId": 0,
-                    "artistAssetId": 2
+                    "name": "Celadon Vase AGH"
                   }, 
                   {
-                    "assetId": 2,        
                     "artistId": 0,
-                    "artistAssetId": 3
+                    "name": "Buddhist Lion (tea pot)"
                   }, 
                   {
-                    "assetId": 3,        
                     "artistId": 0,
-                    "artistAssetId": 4
+                    "name": "Blue and White Vase AGH"
                   }, 
                   {
-                    "assetId": 4,        
                     "artistId": 0,
-                    "artistAssetId": 5
+                    "name": "Female Attendant With Robe"
                   }, 
                   {
-                    "assetId": 5,        
                     "artistId": 0,
-                    "artistAssetId": 6
+                    "name": "Figure of Han Xiangzi"
+
                   }, 
                   {
-                    "assetId": 6,        
                     "artistId": 0,
-                    "artistAssetId": 7
+                    "name": "Figure of Zhang Guolao"
                   }, 
                   {
-                    "assetId": 7,        
                     "artistId": 0,
-                    "artistAssetId": 8
+                    "name": "Tang Horse"
                   }, 
                   {
-                    "assetId": 8,        
                     "artistId": 0,
-                    "artistAssetId": 9
+                    "name":"Wine vessel in the form of an ancient ritual bronze Jue"                    
                   }
                 ]
     },
@@ -101,92 +93,80 @@
      "assets": [
                  
                   {
-                    "assetId": 1,        
+                     "artistId": 1,
+                     "name": "Beginning Posture"
+                  }, 
+                  {                   
                     "artistId": 1,
-                    "artistAssetId": 1
+                    "name": "Vajra Pounds Mortar"
                   }, 
                   {
-                    "assetId": 2,        
                     "artistId": 1,
-                    "artistAssetId": 2
+                    "name": "Grasp and Tuck Clothes"
                   }, 
                   {
-                    "assetId": 3,        
                     "artistId": 1,
-                    "artistAssetId": 3
+                    "name": "Six Healing Four Closing"
                   }, 
                   {
-                    "assetId": 4,        
                     "artistId": 1,
-                    "artistAssetId": 4
+                    "name": "Single Whip"
                   }, 
                   {
-                    "assetId": 5,        
                     "artistId": 1,
-                    "artistAssetId": 5
+                    "name": "White Goose Spreads Wings"
                   }, 
                   {
-                    "assetId": 6,        
                     "artistId": 1,
-                    "artistAssetId": 6
+                    "name": "Step Obliquely"
                   }, 
                   {
-                    "assetId": 7,        
                     "artistId": 1,
-                    "artistAssetId": 7
+                    "name": "Embrace Knee"
                   }, 
                   {
-                    "assetId": 8,        
                     "artistId": 1,
-                    "artistAssetId": 8
+                    "name": "Move Three Step Forward"
                   }, 
                   {
-                    "assetId": 9,        
                     "artistId": 1,
-                    "artistAssetId": 9
+                    "name": "Hidden Hand Punch"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Drapping Body Fist"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Green Dragon Emerges From the Water"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Two-Handed Push"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Fist Under Elbow"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Step Back and Push with Arm"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Flash the Back"
+                  },
+                  {
+                    "artistId": 1,
+                    "name": "Lotus Kick"
                   }, 
                   {
-                    "assetId": 10,        
                     "artistId": 1,
-                    "artistAssetId": 10
-                  }, {
-                    "assetId": 11,        
-                    "artistId": 1,
-                    "artistAssetId": 11
-                  }, {
-                    "assetId": 12,        
-                    "artistId": 1,
-                    "artistAssetId": 12
-                  }, {
-                    "assetId": 13,        
-                    "artistId": 1,
-                    "artistAssetId": 13
-                  }, {
-                    "assetId": 14,        
-                    "artistId": 1,
-                    "artistAssetId": 14
-                  }, {
-                    "assetId": 15,        
-                    "artistId": 1,
-                    "artistAssetId": 15
-                  }, {
-                    "assetId": 16,        
-                    "artistId": 1,
-                    "artistAssetId": 16
-                  }, {
-                    "assetId": 17,        
-                    "artistId": 1,
-                    "artistAssetId": 17
+                    "name": "Head-On Cannon"
                   }, 
                   {
-                    "assetId": 18,        
                     "artistId": 1,
-                    "artistAssetId": 18
-                  }, 
-                  {
-                    "assetId": 19,        
-                    "artistId": 1,
-                    "artistAssetId": 19
+                    "name": "Closing"
                   }
                 ]
                 
@@ -208,29 +188,24 @@
                 ],
      "assets": [
                 {
-                  "assetId": 0,        
                   "artistId": 0,
-                  "artistAssetId": 10
+                  "name": "Dragon Fruit"
                 },
                 {
-                  "assetId": 1,        
                   "artistId": 0,
-                  "artistAssetId": 11
+                  "name": "Asian pear with sticker"
                 },
                 {
-                  "assetId": 2,        
                   "artistId": 0,
-                  "artistAssetId": 12
+                  "name": "Starfruit (Cross-Section)"
                 },
                 {
-                  "assetId": 3,        
                   "artistId": 0,
-                  "artistAssetId": 13
+                  "name":"Lychee"
                 },
                 {
-                  "assetId": 4,        
                   "artistId": 0,
-                  "artistAssetId": 14
+                  "name": "Golden Dragon Fruit"
                 }
                 ]
     }

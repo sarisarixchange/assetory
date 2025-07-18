@@ -5,6 +5,8 @@ import Collection from '../pages/Collection.vue';
 import Asset from '../pages/Asset.vue';
 import Artists from '../pages/Artists.vue';
 import Artist from '../pages/Artist.vue';
+import Events from '../pages/Events.vue'; 
+import Event from '../pages/Event.vue';
 
 
 const routes = [
@@ -23,11 +25,14 @@ const routes = [
   { path: '/asset/:artistId/:artistAssetId', component: Asset, name: 'Asset', 
     props: (route) => ({
       artistId: Number(route.params.artistId),
-      artistAssetId: Number(route.params.artistAssetId), 
-      fromArtist: route.query.fromArtist === 'true', // Convert query parameter to boolean
-      collectionId: route.query.collectionId ? Number(route.query.collectionId) : null, // Convert collectionId to a number if it exists
+      // artistAssetId: Number(route.params.artistAssetId), 
+      artistAssetId: route.params.artistAssetId,
+      fromPage: route.query.fromPage || null, 
+      pageId: route.query.pageId ? Number(route.query.pageId) : null, // Convert collectionId to a number if it exists
     }),
-  }
+  },
+  {path: '/events', component: Events, name: 'Events'}, 
+  {path: '/event/:id', component: Event, name: 'Event', props: true}
 ]
 
 

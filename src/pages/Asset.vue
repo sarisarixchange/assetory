@@ -2,7 +2,6 @@
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import artistsData from '../data/artists.json';
-import collectionsData from '../data/collections.json'; // Import collections data
 import 'aframe';
 import 'aframe-extras';
 
@@ -18,19 +17,22 @@ export default {
       type: Number,
       required: true,
     },
+
     artistAssetId: {
+      type: String,
+      required: true,
+      },
+      
+      fromPage: {
+      type: String,
+      required: true
+    },
+
+    pageId: {
       type: Number,
       required: true,
+    }
     },
-   collectionId: {
-    type: Number,
-    required: true,
-  },
-    fromArtist: {
-    type: Boolean,
-    required: true
-  }
-  },
 
 
   data() {
@@ -49,37 +51,23 @@ export default {
 mounted() {
     //extract params from previous route/page, either from artist.vue or collection.vue
     const artistId = parseInt(this.$route.params.artistId, 10);
-    const artistAssetId = parseInt(this.$route.params.artistAssetId, 10);
+    // const artistAssetId = parseInt(this.$route.params.artistAssetId, 10);
+    const artistAssetId = this.$route.params.artistAssetId;
+
+    
 
 
     //find collection if user came from an Artist
     const artists = artistsData.find((item) => item.id === artistId);
     // set local reactive value
     if (artists) {
-      this.asset = artists.assets.find((item) => item.id === artistAssetId);
+      this.asset = artists.assets.find((item) => item.name === artistAssetId);
     }
 },
 
   
 
- computed: {
-  routeName() {
-    return this.fromArtist ? 'Artist' : 'Collection';
-    // console.log('Route Name:', name);
-    // return name;
-  },
- 
-  routeId() {
-    return this.fromArtist ? this.artistId : this.collectionId // missing collection id
-  }, 
 
-  returnLink(){
-    return {
-      name: this.routeName,
-      params: {id : this. routeId}
-    };
-  }
-},
 
 methods: {
 
@@ -340,11 +328,9 @@ margin-bottom: 0.5rem;
         <div class="returnButtonAsset">
         <div class="returnButton">
 
-          <router-link  :to="returnLink"
-
-  class="nav-button"
+          <router-link  :to="{ name: fromPage, params: { id: pageId } }"  class="nav-button"
 >
-  Returns <
+  Return <
 </router-link>
 
       </div>
@@ -458,7 +444,8 @@ margin-bottom: 0.5rem;
         <div class="no-asset">
           <h2>Asset Not Found</h2>
           <p>The asset you are looking for does not exist or could not be loaded.</p>          
-          <router-link  :to="returnLink"
+          <router-link  :to="{ name: fromPage, params: { id: pageId } }"
+
 
   class="nav-button"
 >

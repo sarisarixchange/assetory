@@ -1,8 +1,8 @@
 <script>
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import PageBackground from '../components/PageBackground.vue';
 import BackTopButton from '../widgets/BackTopButton.vue';  
-
 import collectionsData from '../data/artists.json';
 
 
@@ -10,12 +10,19 @@ import collectionsData from '../data/artists.json';
   components: {
     Footer, // Register the Footer component
     Topbar, // Register the Topbar component
+    PageBackground,
     BackTopButton
  },
   data() {
         return {
       currentTheme: { theme: 'default' }, // Default theme
       collection: null, // Holds the data for the selected    
+      backgrounds: {
+         default: '../backgrounds/background-artist-page-default.png',
+         grayscale: '../backgrounds/background-artist-page-grayscale.svg',
+         highContrast: '../backgrounds/background-artist-page-high-contrast.svg',
+         wcag: '../backgrounds/background-artist-page-default.svg'
+  }
     } 
   },
 
@@ -86,7 +93,9 @@ computed: {
 </script>
     
     <style scoped>
-   
+     .page-container {
+  position: relative;
+}
 
 /* return button */
 .returnButton {
@@ -123,34 +132,18 @@ computed: {
 
 
 
-/* filepath: /home/luis/sari-sari-website/assetory/src/pages/Artist.vue */
-.image-banner-background {
-  width: 100%;
-  background-image: url('/backgrounds/flowersDefault.png'); /* Set the background image */
-  background-size: contain; /* Ensures the background image covers the entire container */
-  background-position: center; /* Centers the background image */
-  background-repeat: no-repeat; /* Prevents the background image from repeating */
-  display: flex; /* Allows child elements to be aligned */
-  justify-content: center; /* Centers the child horizontally */
-  align-items: center; /* Centers the child vertically */
-}
 
-.image-banner {
-  width: 30%;
-  border: 1px solid var(--primary-color);
-  border-radius: 20px;
+.image-banner {    
   overflow: hidden; /* Ensures the image doesn't overflow the container */
   display: flex; /* Optional: Ensures proper alignment */
   align-items: center; /* Optional: Centers the image vertically */
   justify-content: center; /* Optional: Centers the image horizontally */
-  padding: 0.25rem;
 }
 
 .banner-image {  
-  width: 100%; /* Make the image fill the container horizontally */
-  /* object-fit: cover; */
-  background-color: var(--secondary-color);
+  border: 1px solid var(--primary-color);
   border-radius: 20px;
+  padding: 0.25rem;
 }
 
 .collection-details{
@@ -355,6 +348,8 @@ computed: {
         <!-- top bar -->
         <Topbar @theme-changed="updateTheme" />
 
+
+   
             <!-- return button -->
             <div class="">
         <div class="returnButton">
@@ -362,14 +357,22 @@ computed: {
         </div>
    </div>
 
-      
+           <!-- background image  -->
+           <PageBackground
+    :theme="currentTheme.theme"
+    :backgrounds="backgrounds"
+    top="8%"
+    left="10"
+    width="100%"
+    height="80%"
+    backgroundSize= "80%"
+    backgroundPosition= 'top'
+  />
       <div v-if="collection" class="collection-details-container">
       <!-- Image banner -->  
 
-      <div class="image-banner-background">
       <div class="image-banner">
         <img :src="resolvedBannerImage" alt="Banner Image" class="banner-image">
-      </div>
       </div>
 
       <!-- Collection details -->

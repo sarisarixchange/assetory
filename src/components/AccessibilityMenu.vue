@@ -94,8 +94,8 @@ export default {
     this.currentWcagColoursIcon = 'wcagColoursIconGray'
     this.currentResetIcon = 'resetIconGray'            
 
-  } else if (theme === 'high-contrast') {  // high contrast theme
-    this.currentTheme = 'high-contrast'; // Update currentTheme
+  } else if (theme === 'highContrast') {  // high contrast theme
+    this.currentTheme = 'highContrast'; // Update currentTheme
     root.style.setProperty('--primary-color', '#000000');
     root.style.setProperty('--secondary-color', '#FFFFFF');
     root.style.setProperty('--navigation-buttons-border-color', '#FF42D6');
@@ -112,7 +112,7 @@ export default {
 
     // event emission
     this.$emit('theme-changed', {
-       theme: 'high-contrast',
+       theme: 'highContrast',
         currentBackgroundLayer: 'background-layer-highContrast',
     });
      // acc menu icons
@@ -372,7 +372,7 @@ export default {
         }, 
 
         changeToHighContrast(){
-          this.applyTheme('high-contrast');          
+          this.applyTheme('highContrast');          
              // Save the updated setting
              this.saveSettings();
         }, 

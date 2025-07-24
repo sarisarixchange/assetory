@@ -1,5 +1,6 @@
 <script>
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import PageBackground from '../components/PageBackground.vue';
 import GalleryGrid from '../components/GalleryGrid.vue'; // Import the Grid component
 import BackTopButton from '../widgets/BackTopButton.vue';
 import Footer from '../components/Footer.vue'; // Import the Footer component
@@ -9,6 +10,7 @@ import collectionsData from '../data/collections.json';
 export default {
   components: {
     Topbar, // Register the Topbar component
+    PageBackground,
     GalleryGrid, // Register the Grid component
     BackTopButton,
     Footer, // Register the Footer component    
@@ -21,7 +23,13 @@ export default {
       galleryDescription: 'Curated assets created by the community.',
       basePath: 'collections/',
       routeName: 'Collection',
-      data: collectionsData
+      data: collectionsData, 
+      backgrounds: {
+         default: './backgrounds/background-collections-page-default.svg',
+         grayscale: './backgrounds/background-collections-page-grayscale.svg',
+         highContrast: './backgrounds/background-collections-page-high-contrast.svg',
+         wcag: './backgrounds/background-collections-page-default.svg'
+  }
     }
   },
 
@@ -38,7 +46,11 @@ export default {
 
 </script>
 
-<style></style>
+<style scoped>
+  .page-container {
+  position: relative;
+}
+</style>
 
 
 <template>
@@ -46,6 +58,18 @@ export default {
 
     <!-- top bar -->
     <Topbar @theme-changed="updateTheme" />
+
+      <!-- background image  -->
+      <PageBackground
+    :theme="currentTheme.theme"
+    :backgrounds="backgrounds"
+    top="0"
+    left="0"
+    width="100%"
+    height="428.17px"
+    backgroundSize= "contain"
+    backgroundPosition= 'left'
+  />
 
     <!-- Collections Grid -->
     <GalleryGrid :galleryName="galleryName" 

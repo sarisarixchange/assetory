@@ -39,8 +39,20 @@ export default {
     routeName: {
       type: String,
       required: true  // Make this required to avoid missing it accidentally
-    }
+    }, 
+
+    showSearchBar: {
+      type: Boolean,
+      default: true // show by default
+    }, 
+
+    isAboutPage: {
+      type: Boolean,
+      default: false
+}
+
   },
+
 
   computed: {
     searchQuery() {
@@ -76,8 +88,9 @@ export default {
       <p>{{ galleryDescription }}</p>
     </div>
 
-    <!-- searchbar -->
-    <SearchBar />
+    <!-- searchbar only show if enabled -->
+<SearchBar v-if="showSearchBar" />
+
   </div>
 
   <div class="galleryGrid">
@@ -85,7 +98,12 @@ export default {
       <div class="galleryCardContent">
         <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
       </div>
-      <div class="galleryCardContentGoTo">
+     
+      <div v-if="isAboutPage" class="alwaysPrimary">
+      <p>{{ gallery.title }}</p>
+      </div>
+      
+      <div v-else class="galleryCardContentGoTo">
         <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
           <span class="learn-more">{{ gallery.title }}</span>
           <span class="ok-action" aria-hidden="true">></span>
@@ -93,8 +111,7 @@ export default {
       </div>
     </div>
   </div>
-
-</template>
+</template>  
 
 <style>
 .heading-and-searchbar {
@@ -190,4 +207,17 @@ export default {
 .galleryCardContentGoTo:hover .galleryCardContentLink {
   color: var(--hover-text-color);
 }
+
+/* css only if in about page */
+.alwaysPrimary {
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-size: 0.8rem;
+  padding: 1.75%;
+}
+
+
+
 </style>

@@ -26,6 +26,7 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
     isHomepage() {
       return this.$route.path === '/';
     }, 
+
   }, 
 
   methods: {
@@ -41,7 +42,7 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
         this.isGrayscaleLogoIconVisible = true;
         this.isHighContrastLogoIconVisible = false;
         this.isWCAGLogoIconVisible = false;
-      } else if (payload.theme === 'high-contrast') {
+      } else if (payload.theme === 'highContrast') {
         this.isDefaultLogoIconVisible = false;
         this.isGrayscaleLogoIconVisible = false;
         this.isHighContrastLogoIconVisible = true;
@@ -53,6 +54,7 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
         this.isWCAGLogoIconVisible = true;
       }
     },
+
     
     handleThemeChange(payload) {
       // Handle the event locally
@@ -162,6 +164,12 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
         transition: background-color 0.2s;
       }
 
+      .nav-button.active {
+        background-color: var(--primary-color);
+        color: white;
+      }
+  
+
       a {
        text-decoration: var(--link-decoration, none); /* Default: No underline */
       }
@@ -201,12 +209,12 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 
           <!-- navigation menu -->
         <div class="nav-buttons" >
-          <a v-if="!isHomepage" href="" class="nav-button">Artists</a>
-          <a v-if="!isHomepage" href="" class="nav-button">Collections</a>
-          <a v-if="!isHomepage" href="" class="nav-button">Events</a>
-          <a href="" class="nav-button">About</a>
-          <a href="" class="nav-button">Accessibility Statement</a>
-          <a href="" class="nav-button">Terms of Use</a>
+          <router-link v-if="!isHomepage" :to="{name: 'Artists'}" class="nav-button" :class="{active: this.$route.name === 'Artists'}" >Artists</router-link>
+          <router-link v-if="!isHomepage" :to="{name: 'Collections'}" class="nav-button" :class="{active: this.$route.name === 'Collections'}">Collections</router-link>
+          <router-link v-if="!isHomepage" :to="{name: 'Events'}" class="nav-button" :class="{active: this.$route.name === 'Events'}">Events</router-link>          
+          <router-link  :to="{name: 'About'}"  class="nav-button" :class="{active: this.$route.name === 'About'}">About </router-link>       
+          <router-link :to="{name: 'Accessibility Statement'}" class="nav-button" :class="{active: this.$route.name === 'Accessibility Statement'}">Accessibility Statement</router-link>
+          <router-link :to="{name: 'Terms of Use'}" class="nav-button" :class="{active: this.$route.name === 'Terms of Use'}">Terms of Use</router-link>
      
           <!-- Accessibility Menu -->
           <AccessibilityMenu

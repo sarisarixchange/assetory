@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Homepage from '../pages/Homepage.vue';
+import About from '../pages/About.vue';
 import Collections from '../pages/Collections.vue';
 import Collection from '../pages/Collection.vue';
 import Asset from '../pages/Asset.vue';
@@ -7,10 +8,15 @@ import Artists from '../pages/Artists.vue';
 import Artist from '../pages/Artist.vue';
 import Events from '../pages/Events.vue'; 
 import Event from '../pages/Event.vue';
+import AccessibilityStatement from '../pages/AccessibilityStatement.vue'
+import TermsOfUse from '../pages/TermsOfUse.vue'
 
 
 const routes = [
   { path: '/', component: Homepage, name: 'Homepage' },
+  {path: '/about', component: About, name: 'About'},
+  {path: '/accessibility-statement', component: AccessibilityStatement, name: 'Accessibility Statement'},
+  {path: '/terms-of-use', component: TermsOfUse, name: 'Terms of Use'},
   { path: '/collections', component: Collections, name: 'Collections' },
   { path: '/collection/:id',  component: Collection, name: 'Collection', props: true },
   // { path: '/asset/:collectionId/:id', component: Asset, name: 'Asset', 

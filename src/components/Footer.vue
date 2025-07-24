@@ -41,7 +41,7 @@ watch: {
         this.isDefaultTheme = true;
       } else if (payload.theme === 'grayscale') {
         this.isGrayscaleTheme = true;
-      } else if (payload.theme === 'high-contrast') {
+      } else if (payload.theme === 'highContrast') {
         this.isHighContrastTheme = true;
       } else if (payload.theme === 'wcag') {
         this.isWCAGTheme = true;

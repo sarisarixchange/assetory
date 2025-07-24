@@ -2,7 +2,7 @@
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import BackTopButton from '../widgets/BackTopButton.vue';  
-
+import PageBackground from '../components/PageBackground.vue';
 import collectionsData from '../data/collections.json';
 import artistsData from '../data/artists.json'; // Import artists data if needed
 
@@ -11,12 +11,19 @@ import artistsData from '../data/artists.json'; // Import artists data if needed
   components: {
     Footer, // Register the Footer component
     Topbar, // Register the Topbar component
+    PageBackground,
     BackTopButton
  },
   data() {
         return {
       currentTheme: { theme: 'default' }, // Default theme
-      collection: null, // Holds the data for the selected    
+      collection: null, // Holds the data for the selected 
+      backgrounds: {
+         default: '../backgrounds/background-collections-page-default.svg',
+         grayscale: '../backgrounds/background-collections-page-grayscale.svg',
+         highContrast: '../backgrounds/background-collections-page-high-contrast.svg',
+         wcag: '../backgrounds/background-collections-page-default.svg'
+  }   
     } 
   },
 
@@ -105,6 +112,9 @@ resolvedAssets() {
     
     <style scoped>
    
+   .page-container {
+  position: relative;
+}
 
 /* return button */
 .returnButton {
@@ -363,6 +373,17 @@ resolvedAssets() {
         </div>
    </div>
 
+     <!-- background image  -->
+     <PageBackground
+    :theme="currentTheme.theme"
+    :backgrounds="backgrounds"
+    top="0"
+    left="0"
+    width="100%"
+    height="428.17px"
+    backgroundSize= "contain"
+    backgroundPosition= 'left'
+  />
       
       <div v-if="collection" class="collection-details-container">
       <!-- Image banner -->  

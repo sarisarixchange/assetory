@@ -121,7 +121,7 @@ import Topbar from '../components/Topbar.vue';
            // background image
         this.currentBackgroundLayer = 'background-layer-grayscale';  
 
-    } else if (payload.theme === "high-contrast") {
+    } else if (payload.theme === "highContrast") {
           this.isPinkLeftCardIconVisible = false;
           this.isGrayLeftCardIconVisible = false;
           this.isHighContrastLeftCardIconVisible = true;

@@ -25,7 +25,6 @@ import artistsData from '../data/artists.json'; // Import artists data if needed
   const collectionId = parseInt(this.$route.params.id, 10);
   this.collection = collectionsData.find((item) => item.id === collectionId);
   
-  
   },
 
 computed: {

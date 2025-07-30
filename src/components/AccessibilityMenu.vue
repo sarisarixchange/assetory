@@ -14,8 +14,8 @@ export default {
             isMenuVisible: false,
             fontSize: 1, // This is now a scale factor (1 = 16px)
             baseFontSize: null, // Default root font size in pixels
-            baseGap: 18, // Store the base gap value
-            baseGapUnit: 'rem',
+            baseGap: 2.874, // Store the base gap value
+            baseGapUnit: 'vw',
             currentTheme: 'default', // Default theme
             localNotificationVisible: this.isNotificationVisible,
 
@@ -406,35 +406,16 @@ export default {
 
     </script>
 
-<style>
-:root {
-  --primary-color: #D400A6; /* Main pink color */
-  --secondary-color: #FFEDF4; /* Light pink background */
-  --navigation-buttons-border-color:#F1AFDD;
-  --hover-color: #A80084; /* Darker pink for hover states */
-  --hover-text-color: #FFFFFF;
-  --shadow: #F1AFDD; /* Shadow color */
+<style scoped>
 
-
-  --primary-color-left-box: #E7EB17;
-  --secondary-color-left-box: #FCFCCE;
-  --text-color-left-box: #D400A6; /* Secondary text color */
-  --hover-color-left-box: #E7EB17; 
-  --hover-text-color-left-box:#D400A6;
-  
-}
-
-  
-
-  
+   
   .nav-buttonAccessibilityIcon {
   color: var(--primary-color);
-  border-radius: 10px;
-  padding: 0.5rem 1rem;
-  width: 5%;
-  height: auto;
+  border-radius: 16px;
+  padding: 0.468vw 1.042vw;
+  width: 3.472vw;
   background-image: url('/icons/person.svg');
-  background-size: contain;
+  background-size: 1.389vw;
   background-repeat: no-repeat;
   background-position: center;
   background-color: var(--background-color);
@@ -523,14 +504,17 @@ background-position: center;
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 1.149vw; /*12 px*/
+  gap: 0.936vw;
   background-color: white;
-  border-radius: 10px;
+  border: 1px solid var(--primary-color);
+  border-radius: 15px 15px 5px 5px;
   position: absolute;
-  right: 0.5vw;
-  top: 7vh;
-  width: 20vw;
-  /* height: 10vh; */
+  right: 1.042vw;
+  top: 9.176vh;
+  width: 22.569vw;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 4;
   cursor:pointer;
@@ -539,41 +523,29 @@ background-position: center;
 .accessiblityToolsHeading {
         padding: 0.30em;
         border-radius: 10px;
-        margin-bottom: 0.25em;
         background-color: var(--primary-color);
         color: white;       
-        /* font-size: 0.75em; */
         font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
-        /* font-family: Doto; */
-        /* font-weight: 900; */
+        font-size: var(--font-24px);
+        font-weight: 400;
         text-align: center;
         cursor: default;
       }
 
-/* Links inside the dropdown */
-.dropdown-content p {
-  border-radius: 5px;
-  margin-bottom: 0.125em;
-  /* color: #D400A6; */
-  font-family: 'Inter', sans-serif;
-  padding: 0.4em;
-  text-decoration: none;
-  text-align: left;
-  display: block;
-  font-size: 0.5rem;
-
-}
 
 .accessibilityButtonDiv {
-  font-size: 0.60rem;
   width: 100%;
   padding: 0.5em;
   display: flex;
   border: none;
+  border-radius: 10px;
   color:var(--primary-color);
   background-color: var(--secondary-color);
   justify-content: space-between;
   align-items: center;
+  font-size: var(--font-18px);
+  font-weight: 500;
+  
 }
 
 

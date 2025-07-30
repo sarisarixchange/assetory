@@ -30,7 +30,13 @@ export default {
 
 </script>
 
-<style></style>
+<style>
+
+.placeholder {
+  height: 77vh;
+}
+
+</style>
 
 
 <template>
@@ -38,7 +44,10 @@ export default {
 
     <!-- top bar -->
     <Topbar @theme-changed="updateTheme" />
-
+    
+    <div class="placeholder">
+      
+    </div>
     
     <BackTopButton />
 

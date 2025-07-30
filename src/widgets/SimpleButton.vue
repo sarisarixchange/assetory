@@ -24,6 +24,8 @@ export default {
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   font-family: 'Inter', sans-serif;
+  font-size: var(--font-base);
+  font-weight: 600;
   border-radius: 20px;
   padding: 0.5rem 1rem;
   cursor: pointer;  

@@ -81,6 +81,7 @@ export default {
 <!-- params: { id: gallery.id } -->
 
 <template>
+    <div v-if="isAboutPage" class="alwaysPrimary">
   <!-- heading and searchbar -->
   <div class="heading-and-searchbar">
     <div class="gallery-heading">
@@ -90,7 +91,6 @@ export default {
 
     <!-- searchbar only show if enabled -->
 <SearchBar v-if="showSearchBar" />
-
   </div>
 
   <div class="galleryGrid">
@@ -99,17 +99,41 @@ export default {
         <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
       </div>
      
-      <div v-if="isAboutPage" class="alwaysPrimary">
       <p>{{ gallery.title }}</p>
-      </div>
       
-      <div v-else class="galleryCardContentGoTo">
+     
+    </div>
+  </div>
+</div>
+
+  <div v-else>
+
+    <!-- heading and searchbar -->
+    <div class="heading-and-searchbar">
+    <div class="gallery-heading">
+      <h2>{{ galleryName }}</h2>
+      <p>{{ galleryDescription }}</p>
+    </div>
+
+    <!-- searchbar only show if enabled -->
+<SearchBar v-if="showSearchBar" />
+  </div>
+
+  <div class="galleryGrid">
+    <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+      <div class="galleryCardContent">
+        <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+      </div>
+     
+      
+      <div class="galleryCardContentGoTo">
         <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
           <span class="learn-more">{{ gallery.title }}</span>
           <span class="ok-action" aria-hidden="true">></span>
         </router-link>
       </div>
     </div>
+  </div>
   </div>
 </template>  
 
@@ -125,68 +149,87 @@ export default {
   align-items: center;
 }
 
+
+
 .heading-and-searchbar input[type=text] {
   font-family: 'Inter', sans-serif;
   border: 1px solid var(--primary-color);
   border-radius: 2rem;
-  font-size: 0.75rem;
+  font-size: var(--font-small);
+  font-weight: 500;
   padding: 0.25rem;
+  margin-right: 5.521vw;
+}
+
+.gallery-heading{
+  margin-top: 2.247vw;
+  margin-left: 4.444vw;
 }
 
 .gallery-heading h2 {
   font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-size: var(--font-24px);
+  font-weight: 400;
+}
+
+.gallery-heading p {
+  font-size: var(--font-base);
+  font-weight: 400;
+  
 }
 
 .galleryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* 3 columns */
-  gap: 1rem;
-  /* Space between cards */
-  margin-top: 1.5rem;
-  padding-left: 4rem;
-  padding-right: 4rem;
+  margin-top: 2.247vw;
+  padding-left:12.396vw;
+  padding-right: 12.396vw;
+  /*added quickly for showcase*/
+  height: 45vw; 
+  justify-items: center; 
+  /* gap: 1rem;  */
 }
 
 .galleryCard {
-  padding: 1.8%;
+  display: flex;
+  flex-direction: column;
+  padding: 0.833vw;
   border-radius: 12px;
   border: 1px solid var(--primary-color);
   box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow);
   background-color: #fff;
+  width: 22.5vw;
+  height: 34.644vh;
 }
 
 .galleryCardContent {
-  /* width: 18.30rem; */
-  height: 15rem;
+  width: 20.833vw;
+  height: 28.09vh;
   border-radius: 8px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  margin-bottom: 0.35em;
-  padding: 1rem;
 }
 
 .galleryCardContentImage {
   width: 100%;
   height: 100%;
   background-color: var(--secondary-color);
-  object-fit: cover;
-  /* Ensures the image covers the container without distortion */
+  object-fit:contain;
   box-sizing: border-box;
-  /* Includes padding in the element's total size */
   border-radius: 8px;
-  /* Optional: Add rounded corners */
 }
 
 .galleryCardContentGoTo {
   display: flex;
   border-radius: 8px;
   font-family: var(--font-family, 'Handjet'), sans-serif;
-  /* Uses Handjet by default */
   color: var(--primary-color);
-  font-size: 0.8rem;
+  font-size: var(--font-medium);
+  font-weight: 400;
   background-color: var(--secondary-color);
-  padding: 1.75%;
+  height: 3.555vh;
+  margin-top: 0.748vh;
+  align-items: center; 
 }
 
 .galleryCardContentLink {
@@ -210,14 +253,64 @@ export default {
 
 /* css only if in about page */
 .alwaysPrimary {
-  color: var(--secondary-color);
-  background-color: var(--primary-color);
-  border-radius: 8px;
-  font-family: var(--font-family, 'Handjet'), sans-serif;
-  font-size: 0.8rem;
-  padding: 1.75%;
+ 
+  background-color: var(--secondary-color);
+  margin-left: 4.444vw;
+  margin-right: 4.444vw;
+  
+  
+  /* padding: 1.75%; */
 }
 
+.alwaysPrimary .galleryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 2.247vw;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  justify-items: center; 
+  gap: 2.778vw;
+}
 
+.alwaysPrimary p {
+  border-radius: 8px;
+  color: var(--secondary-color);
+  background-color: var(--primary-color);
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-size: var(--font-medium);
+  font-weight: 400;
+  height: 3.713vw;
+  padding: 8px;
+}
 
+.alwaysPrimary .galleryGrid .galleryCard {
+  display: flex;
+  flex-direction: column;
+  /* padding: 0.833vw; */
+  border-radius: 12px;
+  border: 1px solid var(--primary-color);
+  box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow);
+  background-color: #fff;
+  width: 21.875vw;
+  height: 24.125vh;
+  
+}
+
+.alwaysPrimary .galleryCardContent {
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  
+}
+
+.alwaysPrimary .galleryCardContent .galleryCardContentImage {
+  width: 100%;
+  height: 100%;
+  padding: 8px;
+  /* background-color: var(--secondary-color); */
+  object-fit: contain;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
 </style>

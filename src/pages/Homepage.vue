@@ -178,12 +178,13 @@ import Topbar from '../components/Topbar.vue';
 
 </script>
     
-    <style>   
+    <style scoped>   
 
       /* Ensure content boxes appear above background */
       .left-box, .right-box, .center-top-box, .center-bottom-box {
+        background-color: #FFFEF6;
         z-index: 3; /* Place content above grid and background */
-        margin: 1em;
+        /* margin: 1em; */
         cursor: default;
         box-shadow: 
         -6px 6px 0 var(--shadow),  /* Thick left border */
@@ -192,51 +193,59 @@ import Topbar from '../components/Topbar.vue';
 
     
 
-
       .left-box {
-        padding: 1.8%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.749vh;
+        padding: 0.556vh;
         border-radius: 12px;
-        border: 1px solid var(--primary-color);
-     
-      }
-
-
-
-      .right-box {
-        padding: 1.8%;
-        /* width: 80%; */
-        border-radius: 12px;
-        border: 1px solid  var(--primary-color);;
-        
+        border: 1px solid var(--primary-color);     
+        margin-left: 2.847vw;
       }
 
       .center-top-box {
-        padding: 1.8%;
-        /* width: 80%; */
+        display: flex;
+        flex-direction: column;
+        gap: 0.749vh;
+        padding: 0.556vh;
         border-radius: 12px;
-        border: 1px solid  var(--primary-color);;
+        border: 1px solid  var(--primary-color);
+        margin-top:2.809vw;
+        margin-left: 2.847vw ;
       }
 
       .center-bottom-box {
-        padding: 1.8%;
-        /* width: 80%; */
+        display: flex;
+        flex-direction: column;
+        gap: 0.749vh;
+        padding: 0.556vh;
         border-radius: 12px;
-        border: 1px solid  var(--primary-color);;
+        border: 1px solid  var(--primary-color);
+        margin-left: 6.111vw;
       } 
 
-      .grid-container {
+      .right-box {
+        display: flex;
+        flex-direction: column;
+        gap: 0.749vh;
+        padding: 0.556vh;
+        border-radius: 12px;
+        border: 1px solid  var(--primary-color);
+        margin-left:2.847vw;
         
+      }
+
+      .grid-container {        
             display: grid;
-            grid-template-columns: repeat(8, 1fr);
+            grid-template-columns: repeat(12, 1fr);
             grid-template-rows: 7% repeat(8, 1fr);
             width: 100vw;
             height: 100vh;     
             position: relative;
-       
         }
 
       .background-layer {
-          grid-column: 1 / 9; /* Full width */
+          grid-column: 1 / 12; /* Full width */
           grid-row: 1 / 9; /* Covers rows 2 to 9 */
           background-image: url("/icons/xyz.svg"); 
           background-repeat: no-repeat;
@@ -262,55 +271,59 @@ import Topbar from '../components/Topbar.vue';
           background-image: url("/icons/xyz-highContrast.svg"); 
           background-repeat: no-repeat;
           background-size: contain;
-          /* background-position: center; */
           z-index: -1; /* Sends it to the background */
       }
          
-        .header {grid-column: 1/9; grid-row: 1 / 2; 
-            /* Aligns to the top of the row */
-          /* align-self: start;    */
-          /* Takes up only half of the row height */
-          /* height: 50%;           */
-        }
+        .header {grid-column: 1/13; grid-row: 1 / 2;  }
 
-        .left-box { 
-          grid-column: 2 / 4; 
-          grid-row: 3 / 6; 
-          align-self: center;
-          position: relative;
-          top: 15%;
-          right: 20%;
+        .left-box {           
+          grid-column: 1 / 5; 
+          grid-row: 4 / 7;
            }
 
-        .right-box { 
-          grid-column: 6 / 8; 
-          grid-row: 4 / 6;
-          align-self: center;
-          position: relative;
-          top: 20%;
-          left: 20%;
-            }
-
-        .center-top-box { 
-          grid-column: 4 / 6; 
-          grid-row: 2 / 5; 
-          align-self: center; 
-          position: relative;
-          top: 3%;
+         .center-top-box { 
+          grid-column: 5 / 9; 
+          grid-row: 2 / 5;
         }
 
         .center-bottom-box {
-           grid-column: 4 / 6;
-           grid-row:  6/ 9; 
-           align-self: center; 
-           position: relative;
-           left: 13%;
+           grid-column: 5/9;
+           grid-row:  6/ 9;
+          }
+        
+          .right-box { 
+          grid-column: 9/13; 
+          grid-row: 4 / 7;
+            }
+
+        .left-box{
+          width: 28.125vw; 
+          height: 24.719vh;
+        }
+
+        .right-box,
+        .center-top-box,
+        .center-bottom-box {
+          width: 28.125vw; 
+          height: 25.843vh; 
+        }
+
+/* 
+          .left-box {
+              width: clamp(250px, 28.125vw, 600px);
+              height: clamp(190px, 24.719vh, 400px);
           }
 
-        .footer{grid-column: 1/9; grid-row: 9/10} 
+            .right-box,
+            .center-top-box,
+            .center-bottom-box {
+              width: clamp(250px, 28.125vw, 600px);
+              height: clamp(190px, 25.843vh, 400px);
+            } */
 
+        
 
-
+        .footer{grid-column: 1/13; grid-row: 9/10} 
 
 
 .left-box-heading{
@@ -320,32 +333,33 @@ import Topbar from '../components/Topbar.vue';
   font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color:  var(--text-color-left-box);
   align-items: center; /* Ensures vertical alignment */
-  font-size: 1.5vw;
-  padding: 1%;
-  padding-top: 2%;
-  margin-bottom: 0.35em; 
+  font-size: var(--font-24px);
+  font-weight: 400;
+  padding-left: 0.556vw; 
   gap: 0.25em;
-}
-
-.left-box-heading img {
-  width: 1.5vw; /* Using em to scale with text */
-  margin-bottom: 0.1em;
-  margin-left: 0.25em;
+  height: 4.026vh;
+  /* height: clamp(40px, 4.026vh, 60px);  */
+  /* preferred ~43px */
 }
 
 .left-box-paragraph{
   border-radius: 8px;
   background-color: var(--secondary-color-left-box);
   color: var(--primary-color);
-  margin-bottom: 0.35em;
+  height: 15.73vh ;
+  /* height: clamp(120px, 15.73vh, 220px); */
+   /* preferred ~168px */
 }
 
 .left-box-paragraph p {
-  padding: 0.75em;
+  padding: 0.556vh 0;
+  padding-left: 0.938vw;
   font-family: 'Inter', sans-serif;
-  font-size: 0.6rem;
-  font-weight: 350;
-  min-height:  16vh;
+  font-size: var(--font-base);
+  font-weight: 400;
+  height:4.026vh;
+  /* height: clamp(36px, 4.026vh, 64px);  */
+  /* preferred ~43px */
 }
 
 .left-box-action-call{
@@ -353,9 +367,13 @@ import Topbar from '../components/Topbar.vue';
   border-radius: 8px;
   font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color:  var(--secondary-text-color);
-  font-size: 0.8rem;
+  font-size: var(--font-medium);
+  font-weight: 400;
   background-color: var(--secondary-color-left-box);
-  padding: 1.75%;
+  padding: 0.556vh 0.556vw;
+  height: 2.903vh;
+  /* height: clamp(24px, 2.903vh, 48px);  */
+  /* preferred ~31px */
 }
 
 
@@ -391,31 +409,33 @@ width: 100%; /* or any fixed width you prefer */
   font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color: white;
   align-items: center; /* Ensures vertical alignment */
-  font-size: 1.5vw;
-  padding: 1%;
-  padding-top: 2%;
-  margin-bottom: 0.35em; 
+  font-size: var(--font-24px);
+  font-weight: 400;
+  padding: 0.556vh 0 ;
+  padding-left: 0.556vw;
+  /* padding-top: 2%; */
   gap: 0.25em;
+  height: 4.026vh;
+  /* height: clamp(36px, 4.026vh, 64px);  */
+  /* preferred ~43px */
 }
 
 
-.other-box-heading img {
-  width: 1vw; /* Using em to scale with text */
-  margin-bottom: 0.1em;
-  margin-left: 0.25em;
-}
 
 .other-box-subtitle {
   display: flex;
-  padding: 0.5em;
   border-radius: 8px;
   background-color: var(--secondary-color);;
   font-family: 'Inter', sans-serif;
-  color: var(--primary-color);;
+  color: var(--primary-color);
   gap: 0.5vw;
-  font-size: 0.5rem;
-  font-weight: 350;
-  margin-bottom: 0.35em;
+  font-size: var(--font-base);
+  font-weight: 400;
+  padding: 0.556vh 0;
+  padding-left: 0.556vw;
+  height: 3.277vh;
+  /* height: clamp(24px, 3.277vh, 48px);  */
+  /* preferred ~35px */
 }
 
 .other-box-subtitle img {
@@ -425,10 +445,11 @@ width: 100%; /* or any fixed width you prefer */
 .other-box-photos {
     display: block;  /* Ensures it behaves like a normal div */
     width: 100%;
-    min-height: 16vh;
+    height: 12.36vh;
+    /* height: clamp(120px, 12.36vh, 240px);  */
+    /* preferred ~132px */
     border-radius: 8px;
     background-color: var(--secondary-color);
-    margin-bottom: 0.35em;  
 }
 
 
@@ -442,10 +463,12 @@ width: 100%; /* or any fixed width you prefer */
   border-radius: 8px;
   font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
   color:  var(--primary-color);
-  font-size: 0.8rem;
-  padding: 1.75%;
+  font-size: var(--font-medium);
+  font-weight: 400;  
+  padding: 0.556vh 0.556vw;
   background-color: var(--secondary-color);
   align-items: center;
+  height: 2.903vh;
 }
 
 .other-box-action-call:hover {
@@ -457,13 +480,15 @@ margin-left: 0.5em;
 width:92%;
 color: var(--primary-color);
 display: flex;
-  justify-content: space-between; /* or use margin-left: auto on .ok-action */
-  width: 100%; /* or any fixed width you prefer */
+justify-content: space-between; /* or use margin-left: auto on .ok-action */
+ /* width: 100%;  */
+
 }
 
 
 .other-goto-action {
-  font-size: 1.5vw; 
+  font-size: var(--font-medium);
+  font-weight: 400;
   margin-left: auto;
 }
 
@@ -481,6 +506,7 @@ color:var(--hover-text-color)
 /* notification window */
 .notification-window {
   display: flex;
+  align-items: center;
   position: fixed; /* Ensures it's positioned relative to the viewport */
   bottom: 0vh; /* Adjust to place it above the footer */
   left: 50%; /* Center horizontally */
@@ -492,23 +518,25 @@ color:var(--hover-text-color)
   border-radius: 60px 60px 0 0; /* Top-left and top-right corners rounded */
   padding: 1rem;
   width: 80%;
-  /* max-width: 600px; */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10; /* Ensure it appears above other elements */
-  /* text-align: center; */
   font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
+  font-size: var(--font-xl);
+  font-weight: 400;
 }
 
 .notification-dismiss-button {
-  margin-top: 0.5rem;
+  width: 20%;
+  margin-left: 2%;
+  /* margin-top: 0.5rem; */
   background-color:  var(--primary-color);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 16px;
   padding: 0.5rem 1rem;
   cursor: pointer;
-  font-size: 0.8rem;
+  font-size: var(--font-24px);
+  font-weight: 400;
 }
 
 .notification-dismiss-button:hover {

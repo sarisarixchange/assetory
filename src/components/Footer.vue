@@ -51,7 +51,12 @@ watch: {
 };
 </script>
 
-<style>
+<style scoped>
+
+h2 {
+  font-size: var(--font-base);
+  font-weight: 700;
+}
 
 
 
@@ -67,8 +72,7 @@ watch: {
   margin-right: 0.5rem; /* Add margin to the right */
   color: var(--primary-color);
   font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  margin-top: auto;
+  height: 16.667vh;
 }
 
 .leftSideFooter{
@@ -81,21 +85,31 @@ watch: {
 }
 
 .footerLogo img{
-  width: 3rem;
+  width: 3.5vw;
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
 
-/* .footerCopyright h2{
-} */
+.footerCopyright h3 {
+  font-size: var(--font-small);
+  font-weight: 400;
+}
+
+.acknowledgements p {
+  font-size: var(--font-xs);
+  font-weight: 400;
+}
 
 .rightSideFooter{
   width: 50%;
   display: flex;
   gap: 3rem;
   justify-content: flex-end; /* Align items to the right */
-  
+}
 
+.rightSideFooter a {
+  font-size: var(--font-xs);
+  font-weight: 400;
 }
 
 .footer-links{
@@ -124,11 +138,11 @@ watch: {
         </div>
         <div class="footerCopyright">
         <h2>Sari-Sari XChange</h2>
-        <p>Assetory</p>
+        <h3>Assetory</h3>
         <p>© 2025</p>
         </div>
         </div>
-        <div>
+        <div class="acknowledgements">
           <p>☺ Made with care & curiosity</p>
           <p>Designed by Hanan Abbas</p>
           <p>Developed by Luis Navarro</p>

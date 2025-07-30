@@ -6,6 +6,7 @@
         "bannerImage": "serena-zena/serena.png",   
         "cards": [
             {
+               "heading":"",
                "description": "Serena Zena is an emerging artist and curator based in Canada. Her multidisciplinary practice delves into the lived experiences and cultural narratives of the Asian diaspora in Canada. Central to her work are themes of identity, intergenerational relationships, and Asian futurism. Her practice blends storytelling with both traditional and emergent media ranging from textiles to extended-reality. ",
                "social": {"instagram": "@serena.zena", "twitter": "@serenazena"}, 
                "image": "",
@@ -234,7 +235,7 @@
         "bannerImage": "",
         "cards": [
             {
-                
+                "heading":"",
                 "description": "Haoran Chang is a Chinese-Canadian artist and designer based in Toronto, Canada. His work explores the intersection of technology, culture, and identity, often through the lens of traditional Chinese art forms. He is particularly interested in how digital media can be used to preserve and reinterpret cultural heritage.",
                 "social": {"instagram": "@haroan.chang", 
                           "website": "https://www.haoranchang.com/",

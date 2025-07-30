@@ -81,7 +81,7 @@ this.currentTheme = payload; // Update the theme
 
 </script>
 
-<style>
+<style scoped>
 .page-container {
   display: flex;
   flex-direction: column;

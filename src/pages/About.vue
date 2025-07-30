@@ -47,7 +47,6 @@ export default {
 
 <style scoped>
 .page-container {
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -60,8 +59,6 @@ export default {
     padding-left: 2em;
     padding-right: 2em;
 }
-
-
 
 /* Ensure content boxes appear above background */
 .boxOne,
@@ -87,71 +84,53 @@ export default {
 }
 
 .mainTitle {
-    font-size: 5em;
+    font-size: var(--font-mega);
+    font-weight: 400;
     text-align: center;
     color: var(--primary-color);
     font-family: var(--font-family, 'Handjet'), sans-serif;
-    /* Uses Handjet by default */
 }
-
+  
 .textPlusArrows {
-
     display: flex;
     flex-direction: row;
-    width: 40%;
+    width: 100%;
     margin: auto;
+    margin-bottom:2.247vh;
     align-items: center;
     justify-content: center;
-    /* Optional: centers everything horizontally */
 }
 
 .textPlusArrows p {
-    margin-bottom: 1em;
-    /* remove default margins that might mess with alignment */
+    width: 44.514vw;
+    /* margin-bottom: 1em; */
     padding: 0.75em;
     font-family: 'Inter', sans-serif;
-    font-size: 0.8rem;
-    font-weight: 350;
+    font-size: var(--font-xl);
+    font-weight: 400;
     color: var(--primary-color);
 }
 
-p {
-    margin: 0;
-    /* remove default margins that might mess with alignment */
-    padding: 0.75em;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.6rem;
-    font-weight: 350;
-    color: var(--primary-color);
-}
+
 
 .textPlusArrows img {
-    width: 5%;
-    height: auto;
-    /* maintain aspect ratio */
+    width: 5.441vw;
+    height: 11.128vw;    
 }
 
-/* .boxes{
-    background-image: url('backgrounds/backgroundHomepageDefault.svg');
-    background-repeat: no-repeat;
-    background-size: cover;
-} */
+
 
 .boxes {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    /* width: 100vw; */
-    /* height: 100vh;      */
-    position: relative;
-    /* border: 1px solid; */
+    grid-template-rows: repeat(3, 1fr) 0.5fr;
+    margin-top:2.247vh;
 }
 
 .boxesOneAndTwo {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Optional: centers everything horizontally */
     gap: 5em;
     margin-bottom: 2em;
 
@@ -159,51 +138,146 @@ p {
 
 
 .boxOne {
-    padding: 0.5%;
-    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    width:41.111vw;
+    padding: 0.749vh;
+    margin-left: 3.564vw;
+    gap: 0.749vh;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
     border: 1px solid var(--primary-color);
     grid-column: 1 / 3;
     grid-row: 1 / 2;
     align-self: center;
     position: relative;
-    width: 80%;
+    
+}
+
+.other-box-heading{
+  display: flex; 
+  padding: 1.14vh 0.556vw;
+  align-self: stretch; /* Ensures vertical alignment */
+  align-items: center;
+  border-radius: 8px;
+  background-color:  var(--primary-color);
+  font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
+  color: white;
+  font-size: var(--font-24px);
+  font-weight: 400;
+  gap: 0.556vw;
+  
+  height: 3.745vh;
+}
+
+.other-box-action-call{
+  display: flex;
+  padding: 0.556vw ;
+ justify-content: space-between;
+ align-items: center;
+ align-self: stretch;
+ border-radius: 8px;
+ font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
+ color:  var(--primary-color);
+ font-size: var(--font-medium);
+ font-weight: 400;  
+  background-color: var(--secondary-color);
+  align-items: center;
+  height: 2.809vh;
+}
+
+.other-box-action-call:hover {
+  background-color:  var(--hover-color);
+}
+
+.other-call-action{
+color: var(--primary-color);
+display: flex;
+justify-content: space-between; /* or use margin-left: auto on .ok-action */
+  width: 100%; 
+}
+
+
+.other-goto-action {
+  font-size: var(--font-medium);
+  font-weight: 400;
+  margin-left: auto;
+}
+
+
+.other-box-action-call:hover .other-call-action{
+color:var(--hover-text-color)
+}
+
+
+
+.other-box-action-call:hover  .other-goto-action{
+  color:var(--hover-text-color)
 }
 
 .boxOneParagraphContainer {
+    display: flex;
+    padding: 8px;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 8px;
     background-color: var(--secondary-color);
+}
 
+.boxOneParagraphContainer p {
+    font-size: var(--font-20px);    
+    font-weight: 500;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: var(--primary-color);
 }
 
 .boxTwo {
-    background-color: var(--secondary-color-left-box);
-    /* height: 50%; */
+    display: flex;    
+    width: 43.75vw;
+    padding: 0.556vw;
+    margin-right: 4.283vw;
     grid-column: 3 / 5;
     grid-row: 1 / 2;
-    align-self: center;
-    position: relative;
-    top: 20%;
-    left: 10%;
-    border: 1px solid var(--secondary-color-left-box);
-    ;
-    border-radius: 8px;
-    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-self: end; /* ← pushes the div to the bootom of the grid cell */
+    align-items: center;
+    justify-self: end;
+    gap: 8px;   
+    border: 1px solid var(--primary-color-left-box);
+    background-color: #FFFEF6;
+    border-radius: 16px;
+    box-shadow: -4px 4px 0 0 #FFEDF4;
 }
 
 
+
+
+
 .boxThree {
+    display: flex; 
+    width: 36.736vw;
+    padding: 0.556vw;
     margin-left: auto;
     margin-right: auto;
     background-color: var(--secondary-color-left-box);
     margin-bottom: 2em;
     grid-column: 2 / 4;
     grid-row: 2 / 3;
-    align-self: center;
-    position: relative;
-    border: 1px solid var(--secondary-color-left-box);
-    ;
-    border-radius: 8px;
-    width: 80%;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center; /* ← this centers it horizontally inside the grid cell */
+    align-items: center;
+    gap: 8px;   
+    border: 1px solid var(--primary-color-left-box);
+    background-color: #FFFEF6;
+    border-radius: 16px;
+    box-shadow: -4px 4px 0 0 #FFEDF4;
 }
+
 
 .boxesFourToSix {
     display: flex;
@@ -214,45 +288,80 @@ p {
 }
 
 .boxFour {
-    padding: 0.5%;
-    /* width: 80%; */
-    border-radius: 12px;
+    width: 26.736vw;
+    display: inline-flex;
+    padding: 8px;
+    margin-left: 4.189vw;    
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: start;
+    gap: 8px;
+    border-radius: 16px;
     border: 1px solid var(--primary-color);
-    grid-column: 1 / 2;
+    grid-column: 1 / 3;
     grid-row: 3 / 4;
-    align-self: center;
-    position: relative;
 }
 
 .boxFive {
-    /* margin-top: em; */
+    display: flex; 
+    width: 30.347vw;
+    padding: 0.556vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 4.963vh;
+    background-color: var(--secondary-color-left-box);
     grid-column: 2 / 4;
     grid-row: 3 / 5;
-    align-self: center;
-    position: relative;
-    bottom: 10%;
-    left: 12%;
-    border: 1px solid var(--secondary-color-left-box);
-    ;
-    border-radius: 8px;
-    width: 70%;
+    flex-direction: column;
+    justify-content: center;
+    align-self: start; /* ← this centers it horizontally inside the grid cell */
+    align-items: center;
+    gap: 8px;   
+    border: 1px solid var(--primary-color-left-box);
+    background-color: #FFFEF6;
+    border-radius: 16px;
+    box-shadow: -4px 4px 0 0 #FFEDF4;
 }
+
+.boxTwo p, .boxThree p, .boxFive p {
+    /* display: inline-flex; */
+    padding: 20px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    background-color: var(--secondary-color-left-box);
+    border-radius: 8px;
+    margin: 0;
+    /* padding: 0.75em; */
+    font-family: 'Inter', sans-serif;
+    font-size: var(--font-20px);
+    font-weight: 400;
+    color: var(--primary-color);
+}
+
 
 .boxSix {
-    grid-column: 4 / 5;
+    width: 26.736vw;
+    display: inline-flex;
+    padding: 8px;
+    margin-right: 4.006vw;
+    margin-top: 11.236vh;
+    flex-direction: column;
+    justify-content:flex-end;
+    align-items: center;
+    gap: 8px;
+    grid-column: 3 / 5;
     grid-row: 3 / 5;
-    align-self: center;
+    align-self: start;
+    justify-self: end;
     position: relative;
-    top: 0%;
-    border: 1px solid var(--secondary-color-left-box);
-    ;
-    border-radius: 8px;
-    width: 80%;
+    border: 1px solid var(--primary-color);
+    border-radius: 16px;   
 }
 
-.boxFiveParagraphContainer {
-    background-color: var(--secondary-color-left-box);
-}
+
+
 
 .background-layer {
     grid-column: 1 / 9;
@@ -268,13 +377,16 @@ p {
 }
 
 .meetTheTeamHeader {
+    margin-left: 4.444vw;
+    margin-right: 4.444vw;
     background-color: var(--primary-color);
     text-align: center;
     font-family: var(--font-family, 'Handjet'), sans-serif;
     color: var(--secondary-color);
     border: none;
     border-radius: 12px;
-    font-size: 2em;
+    font-size: var(--font-48px);
+    font-weight: 400;
     padding: 0.25em;
 }
 
@@ -320,7 +432,7 @@ p {
                     <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'"
                         alt="">
 
-                    <p>The Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created with and for the Asian
+                    <p>The <strong>Sari-Sari Xchange Assetory</strong> (SSXA) is a virtual asset library created with and for the Asian
                         diaspora community. </p>
 
                     <img v-show="isDecoractionCardSubtitlePink"
@@ -337,21 +449,14 @@ p {
                         <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
                         <h2>About</h2>
                     </div>
-                    <div class="other-box-subtitle">
-                        <img v-show="isDecoractionCardSubtitlePink"
-                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                        <img v-show="isDecoractionCardSubtitleGray"
-                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                        <img v-show="isDecoractionCardSubtitleWCAG"
-                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                    
+                            <div class="other-box-action-call">
                         <router-link :to="{ name: '' }" class="other-call-action">
                             <span>Visit SSX Website</span> <span class="call-goto-action" aria-hidden="true">></span>
                         </router-link>
                     </div>
                     <div class="boxOneParagraphContainer" aria-hidden="true">
-                        <p>Asians are generally underrepresented and misrepresented in new media such as games, VR, and
+                        <p>Asians are generally <strong>underrepresented</strong> and <strong>misrepresented</strong> in new media such as games, VR, and
                             AR. We also recognize the lack of diverse representation of the Asian community’s everyday
                             experiences on major digital asset platforms. </p>
                     </div>
@@ -359,28 +464,31 @@ p {
 
                 <!-- cards -->
 
-
-                <p class="boxTwo">Inspired by the concept of the Sari Sari store in the Philippines —small neighborhood
+                <div class="boxTwo">
+                <p> Inspired by the concept of the <strong>Sari Sari store in the Philippines</strong> —small neighborhood
                     convenience stores run by women within the home as part of the local economic ecosystem — we are
-                    building a diverse and accessible “glocal” digital asset network for media art creation, including
+                    building a diverse and accessible “<strong>glocal</strong>” digital asset network for media art creation, including
                     XR, games, and animation. </p>
+                </div>
 
-
-
-                <p class="boxThree">Beyond serving as an online asset repository, SSXA seeks to use the digital asset
-                    library as a storytelling platform to represent individual stories.</p>
+                <div class="boxThree">
+                <p>Beyond serving as an online asset repository, SSXA seeks to use the digital asset
+                    library as a <strong>storytelling</strong> platform to represent individual stories.</p>
+                    </div>
 
                 <!-- <div class="boxesFourToSix"> -->
                 <div class="boxFour">
-                    <p class="boxOneParagraphContainer">By deploying different tiers of copyright associated with
-                        digital assets, SSXA embraces an ethics of care for these assets, considering the labor involved
+                    <div class="boxOneParagraphContainer">
+                        <p>By deploying different tiers of <strong>copyright</strong> associated with
+                        digital assets, SSXA embraces an <strong> ethics of care </strong> for these assets, considering the <strong>labor</strong> involved
                         in their creation and their emotional and sentimental value. </p>
+                        </div>
                 </div>
 
                 <div class="boxFive">
-                    <p class="boxFiveParagraphContainer">SSXA engages in community collaboration with local partners to
-                        disseminate knowledge in digital creation through activities such as asset creation workshops
-                        and tech jams.
+                    <p>SSXA engages in community collaboration with local partners to
+                        disseminate knowledge in digital creation through activities such as <strong>asset creation workshops</strong>
+                        and <strong> tech jams</strong>.
                         <br></br>
                         Additionally, SSXA invests in innovative and accessible educational modules to further benefit
                         community members at large.
@@ -388,16 +496,23 @@ p {
                 </div>
 
                 <div class="boxSix">
-                    <p class="boxOneParagraphContainer">By leveraging horizontal modes of operation, SSXA empowers
-                        various stakeholders to challenge systemic injustices and inequalities in the current
-                        technological infrastructure.  </p>
+                    <div class="boxOneParagraphContainer">
+                        <p>By leveraging horizontal modes of operation, SSXA empowers
+                        various stakeholders to <strong>challenge systemic injustices</strong> and <strong>inequalities</strong> in the current
+                        <strong>technological infrastructure</strong>.</p>
+                        </div>
                 </div>
 
             </div>
         
 
         <div class="meetTheTeamHeader">
-            <h3>*** Meet the Team ***</h3>
+            <h3>
+            <img src="/icons/left-decor-default.svg">
+            Meet the Team
+            <img src="/icons/right-decor-default.svg">
+            </h3>
+
         </div>
         <!-- Collections Grid -->
         <GalleryGrid 

@@ -72,35 +72,42 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 <style>
       .header {
         margin-top: 0.25em;
-        margin-left: 0.25em;
-        margin-right: 0.25em;
+        margin-left: auto;
+        margin-right: auto;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        /* padding: 0.5rsem 0.5rem; */
         border-bottom: 1px solid #eee;
         background-color: transparent;
         border: solid 1px  var(--primary-color);
-        border-radius: 17px;
+        border-radius: 30px;
+          /* Clamp the width: preferred is ~1409px = 97.847vw at 1440px */
+        width: clamp(320px, 97.847vw, 2560px);
+
+        /* Clamp the height: preferred is 77px */
+        height: clamp(48px, 7.21vh, 90px); /* 77px on 1068p */
       }
+
 
       .logo-section {
         display: flex;
         align-items: center;
-        gap: 1rem;
+              /* Gap: clamp between 8px and 24px, preferred ~16px */
+        gap: clamp(8px, 1.111vw, 24px);
+
+      /* Margin-left: clamp between 10px and 30px, preferred ~17px */
+      margin-left: clamp(10px, 1.181vw, 30px);
       }
 
       .logo {
-        width: 2.7vw;
-        height: 2.7vw;
-        /* background-image: url('icons/logo.svg'); 
-        background-size: contain;
-        background-repeat: no-repeat;     */
+       /* Width: clamp between 40px and 80px, preferred ~60px */
+        width: clamp(10px, 3.472vw, 60px);
         display: flex;
         align-items: center;
-        justify-content: center;
-        margin-left: 0.5em;
+        justify-content: center;      
       }
+
+     
     
      
 
@@ -117,22 +124,26 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 }
     .marquee {
         overflow: hidden;
-        width: 65%;
+        width: 100vw;
         display: flex;
         white-space: nowrap;
         cursor: default;
-        gap: var(--marquee-item-gap, var(--base-gap)); /* adjust rem as needed */
+        gap: 100%;
+        /* gap: var(--marquee-item-gap, var(--base-gap)); */
       }
 
       .marqueeItem { 
         font-family: var(--font-family, 'Handjet'), sans-serif; 
-        font-size: 0.84rem;
+        font-size: var(--font-24px);
+        font-weight: 400;
         color: var(--primary-color);
         display: flex;
         align-items: center;
         min-width: 100%; /* Ensures each item takes the full width */
         animation: marquee-scroll 30s linear infinite;
         /* margin-right: var(--marquee-item-margin-right); */
+        
+
       }
 
         @keyframes marquee-scroll {
@@ -146,20 +157,24 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 
 
       .nav-buttons {
+        width: 70vw;
         display: flex;
-        gap: 1rem;
-        padding: 0.5%;          
-      }
+        gap: 1rem; /*16px*/
+        margin-right: 1.458vw; /*21px*/        
+        justify-content: flex-end;
+        }
+
+      
 
       .nav-button {
         text-align: center;  
-        padding: 0.45rem 0.75rem;
+        padding: 0.468vw 1.389vw;
         border: 1px solid  var(--navigation-buttons-border-color);
         background: none;
         color:  var(--primary-color);
-        border-radius: 20px;
-        font-size: 0.50rem;
-        font-weight: bold;
+        border-radius: 16px;
+        font-size: var(--font-small);
+        font-weight: 600;
         cursor: pointer;
         transition: background-color 0.2s;
       }

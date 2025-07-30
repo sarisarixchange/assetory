@@ -24,7 +24,7 @@ export default {
 .backTop {
   display: flex;
   padding: 1rem;
-  margin-top: auto;
+  /* margin-top: auto; */
 }
 
 .backTop button {
@@ -32,10 +32,14 @@ export default {
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   font-family: 'Inter', sans-serif;
-  border-radius: 8px;
-  padding: 0.125rem;
+  font-size: var(--font-xs);
+  font-weight: 500;
+  border-radius: 9px;
+  padding: 0.278vh 0.694vw;
+  /* margin-bottom: 2.247vw; */
   cursor: pointer;
-  /* transition: background-color 0.3s ease; */
+  width: 7.014vw;
+  height: 2.154vh;
 }
 
 /* .backTop button:hover {

@@ -54,7 +54,10 @@ export default {
 <style scoped>
 
 .page-container {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  height: 100vh; /* or 100% if its parent has a height */
 }
 
 </style>
@@ -71,9 +74,9 @@ export default {
     :backgrounds="backgrounds"
     top="0"
     left="0"
-    width="413px"
-    height="428.17px"
-    backgroundSize= "contain"
+    width="28.681vw"
+    height="40.091vw"
+    backgroundSize= ""
     backgroundPosition= 'left'
   />
 

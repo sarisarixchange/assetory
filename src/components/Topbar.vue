@@ -70,6 +70,8 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 </script>
 
 <style>
+
+
       .header {
         margin-top: 0.25em;
         margin-left: auto;
@@ -82,10 +84,11 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
         border: solid 1px  var(--primary-color);
         border-radius: 30px;
           /* Clamp the width: preferred is ~1409px = 97.847vw at 1440px */
-        width: clamp(320px, 97.847vw, 2560px);
-
+        /* width: clamp(320px, 97.847vw, 2560px); */
+        width: 97.847vw;
         /* Clamp the height: preferred is 77px */
-        height: clamp(48px, 7.21vh, 90px); /* 77px on 1068p */
+        /* height: clamp(48px, 7.21vh, 90px);  */
+        height: 7.21vh;
       }
 
 
@@ -198,6 +201,8 @@ import AccessibilityMenu from './AccessibilityMenu.vue';
 </style>
 
 <template>
+
+
      <div class="header">
         <div class="logo-section">
           <h1 class="visually-hidden">Sari-Sari Asset Library</h1>

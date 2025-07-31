@@ -1,17 +1,24 @@
 [
     {
       "id": 0,
-      "title": "Chinese Antique in Hamilton",
-      "thumbnail": "chinese-antiques/thumbnail_ChineseAntiques.png",
-      "bannerImage": "chinese-antiques/banner_ChineseAntiques.png",
+      "title": "Circulation and Context(Chinese Artifacts in Hamilton)",
+      "thumbnail": "chinese-antiques/Thmnl_CirculationandContextChineseAntiqueinHamilton.png",
+      "bannerImage": "chinese-antiques/Banner_CirculationandContextChineseAntiquesinHamilton.png",
       "cards": [
                   {
                     "heading": "About this Collection",
-                    "description": "In this collection of Chinese antiques, you will find artifacts scanned from the McMaster Museum of Art and the Art Gallery of Hamilton. Collected from two major art institutions in Hamilton, Ontario, Canada, these artifacts explore how colonialism, white supremacy, and orientalism have shaped dominant perceptions of the Asian diaspora.",
+                    "description": " These Chinese artifacts offer a complex lens through which to examine the legacies of colonialism, white supremacy, and Orientalism. Some were acquired by European travelers during the height of imperial expansion, reflecting a colonial dynamic in which Asian cultural objects were extracted, decontextualized, and reclassified as exotic trophies or symbols of elite taste. Their display in Western institutions often reinforced Orientalist views, framing China as mysterious, timeless, or inferior. At the same time, other artifacts entered collections through less overtly colonial means, challenging simplistic narratives and raising questions about agency, cultural exchange, and the diverse pathways through which objects travel. Together, these pieces provoke critical reflection on how power, race, and representation shape the way non-Western cultures are collected and understood.",
                     "image": "",
                     "youtubeUrl": "",
                     "contentSideBySide": true
 
+                  },
+                  { 
+                    "heading": "Behind the Scenes",
+                    "description": "",
+                    "image": "chinese-antiques/thumbnail_IMG_1451.jpg",
+                    "youtubeUrl": "", 
+                    "contentSideBySide": false
                   }
                 ],
      "assets": [

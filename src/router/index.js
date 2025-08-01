@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Homepage from '../pages/Homepage.vue';
+import HomepageAutoScaling from '../pages/HomepageAutoScaling.vue';
 import About from '../pages/About.vue';
 import Collections from '../pages/Collections.vue';
 import Collection from '../pages/Collection.vue';
@@ -14,6 +15,7 @@ import TermsOfUse from '../pages/TermsOfUse.vue'
 
 const routes = [
   { path: '/', component: Homepage, name: 'Homepage' },
+  { path: '/homeautoscaling', component: HomepageAutoScaling, name: 'Homepage Auto Scaling' },
   {path: '/about', component: About, name: 'About'},
   {path: '/accessibility-statement', component: AccessibilityStatement, name: 'Accessibility Statement'},
   {path: '/terms-of-use', component: TermsOfUse, name: 'Terms of Use'},

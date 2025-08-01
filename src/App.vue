@@ -13,13 +13,12 @@
             }
 
         html {
-          font-size: 16px;
+          /* font-size: 10px !important; */
+          font-size: clamp(10px, var(--dynamic-font-size, 0.8vw), 16px)  !important;
         }
 
         body {
         font-family: 'Inter', sans-serif;
-        /* 1rem = 16px */
-        /* font-size: 16px;          */
         background: white;
         height: 100vh;
         margin: 0;

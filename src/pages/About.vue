@@ -56,8 +56,8 @@ export default {
 .content {
     display: flex;
     flex-direction: column;
-    padding-left: 2em;
-    padding-right: 2em;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 /* Ensure content boxes appear above background */
@@ -67,6 +67,7 @@ export default {
 .boxFour,
 .boxFive,
 .boxSix {
+    background: white;
     z-index: 3;
     /* Place content above grid and background */
     margin: 1em;
@@ -80,11 +81,11 @@ export default {
 
 .titleAndIntroText {
     text-align: center;
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
 }
 
 .mainTitle {
-    font-size: var(--font-mega);
+    font-size: 8rem;
     font-weight: 400;
     text-align: center;
     color: var(--primary-color);
@@ -96,7 +97,7 @@ export default {
     flex-direction: row;
     width: 100%;
     margin: auto;
-    margin-bottom:2.247vh;
+    margin-bottom: 2.247vh;
     align-items: center;
     justify-content: center;
 }

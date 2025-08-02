@@ -394,7 +394,7 @@ export default {
     display: flex;
     /* width: 24.625rem; */
     /* height: 16.9375rem; */
-    width: clamp(20rem, 22vw, 26rem);
+    width: clamp(20rem, 25vw, 26rem);
     aspect-ratio: 24.625 / 16.9375;
     padding: 0.5rem;
     flex-direction: column;

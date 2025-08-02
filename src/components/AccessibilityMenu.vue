@@ -340,7 +340,7 @@ export default {
 
   // Optional: re-apply theme *at the end* if it doesn't conflict
   this.applyTheme();
-  // localStorage.removeItem('accessibilitySettings');
+  localStorage.removeItem('accessibilitySettings');
     },
 
 

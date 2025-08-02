@@ -14,8 +14,11 @@
 
         html {
           /* font-size: 10px !important; */
-          font-size: clamp(10px, var(--dynamic-font-size, 0.9vw), 16px)  !important;
+          /* font-size: clamp(10px, var(--dynamic-font-size, 0.9vw), 16px)  !important; */
+          font-size: clamp(10px, 0.9vw, 16px)  !important;
+
         }
+
 
         body {
         font-family: 'Inter', sans-serif;

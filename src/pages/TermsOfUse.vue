@@ -2,7 +2,8 @@
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import BackTopButton from '../widgets/BackTopButton.vue';
 import Footer from '../components/Footer.vue'; // Import the Footer component
-
+import TermsOfUseData from '../data/termsofuse.json';
+ // Import the TermsOfUse component
 
 export default {
   components: {
@@ -13,7 +14,8 @@ export default {
 
   data() {
     return {
-      currentTheme: { theme: 'default' }
+      currentTheme: { theme: 'default' },
+      data: TermsOfUseData, // Data for the Terms of Use component
     }
   },
 
@@ -43,6 +45,8 @@ export default {
 
     <!-- top bar -->
     <Topbar @theme-changed="updateTheme" />
+
+  
 
     <div class="placeholder"></div>
     <BackTopButton />

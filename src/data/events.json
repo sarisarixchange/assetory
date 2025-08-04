@@ -1,16 +1,60 @@
 [
     {
       "id": 0,
-      "title": "Exhibition: Objects of Care",
-      "thumbnail": "objects-of-care/objects-of-care-thumbnail.png",
-      "bannerImage": "objects-of-care/objects-of-care-thumbnail.png",
+      "title": "Object Of Care Asset Scanning Party",
+      "thumbnail": "objects-of-care/Thumbnail_ObjectOfCare.png",
+      "bannerImage": "objects-of-care/Banner_ObjectOfCare.png",
       "cards": [
                   {
-                    "heading": "Exhibition: Objects of Care at Centre3",
-                    "description": "The artists in Objects of Care explore this theme in the modern context. Nuanced and personal, yet tethered to the digital world. Imagery of domesticity brings the works together, inviting you in. A randomized parental apology generator awaits a conversation at your dining room table. Your closet is flooded with colourful unnatural light, while your living room holds an array of intangible objects, some familiar, some not.",
-                    "image": "",
+                    "heading": "Scanning Party overview",
+                    "description": "In the Object of Care workshop, we organized a scanning party inspired by Sean Lee and Yvonne Felix’s prompt on the theme of “Object of Care.” Participants were invited to bring an object of care to scan and share the personal stories behind these objects.",
+                    "image": "objects-of-care/ObjectOfCare_2.png",
                     "youtubeUrl": "",
-                    "contentSideBySide": true
+                    "contentSideBySide": false
+                  },
+                  {
+                    "heading": "Scanning Party Documentation",
+                    "description": "",
+                    "image": "objects-of-care/ObjectOfCare_2.png",
+                    "youtubeUrl": "",
+                    "contentSideBySide": false
+                  }
+                ],
+     "assets": [
+                  {
+                    "artistId": 0,
+                    "name": "Golden Dragon Fruit"
+                  }, 
+                  {
+                    "artistId": 0,
+                    "name": "Tang Horse"
+                  }, 
+                  {
+                    "artistId": 1,
+                    "name": "Beginning Posture"
+                  }
+                  
+                ]
+    },
+    {
+      "id": 1,
+      "title": "2025 South Korea 3D Asset for Story-telling Workshop",
+      "thumbnail": "objects-of-care/Thumbnail_ObjectOfCare.png",
+      "bannerImage": "objects-of-care/Banner_ObjectOfCare.png",
+      "cards": [
+                  {
+                    "heading": "Workshop overview",
+                    "description": "In the Object of Care workshop, we organized a scanning party inspired by Sean Lee and Yvonne Felix’s prompt on the theme of “Object of Care.” Participants were invited to bring an object of care to scan and share the personal stories behind these objects.",
+                    "image": "objects-of-care/ObjectOfCare_2.png",
+                    "youtubeUrl": "",
+                    "contentSideBySide": false
+                  },
+                  {
+                    "heading": "Workshop Documentation",
+                    "description": "",
+                    "image": "objects-of-care/ObjectOfCare_2.png",
+                    "youtubeUrl": "",
+                    "contentSideBySide": false
                   }
                 ],
      "assets": [

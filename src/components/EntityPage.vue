@@ -9,8 +9,8 @@ export default {
     entity: Object,
     entityType: String,
     backgrounds: Object,
-    bannerPrefix: String,
-    imagePrefix: String,
+    bannerAndCardImagePrefix: String,
+    assetImagePrefix: String,
     backgroundProps: Object,
     returnRoute: String,
     assetLinkFn: Function,
@@ -28,13 +28,13 @@ export default {
   },
   computed: {
     bannerImage() {
-      return this.entity ? `${this.bannerPrefix}${this.entity.bannerImage}` : '';
+      return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
     },
     resolvedAssets() {
       return this.entity
         ? this.entity.assets.map((asset) => ({
             ...asset,
-            thumbnail: `${this.imagePrefix}${asset.thumbnail}`,
+            thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
           }))
         : [];
     },
@@ -43,8 +43,8 @@ export default {
     updateTheme(payload) {
       this.currentTheme = payload;
     },
-    resolveCardImage(path) {
-      return path ? `${this.imagePrefix}${path}` : '';
+    resolveCardImage(path) {  
+      return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
     },
     resolveYoutubeUrl(url) {
       const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);

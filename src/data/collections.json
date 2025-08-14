@@ -92,7 +92,7 @@
                   { 
                     "heading": "Behind the Scenes",
                     "description": "I used Rococo Vision to do motion capture. Rococo Vision is an accessible AI-powered solution that requires two iPhones. Without the need for a professional motion capture suit, I was able to use this application to capture movement in a local park with a Tai Chi master. As a dual-camera setup, it captures more information, especially when the subject is facing away from the camera. However, the application has some limitations. For instance, the captured movement is not very stable, and the tracking area is limited. Due to these limitations, cleaning the motion capture data in 3D software takes a considerable amount of time.",
-                    "image": "chen-style-taichi/btsImage_1.JPG",
+                    "image": "chen-style-taichi/TaichiBHS_1.JPG",
                     "youtubeUrl": "", 
                     "contentSideBySide": false
                   }

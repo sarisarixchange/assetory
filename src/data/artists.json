@@ -575,5 +575,174 @@
               }
 
         ]
-    }
+    },
+
+    {
+        "id": 2,
+        "title": "Carmela Laganse",
+        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
+        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "cards": [
+            {
+               "heading":"",
+               "description": "Carmela Laganse is an artist and Associate Professor in the School of the Arts at McMaster University. Laganse’s practice engages with intersections of embodied experience and perception as well as exploring the agency embedded in objects and environments. Her work explores the impact of colonialism, diasporic communities and considers how these things contribute to material culture and identity. Working in a variety of media, she often builds interactive work or portable, modular environments that playfully and critically integrate physical, emotional, ritualistic, and intellectual processes through an intersectional lens. ",
+               "social": {"instagram": ""}, 
+               "image": "",
+               "youtubeUrl": "",
+               "contentSideBySide": false
+        }
+      ],
+        "assets": [
+            {
+                "id": 1,
+                "name": "Double Handled Ovoid Ewer",
+                "thumbnail": "serena-zena/chinese-antiques/Double Handled Ovoid Ewer.png",
+                "creator": "Serena Zena",
+                "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
+                "description": "Scanned by Serena at the Mcmaster Museum of Art. This artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
+                "assetType": "3D Model",
+                "creationMethod": "Photogrammetry",
+                "acknowledgement": "Support from the Art Gallery of Hamilton (AGH)",
+                "fileSize": "5.38 MB",
+                "copyright": "CC BY 4.0 DEED",
+                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
+              }
+        ]
+      },
+
+       {
+        "id": 3,
+        "title": "Arturo Jimenez",
+        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
+        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "cards": [
+            {
+               "heading":"",
+               "description": "Arturo Jimenez is a Hamilton-based Artist and filmmaker. Since 2020, he has been an arts and culture professional working with various artists, artistic organizations, and social service providers in the not-for-profit sector. Arturo’s brand of alternative pop was born from his father’s record collection of the 80s and 90s with a healthy dose of tumblr-era teenaged angst. His work has been featured by CFMU’s Hamiltopia radio block, 100% Electronica’s Stream, and various independent record labels such as First Class Collective, Pacific Plaza, and Virtual Beach Club to name a few! His visual work has been exhibited in McMaster University’s SUMMA Charity Art Auction (2019 & 2020), Centre[3] “In The Off Hours” and at the moma dada gallery. ",
+               "social": {"instagram": "@"}, 
+               "image": "",
+               "youtubeUrl": "",
+               "contentSideBySide": false
+        }
+      ],
+        "assets": [
+            {
+                "id": 1,
+                "name": "Double Handled Ovoid Ewer",
+                "thumbnail": "serena-zena/chinese-antiques/Double Handled Ovoid Ewer.png",
+                "creator": "Serena Zena",
+                "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
+                "description": "Scanned by Serena at the Mcmaster Museum of Art. This artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
+                "assetType": "3D Model",
+                "creationMethod": "Photogrammetry",
+                "acknowledgement": "Support from the Art Gallery of Hamilton (AGH)",
+                "fileSize": "5.38 MB",
+                "copyright": "CC BY 4.0 DEED",
+                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
+              }
+        ]
+      },
+
+      {
+        "id": 4,
+        "title": "Olesia Kopusova",
+        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
+        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "cards": [
+            {
+               "heading":"",
+               "description": "Olesia Kopusova is a participant in the SSX Story-telling workshop at Woosong University",
+               "social": {"instagram": ""}, 
+               "image": "",
+               "youtubeUrl": "",
+               "contentSideBySide": false
+        }
+      ],
+        "assets": [
+            {
+                "id": 1,
+                "name": "Little doll",
+                "thumbnail": "olesia-kopusova/LittleDoll.png",
+                "creator": "Olesia Kopusova",
+                "tags": [],
+                "description": "I spent some time with my little sister in my hometown and we made Coraline-style dolls of ourselves and swapped them. So I was able to take the doll with me when leaving to the country I study in. ",
+                "assetType": "3D Model",
+                "creationMethod": "Photogrammetry",
+                "acknowledgement": "",
+                "fileSize": "3.46 MB",
+                "copyright": "CC BY-NC 4.0 DEED",
+                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_LittleDoll.glb",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_LittleDoll.glb"
+              }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Yuanzhi Zhang",
+        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
+        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "cards": [
+            {
+               "heading":"",
+               "description": "Yuanzhi Zhang is a participant in the SSX Story-telling workshop at Woosong University",
+               "social": {"instagram": ""}, 
+               "image": "",
+               "youtubeUrl": "",
+               "contentSideBySide": false
+        }
+      ],
+        "assets": [
+            {
+                "id": 1,
+                "name": "wallet",
+                "thumbnail": "yuanzhi-zhang/Wallet.png",
+                "creator": "Olesia Kopusova",
+                "tags": [],
+                "description": "This is a wallet, an orange wallet. I bought it on an online shopping platform in China and used it for a month.I like this wallet very much. The color is very good and the functionality is strong. It can hold 7 cards and some cash.",
+                "assetType": "3D Model",
+                "creationMethod": "Photogrammetry",
+                "acknowledgement": "",
+                "fileSize": "732kb",
+                "copyright": "CC BY-NC 4.0 DEED",
+                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_wallet.glb",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_wallet.glb"
+              }
+        ]
+      },
+       {
+        "id": 6,
+        "title": "Amber Forno",
+        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
+        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "cards": [
+            {
+               "heading":"",
+               "description": "Amber Forno is a participant in the SSX Object of Care Scanning Party",
+               "social": {"instagram": ""}, 
+               "image": "",
+               "youtubeUrl": "",
+               "contentSideBySide": false
+        }
+      ],
+        "assets": [
+            {
+                "id": 1,
+                "name": "N/A",
+                "thumbnail": "yuanzhi-zhang/Wallet.png",
+                "creator": "Amber Forno",
+                "tags": [],
+                "description": "",
+                "assetType": "3D Model",
+                "creationMethod": "Photogrammetry",
+                "acknowledgement": "",
+                "fileSize": "",
+                "copyright": "CC BY-NC 4.0 DEED",
+                "gltfModel": "https://drive.google.com/open?id=1O_h78vutEuOFE-9ZsBgoqkv2ibWq_trG",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_wallet.glb"
+              }
+        ]
+      }
 ]
+    

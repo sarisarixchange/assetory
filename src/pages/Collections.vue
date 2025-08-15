@@ -47,8 +47,16 @@ export default {
 </script>
 
 <style scoped>
-  .page-container {
-  position: relative;
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full viewport height */
+}
+
+.grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 </style>
 
@@ -58,6 +66,8 @@ export default {
 
     <!-- top bar -->
     <Topbar @theme-changed="updateTheme" />
+
+  <div class="grid">
 
       <!-- background image  -->
       <PageBackground
@@ -77,6 +87,7 @@ export default {
     :items="data" 
     :basePath="basePath"
     :routeName="routeName" />
+</div>
 
     <BackTopButton />
 

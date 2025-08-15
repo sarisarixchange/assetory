@@ -53,7 +53,9 @@ export default {
     /* Ensure the container takes up the full viewport height */
 }
 
+
 .content {
+    flex: 1;
     display: flex;
     flex-direction: column;
     padding-left: 2rem;

@@ -53,11 +53,18 @@ export default {
 
 <style scoped>
 
+
+/* Make the page container take the full height */
 .page-container {
   display: flex;
   flex-direction: column;
-  position: relative;
-  
+  min-height: 100vh; /* full viewport height */
+}
+
+.grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 </style>
@@ -67,6 +74,8 @@ export default {
 
     <!-- top bar -->
     <Topbar @theme-changed="updateTheme" />
+
+    <div class="grid">
 
     <!-- background image -->
     <PageBackground
@@ -90,7 +99,7 @@ export default {
     :routeName="routeName"
      />
 
-
+</div>
     <BackTopButton />
 
     <!-- footer -->

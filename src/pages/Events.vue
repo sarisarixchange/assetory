@@ -38,7 +38,20 @@ export default {
 
 </script>
 
-<style></style>
+<style>
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* full viewport height */
+}
+
+.grid {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+</style>
 
 
 <template>
@@ -47,12 +60,11 @@ export default {
     <!-- top bar -->
     <Topbar @theme-changed="updateTheme" />
 
-    <!-- Collections Grid -->
-    <GalleryGrid :galleryName="galleryName" 
-    :galleryDescription="galleryDescription" 
-    :items="data" 
-    :basePath="basePath"
-    :routeName="routeName" />
+    <div class="grid">
+      <!-- Collections Grid -->
+      <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
+        :basePath="basePath" :routeName="routeName" />
+    </div>
 
     <BackTopButton />
 

@@ -81,7 +81,7 @@ export default {
 <!-- params: { id: gallery.id } -->
 
 <template>
-  <div v-if="isAboutPage" class="alwaysPrimary">
+  <div v-if="isAboutPage" class="aboutPage">
     <!-- heading and searchbar -->
     <div class="heading-and-searchbar">
       <div class="gallery-heading">
@@ -191,10 +191,10 @@ export default {
 
 .galleryGrid {
   display: flex;
-  width: 88.0625rem;
-  height: 100vh;
-  ;
-  /* justify-content: center; */
+  width: 100%;
+  /* width: 88.0625rem; */
+  /* height: 100vh; */
+  justify-content: center;
   /* align-items: center; */
   /* align-content: center; */
   gap: 2.5rem;
@@ -278,7 +278,7 @@ export default {
 }
 
 /* css only if in about page */
-.alwaysPrimary {
+.aboutPage {
 
   background-color: var(--secondary-color);
   margin-left: 4.444vw;
@@ -288,7 +288,7 @@ export default {
   /* padding: 1.75%; */
 }
 
-.alwaysPrimary .galleryGrid {
+.aboutPage .galleryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 2.247vw;
@@ -299,7 +299,7 @@ export default {
   gap: 2.778vw;
 }
 
-.alwaysPrimary p {
+.aboutPage p {
   border-radius: 8px;
   color: var(--secondary-color);
   background-color: var(--primary-color);
@@ -310,7 +310,7 @@ export default {
   padding: 8px;
 }
 
-.alwaysPrimary .galleryGrid .galleryCard {
+.aboutPage .galleryGrid .galleryCard {
   display: flex;
   flex-direction: column;
   /* padding: 0.833vw; */
@@ -323,14 +323,14 @@ export default {
 
 }
 
-.alwaysPrimary .galleryCardContent {
+.aboutPage .galleryCardContent {
   border-radius: 8px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
 
 }
 
-.alwaysPrimary .galleryCardContent .galleryCardContentImage {
+.aboutPage .galleryCardContent .galleryCardContentImage {
   width: 100%;
   height: 100%;
   padding: 8px;

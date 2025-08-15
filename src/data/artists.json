@@ -227,7 +227,7 @@
             },
             {"id": 15,
                 "name": "Adobo squid plate",
-                "thumbnail": "serena-zena/asian-fruit-market/Golden Dragon Fruit.png",
+                "thumbnail": "",
                  "creator": "Serena Zena",
                  "tags": ["food"],
                  "description": "From Adobo Queen in Hamilton, ON Arturo ate the squid adobo. Scanned at McMaster University.",
@@ -239,35 +239,662 @@
                  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Adobo Squid Plate.glb",
                  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Adobo Squid Plate.glb"
             },
-            {"id": 16,
-                "name": "Bock Choy on Side",
-                "thumbnail": "serena-zena/asian-fruit-market/Golden Dragon Fruit.png",
-                 "creator": "Serena Zena",
-                 "tags": ["food"],
-                 "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
-                 "assetType": "3D Model",
-                 "creationMethod": "Photogrammetry",
-                 "acknowledgement": "2023 McMaster Food Scanning Party",
-                 "fileSize": "12.8 MB",
-                 "copyright": "CC BY 4.0 DEED",
-                 "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Bok Choy on Side.glb",
-                 "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Bok Choy on Side.glb"
-            },
-            {"id": 17,
-                "name": "Bock Choy",
-                "thumbnail": "serena-zena/asian-fruit-market/Golden Dragon Fruit.png",
-                 "creator": "Serena Zena",
-                 "tags": ["food"],
-                 "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
-                 "assetType": "3D Model",
-                 "creationMethod": "Photogrammetry",
-                 "acknowledgement": "2023 McMaster Food Scanning Party",
-                 "fileSize": "12.8 MB",
-                 "copyright": "CC BY 4.0 DEED",
-                 "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Bok Choy on Side.glb",
-                 "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Bok Choy on Side.glb"
-            }
-        ]
+               {
+      "id": 16,
+      "name": "Bock Choy on Side",
+      "thumbnail": "",
+      "creator": "Serena Zena",
+      "tags": [
+        "food"
+      ],
+      "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
+      "assetType": "3D Model",
+      "creationMethod": "Photogrammetry",
+      "acknowledgement": "2023 McMaster Food Scanning Party",
+      "fileSize": "12.8 MB",
+      "copyright": "CC BY 4.0 DEED",
+      "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Bok Choy on Side.glb",
+      "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Bok Choy on Side.glb"
+    },
+    {
+      "id": 17,
+      "name": "Chinese Jewelry Box Heirloom",
+      "thumbnail": "",
+      "creator": "Serena Zena",
+      "tags": [
+        "Chinese",
+        "jewelry",
+        "box"
+      ],
+      "description": "Serena's jewelry box from her grandma",
+      "assetType": "3D Model",
+      "creationMethod": "Photogrammetry",
+      "acknowledgement": "Historic Items from Serena USRA Project at the AGH and MMA",
+      "fileSize": "",
+      "copyright": "CC BY 4.0 DEED",
+      "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Chinese Jewelry Box Heirloom.glb",
+      "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Chinese Jewelry Box Heirloom.glb"
+    },
+    {
+      "id": 18,
+      "name": "Figure of an Immortal With Robe",
+      "thumbnail": "",
+      "creator": "Serena Zena",
+      "tags": [],
+      "description": "",
+      "assetType": "3D Model",
+      "creationMethod": "Photogrammetry",
+      "acknowledgement": "Historic Items from Serena USRA Project at the AGH and MMA",
+      "fileSize": "",
+      "copyright": "CC BY 4.0 DEED",
+      "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Figure of an Immortal With Robe.glb",
+      "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Figure of an Immortal With Robe.glb"
+    },
+    {
+      "id": 19,
+      "name": "Ginger",
+      "thumbnail": "",
+      "creator": "Serena Zena",
+      "tags": [
+        "ginger",
+        "root",
+        "tea",
+        "vegetable",
+        "food",
+        "medicine",
+        "produce"
+      ],
+      "description": "Taien's favourite flavour of everything! Ginger tea, ginger juice, ginger candy, ginger fried beef... ginger's restorative healing properties are great for colds and for digestion.",
+      "assetType": "3D Model",
+      "creationMethod": "Photogrammetry",
+      "acknowledgement": "2023 McMaster Food Scanning Party",
+      "fileSize": "",
+      "copyright": "CC BY 4.0 DEED",
+      "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Ginger.glb",
+      "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Ginger.glb"
+    },
+    {
+      "id": 20,
+      "name": "Green Dragon Roll Sushi Piece",
+      "thumbnail": "",
+      "creator": "Serena Zena",
+      "tags": [
+        "food",
+        "sushi",
+        "avocado"
+      ],
+      "description": "",
+      "assetType": "3D Model",
+      "creationMethod": "Photogrammetry",
+      "acknowledgement": "2023 McMaster Food Scanning Party",
+      "fileSize": "",
+      "copyright": "CC BY 4.0 DEED",
+      "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Green Dragon Roll Sushi Piece.glb",
+      "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Green Dragon Roll Sushi Piece.glb"
+    },
+  {
+  "id": 21,
+  "name": "Green Tea Mochi Package",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "Mochi",
+    "mochi ball",
+    "treat",
+    "food"
+  ],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Green Tea Mochi Package.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Green Tea Mochi Package.glb"
+},
+{
+  "id": 22,
+  "name": "Green Tea Mochi",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "Mochi",
+    "mochi ball",
+    "treat",
+    "food"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Green Tea Mochi.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Green Tea Mochi.glb"
+},
+{
+  "id": 23,
+  "name": "Gyoza",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "Japanese dumpling"
+  ],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Gyoza.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Gyoza.glb"
+},
+{
+  "id": 24,
+  "name": "Haoran's Rick and Morty Toy",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "Rick and Morty",
+    "toy",
+    "stuffed animal",
+    "fabric"
+  ],
+  "description": "Scanned at beta space. Hoaran was drawn to this object, we don't know if he likes Rick & Morty like that. H says that in the cartoon, there's one episode of this character who always tries his best to realize someone's request or dream, and if he cannot, he cannot disappear... he thinks it's really cute!",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Haoran's Rick and Morty Toy.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Haoran's Rick and Morty Toy.glb"
+},
+{
+  "id": 25,
+  "name": "Hapi Cracker",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "crackers",
+    "food",
+    "snack",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Hapi Cracker.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Hapi Cracker.glb"
+},
+{
+  "id": 26,
+  "name": "Haw Flakes",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "treats",
+    "asian supermarket",
+    "candy"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University. Memories of eating Haw Flakes as a child! Art's Italian and Filipina grandmas both had them in their houses.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Haw Flakes.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Haw Flakes.glb"
+},
+{
+  "id": 27,
+  "name": "Hup Seng Crackers",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "asian supermarket"
+  ],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Hup Seng Crackers.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Hup Seng Crackers.glb"
+},
+{
+  "id": 28,
+  "name": "Lo Mai Gai (Sticky Rice in Lotus Leaf)",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "dim sum",
+    "chicken rice"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023. We do not fill up on sticky rice during dimsum however, usually ordered a la carte. We generally like the hidden surprses in the sticky rice (egg yolk, sausage etc.)",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Lo Mai Gai (Sticky Rice in Lotus Leaf).glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Lo Mai Gai (Sticky Rice in Lotus Leaf).glb"
+},
+{
+  "id": 29,
+  "name": "Longanisa",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "filipino",
+    "food"
+  ],
+  "description": "Purchased from Adobo Queen in Hamilton, ON and scanned at McMaster University 2023. The filipino breakfast sausage  eaten with rice, fried fish, an egg (of the silog variety).",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Longanisa.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Longanisa.glb"
+},
+{
+  "id": 30,
+  "name": "Lotus Root",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "asian supermarket"
+  ],
+  "description": "Delicious stir-fried! T's fav. A motif in Serena's artwork.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Lotus Root.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Lotus Root.glb"
+},
+{
+  "id": 31,
+  "name": "Mother of Pearl Jewelry Box",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Mother of Pearl Jewelry Box.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Mother of Pearl Jewelry Box.glb"
+},
+{
+  "id": 32,
+  "name": "Pitcher with Wind Swept Wave Motif AGH",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Historic Items from Serena USRA Project at the AGH and MMA",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Pitcher with Wind Swept Wave Motif AGH.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Pitcher with Wind Swept Wave Motif AGH.glb"
+},
+{
+  "id": 33,
+  "name": "Salmon Avocado Roll Sushi Piece",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "sushi",
+    "avocado"
+  ],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Salmon Avocado Roll Sushi Piece.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Salmon Avocado Roll Sushi Piece.glb"
+},
+{
+  "id": 34,
+  "name": "Balut/ Salted Duck Egg Cracked Open",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "egg",
+    ""
+  ],
+  "description": "Bought from Adobo Queen, scanned at McMaster U 2023. As a child, C liked sucking the salty duck egg juice from a hole at the top of the egg. One day broke open the egg to eat it and found the duck fetus and subsequently stopped eating balut- but still likes the salty egg juice. A does not know how to feel about balut (he is also filipino). S hasn't tried balut because of C's story about the duck fetus.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg Cracked Open.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg Cracked Open.glb"
+},
+{
+  "id": 35,
+  "name": "Balut/ Salted Duck Egg",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food"
+  ],
+  "description": "Bought from Adobo Queen, scanned at McMaster U 2023. As a child liked sucking the salty duck egg juice from a hole at the top of the egg. One day broke open the egg to eat it and found the duck fetue and subsequently stopped eating balut- but still likes the salty egg juice. A does not know how to feel about balut (he is also filipino).",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Balut/ Salted Duck Egg.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Balut/ Salted Duck Egg.glb"
+},
+{
+  "id": 36,
+  "name": "Saucer Plate with Flowers on Yellow Field",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Historic Items from Serena USRA Project at the AGH and MMA",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Saucer Plate with Flowers on Yellow Field.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Saucer Plate with Flowers on Yellow Field.glb"
+},
+{
+  "id": 37,
+  "name": "Single Salmon Sushi",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "sushi",
+    "seafood",
+    "fish"
+  ],
+  "description": "Bought at Nations, Hamilton, ON, scanned at McMaster 2023. Proved difficult to scan",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Single Salmon Sushi.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Single Salmon Sushi.glb"
+},
+{
+  "id": 38,
+  "name": "Lumpia/ Spring Rolls in Take Out Container",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "crackers",
+    "food",
+    "snack",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Adobo queen in Hamilton, ON and scanned at McMaster University2023",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Spring Rolls in Take Out Container.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Spring Rolls in Take Out Container.glb"
+},
+{
+  "id": 39,
+  "name": "Starfruit",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "fruit",
+    "asian supermarket",
+    "yellow",
+    "produce"
+  ],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Starfruit.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Starfruit.glb"
+},
+{
+  "id": 40,
+  "name": "Steam Chicken Bun (No Bottom)",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "crackers",
+    "food",
+    "snack",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Steam Chicken Bun (No Bottom).glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Steam Chicken Bun (No Bottom).glb"
+},
+{
+  "id": 41,
+  "name": "Steam Chicken Bun",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "crackers",
+    "food",
+    "snack",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023. Everyone has eaten the paper at least once. Used by A's dad to bribe him and his sister into learning speed math.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Steam Chicken Bun.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Steam Chicken Bun.glb"
+},
+{
+  "id": 42,
+  "name": "Taro Red Bean Bubble Tea",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "Drink",
+    "Taiwanese",
+    "from Gong Cha store"
+  ],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Taro Red Bean Bubble Tea.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Taro Red Bean Bubble Tea.glb"
+},
+{
+  "id": 43,
+  "name": "Turnip Cake",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "dim sum",
+    "savory"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Turnip Cake.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Turnip Cake.glb"
+},
+{
+  "id": 44,
+  "name": "Ube Cupcake Broken",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "treats",
+    "asian supermarket",
+    "candy"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023. Boughtr because of the speeling of cupcake on the packe (Cupkeyk) and because it is ube flavor (filipino, purple sweet potato).",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Ube Cupcake Broken.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Ube Cupcake Broken.glb"
+},
+{
+  "id": 45,
+  "name": "Ube Cupcake",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "treats",
+    "asian supermarket",
+    "candy"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Ube Cupcake.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Ube Cupcake.glb"
+},
+{
+  "id": 46,
+  "name": "Ube Hopia",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "sweet",
+    "treats",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Ube Hopia.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Ube Hopia.glb"
+},
+{
+  "id": 47,
+  "name": "White Rabbit Candy",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "treats",
+    "asian supermarket",
+    "candy"
+  ],
+  "description": "A taste of childhood! Scanned at mcmaster 2023, bought from nations. We love the thin rice paper that wraps the candy and the graphics of the candy are memorable.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/White Rabbit Candy.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/White Rabbit Candy.glb"
+},
+{
+  "id": 48,
+  "name": "Youtiao (Deep-fried dough stick Dim Sum)",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "food",
+    "dim sum"
+  ],
+  "description": "Delicious dipped into congee or wrapped in rice rolls, or just by itself. Comfort food at its finest!",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Youtiao (Deep-fried dough stick Dim Sum).glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Youtiao (Deep-fried dough stick Dim Sum).glb"
+},
+{
+  "id": 49,
+  "name": "Yuan Dynasty Vase, Two Rings, Celadon",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [],
+  "description": "",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Historic Items from Serena USRA Project at the AGH and MMA",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Yuan Dynasty Vase, Two Rings, Celadon.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Yuan Dynasty Vase, Two Rings, Celadon.glb"
+},
+{
+  "id": 50,
+  "name": "hapi Cracker on a stick",
+  "thumbnail": "",
+  "creator": "Serena Zena",
+  "tags": [
+    "crackers",
+    "food",
+    "snack",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/hapi Cracker on a stick.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/hapi Cracker on a stick.glb"
+}
+  ]
     }, 
 
     {
@@ -593,24 +1220,264 @@
         }
       ],
         "assets": [
-            {
-                "id": 1,
-                "name": "Double Handled Ovoid Ewer",
-                "thumbnail": "serena-zena/chinese-antiques/Double Handled Ovoid Ewer.png",
-                "creator": "Serena Zena",
-                "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
-                "description": "Scanned by Serena at the Mcmaster Museum of Art. This artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
-                "assetType": "3D Model",
-                "creationMethod": "Photogrammetry",
-                "acknowledgement": "Support from the Art Gallery of Hamilton (AGH)",
-                "fileSize": "5.38 MB",
-                "copyright": "CC BY 4.0 DEED",
-                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
-                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
-              }
+           {
+  "id": 1,
+  "name": "BBQ pork bun/ siao pao",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "asian pork bun",
+    "rice bun stuffed with pork",
+    "snack",
+    "merienda"
+  ],
+  "description": "From Adobo Queen (Filipino food store) in Hamilton, ON. Yakari took the pork buns home. Scanned at McMaster University.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/BBQ Pork Bun.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/BBQ Pork Bun.glb"
+},
+{
+  "id": 2,
+  "name": "Bamboo steamer",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "wood",
+    "cooking",
+    "round",
+    "steamer"
+  ],
+  "description": "Carmela bought the bamboo steamer from China town in Toronto., Tap Phong Trading Company. Scanned at McMaster University.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Bamboo Steamer.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Bamboo Steamer.glb"
+},
+{
+  "id": 3,
+  "name": "Boy Bawang Cornick Snack",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "Filipino snack food",
+    "corn nuts"
+  ],
+  "description": "Carmela bought the the snack food at Adobo Queen in Hamilton, ON. Scanned at McMaster University.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Bawang Cornick Chip.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Bawang Cornick Chip.glb"
+},
+{
+  "id": 4,
+  "name": "Ceramic Buddha",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "ceramic object",
+    "figurine",
+    "Buddha figure"
+  ],
+  "description": "Carmela bought the figure from China town in Toronto., Tap Phong Trading Company. Included in the VR work by Taienn and Carmela \"Asian Suburban Living Room in Off White and Beige\" . Bought because Carmela grew up with Buddha's in the house even though parents were Catholic. Scanned at McMaster University 2021",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Ceramic Buddha.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Ceramic Buddha.glb"
+},
+{
+  "id": 5,
+  "name": "Ceramic Elephant",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "animal",
+    "mammal",
+    "elephant"
+  ],
+  "description": "Carmela bought the figure from China town in Toronto., Tap Phong Trading Company. Included in the VR work by Taienn and Carmela \"Asian Suburban Living Room in Off White and Beige\" . Mom said it was good luck if the trunk pointed to the door. Scanned at McMaster University 2021",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Ceramic Elephant.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Ceramic Elephant.glb"
+},
+{
+  "id": 6,
+  "name": "Bangus, Filipino Fried Milk Fish",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "filipino",
+    "fried",
+    "food"
+  ],
+  "description": "Purchased from Adobo Queen in Hamilton, ON and scanned at McMaster University 2023. A lot of bangus is from C's mom's home town inn Sta. Tomas, La Union and is a familiar childhood food that reminds her of home.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Filipino Fried Fish.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Filipino Fried Fish.glb"
+},
+{
+  "id": 7,
+  "name": "Filipino Gong",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "musical instrument",
+    "brass",
+    "gong",
+    "filipino",
+    "music"
+  ],
+  "description": "Found by Patrick then given to Carmela. Used in C's project artwork Futurist Love Song, 2019. Scanned at McMaster U 2019. Part of kulingtang set, precolonial instrument from the PH.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Filipino Gong.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Filipino Gong.glb"
+},
+{
+  "id": 8,
+  "name": "Instant Ramen",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "food",
+    "product",
+    "noodles",
+    "product",
+    "asian supermarket"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023. Sapporo noodles were the only kind of instant ramern in winnipeg in the 80's",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Instant Ramen.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Instant Ramen.glb"
+},
+{
+  "id": 9,
+  "name": "Lucky Cat",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "statue",
+    "houseware",
+    "decoration",
+    "good luck",
+    "cat"
+  ],
+  "description": "Lucky Cats are common in Chinese and Japanese culture. There are temples devoted to cats, where thousands of these beckoning cat statues can be found. The filmmaker Chris Marker's Sans Soleil features a scene at one of these temples. Every bubble tea shop and Chinese banguet has a lucky cat. Frequently adapted by westerners... because it is a cat.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Lucky Cat.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Lucky Cat.glb"
+},
+{
+  "id": 10,
+  "name": "Single Shrimp Chip",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "Asian snack food"
+  ],
+  "description": "Always a great asian appetizer in the banquet  hall. We liked sticking the shrimp chip to the tip of the tounge, hear the crackle and wiggle it around. A says you smell like shrimp chips after to eat them.Scanned at McMaster 2023.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Single Shrimp Chip.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Single Shrimp Chip.glb"
+},
+{
+  "id": 11,
+  "name": "Siu Mai Dim Sum",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "chinese dim sum",
+    "food"
+  ],
+  "description": "Filipinos seem to love Siu Mai as much as CHinese people do -perhaps because of the pork? and because it is delicious. Scanned at McMaster univeristy 2023. T likes it dipped in dark vinegar. Bought at Nations in Hamilton, ON",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Siu Mai Dim Sum.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Siu Mai Dim Sum.glb"
+},
+{
+  "id": 12,
+  "name": "Corned Beef",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "corned beef",
+    "rice topping",
+    "asian supermarket",
+    "product",
+    "meat",
+    "food"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University. C's dad cooked this for breakfast with eggs on the weekends. It is a familiar, memorable breakfast from C's childhood.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Corned Beef.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Corned Beef.glb"
+},
+{
+  "id": 13,
+  "name": "Fried Crab Dim Sum",
+  "thumbnail": "",
+  "creator": "Carmela",
+  "tags": [
+    "Dim Sum",
+    "food",
+    "sea food",
+    "crab",
+    "snacks"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University. It is not T or S's favorite. A says  all dim sum is good. He remembers his grandma taking him and A out for Missisauga dimsum. H says its OK, 2023",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Fried Crab Dim Sum.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Fried Crab Dim Sum.glb"
+}
         ]
       },
-
        {
         "id": 3,
         "title": "Arturo Jimenez",
@@ -628,20 +1495,124 @@
       ],
         "assets": [
             {
-                "id": 1,
-                "name": "Double Handled Ovoid Ewer",
-                "thumbnail": "serena-zena/chinese-antiques/Double Handled Ovoid Ewer.png",
-                "creator": "Serena Zena",
-                "tags": ["vase", "ceramic", "Tang dynasty", "Chinese", "art history"],
-                "description": "Scanned by Serena at the Mcmaster Museum of Art. This artifact has a sticker still on it from the British Antique Dealers, physical marks of colonialism, trade, international connection.",
-                "assetType": "3D Model",
-                "creationMethod": "Photogrammetry",
-                "acknowledgement": "Support from the Art Gallery of Hamilton (AGH)",
-                "fileSize": "5.38 MB",
-                "copyright": "CC BY 4.0 DEED",
-                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb",
-                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Double Handled Ovoid Ewer.glb"
-              }
+  "id": 1,
+  "name": "Assorted dimsum takeout",
+  "thumbnail": "",
+  "creator": "Arturo",
+  "tags": [
+    "chinese food",
+    "chinese breakfast",
+    "asian food"
+  ],
+  "description": "From Nations supermarket in Hamilton, ON. Serena, Arturo, Yakari and Carmela ate the dimsum whike scannning.Scanned at McMaster University.",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Assorted Dim Sum Takeout.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Assorted Dim Sum Takeout.glb"
+},
+{
+  "id": 2,
+  "name": "2ScaryCharacterforUE5",
+  "thumbnail": "",
+  "creator": "Arturo Jimenez",
+  "tags": [
+    "video game character",
+    "character model friend",
+    "game ready"
+  ],
+  "description": "Arturo scanned his friends and band members but the wished to be anonymous.",
+  "assetType": "Game Assets",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/2ScaryCharacterforUE5.fbx",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/2ScaryCharacterforUE5.fbx"
+},
+{
+  "id": 3,
+  "name": "3ubercharacter_ue5",
+  "thumbnail": "",
+  "creator": "Arturo Jimenez",
+  "tags": [
+    "video game character",
+    "character model",
+    "friend",
+    "game ready"
+  ],
+  "description": "Arturo scanned his friends and band members but the wished to be anonymous.",
+  "assetType": "Game Assets",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/3ubercharacter_ue5.fbx",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/3ubercharacter_ue5.fbx"
+},
+{
+  "id": 4,
+  "name": "new_arttheboy_character",
+  "thumbnail": "",
+  "creator": "Arturo Jimenez",
+  "tags": [
+    "video game character",
+    "character model",
+    "friend",
+    "game ready"
+  ],
+  "description": "Arturo scanned his friends and band members but the wished to be anonymous.",
+  "assetType": "Game Assets",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/new_arttheboy_character.fbx",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/new_arttheboy_character.fbx"
+},
+{
+  "id": 5,
+  "name": "newscaryCharacter",
+  "thumbnail": "",
+  "creator": "Arturo Jimenez",
+  "tags": [
+    "game ready",
+    "video game character",
+    "character model",
+    "friend"
+  ],
+  "description": "Arturo scanned his friends and band members but the wished to be anonymous.",
+  "assetType": "Game Assets",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "Personal Artist Collections",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/newscaryCharacter.fbx",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/newscaryCharacter.fbx"
+},
+{
+  "id": 6,
+  "name": "Dinaguan, Chocolate Meat Plate",
+  "thumbnail": "",
+  "creator": "Arturo/ Yakari",
+  "tags": [
+    "filipino",
+    "food",
+    "rice",
+    "cooking",
+    "Chocolate Meat"
+  ],
+  "description": "Purchased from Nations in Hamilton, ON and scanned at McMaster University 2023. A took home and ate it. Called chocolate meat to get kids to eat it (actually made with port blood).",
+  "assetType": "3D Model",
+  "creationMethod": "Photogrammetry",
+  "acknowledgement": "2023 McMaster Food Scanning Party",
+  "fileSize": "",
+  "copyright": "CC BY-NC 4.0 DEED",
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Dinaguan, Chocolate Meat Plate.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Dinaguan, Chocolate Meat Plate.glb"
+}
         ]
       },
 

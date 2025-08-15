@@ -57,7 +57,7 @@ export default {
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 100vh; /* or 100% if its parent has a height */
+  
 }
 
 </style>

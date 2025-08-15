@@ -13,13 +13,13 @@ export default {
   components: {
     SearchBar, // Register the SearchBar component
   },
-  
+
   props: {
     galleryName: {
       type: String,
       required: true
     },
-    
+
     galleryDescription: {
       type: String,
       required: true
@@ -39,17 +39,17 @@ export default {
     routeName: {
       type: String,
       required: true  // Make this required to avoid missing it accidentally
-    }, 
+    },
 
     showSearchBar: {
       type: Boolean,
       default: true // show by default
-    }, 
+    },
 
     isAboutPage: {
       type: Boolean,
       default: false
-}
+    }
 
   },
 
@@ -81,69 +81,70 @@ export default {
 <!-- params: { id: gallery.id } -->
 
 <template>
-    <div v-if="isAboutPage" class="alwaysPrimary">
-  <!-- heading and searchbar -->
-  <div class="heading-and-searchbar">
-    <div class="gallery-heading">
-      <h2>{{ galleryName }}</h2>
-      <p>{{ galleryDescription }}</p>
-    </div>
-
-    <!-- searchbar only show if enabled -->
-<SearchBar v-if="showSearchBar" />
-  </div>
-
-  <div class="galleryGrid">
-    <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-      <div class="galleryCardContent">
-        <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+  <div v-if="isAboutPage" class="alwaysPrimary">
+    <!-- heading and searchbar -->
+    <div class="heading-and-searchbar">
+      <div class="gallery-heading">
+        <h2>{{ galleryName }}</h2>
+        <p>{{ galleryDescription }}</p>
       </div>
-     
-      <p>{{ gallery.title }}</p>
-      
-     
+
+      <!-- searchbar only show if enabled -->
+      <SearchBar v-if="showSearchBar" />
+    </div>
+
+    <div class="galleryGrid">
+      <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        <div class="galleryCardContent">
+          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+        </div>
+
+        <p>{{ gallery.title }}</p>
+
+
+      </div>
     </div>
   </div>
-</div>
 
   <div v-else>
 
     <!-- heading and searchbar -->
     <div class="heading-and-searchbar">
-    <div class="gallery-heading">
-      <h2>{{ galleryName }}</h2>
-      <p>{{ galleryDescription }}</p>
+      <div class="gallery-heading">
+        <h2>{{ galleryName }}</h2>
+        <p>{{ galleryDescription }}</p>
+      </div>
+
+      <!-- searchbar only show if enabled -->
+      <SearchBar v-if="showSearchBar" />
     </div>
 
-    <!-- searchbar only show if enabled -->
-<SearchBar v-if="showSearchBar" />
-  </div>
+    <div class="galleryGrid">
+      <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        <div class="galleryCardContent">
+          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+        </div>
 
-  <div class="galleryGrid">
-    <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-      <div class="galleryCardContent">
-        <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
-      </div>
-     
-      
-      <div class="galleryCardContentGoTo">
-        <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
-          <span class="learn-more">{{ gallery.title }}</span>
-          <span class="ok-action" aria-hidden="true">></span>
-        </router-link>
+
+        <div class="galleryCardContentGoTo">
+          <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
+            <span class="learn-more">{{ gallery.title }}</span>
+            <span class="ok-action" aria-hidden="true">></span>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
-  </div>
-</template>  
+</template>
 
 <style>
 .heading-and-searchbar {
   color: var(--primary-color);
   width: 100%;
-  margin-top: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -152,59 +153,77 @@ export default {
 
 
 .heading-and-searchbar input[type=text] {
+  width: 14.875rem;
   font-family: 'Inter', sans-serif;
   border: 1px solid var(--primary-color);
   border-radius: 2rem;
-  font-size: var(--font-small);
+  font-size: 0.75rem;
   font-weight: 500;
-  padding: 0.25rem;
-  margin-right: 5.521vw;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  margin-right: 4rem
 }
 
-.gallery-heading{
-  margin-top: 2.247vw;
-  margin-left: 4.444vw;
+.gallery-heading {
+  margin-left: 4rem;
 }
 
 .gallery-heading h2 {
   font-family: var(--font-family, 'Handjet'), sans-serif;
-  font-size: var(--font-24px);
+  font-size: 1.5rem;
   font-weight: 400;
 }
 
 .gallery-heading p {
-  font-size: var(--font-base);
+  font-size: 1rem;
   font-weight: 400;
-  
+
 }
 
-.galleryGrid {
+/* .galleryGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 2.247vw;
-  padding-left:12.396vw;
-  padding-right: 12.396vw;
-  /*added quickly for showcase*/
-  height: 45vw; 
-  justify-items: center; 
-  /* gap: 1rem;  */
+  width: 88.0625rem;
+  height: 100vh;
+  justify-items: center;
+  gap: 2.5rem;
+} */
+
+.galleryGrid {
+  display: flex;
+  width: 88.0625rem;
+  height: 100vh;
+  ;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* align-content: center; */
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-left: 5.53rem;
+  padding-right: 5.53rem;
+
 }
 
 .galleryCard {
   display: flex;
+  width: 24rem;
+  height: 24rem;
   flex-direction: column;
-  padding: 0.833vw;
-  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
   border: 1px solid var(--primary-color);
-  box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow);
+  /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
   background-color: #fff;
-  width: 22.5vw;
-  height: 34.644vh;
 }
 
+
 .galleryCardContent {
-  width: 20.833vw;
-  height: 28.09vh;
+  /* width: 22.5rem; */
+  height: 18.75rem;
+  align-self: stretch;
   border-radius: 8px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
@@ -214,22 +233,29 @@ export default {
   width: 100%;
   height: 100%;
   background-color: var(--secondary-color);
-  object-fit:contain;
+  object-fit: cover;
   box-sizing: border-box;
   border-radius: 8px;
 }
 
 .galleryCardContentGoTo {
   display: flex;
-  border-radius: 8px;
+  height: 2.375rem;
+  border-radius: 0.5rem;
   font-family: var(--font-family, 'Handjet'), sans-serif;
   color: var(--primary-color);
-  font-size: var(--font-medium);
+  font-size: 1.25rem;
   font-weight: 400;
   background-color: var(--secondary-color);
-  height: 3.555vh;
-  margin-top: 0.748vh;
-  align-items: center; 
+  align-items: center;
+  align-self: stretch;
+  padding: 0.75rem;
+}
+
+/* CSS normally can’t “select the parent” of a hovered element, but :has() flips that — it says “select .galleryCard if it has a child .galleryCardContentGoTo that’s being hovered.” */
+/* Not compatible with Firefox? */
+.galleryCard:has(.galleryCardContentGoTo:hover) {
+  box-shadow: -4px 4px 0 0 var(--primary-color);
 }
 
 .galleryCardContentLink {
@@ -253,12 +279,12 @@ export default {
 
 /* css only if in about page */
 .alwaysPrimary {
- 
+
   background-color: var(--secondary-color);
   margin-left: 4.444vw;
   margin-right: 4.444vw;
-  
-  
+
+
   /* padding: 1.75%; */
 }
 
@@ -269,7 +295,7 @@ export default {
   margin-left: auto;
   margin-right: auto;
   height: 100%;
-  justify-items: center; 
+  justify-items: center;
   gap: 2.778vw;
 }
 
@@ -294,14 +320,14 @@ export default {
   background-color: #fff;
   width: 21.875vw;
   height: 24.125vh;
-  
+
 }
 
 .alwaysPrimary .galleryCardContent {
   border-radius: 8px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
-  
+
 }
 
 .alwaysPrimary .galleryCardContent .galleryCardContentImage {

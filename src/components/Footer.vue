@@ -54,7 +54,7 @@ watch: {
 <style scoped>
 
 h2 {
-  font-size: var(--font-base);
+  font-size: 1rem;
   font-weight: 700;
 }
 
@@ -66,14 +66,15 @@ h2 {
   border-left: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
   border-bottom: none; /* No bottom border */
-  border-radius: 0.5rem 0.5rem 0 0; /* Top-left and top-right rounded, bottom corners straight */
-  padding: 1rem;
-  margin-left: 0.5rem; /* Add margin to the left */
-  margin-right: 0.5rem; /* Add margin to the right */
+  border-radius: 2rem 2rem 0 0; /* Top-left and top-right rounded, bottom corners straight */
+  padding: 2rem;
+  margin-left: 0.97rem; /* Add margin to the left */
+  margin-right: 0.97rem; /* Add margin to the right */
   color: var(--primary-color);
   font-family: 'Inter', sans-serif;
+  height: 14.5625rem;
   /* height: 16.667vh; */
-  height: 4.8125rem;
+  /* height: 4.8125rem; */
 }
 
 .leftSideFooter{
@@ -86,37 +87,38 @@ h2 {
 }
 
 .footerLogo img{
-  width: 3.5vw;
+  width: 5.37119rem;
+  height: 5.375rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
 }
 
 .footerCopyright h3 {
-  font-size: var(--font-small);
+  font-size: 0.875rem;
   font-weight: 400;
 }
 
 .acknowledgements p {
-  font-size: var(--font-xs);
+  font-size: 0.75rem;
   font-weight: 400;
 }
 
 .rightSideFooter{
   width: 50%;
   display: flex;
-  gap: 3rem;
+  gap: 5.2rem;
   justify-content: flex-end; /* Align items to the right */
 }
 
 .rightSideFooter a {
-  font-size: var(--font-xs);
+  font-size: 0.75rem;
   font-weight: 400;
 }
 
 .footer-links{
   display: flex;
   flex-direction: column;
-  gap:0.25rem;
+  gap: 0.25rem;
 }
 
 .footer-links a {
@@ -153,25 +155,26 @@ h2 {
         <div class="rightSideFooter">
           <div class="footer-links">
           <h2>Information</h2>
-          <a href="">SSX Website</a>
-          <a href="">About</a>
-          <a href="">Accessibility</a>
-          <a href="">Terms of Use</a>
+          
+          <a href="https://sarisarixchange.mcmaster.ca/" target="_blank">SSX Website</a>
+          <router-link to="/about">About</router-link>
+          <router-link to="/accessibility-statement">Accessibility</router-link>
+          <router-link to="/terms-of-use">Terms of Use</router-link>
       </div>
 
       <div class="footer-links">
           <h2>Quick Links</h2>
           <a href="">Submit</a>
-          <a href="">Home</a>
-          <a href="">Artists</a>
-          <a href="">Collections</a>
-          <a href="">Events</a>
+          <router-link to="/">Home</router-link>
+          <router-link to="/artists">Artists</router-link>
+          <router-link to="/collections">Collections</router-link>
+          <router-link to="/events">Events</router-link>
       </div>
 
       <div class="footer-links">
           <h2>Contact</h2>
-          <a href="">sarisarixchange@email.com</a>
-          <a href="">@sarisarixchange</a>
+          <a href="mailto:sarisarixchange@email.com">sarisarixchange@email.com</a>
+          <a href="https://www.instagram.com/sarisarixchange/" target="_blank">@sarisarixchange</a>
           
       </div>
 

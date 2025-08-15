@@ -92,7 +92,7 @@ export default {
         root.style.setProperty('--primary-color', '#000000');
         root.style.setProperty('--secondary-color', '#FFFFFF');
         root.style.setProperty('--navigation-buttons-border-color', '#FF42D6');
-        root.style.setProperty('--shadow', 'transparent');
+        root.style.setProperty('--shadow', '#F1AFDD');
         root.style.setProperty('--hover-color', '#FF42D6');
         root.style.setProperty('--hover-text-color', '#000000');
 
@@ -332,15 +332,15 @@ export default {
 
 
       // Step 6: Reset notification UI
-  this.localNotificationVisible = true;
-  this.$emit('update-notification-visible', this.localNotificationVisible);
+      this.localNotificationVisible = true;
+      this.$emit('update-notification-visible', this.localNotificationVisible);
 
-  // Step 7: Save updated preferences
-  this.saveSettings({ isNotificationVisible: this.localNotificationVisible });
+      // Step 7: Save updated preferences
+      this.saveSettings({ isNotificationVisible: this.localNotificationVisible });
 
-  // Optional: re-apply theme *at the end* if it doesn't conflict
-  this.applyTheme();
-  localStorage.removeItem('accessibilitySettings');
+      // Optional: re-apply theme *at the end* if it doesn't conflict
+      this.applyTheme();
+      localStorage.removeItem('accessibilitySettings');
     },
 
 
@@ -389,86 +389,88 @@ export default {
 <style scoped>
 .nav-buttonAccessibilityIcon {
   color: var(--primary-color);
-  border-radius: 16px;
-  padding: 0.468vw 1.042vw;
-  width: 3.472vw;
+  border-radius: 1rem;
+  padding: 0.749rem 1.667rem;
+  width: 3.125rem;
+  /* height: 2.1875rem; */
   background-image: url('/icons/person.svg');
-  background-size: 1.389vw;
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: var(--background-color);
+  background-color: transparent;
   border: 1px solid var(--navigation-buttons-border-color);
   transition: background-color 0.2s;
   cursor: pointer;
 }
 
 .nav-buttonAccessibilityIcon:hover {
-  background-image: url('/icons/personIconWhite.svg');
+  background-image: url('/icons/person.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
+  color: var(--primary-color);
+  box-shadow: -3px 3px 0 0 var(--shadow);
 }
 
 
 
 .navAccessibilityButtonGrayscaleColorPalette {
+  background-color: transparent;
   background-image: url('/icons/personGray.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+ 
 }
 
 
 .navAccessibilityButtonGrayscaleColorPalette:hover {
-  background-color: #525252;
-  background-image: url('/icons/personIconWhite.svg');
+  background-color: transparent;
+  background-image: url('/icons/personGray.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  color: var(--primary-color);
+  box-shadow: -3px 3px 0 0 var(--shadow);
 }
 
 .navAccessibilityButtonHighContrastColorPalette {
-  border-color: #FF42D6;
+  background-color: transparent;
   background-image: url('/icons/personBlack.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  
 }
 
 .navAccessibilityButtonHighContrastColorPalette:hover {
-  background-color: #FF42D6;
+  background-color: transparent;
   background-image: url('/icons/personBlack.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  color: var(--primary-color);
+  box-shadow: -3px 3px 0 0 var(--shadow);
 }
 
 .navAccessibilityButtonWCAGcolorPalette {
-  border-color: #A80084;
+  background-color: transparent;
+  background-image: url('/icons/personWCAG.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;  
+}
+
+.navAccessibilityButtonWCAGcolorPalette:hover {
+  background-color: transparent;
   background-image: url('/icons/personWCAG.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  color: var(--primary-color);
+  box-shadow: -3px 3px 0 0 var(--shadow);
 }
-
-.navAccessibilityButtonWCAGcolorPalette:hover {
-  background-image: url('/icons/personIconWhite.svg');
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #A80084
-}
-
-.accessibility-menu {
-  cursor: pointer;
-  z-index: 5;
-  width: 15vw;
-  /* background-color: red; */
-  margin-left: 7.5em;
-
-}
-
 
 
 /* The container <div> - needed to position the dropdown content */
@@ -481,31 +483,31 @@ export default {
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
+  /* width: 22.569vw; */
+  width: 20.31rem;
   display: flex;
   flex-direction: column;
-  padding: 1.149vw;
-  /*12 px*/
-  gap: 0.936vw;
+  padding: 0.75rem;
+  gap: 0.625rem;
   background-color: white;
   border: 1px solid var(--primary-color);
   border-radius: 15px 15px 5px 5px;
   position: absolute;
-  right: 1.042vw;
-  top: 9.176vh;
-  width: 22.569vw;
+  right: 0.94rem;
+  top: 6.13rem;  
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
   cursor: pointer;
 }
 
 .accessiblityToolsHeading {
-  padding: 0.30em;
+  padding: 0.6875rem 0.875rem;
   border-radius: 10px;
   background-color: var(--primary-color);
   color: white;
   font-family: var(--font-family, 'Handjet'), sans-serif;
   /* Uses Handjet by default */
-  font-size: var(--font-24px);
+  font-size: 1.5rem;
   font-weight: 400;
   text-align: center;
   cursor: default;
@@ -514,7 +516,7 @@ export default {
 
 .accessibilityButtonDiv {
   width: 100%;
-  padding: 0.5em;
+  padding: 0.5rem;
   display: flex;
   border: none;
   border-radius: 10px;
@@ -522,7 +524,7 @@ export default {
   background-color: var(--secondary-color);
   justify-content: space-between;
   align-items: center;
-  font-size: var(--font-18px);
+  font-size: 1.125rem;
   font-weight: 500;
 
 }
@@ -531,6 +533,7 @@ export default {
 .accessibilityButtonDiv:hover {
   color: var(--secondary-color);
   background-color: var(--primary-color);
+  
 }
 
 a {
@@ -539,8 +542,8 @@ a {
 }
 
 .increaseTextIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/IncreaseTextIcon.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -549,91 +552,84 @@ a {
 
 
 .increaseTextIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/IncreaseTextIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .increaseTextIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/IncreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .increaseTextIconWCAG {
-  width: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/IncreaseTextIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .decreaseTextIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/decreaseTextIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .decreaseTextIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/decreaseTextIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .decreaseTextIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/decreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .decreaseTextIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/decreaseTextIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .grayscaleIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/grayscaleIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .grayscaleIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/grayscaleIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -641,18 +637,17 @@ a {
 }
 
 .grayscaleIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/grayscaleIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .grayscaleIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/grayscaleIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -662,206 +657,187 @@ a {
 
 
 .highContrastIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/highContrastIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .highContrastIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/highContrastIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .highContrastIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/highContrastIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .highContrastIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/highContrastIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .linksUnderlineIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/linksUnderlineIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
+
 }
 
 .linksUnderlineIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/linksUnderlineIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .linksUnderlineIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/linksUnderlineIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .linksUnderlineIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/linksUnderlineIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .readableFontIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/readableFontIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .readableFontIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/readableFontIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .readableFontIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/readableFontIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .readableFontIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/readableFontIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/wcagColorsIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/wcagColorsIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/wcagColorsIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .wcagColoursIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/wcagColorsIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .resetIcon {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/resetIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 
 .resetIconGray {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/resetIconGray.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .resetIconHighContrast {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/resetIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .resetIconWCAG {
-  width: 1em;
-  height: 1em;
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/resetIconWCAG.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  /* margin-right: 0.10em; */
 }
 
 .accessibilityButtonDiv:hover .increaseTextIcon,

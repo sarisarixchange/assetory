@@ -71,7 +71,7 @@ export default {
 
 <style>
 .header {
-  margin-top: 0.25rem;
+  margin-top: 0.87rem;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -92,7 +92,7 @@ export default {
 .logo-section {
   display: flex;
   align-items: center;
-  margin-left: 1.181vw;
+  margin-left: 1.06rem;
   
 }
 
@@ -118,7 +118,7 @@ export default {
 
 .marquee {
   overflow: hidden;
-  width: 100vw;
+  width: 100%;
   display: flex;
   white-space: nowrap;
   cursor: default;
@@ -127,7 +127,7 @@ export default {
 
 .marqueeItem {
   font-family: var(--font-family, 'Handjet'), sans-serif;
-  font-size: var(--font-24px);
+  font-size: 1.5rem;
   font-weight: 400;
   color: var(--primary-color);
   display: flex;
@@ -148,23 +148,29 @@ export default {
 
 
 .nav-buttons {
-  width: 70vw;
+  margin-left: 1rem;
   display: flex;
   gap: 1rem;
   margin-right: 1.458vw;
   justify-content: flex-end;
+  
 }
 
 
 
 .nav-button {
+  display: inline-flex;
+  width: max-content;
   text-align: center;
-  padding: 0.468vw 1.389vw;
+  justify-content: center;
+  align-items: center;
+  height: 2.1875rem;  
+  padding: 0.3125rem 1.25rem;  
   border: 1px solid var(--navigation-buttons-border-color);
   background: none;
   color: var(--primary-color);
-  border-radius: 16px;
-  font-size: var(--font-small);
+  border-radius: 1rem;
+  font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.2s;
@@ -172,6 +178,10 @@ export default {
 
 .nav-button.active {
   background-color: var(--primary-color);
+  color: white;
+}
+
+.nav-button.active:hover {
   color: white;
 }
 
@@ -183,8 +193,9 @@ a {
 
 
 .nav-button:hover {
-  color: white;
-  background-color: var(--hover-color);
+  color: var(--primary-color);;
+  box-shadow: -3px 3px 0 0 var(--shadow);
+  /* background-color: var(--hover-color); */
 }
 </style>
 

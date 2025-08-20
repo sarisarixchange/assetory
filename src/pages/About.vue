@@ -387,19 +387,6 @@ export default {
     /* Sends it to the background */
 }
 
-.meetTheTeamHeader {
-    margin-left: 4rem;
-    margin-right: 4rem;
-    background-color: var(--primary-color);
-    text-align: center;
-    font-family: var(--font-family, 'Handjet'), sans-serif;
-    color: var(--secondary-color);
-    border: none;
-    border-radius: 12px;
-    font-size: var(--font-48px);
-    font-weight: 400;
-    padding: 0.25rem;
-}
 
 .logoSection {
     display: flex;
@@ -412,11 +399,20 @@ export default {
 
 .logosRow {
     display: flex;
-    gap: 2rem;
+    gap: 2rem; /* Adjust gap for smaller screens */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
     padding: 1rem;
+    flex-wrap: wrap; /* Allow logos to wrap on smaller screens */
+    justify-content: center; /* Center the logos */
+}
+
+.logosRow img {
+    max-width: 100%; /* Ensure the image doesn't exceed its container */
+    height: auto; /* Maintain aspect ratio */
+    max-height: 100px; /* Set a maximum height for the logos */
+    object-fit: contain; /* Ensure the image fits within its container */
 }
 </style>
 
@@ -524,14 +520,6 @@ export default {
             </div>
 
 
-            <div class="meetTheTeamHeader">
-                <h3>
-                    <img src="/icons/left-decor-default.svg">
-                    Meet the Team
-                    <img src="/icons/right-decor-default.svg">
-                </h3>
-
-            </div>
             <!-- Collections Grid -->
             <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
                 :basePath="basePath" :routeName="routeName" :showSearchBar="false" :isAboutPage="true" />

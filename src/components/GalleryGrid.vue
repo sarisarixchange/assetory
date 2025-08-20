@@ -83,11 +83,15 @@ export default {
 <template>
   <div v-if="isAboutPage" class="aboutPage">
     <!-- heading and searchbar -->
+    <div class="meetTheTeamHeader">
+      <h3>
+        <img class="asterisksHeading" src="/icons/left-decor-default.svg">
+        Meet the Team
+        <img class="asterisksHeading" src="/icons/right-decor-default.svg">
+      </h3>
+    </div>
+
     <div class="heading-and-searchbar">
-      <div class="gallery-heading">
-        <h2>{{ galleryName }}</h2>
-        <p>{{ galleryDescription }}</p>
-      </div>
 
       <!-- searchbar only show if enabled -->
       <SearchBar v-if="showSearchBar" />
@@ -98,9 +102,11 @@ export default {
         <div class="galleryCardContent">
           <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
         </div>
+        <div class="galleryCardBottomText">
+          <img class="asterisk-in-name" src="/icons/asteriskWhite.svg" alt="">
+          <p>{{ gallery.title }}</p>
 
-        <p>{{ gallery.title }}</p>
-
+        </div>
 
       </div>
     </div>
@@ -137,7 +143,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .heading-and-searchbar {
   color: var(--primary-color);
   width: 100%;
@@ -180,23 +186,11 @@ export default {
 
 }
 
-/* .galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 88.0625rem;
-  height: 100vh;
-  justify-items: center;
-  gap: 2.5rem;
-} */
 
 .galleryGrid {
   display: flex;
-  width: 100%;
-  /* width: 88.0625rem; */
-  /* height: 100vh; */
-  justify-content: center;
-  /* align-items: center; */
-  /* align-content: center; */
+  width: 100%;  
+  justify-content: center; 
   gap: 2.5rem;
   flex-wrap: wrap;
   padding-left: 5.53rem;
@@ -221,7 +215,6 @@ export default {
 
 
 .galleryCardContent {
-  /* width: 22.5rem; */
   height: 18.75rem;
   align-self: stretch;
   border-radius: 8px;
@@ -279,64 +272,92 @@ export default {
 
 /* css only if in about page */
 .aboutPage {
-
   background-color: var(--secondary-color);
-  margin-left: 4.444vw;
-  margin-right: 4.444vw;
+  margin-left: 3.44rem;
+  margin-right: 3.44rem;
+}
 
+.meetTheTeamHeader {
+  width: 100%;
+  background-color: var(--primary-color);
+  text-align: center;
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 12px;
+  font-size: 3rem;
+  font-weight: 400;
+}
 
-  /* padding: 1.75%; */
+.meetTheTeamHeader .asterisksHeading {
+  width: 5.45231rem;
+  height: 1.96581rem;
+
 }
 
 .aboutPage .galleryGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  margin-top: 2.247vw;
-  margin-left: auto;
-  margin-right: auto;
-  height: 100%;
-  justify-items: center;
-  gap: 2.778vw;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-left: 10rem;
+  padding-right: 10rem;
 }
 
-.aboutPage p {
-  border-radius: 8px;
-  color: var(--secondary-color);
-  background-color: var(--primary-color);
-  font-family: var(--font-family, 'Handjet'), sans-serif;
-  font-size: var(--font-medium);
-  font-weight: 400;
-  height: 3.713vw;
-  padding: 8px;
-}
 
 .aboutPage .galleryGrid .galleryCard {
   display: flex;
+  width: 19.6875rem;
+  height: 16.10363rem;
   flex-direction: column;
-  /* padding: 0.833vw; */
-  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
   border: 1px solid var(--primary-color);
-  box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow);
   background-color: #fff;
-  width: 21.875vw;
-  height: 24.125vh;
-
 }
 
 .aboutPage .galleryCardContent {
-  border-radius: 8px;
+  width: 18.6875rem;
+  height: 12.125rem;
+  align-self: stretch;
+  border-radius: 0.628rem;
   background-color: var(--secondary-color);
   color: var(--primary-color);
-
 }
 
 .aboutPage .galleryCardContent .galleryCardContentImage {
   width: 100%;
   height: 100%;
-  padding: 8px;
-  /* background-color: var(--secondary-color); */
-  object-fit: contain;
+  background-color: var(--secondary-color);
+  object-fit: cover;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: 0.628rem;
+}
+
+
+.aboutPage .galleryCardBottomText {
+  display: flex;
+  padding: 0.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  align-self: stretch;
+  border-radius: 0.5rem;
+  background-color: var(--primary-color);
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  color: white;
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.0125rem;
+}
+
+.aboutPage .asterisk-in-name {
+  width: 0.94081rem;
+  height: 0.97863rem;
 }
 </style>

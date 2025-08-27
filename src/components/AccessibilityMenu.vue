@@ -392,7 +392,7 @@ export default {
   border-radius: 1rem;
   padding: 0.749rem 1.667rem;
   width: 3.125rem;
-  /* height: 2.1875rem; */
+  height: 2.1875rem;
   background-image: url('/icons/person.svg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -925,60 +925,81 @@ accessibilityButtonDiv:hover .wcagColoursIconHighContrast,
 .dropdown-content p {
   flex-grow: 1;
 }
+
+/* Sticky left wrapper for accessibility button and menu */
+.accessibility-sticky-wrapper {
+  position: fixed;
+  left: 1rem;
+  top: 10rem;
+  transform: translateY(-50%);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Adjust dropdown to appear right of button */
+.dropdown-content {
+  left: 3.5rem; /* Move menu to the right of the button */
+  right: auto;
+  top: 14rem;
+  transform: translateY(-50%);
+}
 </style>
 
 <template>
+  <div class="accessibility-sticky-wrapper">
+    <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibilityIcon]" @click="accessibilityMenuVisibility"
+      aria-label="Accessibility Menu">
+    </button>
+    <!-- accessibility menu -->
+    <div v-show="isMenuVisible" class="dropdown-content" role="dialog" aria-modal="true"
+      aria-labelledby="accessibility tools heading" ref="accessibilityMenu">
+      <div>
+        <h2 class="accessiblityToolsHeading">
+          Accessibility Tools
+        </h2>
+      </div>
+      <button @click="increaseTextSize" class="accessibilityButtonDiv">
+        <span>Increase Text</span>
+        <span :class="currentIncreaseTextIcon" aria-hidden="true"></span>
 
-  <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibilityIcon]" @click="accessibilityMenuVisibility"
-    aria-label="Accessibility Menu">
-  </button>
-  <!-- accessibility menu -->
-  <div v-show="isMenuVisible" class="dropdown-content" role="dialog" aria-modal="true"
-    aria-labelledby="accessibility tools heading" ref="accessibilityMenu">
-    <div>
-      <h2 class="accessiblityToolsHeading">
-        Accessibility Tools
-      </h2>
+      </button>
+
+      <button @click="decreaseTextSize" class="accessibilityButtonDiv">
+        <span>Decrease Text</span>
+        <span :class="currentDecreaseTextIcon" aria-hidden="true"></span>
+      </button>
+
+      <button @click="changeTograyscale" class="accessibilityButtonDiv">
+        <span>Grayscale</span>
+        <span :class="currentGrayScaleIcon" aria-hidden="true"></span>
+      </button>
+
+      <button @click="changeToHighContrast" class="accessibilityButtonDiv">
+        <span>High Contrast</span>
+        <span :class="currentHighContrastIcon" aria-hidden="true"></span>
+      </button>
+
+      <button @click="activateLinksUnderline" class="accessibilityButtonDiv">
+        <span>Links Underline</span>
+        <span :class="currentLinksUnderlineIcon" aria-hidden="true"></span>
+      </button>
+
+      <button @click="activateReadableFont" class="accessibilityButtonDiv">
+        <span>Readable Font</span>
+        <span :class="currentReadableFontIcon" aria-hidden="true"></span>
+      </button>
+
+      <button @click="changeToWCAGcolors" class="accessibilityButtonDiv">
+        <span>WCAG AAA Colours</span>
+        <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
+      </button>
+
+      <button @click="reset" class="accessibilityButtonDiv">
+        <span>Reset</span>
+        <span :class="currentResetIcon" aria-hidden="true"></span>
+      </button>
     </div>
-    <button @click="increaseTextSize" class="accessibilityButtonDiv">
-      <span>Increase Text</span>
-      <span :class="currentIncreaseTextIcon" aria-hidden="true"></span>
-
-    </button>
-
-    <button @click="decreaseTextSize" class="accessibilityButtonDiv">
-      <span>Decrease Text</span>
-      <span :class="currentDecreaseTextIcon" aria-hidden="true"></span>
-    </button>
-
-    <button @click="changeTograyscale" class="accessibilityButtonDiv">
-      <span>Grayscale</span>
-      <span :class="currentGrayScaleIcon" aria-hidden="true"></span>
-    </button>
-
-    <button @click="changeToHighContrast" class="accessibilityButtonDiv">
-      <span>High Contrast</span>
-      <span :class="currentHighContrastIcon" aria-hidden="true"></span>
-    </button>
-
-    <button @click="activateLinksUnderline" class="accessibilityButtonDiv">
-      <span>Links Underline</span>
-      <span :class="currentLinksUnderlineIcon" aria-hidden="true"></span>
-    </button>
-
-    <button @click="activateReadableFont" class="accessibilityButtonDiv">
-      <span>Readable Font</span>
-      <span :class="currentReadableFontIcon" aria-hidden="true"></span>
-    </button>
-
-    <button @click="changeToWCAGcolors" class="accessibilityButtonDiv">
-      <span>WCAG AAA Colours</span>
-      <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
-    </button>
-
-    <button @click="reset" class="accessibilityButtonDiv">
-      <span>Reset</span>
-      <span :class="currentResetIcon" aria-hidden="true"></span>
-    </button>
   </div>
 </template>

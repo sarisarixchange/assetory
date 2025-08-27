@@ -88,37 +88,47 @@ cursor: pointer;
 .collection-details-container{
 display: flex;
 flex-direction: column;
-gap: 1rem;
-margin-left: 12rem;
-margin-right: 12rem;
-margin-bottom: 2rem;
+align-items: center;
+width: 60.5625rem;
+/* height: 23.96563rem; */
+gap: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+margin-bottom: 4.5rem;
 color: var(--primary-color);
 font-family: 'Inter', sans-serif;
-font-size: var(--font-base);
+font-size: 1rem;
 font-weight: 400;
 }
 
-
+/* container */
 .image-banner-artist {
+  width: 18.75rem;
+  height: 18.75rem;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  align-self: center;
+  box-sizing: border-box; 
 }
 
+/* actual image */
 .banner-image-artist {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   border: 1px solid var(--primary-color);
-  border-radius: 20px;
-  padding: 0.25rem;
+  border-radius:1rem;
+  padding: 0.5rem;
 }
 
 .collection-details{
 display: flex;
 flex-direction: column;
+background-color: var(--background-color);
+width: 53.5rem;
 border: 1px solid var(--primary-color);;
-border-radius: 20px; 
-padding: 1rem;
-gap: 1rem;
+border-radius: 1rem;
+padding: 1.5rem;
+gap: 0.5rem;
 }
 
 .image-banner-collection {
@@ -163,6 +173,7 @@ margin-top: 2rem;
 
 .collection-card {
 display: flex;
+
 flex-direction: column;
 gap: 1rem;
 border: 1px solid var(--primary-color);
@@ -216,31 +227,36 @@ border: 1px solid var(--primary-color);
 }
 
 .collection-assets {
-text-align: center;
+  width: 53.5rem;
+ text-align: center;
 
 }
 
+
+
 .collection-assets h2{
 font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
-font-size: var(--font-medium);
+font-size: 1.25rem;
+font-style: normal;
 font-weight: 400;
+margin-bottom: 1.5rem;
+
 }
 
 .collection-assets-card-container{
 display: grid;
 grid-template-columns: repeat(3, 1fr); /* 3 columns */
-gap: 1rem;
+gap: 2rem;
 
 }
 
 .collection-assets-card {
-width: 100%;
-height: 15rem;
+width: 16.5rem;
+height: 16.5rem;
 border: 1px solid  var(--primary-color);
-border-radius: 8px;
-color:  var(--primary-color);;
-margin-bottom: 0.35em;
-padding: 1rem;
+border-radius: 0.625rem;
+color:  var(--primary-color);
+padding: 2rem;
 }
 
 .collection-assets-image {
@@ -252,6 +268,9 @@ box-sizing: border-box; /* Includes padding in the element's total size */
 border-radius: 8px; /* Optional: Add rounded corners */
 }
 
+.collection-assets-card:hover {
+  box-shadow: -4px 4px 0 0 var(--primary-color);
+}
 
 .social-media-item {
 margin-right: 1rem; 
@@ -269,14 +288,16 @@ font-weight: 400;
       <router-link :to="returnRoute" class="nav-button">Return <</router-link>
     </div>
 
-    <PageBackground
+    
+
+    <div v-if="entity" class="collection-details-container">
+      <!-- Background -->
+      <PageBackground
       v-if="backgrounds"
       :theme="currentTheme.theme"
       :backgrounds="backgrounds"
       v-bind="backgroundProps"
     />
-
-    <div v-if="entity" class="collection-details-container">
       <!-- Banner -->
       <div :class="['image-banner', (entityType === 'collection' ||  entityType === 'event') ? 'image-banner-collection' :  'image-banner-artist']">
         <img :src="bannerImage" alt="Banner Image" :class="['banner-image', (entityType === 'collection' ||  entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />

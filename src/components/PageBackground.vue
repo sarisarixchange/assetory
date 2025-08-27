@@ -17,6 +17,7 @@
       height: { type: String, default: 'auto' },
       backgroundSize: {type: String, default: 'contain'},
       backgroundPosition: {type: String, default: 'left'},
+      transform: {type: String, default: 'none'},
       
 
 
@@ -34,6 +35,7 @@
         left: this.left,
         width: this.width,
         height: this.height,
+        transform: this.transform,
         zIndex: -1,
         backgroundImage: `url('${this.imageUrl}')`,
         backgroundSize: this.backgroundSize,

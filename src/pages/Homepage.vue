@@ -258,7 +258,7 @@ export default {
 .right-box,
 .center-top-box,
 .center-bottom-box {
-    background-color: #FFFEF6;
+    background-color: var(--background-color);
     z-index: 3;
     cursor: default;
     box-shadow:
@@ -557,7 +557,7 @@ export default {
     /* Center horizontally */
     transform: translateX(-50%);
     /* Center alignment */
-    background-color: #f9f9f9;
+    background-color: var(--background-color);
     border: 2px solid var(--primary-color);
     border-bottom: none;
     /* Removes the bottom border */
@@ -610,7 +610,7 @@ export default {
 .footer {
     grid-column: 1/13;
     grid-row: 9/10;
-    background-color: transparent;
+    background-color: var(--background-color);
     width: 100%;
     height: 11.125rem;
     /*15 vh  before setting*/

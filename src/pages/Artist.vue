@@ -1,8 +1,8 @@
-  
+
   <script>
   import EntityPage from '../components/EntityPage.vue';
   import data from '../data/artists.json';
-  
+
   export default {
     components: { EntityPage },
     data() {
@@ -30,18 +30,19 @@
       },
     },
   };
-  </script>
+</script>
   
 
   <template>
-    <EntityPage
-      :entity="collection"
-      :entityType="'artist'"
-      :backgrounds="backgrounds"
-      bannerAndCardImagePrefix="../images/artists/"
-      assetImagePrefix="../images/artists/"
-      :returnRoute="'/artists'"
-      :assetLinkFn="linkToAsset"
-      :backgroundProps="{ top: '8%', left: '10', width: '100%', height: '80%', backgroundSize: '80%', backgroundPosition: 'top' }"
-    />
+    <EntityPage :entity="collection" :entityType="'artist'" :backgrounds="backgrounds"
+      bannerAndCardImagePrefix="../images/artists/" assetImagePrefix="../images/artists/" :returnRoute="'/artists'"
+      :assetLinkFn="linkToAsset" :backgroundProps="{
+        top: '8.5rem',
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '60.5625rem',
+        height: '23.96563rem',
+        backgroundSize: '90%',
+        backgroundPosition: 'center'
+      }" />
   </template>

@@ -20,37 +20,46 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .backTop {
+
   display: flex;
   padding: 1rem;
-  /* margin-top: auto; */
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  
 }
 
 .backTop button {
   background-color: transparent;
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
+  border-radius: 0.5625rem;
   font-family: 'Inter', sans-serif;
-  font-size: var(--font-xs);
+  font-size: 0.75rem;
+  font-style: normal;
   font-weight: 500;
-  border-radius: 9px;
-  padding: 0.278vh 0.694vw;
-  /* margin-bottom: 2.247vw; */
+  padding: 0.25rem 0.625rem;
   cursor: pointer;
-  width: 7.014vw;
-  height: 2.154vh;
+  width: 8rem;
+  height: 1.4375rem;
 }
 
-/* .backTop button:hover {
-  background-color: #A80084;
-} */
+img {
+  width: 0.68775rem;
+  height: 0.45313rem;
+}
 </style>
 
 <template>
   <div class="backTop">
     <div style="width:93%"></div>
-    <button @click="scrollToTop">^ Back to Top</button>
+    <button @click="scrollToTop">
+      <span><img src="/icons/arrow-up-default.svg" aria-hidden="true" alt=""></img></span>
+      <span> Back to Top </span>
+
+    </button>
   </div>
 
 </template>

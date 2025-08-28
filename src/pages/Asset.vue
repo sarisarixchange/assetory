@@ -90,18 +90,7 @@ export default {
   /* Ensure the container takes up the full viewport height */
 }
 
-.content {
-  flex: 1;
-  /* Allow the content to grow and take up available space */
-  display: flex;
-  flex-direction: column;
-  /* Ensure children are stacked vertically */
-}
 
-.returnButton-and-playButton-wrapper {
-  display: flex;
-
-}
 
 .returnButtonAsset {
   margin-left: 0.4rem;
@@ -124,16 +113,23 @@ export default {
   display: flex;
   gap: 0.5rem;
   padding: 0.5rem;
-
-
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 88.0625rem;
+  height: 39.9375rem;
 }
 
 .assetDetails-and-info-wrapper {
   /* position: relative; */
   display: flex;
   flex-direction: column;
-  /* gap: 0.5rem; */
-  width: 90%;
+  gap: 1.5rem;
+  width: 100%;
+
+
 }
 
 .assetDetails {
@@ -149,14 +145,18 @@ export default {
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
-.assetDetailsSVG {
-  /* Remove absolute positioning so it stacks normally */
-  /* background-color: red; */
-  /* position: absolute; */
-  /* top: 1.5rem; */
-  /* left: 0; */
-  /* width: 100%; */
-  /* height: 50%; */
+.assetDetailsContainer {
+  width: 38.25rem;
+  height: 21.875rem;
+}
+
+.returnButtonAbsolute {
+  display: flex;
+  position: absolute;
+  top: 6rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
 }
 
 .assetDetails h2 {
@@ -185,6 +185,7 @@ hr {
 
 
 .technicalInformation h2 {
+  position: absolute;
   font-size: 0.75rem;
   font-style: normal;
   font-weight: 500;
@@ -233,15 +234,15 @@ hr {
 }
 
 .technicalInformation {
-
   display: flex;
+  width: 100%;
   flex: 1;
   flex-direction: column;
-  gap: 0.5rem;
-
   background-color: transparent;
   color: var(--primary-color);
-  padding: 20px;
+  width: 38.1875rem;
+  height: 16.5625rem;
+
 
 }
 
@@ -277,10 +278,8 @@ hr {
 }
 
 .preview {
-  width: 100%;
-  height: 90%;
-  /* width: 48.3125rem; */
-  /* height: 35.5625rem; */
+  width: 48.3125rem;
+  height: 35.5625rem;
   position: relative;
   /* Ensure the A-Frame scene stays in place */
   border: 1px solid var(--primary-color);
@@ -315,9 +314,6 @@ hr {
 }
 
 
-
-
-
 a-scene {
   width: 100%;
   height: 100%;
@@ -331,16 +327,15 @@ a-scene {
 }
 
 .download-button {
-  height: 8.5%;
+  width: 48.3125rem;
+  height: 3.625rem;
+  /* height: 8.5%; */
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   border-radius: 0.875rem;
-  /* Center the text vertically and horizontally */
   display: flex;
   align-items: center;
-  /* Align items vertically */
   justify-content: center;
-  /* Align items horizontally */
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
@@ -365,17 +360,19 @@ a-scene {
 
     <div v-if="asset" class="asset-preview-wrapper">
 
+      <!-- Use the ReturnButton component -->
+      <div class="returnButtonAbsolute">
+        <ReturnButton :returnRoute="`/${fromPage}/${pageId}`" />
+      </div>
 
       <!-- Asset details -->
 
       <div class="assetDetails-and-info-wrapper">
         <!-- return button -->
 
-        <!-- Use the ReturnButton component -->
-        <ReturnButton :returnRoute="`/${fromPage}/${pageId}`" />
 
-        <!-- Asset details information -->
-        <div class="assetDetailsSVG">
+        <div class="assetDetailsContainer">
+          <!-- Asset details information -->
           <svg viewBox="0 0 621 358" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Vector 7" filter="url(#filter0_d_292_1817)">
               <path
@@ -385,7 +382,6 @@ a-scene {
                 d="M166.758 0.5H602.5C609.956 0.5 616 6.54416 616 14V336C616 343.456 609.956 349.5 602.5 349.5H18.5C11.0442 349.5 5 343.456 5 336V53.5C5 46.0442 11.0442 40 18.5 40H138.758C146.766 40 153.258 33.5081 153.258 25.5V14C153.258 6.54416 159.302 0.5 166.758 0.5Z"
                 stroke="#D400A6" />
               <foreignObject x="20" y="60" width="580" height="280">
-                <!-- <div xmlns="http://www.w3.org/1999/xhtml" style="width: 580px; height: 280px; border: 1px solid #D400A6; border-radius: 0.5rem;"></div> -->
                 <div v-if="asset" class="assetDetails">
                   <h2>Asset Details</h2>
                   <hr>
@@ -426,16 +422,12 @@ a-scene {
           </svg>
         </div>
 
-
-
-
-
         <div class="technicalInformation">
 
 
           <h2>Technical Information</h2>
 
-          <svg width="612" height="265" viewBox="0 0 612 265" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg viewBox="0 0 612 265" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M185.72 0.5H597.5C604.956 0.5 611 6.54416 611 14V251C611 258.456 604.956 264.5 597.5 264.5H14.5C7.04416 264.5 1 258.456 1 251V50.7227L1.00488 50.374C1.1899 43.0794 7.16079 37.2227 14.5 37.2227H157.72C165.728 37.2227 172.22 30.7308 172.22 22.7227V14C172.22 6.54417 178.264 0.500016 185.72 0.5Z"
               fill="#FFFEF6" stroke="#F1AFDD" />

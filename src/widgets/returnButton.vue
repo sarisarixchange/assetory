@@ -1,11 +1,6 @@
 <style scoped>
 /* return button */
-.returnButton {  
-padding-left: 1rem;
-margin-top: 1.5rem;
-margin-bottom: 1.5rem;
 
-}
 
 .buttonStyle {
     fill: var(--secondary-color);
@@ -26,7 +21,7 @@ fill:var(--primary-color);
 
 <template>
  <!-- Replace the old return button with the SVG wrapped in router-link -->
-    <router-link :to="returnRoute" class="returnButton" style="display:inline-block;">
+    <router-link :to="returnRoute" style="display:inline-block;">
       <svg width="8.625rem" height="1.9375rem" viewBox="0 0 138 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g id="Back Button" >            
           <rect class="buttonStyle" id="Rectangle 25" x="108" width="30" height="31" rx="7" />

@@ -64,7 +64,11 @@ export default {
 position: relative;
 }
 
-
+.returnButton {  
+margin-left: 1.5rem;
+margin-top: 1.5rem;
+margin-bottom: 1.5rem;
+}
 
 /* collection details */
 .collection-details-container{
@@ -275,7 +279,9 @@ font-weight: 400;
     <Topbar @theme-changed="updateTheme" />
 
     <!-- Use the ReturnButton component -->
+     <div class="returnButton">
     <ReturnButton :returnRoute="returnRoute" />
+    </div>
 
     <div v-if="entity" class="collection-details-container">
       <!-- Background -->

@@ -3,6 +3,7 @@ import Topbar from './Topbar.vue';
 import PageBackground from './PageBackground.vue';
 import Footer from './Footer.vue';
 import BackTopButton from '../widgets/BackTopButton.vue';
+import ReturnButton from '../widgets/returnButton.vue'; // <-- add this import
 
 export default {
   props: {
@@ -20,6 +21,7 @@ export default {
     PageBackground,
     Footer,
     BackTopButton,
+    ReturnButton, // <-- add this
   },
   data() {
     return {
@@ -62,26 +64,6 @@ export default {
 position: relative;
 }
 
-/* return button */
-.returnButton {
-padding-left: 0.25rem;
-margin-top: 2rem;
-margin-bottom: 0.5rem;
-}
-
-.returnButton button { 
-background-color: transparent;
-color: var(--primary-color);
-border: 1px solid var(--primary-color);
-font-family: 'Inter', sans-serif;
-font-size: var(--font-medium);
-font-weight: 400;
-
-border-radius: 8px;
-padding: 0.125rem;
-cursor: pointer;
-/* transition: background-color 0.3s ease; */
-}
 
 
 /* collection details */
@@ -100,6 +82,8 @@ font-family: 'Inter', sans-serif;
 font-size: 1rem;
 font-weight: 400;
 }
+
+
 
 /* container */
 .image-banner-artist {
@@ -120,6 +104,29 @@ font-weight: 400;
   padding: 0.5rem;
 }
 
+
+
+.image-banner-collection {
+  display: flex;
+  width: 54.8rem;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.625rem;
+  overflow: hidden;
+  align-self: center;
+  box-sizing: border-box; 
+}
+
+.banner-image-collection {
+  width: 100%;
+  /* height: 100%; */
+  object-fit: contain;
+  border: 1px solid var(--primary-color);
+  border-radius:1rem;
+  padding: 0.5rem;
+}
+
+
 .collection-details{
 display: flex;
 flex-direction: column;
@@ -130,34 +137,17 @@ border-radius: 1rem;
 padding: 1.5rem;
 gap: 0.5rem;
 }
-
-.image-banner-collection {
-  width: 100%;
-  border: 1px solid var(--primary-color);
-  border-radius: 20px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.25rem;
-}
-
-.banner-image-collection {
-  width: 100%;
-  background-color: var(--secondary-color);
-  border-radius: 20px;
-}
-
 /* heading of card */
 .collection-details h2{
 font-family: var(--font-family, 'Handjet'), sans-serif; 
-font-size: var(--font-24px);
+font-size: 1.5rem;
+font-style: normal;
 font-weight: 400;
 }
 
 .collection-details h3{
 font-family: var(--font-family, 'Handjet'), sans-serif; 
-font-size: var(--font-base);
+font-size: 1.25rem;
 font-weight: 400;
 }
 
@@ -206,13 +196,15 @@ align-items: center;
 .collection-card-text {
 display: flex;
 font-family: 'Inter', sans-serif;
-font-size: var(--font-base);
+font-size: 1rem;
+font-style: normal;
 font-weight: 400;
 color: var(--primary-color);
 }
 
 .collection-card-image {
-/* width: 50%; */
+width: 50%;
+align-self: center;
 height: auto;
 border-radius: 8px;
 object-fit: cover;
@@ -221,18 +213,15 @@ object-fit: cover;
 .collection-card-video {
 /* width: 50%; */
 height: auto;
-aspect-ratio: 16 / 9;
+aspect-ratio: 16 / 9; 
 border-radius: 8px;
 border: 1px solid var(--primary-color);
 }
 
 .collection-assets {
   width: 53.5rem;
- text-align: center;
-
+ text-align: center;    
 }
-
-
 
 .collection-assets h2{
 font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
@@ -274,7 +263,8 @@ border-radius: 8px; /* Optional: Add rounded corners */
 
 .social-media-item {
 margin-right: 1rem; 
-font-size: var(--font-base);
+font-size: 1rem;
+font-style: normal;
 font-weight: 400;
 }
 </style >
@@ -284,11 +274,8 @@ font-weight: 400;
   <div class="page-container">
     <Topbar @theme-changed="updateTheme" />
 
-    <div class="returnButton">
-      <router-link :to="returnRoute" class="nav-button">Return <</router-link>
-    </div>
-
-    
+    <!-- Use the ReturnButton component -->
+    <ReturnButton :returnRoute="returnRoute" />
 
     <div v-if="entity" class="collection-details-container">
       <!-- Background -->

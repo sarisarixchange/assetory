@@ -63,7 +63,7 @@ export default {
     <div class="grid">
       <!-- Collections Grid -->
       <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
-        :basePath="basePath" :routeName="routeName" />
+        :basePath="basePath" :routeName="routeName" :isEventsPage="true"/>
     </div>
 
     <BackTopButton />

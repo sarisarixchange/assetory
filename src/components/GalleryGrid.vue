@@ -49,6 +49,11 @@ export default {
     isAboutPage: {
       type: Boolean,
       default: false
+    },
+
+    isEventsPage: {
+      type: Boolean,
+      default: false
     }
 
   },
@@ -111,6 +116,39 @@ export default {
       </div>
     </div>
   </div>
+  
+<div v-else-if="isEventsPage" >
+
+   <!-- heading and searchbar -->
+    <div class="heading-and-searchbar">
+      <div class="gallery-heading">
+        <h2>{{ galleryName }}</h2>
+        <p>{{ galleryDescription }}</p>
+      </div>
+
+      <!-- searchbar only show if enabled -->
+      <SearchBar v-if="showSearchBar" />
+    </div>
+
+    <div class="eventsGalleryGrid">
+      <div class="eventsGalleryCard" 
+        v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        <div class="eventsGalleryCardContent"       
+>
+          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+        </div>
+
+
+        <div class="galleryCardContentGoTo">
+          <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
+            <span class="learn-more">{{ gallery.title }}</span>
+            <span class="ok-action" aria-hidden="true">></span>
+          </router-link>
+        </div>
+      </div>
+    </div>
+
+</div>
 
   <div v-else>
 
@@ -126,8 +164,10 @@ export default {
     </div>
 
     <div class="galleryGrid">
-      <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-        <div class="galleryCardContent">
+      <div class="galleryCard" 
+        v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        <div class="galleryCardContent"       
+>
           <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
         </div>
 
@@ -189,13 +229,23 @@ export default {
 
 .galleryGrid {
   display: flex;
-  width: 100%;  
-  justify-content: center; 
+  width: 100%;
+  justify-content: center;
   gap: 2.5rem;
   flex-wrap: wrap;
   padding-left: 5.53rem;
   padding-right: 5.53rem;
+}
 
+.eventsGalleryGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+  padding-left: 5.53rem;
+  padding-right: 5.53rem;
+  align-items: center;
 }
 
 .galleryCard {
@@ -213,6 +263,30 @@ export default {
   background-color: #fff;
 }
 
+.eventsGalleryCard {
+  display: flex;
+  width: 60.5625rem ;
+  height: 18.125rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  border: 1px solid var(--primary-color);
+  /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
+  background-color: #fff;
+  
+
+}
+
+.eventsGalleryCardContent {
+  height: 13.75rem;
+align-self: stretch;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
 
 .galleryCardContent {
   height: 18.75rem;
@@ -221,6 +295,8 @@ export default {
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
+
+
 
 .galleryCardContentImage {
   width: 100%;
@@ -248,6 +324,10 @@ export default {
 /* CSS normally can’t “select the parent” of a hovered element, but :has() flips that — it says “select .galleryCard if it has a child .galleryCardContentGoTo that’s being hovered.” */
 /* Not compatible with Firefox? */
 .galleryCard:has(.galleryCardContentGoTo:hover) {
+  box-shadow: -4px 4px 0 0 var(--primary-color);
+}
+
+.eventsGalleryCard:has(.galleryCardContentGoTo:hover) {
   box-shadow: -4px 4px 0 0 var(--primary-color);
 }
 

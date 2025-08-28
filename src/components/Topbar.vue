@@ -193,7 +193,7 @@ a {
 
 
 .nav-button:hover {
-  color: var(--primary-color);;
+  color: var(--primary-color);
   box-shadow: -3px 3px 0 0 var(--shadow);
   /* background-color: var(--hover-color); */
 }
@@ -229,7 +229,11 @@ a {
 
     </div>
 
-
+    <!-- Accessibility Menu -->
+      <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
+        @update-notification-visible="$emit('update-notification-visible', $event)"
+        @theme-changed="handleThemeChange" />
+        
     <!-- navigation menu -->
     <div class="nav-buttons">
       <router-link v-if="!isHomepage" :to="{ name: 'Artists' }" class="nav-button"
@@ -245,10 +249,7 @@ a {
       <router-link :to="{ name: 'Terms of Use' }" class="nav-button"
         :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
 
-      <!-- Accessibility Menu -->
-      <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
-        @update-notification-visible="$emit('update-notification-visible', $event)"
-        @theme-changed="handleThemeChange" />
+   
     </div>
   </div>
 

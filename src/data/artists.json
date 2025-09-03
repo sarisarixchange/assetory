@@ -227,7 +227,7 @@
             },
             {"id": 15,
                 "name": "Adobo squid plate",
-                "thumbnail": "",
+                "thumbnail": "serena-zena/other/Adobo squid plate.png",
                  "creator": "Serena Zena",
                  "tags": ["food"],
                  "description": "From Adobo Queen in Hamilton, ON Arturo ate the squid adobo. Scanned at McMaster University.",
@@ -242,7 +242,7 @@
                {
       "id": 16,
       "name": "Bock Choy on Side",
-      "thumbnail": "",
+      "thumbnail": "serena-zena/other/Bock Choy on Side.png",
       "creator": "Serena Zena",
       "tags": [
         "food"
@@ -259,7 +259,7 @@
     {
       "id": 17,
       "name": "Chinese Jewelry Box Heirloom",
-      "thumbnail": "",
+      "thumbnail": "serena-zena/other/Chinese Jewelry Box Heirloom.png",
       "creator": "Serena Zena",
       "tags": [
         "Chinese",
@@ -278,7 +278,7 @@
     {
       "id": 18,
       "name": "Figure of an Immortal With Robe",
-      "thumbnail": "",
+      "thumbnail": "serena-zena/other/Figure of an Immortal With Robe.png",
       "creator": "Serena Zena",
       "tags": [],
       "description": "",
@@ -293,7 +293,7 @@
     {
       "id": 19,
       "name": "Ginger",
-      "thumbnail": "",
+      "thumbnail": "serena-zena/other/Ginger.png",
       "creator": "Serena Zena",
       "tags": [
         "ginger",
@@ -316,7 +316,7 @@
     {
       "id": 20,
       "name": "Green Dragon Roll Sushi Piece",
-      "thumbnail": "",
+      "thumbnail": "serena-zena/other/Green Dragon Roll Sushi Piece.png",
       "creator": "Serena Zena",
       "tags": [
         "food",
@@ -335,7 +335,7 @@
   {
   "id": 21,
   "name": "Green Tea Mochi Package",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Green Tea Mochi Package.png",
   "creator": "Serena Zena",
   "tags": [
     "Mochi",
@@ -355,7 +355,7 @@
 {
   "id": 22,
   "name": "Green Tea Mochi",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Green Tea Mochi.png",
   "creator": "Serena Zena",
   "tags": [
     "Mochi",
@@ -375,7 +375,7 @@
 {
   "id": 23,
   "name": "Gyoza",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Gyoza.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -393,7 +393,7 @@
 {
   "id": 24,
   "name": "Haoran's Rick and Morty Toy",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Haoran's Rick and Morty Toy.png",
   "creator": "Serena Zena",
   "tags": [
     "Rick and Morty",
@@ -413,7 +413,7 @@
 {
   "id": 25,
   "name": "Hapi Cracker",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Hapi Cracker.png",
   "creator": "Serena Zena",
   "tags": [
     "crackers",
@@ -433,7 +433,7 @@
 {
   "id": 26,
   "name": "Haw Flakes",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Haw Flakes.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -453,7 +453,7 @@
 {
   "id": 27,
   "name": "Hup Seng Crackers",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Hup Seng Crackers.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -471,7 +471,7 @@
 {
   "id": 28,
   "name": "Lo Mai Gai (Sticky Rice in Lotus Leaf)",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Lo Mai Gai (Sticky Rice in Lotus Leaf).png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -490,7 +490,7 @@
 {
   "id": 29,
   "name": "Longanisa",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Longanisa.png",
   "creator": "Serena Zena",
   "tags": [
     "filipino",
@@ -508,7 +508,7 @@
 {
   "id": 30,
   "name": "Lotus Root",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Lotus Root.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -526,7 +526,7 @@
 {
   "id": 31,
   "name": "Mother of Pearl Jewelry Box",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Mother of Pearl Jewelry Box.png",
   "creator": "Serena Zena",
   "tags": [],
   "description": "",
@@ -541,7 +541,7 @@
 {
   "id": 32,
   "name": "Pitcher with Wind Swept Wave Motif AGH",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Pitcher with Wind Swept Wave Motif AGH.png",
   "creator": "Serena Zena",
   "tags": [],
   "description": "",
@@ -556,7 +556,7 @@
 {
   "id": 33,
   "name": "Salmon Avocado Roll Sushi Piece",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Salmon Avocado Roll Sushi Piece.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -574,8 +574,8 @@
 },
 {
   "id": 34,
-  "name": "Balut/ Salted Duck Egg Cracked Open",
-  "thumbnail": "",
+  "name": "Balut/ Salted Duck Egg",
+  "thumbnail": "serena-zena/other/Balut Salted Duck Egg.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -588,13 +588,13 @@
   "acknowledgement": "2023 McMaster Food Scanning Party",
   "fileSize": "",
   "copyright": "CC BY 4.0 DEED",
-  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg Cracked Open.glb",
-  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg Cracked Open.glb"
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg.glb"
 },
 {
   "id": 35,
-  "name": "Balut/ Salted Duck Egg",
-  "thumbnail": "",
+  "name": "Balut/ Salted Duck Egg Cracked Open",
+  "thumbnail": "serena-zena/other/Balut Salted Duck Egg.png",
   "creator": "Serena Zena",
   "tags": [
     "food"
@@ -605,13 +605,13 @@
   "acknowledgement": "2023 McMaster Food Scanning Party",
   "fileSize": "",
   "copyright": "CC BY 4.0 DEED",
-  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Balut/ Salted Duck Egg.glb",
-  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Balut/ Salted Duck Egg.glb"
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg Cracked Open.glb",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/Salted Duck Egg Cracked Open.glb"
 },
 {
   "id": 36,
   "name": "Saucer Plate with Flowers on Yellow Field",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Saucer Plate with Flowers on Yellow Field.png",
   "creator": "Serena Zena",
   "tags": [],
   "description": "",
@@ -626,7 +626,7 @@
 {
   "id": 37,
   "name": "Single Salmon Sushi",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Single Salmon Sushi.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -646,7 +646,7 @@
 {
   "id": 38,
   "name": "Lumpia/ Spring Rolls in Take Out Container",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Lumpia Spring Rolls in Take Out Container.png",
   "creator": "Serena Zena",
   "tags": [
     "crackers",
@@ -666,7 +666,7 @@
 {
   "id": 39,
   "name": "Starfruit",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Starfruit.png",
   "creator": "Serena Zena",
   "tags": [
     "fruit",
@@ -686,7 +686,7 @@
 {
   "id": 40,
   "name": "Steam Chicken Bun (No Bottom)",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Steam Chicken Bun (No Bottom).png",
   "creator": "Serena Zena",
   "tags": [
     "crackers",
@@ -706,7 +706,7 @@
 {
   "id": 41,
   "name": "Steam Chicken Bun",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Steam Chicken Bun.png",
   "creator": "Serena Zena",
   "tags": [
     "crackers",
@@ -726,7 +726,7 @@
 {
   "id": 42,
   "name": "Taro Red Bean Bubble Tea",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Taro Red Bean Bubble Tea.png",
   "creator": "Serena Zena",
   "tags": [
     "Drink",
@@ -745,7 +745,7 @@
 {
   "id": 43,
   "name": "Turnip Cake",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Turnip Cake.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -764,7 +764,7 @@
 {
   "id": 44,
   "name": "Ube Cupcake Broken",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Ube Cupcake Broken.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -784,7 +784,7 @@
 {
   "id": 45,
   "name": "Ube Cupcake",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Ube Cupcake.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -804,7 +804,7 @@
 {
   "id": 46,
   "name": "Ube Hopia",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Ube Hopia.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -824,7 +824,7 @@
 {
   "id": 47,
   "name": "White Rabbit Candy",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/White Rabbit Candy.png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -844,7 +844,7 @@
 {
   "id": 48,
   "name": "Youtiao (Deep-fried dough stick Dim Sum)",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Youtiao (Deep-fried dough stick Dim Sum).png",
   "creator": "Serena Zena",
   "tags": [
     "food",
@@ -862,7 +862,7 @@
 {
   "id": 49,
   "name": "Yuan Dynasty Vase, Two Rings, Celadon",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/Yuan Dynasty Vase, Two Rings, Celadon.png",
   "creator": "Serena Zena",
   "tags": [],
   "description": "",
@@ -877,7 +877,7 @@
 {
   "id": 50,
   "name": "hapi Cracker on a stick",
-  "thumbnail": "",
+  "thumbnail": "serena-zena/other/hapi Cracker on a stick.png",
   "creator": "Serena Zena",
   "tags": [
     "crackers",
@@ -1223,7 +1223,7 @@
            {
   "id": 1,
   "name": "BBQ pork bun/ siao pao",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/BBQ pork bun siao pao.png",
   "creator": "Carmela",
   "tags": [
     "asian pork bun",
@@ -1243,7 +1243,7 @@
 {
   "id": 2,
   "name": "Bamboo steamer",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Bamboo steamer.png",
   "creator": "Carmela",
   "tags": [
     "wood",
@@ -1263,7 +1263,7 @@
 {
   "id": 3,
   "name": "Boy Bawang Cornick Snack",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Boy Bawang Cornick Snack.png",
   "creator": "Carmela",
   "tags": [
     "Filipino snack food",
@@ -1281,7 +1281,7 @@
 {
   "id": 4,
   "name": "Ceramic Buddha",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Ceramic Buddha.png",
   "creator": "Carmela",
   "tags": [
     "ceramic object",
@@ -1300,7 +1300,7 @@
 {
   "id": 5,
   "name": "Ceramic Elephant",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Ceramic Elephant.png",
   "creator": "Carmela",
   "tags": [
     "animal",
@@ -1319,7 +1319,7 @@
 {
   "id": 6,
   "name": "Bangus, Filipino Fried Milk Fish",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Bangus, Filipino Fried Milk Fish.png",
   "creator": "Carmela",
   "tags": [
     "filipino",
@@ -1338,7 +1338,7 @@
 {
   "id": 7,
   "name": "Filipino Gong",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Filipino Gong.png",
   "creator": "Carmela",
   "tags": [
     "musical instrument",
@@ -1359,7 +1359,7 @@
 {
   "id": 8,
   "name": "Instant Ramen",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Instant Ramen.png",
   "creator": "Carmela",
   "tags": [
     "food",
@@ -1380,7 +1380,7 @@
 {
   "id": 9,
   "name": "Lucky Cat",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Lucky Cat.png",
   "creator": "Carmela",
   "tags": [
     "statue",
@@ -1401,7 +1401,7 @@
 {
   "id": 10,
   "name": "Single Shrimp Chip",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Single Shrimp Chip.png",
   "creator": "Carmela",
   "tags": [
     "Asian snack food"
@@ -1418,7 +1418,7 @@
 {
   "id": 11,
   "name": "Siu Mai Dim Sum",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Siu Mai Dim Sum.png",
   "creator": "Carmela",
   "tags": [
     "chinese dim sum",
@@ -1436,7 +1436,7 @@
 {
   "id": 12,
   "name": "Corned Beef",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Corned Beef.png",
   "creator": "Carmela",
   "tags": [
     "corned beef",
@@ -1458,7 +1458,7 @@
 {
   "id": 13,
   "name": "Fried Crab Dim Sum",
-  "thumbnail": "",
+  "thumbnail": "carmela-laganse/asset thumbnail/Fried Crab Dim Sum.png",
   "creator": "Carmela",
   "tags": [
     "Dim Sum",

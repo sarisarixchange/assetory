@@ -1,20 +1,22 @@
 <script>
-import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+import PageBackground from '../components/PageBackground.vue';
 import GalleryGrid from '../components/GalleryGrid.vue'; // Import the Grid component
 import BackTopButton from '../widgets/BackTopButton.vue';
 import SimpleButton from '../widgets/SimpleButton.vue';
+import Footer from '../components/Footer.vue'; // Import the Footer component
 import teamData from '../data/team.json';
 
 
 
 export default {
     components: {
-        Footer, // Register the Footer component
         Topbar, // Register the Topbar component
+        PageBackground,
         GalleryGrid, // Register the Grid component
         BackTopButton,
-        SimpleButton
+        SimpleButton,
+        Footer, // Register the Footer component
     },
     data() {
         return {
@@ -25,6 +27,13 @@ export default {
             basePath: 'team/',
             routeName: '',
             data: teamData,
+            backgrounds: {
+                //  default: 'backgrounds/background-artists-page-default.svg',
+                default: './backgrounds/background-about-page-default.svg',
+                grayscale: './backgrounds/background-about-page-grayscale.svg',
+                highContrast: './backgrounds/background-about-page-high-contrast.svg',
+                wcag: './backgrounds/background-about-page-default.svg'
+            },
 
 
             // other boxes icons
@@ -172,7 +181,7 @@ export default {
     font-size: var(--font-24px);
     font-weight: 400;
     gap: 0.5rem;
-    
+
 }
 
 .other-box-action-call {
@@ -189,7 +198,7 @@ export default {
     font-weight: 400;
     background-color: var(--secondary-color);
     align-items: center;
-    
+
 }
 
 .other-box-action-call:hover {
@@ -265,7 +274,7 @@ export default {
 
 .boxThree {
     display: flex;
-    width:  33.0625rem;
+    width: 33.0625rem;
     padding: 0.5rem;
     margin-left: auto;
     margin-right: auto;
@@ -348,7 +357,7 @@ export default {
     font-weight: 500;
     color: var(--primary-color);
 
-    
+
 }
 
 
@@ -399,26 +408,36 @@ export default {
 
 .logosRow {
     display: flex;
-    gap: 2rem; /* Adjust gap for smaller screens */
+    gap: 2rem;
+    /* Adjust gap for smaller screens */
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 1rem;
     padding: 1rem;
-    flex-wrap: wrap; /* Allow logos to wrap on smaller screens */
-    justify-content: center; /* Center the logos */
+    flex-wrap: wrap;
+    /* Allow logos to wrap on smaller screens */
+    justify-content: center;
+    /* Center the logos */
 }
 
 .logosRow img {
-    max-width: 100%; /* Ensure the image doesn't exceed its container */
-    height: auto; /* Maintain aspect ratio */
-    max-height: 100px; /* Set a maximum height for the logos */
-    object-fit: contain; /* Ensure the image fits within its container */
+    max-width: 100%;
+    /* Ensure the image doesn't exceed its container */
+    height: auto;
+    /* Maintain aspect ratio */
+    max-height: 100px;
+    /* Set a maximum height for the logos */
+    object-fit: contain;
+    /* Ensure the image fits within its container */
 }
 </style>
 
 <template>
     <div class="page-container">
 
+
+
+     
 
         <!-- top bar -->
         <Topbar @theme-changed="updateTheme" />
@@ -448,8 +467,13 @@ export default {
                 <SimpleButton to="" text="Submit your work" />
             </div>
 
+            <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top="40rem" left="50%"
+                transform="translateX(-50%)" width="100vw" height="54.36763rem" backgroundSize="cover"
+                backgroundPosition="center" />
+
             <div class="boxes">
-                <div class="background-layer" aria-hidden="true"></div> <!-- New background layer -->
+                <!-- <div class="background-layer" aria-hidden="true"></div>  -->
+
                 <!-- <div class="boxesOneAndTwo"> -->
                 <div class="boxOne">
                     <div class="other-box-heading">
@@ -522,7 +546,7 @@ export default {
 
             <!-- Collections Grid -->
             <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
-                :basePath="basePath" :routeName="routeName" :showSearchBar="false" :isAboutPage="true" />
+                :basePath="basePath" :routeName="routeName" :showSearchBar="false" :isAboutPage="true" :theme="currentTheme.theme" />
 
             <div class="logoSection">
                 <div class="logosRow">

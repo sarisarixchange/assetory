@@ -25,16 +25,16 @@ export default {
       galleryDescription: 'Explore artists & assets.',
       basePath: 'artists/',
       routeName: 'Artist',
-      data: astistsData, 
+      data: astistsData,
       // backgrounds
       backgrounds: {
         //  default: 'backgrounds/background-artists-page-default.svg',
-         default: './backgrounds/background-artists-page-default.svg',
-         grayscale: './backgrounds/background-artists-page-grayscale.svg',
-         highContrast: './backgrounds/background-artists-page-high-contrast.svg',
-         wcag: './backgrounds/background-artists-page-default.svg'
-  }
-      
+        default: './backgrounds/background-artists-page-default.svg',
+        grayscale: './backgrounds/background-artists-page-grayscale.svg',
+        highContrast: './backgrounds/background-artists-page-high-contrast.svg',
+        wcag: './backgrounds/background-artists-page-default.svg'
+      }
+
     }
   },
 
@@ -52,13 +52,12 @@ export default {
 </script>
 
 <style scoped>
-
-
 /* Make the page container take the full height */
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* full viewport height */
+  min-height: 100vh;
+  /* full viewport height */
 }
 
 .grid {
@@ -66,7 +65,6 @@ export default {
   display: flex;
   flex-direction: column;
 }
-
 </style>
 
 <template>
@@ -77,29 +75,17 @@ export default {
 
     <div class="grid">
 
-    <!-- background image -->
-    <PageBackground
-    :theme="currentTheme.theme"
-    :backgrounds="backgrounds"
-    top="0"
-    left="0"
-    width="28.681vw"
-    height="40.091vw"
-    backgroundSize= ""
-    backgroundPosition= 'left'
-  />
+      <!-- background image -->
+      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='3.375rem' left='0%'
+        transform='translateX(0%)' width='25.8125rem' height='26.76038rem' backgroundSize='50%'
+        backgroundPosition='left' />
 
 
-    <!-- Artists Grid -->
-    <GalleryGrid 
-    :galleryName="galleryName" 
-    :galleryDescription="galleryDescription" 
-    :items="data" 
-    :basePath="basePath"
-    :routeName="routeName"
-     />
+      <!-- Artists Grid -->
+      <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
+        :basePath="basePath" :routeName="routeName" />
 
-</div>
+    </div>
     <BackTopButton />
 
     <!-- footer -->

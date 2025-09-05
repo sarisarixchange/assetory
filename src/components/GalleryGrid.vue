@@ -11,8 +11,8 @@ export default {
   name: 'GalleryGrid',
 
   components: {
-    SearchBar, // Register the SearchBar component
-  },
+    SearchBar // Register the SearchBar component
+      },
 
   props: {
     galleryName: {
@@ -54,8 +54,25 @@ export default {
     isEventsPage: {
       type: Boolean,
       default: false
-    }
+    }, 
 
+     
+      theme: {
+        type: String,
+        default: 'default'
+      },
+
+  },  
+
+  data() {
+    return {
+     backgrounds: {
+        default: './backgrounds/background-meet-the-team-default.svg',
+        grayscale: './backgrounds/background-meet-the-team-grayscale.svg',
+        highContrast: './backgrounds/background-meet-the-team-high-contrast.svg',
+        wcag: './backgrounds/background-meet-the-team-default.svg'
+      }
+    };
   },
 
 
@@ -74,9 +91,13 @@ export default {
           ...item,
           thumbnail: `images/${this.basePath}` + item.thumbnail
         }));
-    }
-  },
+    }, 
 
+     
+imageUrl() {
+      return this.backgrounds[this.theme] || this.backgrounds['default']
+  }
+  }
 
   // do not erase curly brackets below
 }
@@ -86,9 +107,17 @@ export default {
 <!-- params: { id: gallery.id } -->
 
 <template>
-  <div v-if="isAboutPage" class="aboutPage">
+  <div
+    v-if="isAboutPage"
+    class="aboutPage"
+    :style="{
+       backgroundImage: `url('${this.imageUrl}')`,
+      backgroundSize: 'contain'
+    }"
+  >
     <!-- heading and searchbar -->
     <div class="meetTheTeamHeader">
+    
       <h3>
         <img class="asterisksHeading" src="/icons/left-decor-default.svg">
         Meet the Team
@@ -116,10 +145,10 @@ export default {
       </div>
     </div>
   </div>
-  
-<div v-else-if="isEventsPage" >
 
-   <!-- heading and searchbar -->
+  <div v-else-if="isEventsPage">
+
+    <!-- heading and searchbar -->
     <div class="heading-and-searchbar">
       <div class="gallery-heading">
         <h2>{{ galleryName }}</h2>
@@ -131,10 +160,8 @@ export default {
     </div>
 
     <div class="eventsGalleryGrid">
-      <div class="eventsGalleryCard" 
-        v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-        <div class="eventsGalleryCardContent"       
->
+      <div class="eventsGalleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        <div class="eventsGalleryCardContent">
           <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
         </div>
 
@@ -148,7 +175,7 @@ export default {
       </div>
     </div>
 
-</div>
+  </div>
 
   <div v-else>
 
@@ -164,10 +191,8 @@ export default {
     </div>
 
     <div class="galleryGrid">
-      <div class="galleryCard" 
-        v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-        <div class="galleryCardContent"       
->
+      <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        <div class="galleryCardContent">
           <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
         </div>
 
@@ -265,7 +290,7 @@ export default {
 
 .eventsGalleryCard {
   display: flex;
-  width: 60.5625rem ;
+  width: 60.5625rem;
   height: 18.125rem;
   flex-direction: column;
   justify-content: center;
@@ -276,13 +301,13 @@ export default {
   border: 1px solid var(--primary-color);
   /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
   background-color: #fff;
-  
+
 
 }
 
 .eventsGalleryCardContent {
   height: 13.75rem;
-align-self: stretch;
+  align-self: stretch;
   border-radius: 8px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
@@ -352,7 +377,6 @@ align-self: stretch;
 
 /* css only if in about page */
 .aboutPage {
-  background-color: var(--secondary-color);
   margin-left: 3.44rem;
   margin-right: 3.44rem;
 }

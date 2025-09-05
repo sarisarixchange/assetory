@@ -11,9 +11,9 @@
         collection: null,
         backgrounds: {
           default: '../backgrounds/background-collection-default.svg',
-          grayscale: '../backgrounds/background-collections-page-grayscale.svg',
-          highContrast: '../backgrounds/background-collections-page-high-contrast.svg',
-          wcag: '../backgrounds/background-collections-page-default.svg'
+          grayscale: '../backgrounds/background-collection-page-grayscale.svg',
+          highContrast: '../backgrounds/background-collection-page-high-contrast.svg',
+          wcag: '../backgrounds/background-collection-page-default.svg'
         }
       };
     },

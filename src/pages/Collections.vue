@@ -70,16 +70,14 @@ export default {
   <div class="grid">
 
       <!-- background image  -->
-      <PageBackground
-    :theme="currentTheme.theme"
-    :backgrounds="backgrounds"
-    top="0"
-    left="0"
-    width="100%"
-    height="428.17px"
-    backgroundSize= "contain"
-    backgroundPosition= 'left'
-  />
+      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" 
+        top='3.375rem'
+        left='0%'
+        transform='translateX(0%)'
+        width= '26.178rem'
+        height= '35.66881rem'
+        backgroundSize='50%'
+        backgroundPosition='left' />
 
     <!-- Collections Grid -->
     <GalleryGrid :galleryName="galleryName" 

@@ -96,6 +96,7 @@ font-weight: 400;
   overflow: hidden;
   align-self: center;
   box-sizing: border-box; 
+  background-color: var(--background-color);
 }
 
 /* actual image */

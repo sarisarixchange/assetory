@@ -106,7 +106,9 @@ export default {
 }
 
 
-
+.svg-class{
+  stroke: var(--primary-color);
+}
 
 .asset-preview-wrapper {
   flex: 1;
@@ -373,14 +375,14 @@ a-scene {
 
         <div class="assetDetailsContainer">
           <!-- Asset details information -->
-          <svg viewBox="0 0 621 358" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="svg-class" viewBox="0 0 621 358" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Vector 7" filter="url(#filter0_d_292_1817)">
               <path
                 d="M602.5 350H18.5C10.768 350 4.5 343.732 4.5 336V53.5C4.5 45.768 10.768 39.5 18.5 39.5H138.758C146.49 39.5 152.758 33.232 152.758 25.5V14C152.758 6.26801 159.026 0 166.758 0H602.5C610.232 0 616.5 6.26802 616.5 14V336C616.5 343.732 610.232 350 602.5 350Z"
                 fill="#FFFEF6" />
               <path
                 d="M166.758 0.5H602.5C609.956 0.5 616 6.54416 616 14V336C616 343.456 609.956 349.5 602.5 349.5H18.5C11.0442 349.5 5 343.456 5 336V53.5C5 46.0442 11.0442 40 18.5 40H138.758C146.766 40 153.258 33.5081 153.258 25.5V14C153.258 6.54416 159.302 0.5 166.758 0.5Z"
-                stroke="#D400A6" />
+                />
               <foreignObject x="20" y="60" width="580" height="280">
                 <div v-if="asset" class="assetDetails">
                   <h2>Asset Details</h2>
@@ -427,10 +429,10 @@ a-scene {
 
           <h2>Technical Information</h2>
 
-          <svg viewBox="0 0 612 265" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg class="svg-class" viewBox="0 0 612 265" fill="none" xmlns="http://www.w3.org/2000/svg" >
             <path
               d="M185.72 0.5H597.5C604.956 0.5 611 6.54416 611 14V251C611 258.456 604.956 264.5 597.5 264.5H14.5C7.04416 264.5 1 258.456 1 251V50.7227L1.00488 50.374C1.1899 43.0794 7.16079 37.2227 14.5 37.2227H157.72C165.728 37.2227 172.22 30.7308 172.22 22.7227V14C172.22 6.54417 178.264 0.500016 185.72 0.5Z"
-              fill="#FFFEF6" stroke="#F1AFDD" />
+              fill="#FFFEF6"  />
             <foreignObject x="20" y="40" width="580" height="220">
 
               <table class="technical-info-table">

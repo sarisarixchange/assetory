@@ -163,6 +163,22 @@ export default {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
 
+        // root.style.setProperty('--primary-color', '#000000');
+        // root.style.setProperty('--secondary-color', '#FFFEFA');
+        // root.style.setProperty('--navigation-buttons-border-color', '#000000');
+
+        // root.style.setProperty('--shadow', '#000000');
+        // root.style.setProperty('--hover-color', '#FD5733');
+        // root.style.setProperty('--hover-text-color', '#FFFFFF');
+
+
+
+        // root.style.setProperty('--primary-color-left-box', '#000000');
+        // root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
+        // root.style.setProperty('--text-color-left-box', '#FFFEFA');
+        // root.style.setProperty('--hover-color-left-box', '#FD5733');
+        // root.style.setProperty('--hover-text-color-left-box', '#FFFFFF');
+
         root.style.setProperty('--primary-color', '#D400A6');
         root.style.setProperty('--secondary-color', '#FFEDF4');
         root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
@@ -177,6 +193,9 @@ export default {
         root.style.setProperty('--hover-color-left-box', '#E7EB17');
         root.style.setProperty('--hover-text-color-left-box', '#D400A6');
 
+
+
+  
         // event emission
         this.$emit('theme-changed', {
           theme: 'default',

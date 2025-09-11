@@ -216,6 +216,8 @@ export default {
     grid-column: 1 / 13;
     grid-row: 2 / 9;
     background-image: url("/icons/xyz.svg");
+    /* background-image: url("/icons/xyz-default-blue.svg"); */
+
     background-repeat: no-repeat;
     background-size: 75%;
     /* Sends it to the background */
@@ -300,6 +302,8 @@ export default {
     border-radius: 1rem;
     border: 1px solid var(--primary-color);
     /* margin-left: 2.847vw; */
+    box-sizing: border-box;
+
 }
 
 /* LEFT BOX CONTENTS */
@@ -330,7 +334,7 @@ export default {
 
 .left-box-paragraph {
     flex: 1 1 auto;
-    height: 100%;
+    /* height: 50%; */
     display: flex;
     padding: 0.5rem;
     justify-content: center;
@@ -345,10 +349,12 @@ export default {
     /* preferred ~168px */
 }
 
+
 .left-box-paragraph p {
     /* background-color: red; */
     /* width: 21.9375rem; */
     /* font-size: 1rem; */
+    height: 100%;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -357,14 +363,11 @@ export default {
     color: var(--primary-color);
     font-family: 'Inter', sans-serif;
     font-weight: 400;
+    overflow: auto;
 }
 
-/* For smaller screens */
-/* @media (max-width: 1200px) {
-    .left-box-paragraph p {
-        font-size: 1.5rem;
-    }
-} */
+
+
 
 .left-box-action-call {
 
@@ -372,7 +375,7 @@ export default {
     border-radius: 0.5rem;
     font-family: var(--font-family, 'Handjet'), sans-serif;
     color: var(--primary-color);
-    font-size: 1.5rem;    
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -397,6 +400,7 @@ export default {
     align-items: center;
     background-color: transparent;
 }
+
 
 
 .left-goto-action {
@@ -503,6 +507,7 @@ export default {
     border-radius: 0.5rem;
     gap: 0.5vw;
     background-color: var(--secondary-color);
+
 }
 
 .other-box-subtitle p {
@@ -515,11 +520,23 @@ export default {
 }
 
 /* For smaller screens */
-/* @media (max-width: 1200px) {
-    .other-box-subtitle p {
+@media (max-width: 1200px) {
+    .left-box-paragraph p {
         font-size: 1.5rem;
     }
-} */
+
+
+}
+
+/* for larger screens */
+@media (min-width: 1440px) {
+
+    .left-box-paragraph p,
+    .other-box-subtitle p {
+        font-size: 0.9rem;
+    }
+
+}
 
 
 .other-box-subtitle img {
@@ -868,23 +885,21 @@ export default {
                                     </div>
 
                                     <div class="other-box-action-call">
-                                             <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z"
-                                             />
-                                        <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z"
-                                             />
-                                        <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z"
-                                             />
+                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                            <path
+                                                d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                            <path
+                                                d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
 
-                                        <foreignObject x="0" y="0" width="379" height="32">
-                                        <router-link :to="{ name: 'Artists' }" class="other-call-action">
-                                            <span class="call-action-text">Open Artists</span> <span
-                                                class="call-goto-action" aria-hidden="true">></span>
-                                        </router-link>
-                                        </foreignObject>
+                                            <foreignObject x="0" y="0" width="379" height="32">
+                                                <router-link :to="{ name: 'Artists' }" class="other-call-action">
+                                                    <span class="call-action-text">Open Artists</span> <span
+                                                        class="call-goto-action" aria-hidden="true">></span>
+                                                </router-link>
+                                            </foreignObject>
                                         </svg>
                                     </div>
                                 </div>
@@ -929,16 +944,14 @@ export default {
                                     </p>
                                 </div>
                                 <div class="left-box-action-call">
-                                    <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z"
-                                             />
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
                                         <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z"
-                                             />
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
                                         <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z"
-                                             />
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
 
                                         <foreignObject x="0" y="0" width="379" height="32">
                                             <router-link :to="{ name: 'About' }" class="left-call-action">
@@ -984,23 +997,21 @@ export default {
                                 </div>
 
                                 <div class="other-box-action-call">
-                                      <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z"
-                                             />
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
                                         <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z"
-                                             />
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
                                         <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z"
-                                             />
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
 
                                         <foreignObject x="0" y="0" width="379" height="32">
-                                    <router-link :to="{ name: 'Collections' }" class="other-call-action">
-                                        <span>Open Collections</span> <span class="call-goto-action"
-                                            aria-hidden="true">></span>
-                                    </router-link>
-                                    </foreignObject>
+                                            <router-link :to="{ name: 'Collections' }" class="other-call-action">
+                                                <span>Open Collections</span> <span class="call-goto-action"
+                                                    aria-hidden="true">></span>
+                                            </router-link>
+                                        </foreignObject>
                                     </svg>
                                 </div>
                             </div>
@@ -1039,25 +1050,23 @@ export default {
                                 <div class="other-box-photos">
                                 </div>
                                 <div class="other-box-action-call">
-                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32" xmlns="http://www.w3.org/2000/svg">
+                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
                                         <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z"
-                                             />
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
                                         <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z"
-                                             />
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
                                         <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z"
-                                             />
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
 
                                         <foreignObject x="0" y="0" width="379" height="32">
-                                    <a href="" class="other-call-action">
-                                        <router-link :to="{ name: 'Events' }" class="other-call-action">
-                                            <span>Open Events</span> <span class="call-goto-action"
-                                                aria-hidden="true">></span>
-                                        </router-link>
-                                    </a>
-                                    </foreignObject>
+                                            <a href="" class="other-call-action">
+                                                <router-link :to="{ name: 'Events' }" class="other-call-action">
+                                                    <span>Open Events</span> <span class="call-goto-action"
+                                                        aria-hidden="true">></span>
+                                                </router-link>
+                                            </a>
+                                        </foreignObject>
                                     </svg>
                                 </div>
                             </div>

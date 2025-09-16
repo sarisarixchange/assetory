@@ -39,16 +39,14 @@ body {
 :root {
   --base-gap: 16rem;
 
- --background-color: #FFFEFA;
- --primary-color: #000000;
-  --secondary-color: #DBF2FD ;   
+  --background-color: #FFFEFA;
+  --primary-color: #000000;
+  --secondary-color: #DBF2FD;
   --navigation-buttons-border-color: #A9D0F5;
-  /* two different hover colos, blue and orange. Recommendation, keep only one color  */
   --hover-color: #FD5733;
-  /* there is no hover color in the menu buttons, recommendation: keep no color */
   --hover-text-color: #FFFFFF;
-  --shadow: #000000;  
-  /* two diferent shadow colors one orange and one black, Recommendation: keep only 1 color*/
+  --shadow: #000000;
+
 
   /* --background-color: #FFFEF6;
   --primary-color: #D400A6;

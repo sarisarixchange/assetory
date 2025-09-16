@@ -159,25 +159,12 @@ export default {
         this.currentResetIcon = 'resetIconWCAG', 
         this.currentSvgButton = 'svgButtonDefault'
 
-      } else {
-        // Default theme
-        this.currentTheme = 'default'; // Update currentTheme
-
-        // root.style.setProperty('--primary-color', '#000000');
-        // root.style.setProperty('--secondary-color', '#FFFEFA');
-        // root.style.setProperty('--navigation-buttons-border-color', '#000000');
-
-        // root.style.setProperty('--shadow', '#000000');
-        // root.style.setProperty('--hover-color', '#FD5733');
-        // root.style.setProperty('--hover-text-color', '#FFFFFF');
+      } else if (theme === 'originalInteractive') {  // high contrast theme
+        this.currentTheme = 'originalInteractive'; // Update currentTheme
 
 
+ 
 
-        // root.style.setProperty('--primary-color-left-box', '#000000');
-        // root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
-        // root.style.setProperty('--text-color-left-box', '#FFFEFA');
-        // root.style.setProperty('--hover-color-left-box', '#FD5733');
-        // root.style.setProperty('--hover-text-color-left-box', '#FFFFFF');
 
         root.style.setProperty('--primary-color', '#D400A6');
         root.style.setProperty('--secondary-color', '#FFEDF4');
@@ -193,13 +180,63 @@ export default {
         root.style.setProperty('--hover-color-left-box', '#E7EB17');
         root.style.setProperty('--hover-text-color-left-box', '#D400A6');
 
-
-
   
         // event emission
         this.$emit('theme-changed', {
-          theme: 'default',
+          theme: 'originalInteractive',
           currentBackgroundLayer: 'background-layer',
+        });
+
+
+        this.currentNavAccessibilityIcon = 'nav-buttonAccessibilityIcon'
+        this.currentIncreaseTextIcon = 'increaseTextIcon'
+        this.currentDecreaseTextIcon = 'decreaseTextIcon'
+        this.currentGrayScaleIcon = 'grayscaleIcon'
+        this.currentHighContrastIcon = 'highContrastIcon'
+        this.currentLinksUnderlineIcon = 'linksUnderlineIcon'
+        this.currentReadableFontIcon = 'readableFontIcon'
+        this.currentWcagColoursIcon = 'wcagColoursIcon'
+        this.currentResetIcon = 'resetIcon'
+        this.currentSvgButton = 'svgButtonDefault'
+
+      } else {
+        // Default theme
+        this.currentTheme = 'default'; // Update currentTheme
+
+
+         /* there is no hover color in the menu buttons, recommendation: keep no color */
+  /* two different hover colors, blue and orange. Recommendation, keep only one color, especially orange since the letters will become white and that aligns with previouis designs  */
+  /* two diferent shadow colors one orange and one black, Recommendation: keep only 1 color*/
+  /* The heading of accessibility tools is the same as the tiles in previous designs. Recommendation: keep them the same */
+  /*The hover over on accessibility tools options is the same as the hover over the tiles in previous designs. Recommendation: keep them the same */
+  /* Is it necessary to change the radius of the objects since that would affect the design of previous pages */
+  // Where can I find the design of the main homepage
+  // corner raudius of the buttons to 7 to get it less round, https://fonts.google.com/specimen/Kode+Mono > smaller font, visit the wesite here, 
+  // alternating between the two photos, hover
+  
+        root.style.setProperty('--primary-color', '#000000');
+        root.style.setProperty('--secondary-color', '#FFFEFA');
+        root.style.setProperty('--navigation-buttons-border-color', '#000000');
+
+        root.style.setProperty('--shadow', '#000000');
+        // root.style.setProperty('--hover-color', '#FD5733');
+        root.style.setProperty('--hover-color', '#DBF2FD');
+        
+        root.style.setProperty('--hover-text-color', '#FFFFFF');
+
+
+
+        root.style.setProperty('--primary-color-left-box', '#000000');
+        root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
+        root.style.setProperty('--text-color-left-box', '#FFFEFA');
+        root.style.setProperty('--hover-color-left-box', '#FD5733');
+        root.style.setProperty('--hover-text-color-left-box', '#000000');
+
+        
+        // event emission
+        this.$emit('theme-changed', {
+          theme: 'default',
+          currentBackgroundLayer: 'background-layer-default',
         });
 
 
@@ -385,6 +422,13 @@ export default {
 
     changeToWCAGcolors() {
       this.applyTheme('wcag');
+      // Save the updated setting
+      this.saveSettings();
+
+    },
+
+    changeToOriginalInteractive() {
+      this.applyTheme('originalInteractive');
       // Save the updated setting
       this.saveSettings();
 
@@ -1091,6 +1135,16 @@ a {
   <foreignObject x="0" y="0" width="301" height="31">   
       <button @click="changeToWCAGcolors" class="accessibilityButtonDiv">
         <span>WCAG AAA Colours</span>
+        <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
+      </button>
+      </foreignObject>
+</svg>
+
+  <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+  <foreignObject x="0" y="0" width="301" height="31">   
+      <button @click="changeToOriginalInteractive" class="accessibilityButtonDiv">
+        <span>Interactive Mode</span>
         <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
       </button>
       </foreignObject>

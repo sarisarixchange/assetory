@@ -13,10 +13,8 @@
 }
 
 html {
-  /* font-size: 10px !important; */
-  /* font-size: clamp(10px, var(--dynamic-font-size, 0.9vw), 16px)  !important; */
-  font-size: clamp(10px, 0.9vw, 16px) !important;
-
+  --font-scale: 1;
+  font-size: calc(clamp(10px, 0.9vw, 16px) * var(--font-scale));
 }
 
 
@@ -39,16 +37,17 @@ body {
 :root {
   --base-gap: 16rem;
 
-  --background-color: #FFFEFA;
+  /* new default theme */
+  /* --background-color: #FFFEFA;
   --primary-color: #000000;
   --secondary-color: #DBF2FD;
   --navigation-buttons-border-color: #A9D0F5;
   --hover-color: #FD5733;
   --hover-text-color: #FFFFFF;
-  --shadow: #000000;
+  --shadow: #000000; */
 
 
-  /* --background-color: #FFFEF6;
+  --background-color: #FFFEF6;
   --primary-color: #D400A6;
   --secondary-color: #FFEDF4;
   --navigation-buttons-border-color: #F1AFDD;
@@ -61,6 +60,6 @@ body {
   --secondary-color-left-box: #FCFCCE;
   --text-color-left-box: #D400A6;
   --hover-color-left-box: #E7EB17;
-  --hover-text-color-left-box: #D400A6; */
+  --hover-text-color-left-box: #D400A6;
 }
 </style>

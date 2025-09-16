@@ -41,16 +41,14 @@ export default {
     }
   },
 
-
-
-
   mounted() {
     // call saved accessibility settings
     this.loadSettings();
     // Get the actual current root font size when component mounts
-    this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
-  },
+    // this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
 
+
+  },
   methods: {
 
     applyTheme(theme) {
@@ -87,8 +85,8 @@ export default {
         this.currentLinksUnderlineIcon = 'linksUnderlineIconGray'
         this.currentReadableFontIcon = 'readableFontIconGray'
         this.currentWcagColoursIcon = 'wcagColoursIconGray'
-        this.currentResetIcon = 'resetIconGray', 
-        this.currentSvgButton = 'svgButtonGray'
+        this.currentResetIcon = 'resetIconGray',
+          this.currentSvgButton = 'svgButtonGray'
 
       } else if (theme === 'highContrast') {  // high contrast theme
         this.currentTheme = 'highContrast'; // Update currentTheme
@@ -120,8 +118,8 @@ export default {
         this.currentLinksUnderlineIcon = 'linksUnderlineIconHighContrast'
         this.currentReadableFontIcon = 'readableFontIconHighContrast'
         this.currentWcagColoursIcon = 'wcagColoursIconHighContrast'
-        this.currentResetIcon = 'resetIconHighContrast', 
-        this.currentSvgButton = 'svgButtonHighContrast'
+        this.currentResetIcon = 'resetIconHighContrast',
+          this.currentSvgButton = 'svgButtonHighContrast'
 
       } else if (theme === 'wcag') { // WCAG colors theme
         this.currentTheme = 'wcag'; // Update currentTheme
@@ -156,14 +154,14 @@ export default {
         this.currentLinksUnderlineIcon = 'linksUnderlineIconWCAG'
         this.currentReadableFontIcon = 'readableFontIconWCAG'
         this.currentWcagColoursIcon = 'wcagColoursIconWCAG'
-        this.currentResetIcon = 'resetIconWCAG', 
-        this.currentSvgButton = 'svgButtonDefault'
+        this.currentResetIcon = 'resetIconWCAG',
+          this.currentSvgButton = 'svgButtonDefault'
 
       } else if (theme === 'originalInteractive') {  // high contrast theme
         this.currentTheme = 'originalInteractive'; // Update currentTheme
 
 
- 
+
 
 
         root.style.setProperty('--primary-color', '#D400A6');
@@ -180,7 +178,7 @@ export default {
         root.style.setProperty('--hover-color-left-box', '#E7EB17');
         root.style.setProperty('--hover-text-color-left-box', '#D400A6');
 
-  
+
         // event emission
         this.$emit('theme-changed', {
           theme: 'originalInteractive',
@@ -204,16 +202,16 @@ export default {
         this.currentTheme = 'default'; // Update currentTheme
 
 
-         /* there is no hover color in the menu buttons, recommendation: keep no color */
-  /* two different hover colors, blue and orange. Recommendation, keep only one color, especially orange since the letters will become white and that aligns with previouis designs  */
-  /* two diferent shadow colors one orange and one black, Recommendation: keep only 1 color*/
-  /* The heading of accessibility tools is the same as the tiles in previous designs. Recommendation: keep them the same */
-  /*The hover over on accessibility tools options is the same as the hover over the tiles in previous designs. Recommendation: keep them the same */
-  /* Is it necessary to change the radius of the objects since that would affect the design of previous pages */
-  // Where can I find the design of the main homepage
-  // corner raudius of the buttons to 7 to get it less round, https://fonts.google.com/specimen/Kode+Mono > smaller font, visit the wesite here, 
-  // alternating between the two photos, hover
-  
+        /* there is no hover color in the menu buttons, recommendation: keep no color */
+        /* two different hover colors, blue and orange. Recommendation, keep only one color, especially orange since the letters will become white and that aligns with previouis designs  */
+        /* two diferent shadow colors one orange and one black, Recommendation: keep only 1 color*/
+        /* The heading of accessibility tools is the same as the tiles in previous designs. Recommendation: keep them the same */
+        /*The hover over on accessibility tools options is the same as the hover over the tiles in previous designs. Recommendation: keep them the same */
+        /* Is it necessary to change the radius of the objects since that would affect the design of previous pages */
+        // Where can I find the design of the main homepage
+        // corner raudius of the buttons to 7 to get it less round, https://fonts.google.com/specimen/Kode+Mono > smaller font, visit the wesite here, 
+        // alternating between the two photos, hover
+
         root.style.setProperty('--primary-color', '#000000');
         root.style.setProperty('--secondary-color', '#FFFEFA');
         root.style.setProperty('--navigation-buttons-border-color', '#000000');
@@ -221,7 +219,7 @@ export default {
         root.style.setProperty('--shadow', '#000000');
         // root.style.setProperty('--hover-color', '#FD5733');
         root.style.setProperty('--hover-color', '#DBF2FD');
-        
+
         root.style.setProperty('--hover-text-color', '#FFFFFF');
 
 
@@ -232,7 +230,7 @@ export default {
         root.style.setProperty('--hover-color-left-box', '#FD5733');
         root.style.setProperty('--hover-text-color-left-box', '#000000');
 
-        
+
         // event emission
         this.$emit('theme-changed', {
           theme: 'default',
@@ -299,11 +297,13 @@ export default {
 
         this.isMenuVisible = settings.isMenuVisible ?? this.isMenuVisible,
           // Load the font size and apply it
-          this.baseFontSize = parseFloat(settings.baseFontSize) || this.baseFontSize;
-        this.fontSize = parseFloat(settings.fontSize) || this.fontSize;
-        const pixelSize = this.baseFontSize * this.fontSize;
-        document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
+        // this.baseFontSize = parseFloat(settings.baseFontSize) || this.baseFontSize;
+        // this.fontSize = parseFloat(settings.fontSize) || this.fontSize;
+        // const pixelSize = this.baseFontSize * this.fontSize;
+        // document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
 
+        this.fontSize = parseFloat(settings.fontSize) || 1;
+        document.documentElement.style.setProperty('--font-scale', this.fontSize);
         // links decoration
         this.linkDecoration = settings.linkDecoration || this.linkDecoration,
           document.documentElement.style.setProperty("--link-decoration", this.linkDecoration);
@@ -341,18 +341,33 @@ export default {
 
 
     // increase text size
+    // increaseTextSize() {
+    //   if (this.fontSize < 2) {
+    //     this.fontSize = parseFloat((this.fontSize + 0.1).toFixed(2));
+    //     this.updateFontSize();
+    //   }
+    // },
+
     increaseTextSize() {
       if (this.fontSize < 2) {
         this.fontSize = parseFloat((this.fontSize + 0.1).toFixed(2));
-        this.updateFontSize();
+        document.documentElement.style.setProperty('--font-scale', this.fontSize);
+        this.saveSettings();
       }
     },
-
     // decrease text size
+    // decreaseTextSize() {
+    //   if (this.fontSize > 0.5) {
+    //     this.fontSize = parseFloat((this.fontSize - 0.1).toFixed(2));
+    //     this.updateFontSize();
+    //   }
+    // },
+
     decreaseTextSize() {
       if (this.fontSize > 0.5) {
         this.fontSize = parseFloat((this.fontSize - 0.1).toFixed(2));
-        this.updateFontSize();
+        document.documentElement.style.setProperty('--font-scale', this.fontSize);
+        this.saveSettings();
       }
     },
 
@@ -377,8 +392,11 @@ export default {
       document.documentElement.style.setProperty('--dynamic-font-size', '0.8vw'); // or your original default
 
       // Step 3: Reset font scale
+      // this.fontSize = 1;
+      // const pixelSize = this.baseFontSize * this.fontSize;
       this.fontSize = 1;
-      const pixelSize = this.baseFontSize * this.fontSize;
+      document.documentElement.style.setProperty('--font-scale', this.fontSize);
+
 
       // Apply the computed size
       document.documentElement.style.fontSize = `${pixelSize}px`;
@@ -490,7 +508,7 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
- 
+
 }
 
 
@@ -510,7 +528,7 @@ export default {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  
+
 }
 
 .navAccessibilityButtonHighContrastColorPalette:hover {
@@ -528,7 +546,7 @@ export default {
   background-image: url('/icons/personWCAG.svg');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;  
+  background-position: center;
 }
 
 .navAccessibilityButtonWCAGcolorPalette:hover {
@@ -563,7 +581,7 @@ export default {
   border-radius: 15px 15px 5px 5px;
   position: absolute;
   right: 0.94rem;
-  top: 6.13rem;  
+  top: 6.13rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
   cursor: pointer;
@@ -586,7 +604,7 @@ export default {
 .accessibilityButtonDiv {
   width: 100%;
   height: 100%;
-  padding: 0.5rem;  
+  padding: 0.5rem;
   display: flex;
   border: none;
   border-radius: 10px;
@@ -596,7 +614,8 @@ export default {
   justify-content: space-between;
   align-items: center;
   justify-items: center;
-  font-size: 1.5rem; /* min, preferred, max */
+  font-size: 1.5rem;
+  /* min, preferred, max */
   font-weight: 500;
 }
 
@@ -608,7 +627,7 @@ export default {
 
 .svgButtonDefault {
   fill: var(--secondary-color);
-  
+
 }
 
 .svgButtonDefault:hover {
@@ -626,6 +645,7 @@ export default {
 .svgButtonHighContrast {
   fill: var(--secondary-color);
 }
+
 .svgButtonHighContrast:hover {
   fill: var(--primary-color);
 }
@@ -986,25 +1006,25 @@ a {
   background-position: center;
 }
 
-  .accessibilityButtonDiv:hover .linksUnderlineIcon,
-  .accessibilityButtonDiv:hover .linksUnderlineIconGray,
-  .accessibilityButtonDiv:hover .linksUnderlineIconHighContrast,
-  .accessibilityButtonDiv:hover .linksUnderlineIconWCAG {
-    background-image: url("/icons/linksUnderlineIconWhite.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
+.accessibilityButtonDiv:hover .linksUnderlineIcon,
+.accessibilityButtonDiv:hover .linksUnderlineIconGray,
+.accessibilityButtonDiv:hover .linksUnderlineIconHighContrast,
+.accessibilityButtonDiv:hover .linksUnderlineIconWCAG {
+  background-image: url("/icons/linksUnderlineIconWhite.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
 
-  .accessibilityButtonDiv:hover .readableFontIcon,
-  .accessibilityButtonDiv:hover .readableFontIconGray,
-  .accessibilityButtonDiv:hover .readableFontIconHighContrast,
-  .accessibilityButtonDiv:hover .readableFontIconWCAG {
-    background-image: url("/icons/readableFontIconWhite.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-  }
+.accessibilityButtonDiv:hover .readableFontIcon,
+.accessibilityButtonDiv:hover .readableFontIconGray,
+.accessibilityButtonDiv:hover .readableFontIconHighContrast,
+.accessibilityButtonDiv:hover .readableFontIconWCAG {
+  background-image: url("/icons/readableFontIconWhite.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
 
 
 
@@ -1037,7 +1057,8 @@ a {
 
 /* Adjust dropdown to appear right of button */
 .dropdown-content {
-  left: 3.5rem; /* Move menu to the right of the button */
+  left: 3.5rem;
+  /* Move menu to the right of the button */
   right: auto;
   top: 14rem;
   transform: translateY(-50%);
@@ -1058,107 +1079,114 @@ a {
         </h2>
       </div>
 
-<!-- buttons -->
-<svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">
-    <button @click="increaseTextSize" 
-    class="accessibilityButtonDiv"
-    >
-      <span>Increase Text</span>
-      <span :class="currentIncreaseTextIcon" aria-hidden="true"></span>
-    </button>
-  </foreignObject>
-</svg>
+      <!-- buttons -->
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="increaseTextSize" class="accessibilityButtonDiv">
+            <span>Increase Text</span>
+            <span :class="currentIncreaseTextIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
 
 
       <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">
-    <button @click="decreaseTextSize" class="accessibilityButtonDiv">
-        <span>Decrease Text</span>
-        <span :class="currentDecreaseTextIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg>
-
-   <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">      
-    <button @click="changeTograyscale" class="accessibilityButtonDiv">
-        <span>Grayscale</span>
-        <span :class="currentGrayScaleIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg>
-
-   
-
-       <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">     
-      <button @click="changeToHighContrast" class="accessibilityButtonDiv">
-        <span>High Contrast</span>
-        <span :class="currentHighContrastIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg>
-
-
-
-       <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">    
-        <button @click="activateLinksUnderline" class="accessibilityButtonDiv">
-        <span>Links Underline</span>
-        <span :class="currentLinksUnderlineIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg> 
-
-
-    
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="decreaseTextSize" class="accessibilityButtonDiv">
+            <span>Decrease Text</span>
+            <span :class="currentDecreaseTextIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
 
       <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">   
-     <button @click="activateReadableFont" class="accessibilityButtonDiv">
-        <span>Readable Font</span>
-        <span :class="currentReadableFontIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg> 
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="changeTograyscale" class="accessibilityButtonDiv">
+            <span>Grayscale</span>
+            <span :class="currentGrayScaleIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
 
 
-  <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">   
-      <button @click="changeToWCAGcolors" class="accessibilityButtonDiv">
-        <span>WCAG AAA Colours</span>
-        <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg>
 
-  <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">   
-      <button @click="changeToOriginalInteractive" class="accessibilityButtonDiv">
-        <span>Interactive Mode</span>
-        <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg>
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="changeToHighContrast" class="accessibilityButtonDiv">
+            <span>High Contrast</span>
+            <span :class="currentHighContrastIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
 
-  <svg  :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <path d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-  <foreignObject x="0" y="0" width="301" height="31">   
-      <button @click="reset" class="accessibilityButtonDiv">
-        <span>Reset</span>
-        <span :class="currentResetIcon" aria-hidden="true"></span>
-      </button>
-      </foreignObject>
-</svg>
+
+
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="activateLinksUnderline" class="accessibilityButtonDiv">
+            <span>Links Underline</span>
+            <span :class="currentLinksUnderlineIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
+
+
+
+
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="activateReadableFont" class="accessibilityButtonDiv">
+            <span>Readable Font</span>
+            <span :class="currentReadableFontIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
+
+
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="changeToWCAGcolors" class="accessibilityButtonDiv">
+            <span>WCAG AAA Colours</span>
+            <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
+
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="changeToOriginalInteractive" class="accessibilityButtonDiv">
+            <span>Interactive Mode</span>
+            <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
+
+      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
+        <foreignObject x="0" y="0" width="301" height="31">
+          <button @click="reset" class="accessibilityButtonDiv">
+            <span>Reset</span>
+            <span :class="currentResetIcon" aria-hidden="true"></span>
+          </button>
+        </foreignObject>
+      </svg>
     </div>
   </div>
 </template>

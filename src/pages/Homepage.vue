@@ -275,7 +275,7 @@ export default {
 .homeSVG {
     width: 100%;
     height: 100%;
-    grid-column: 1 / 13;
+    grid-column: 2 / 13;
     grid-row: 2 / 9;
     overflow: hidden;
     /* Prevents SVG from overflowing the grid area */
@@ -713,6 +713,26 @@ export default {
         /* Scroll by 100% of the container width */
     }
 }
+
+.right-connectors {
+    stroke: var(--primary-color);
+
+}
+
+.right-ellipse {
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+
+}
+
+.left-connectors {
+    stroke: var(--shadow);
+}
+
+.left-ellipse {
+    fill: var(--shadow);
+    stroke: var(--shadow);
+}
 </style>
 
 <template>
@@ -850,12 +870,23 @@ export default {
         </div> -->
 
         <div class="homeSVG">
-            <svg viewBox="0 0 1410 744" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="nodes" clip-path="url(#clip0_305_607)">
-                    <g id="Artist Node Idle">
-                        <g id="Frame 29" filter="url(#filter0_d_305_607)">
 
-                            <foreignObject x="507.5" y="6" width="394" height="270">
+            <svg viewBox="0 0 1665 718" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="Group 641">
+                    <g id="Group 594" class="right-connectors">
+                        <path id="Artist Connector" d="M906 139.926C1026.16 148.939 1509.33 -114.93 1665 192"
+                            stroke-width="2" stroke-linecap="round" />
+                        <path id="Collections Connector" d="M1408 298C1736.5 357 1318.5 459 1665 512" stroke-width="2"
+                            stroke-linecap="round" />
+                        <path id="Events Connector" d="M959 575.445C1193.88 426.858 1341.36 693.874 1665 651.349"
+                            stroke-width="2" stroke-linecap="round" />
+                    </g>
+                    <g id="Frame 26" clip-path="url(#clip0_2723_2)">
+                        <g id="Artist Node Idle">
+
+                            <foreignObject x="501.5" y="6.5" width="400" height="271">
+
+
 
                                 <div class="center-top-box">
                                     <div class="other-box-heading">
@@ -904,350 +935,196 @@ export default {
                                     </div>
                                 </div>
                             </foreignObject>
+
+                            <g class="left-ellipse">
+                                <circle cx="507" cy="90" r="5.5" />
+                                <circle cx="507" cy="105" r="5.5" fill="#FFFEF6" />
+                            
+                            </g>
+
+
+                            <g class="right-ellipse">
+                                <circle id="Ellipse 12" cx="901" cy="140" r="5.5" />
+                                <circle id="Ellipse 11" cx="901" cy="155" r="5" fill="#FFFEF6" />
+                            </g>
                         </g>
-                        <g id="Ellipse 9" filter="url(#filter1_d_305_607)">
-                            <circle cx="507" cy="89.5" r="5.5" fill="#F1AFDD" />
+
+                        <g id="About Node Idle">
+
+                            <foreignObject x="0" y="150" width="400" height="271">
+                                <div class="left-box">
+                                    <div class="left-box-heading">
+                                        <img v-show="isPinkLeftCardIconVisible"
+                                            :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="">
+                                        <img v-show="isGrayLeftCardIconVisible"
+                                            :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="">
+                                        <img v-show="isHighContrastLeftCardIconVisible"
+                                            :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                                        <img v-show="isWCAGLeftCardIconVisible"
+                                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                                        <h2>Sari-Sari Xchange</h2>
+                                    </div>
+                                    <div class="left-box-paragraph">
+                                        <p>SSX is a community-building research & creation project using Extended
+                                            Reality (XR) (ie. Virtual,
+                                            Augmented, Mixed Realities) to foster new works by artists from the
+                                            Asian diaspora.
+                                            <br><br>
+                                            Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created
+                                            with and for the Asian diaspora
+                                            community.
+                                        </p>
+                                    </div>
+                                    <div class="left-box-action-call">
+                                        <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                            <path
+                                                d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                            <path
+                                                d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
+
+                                            <foreignObject x="0" y="0" width="379" height="32">
+                                                <router-link :to="{ name: 'About' }" class="left-call-action">
+                                                    <span>Learn More</span> <span class="left-goto-action"
+                                                        aria-hidden="true">OK</span>
+                                                </router-link>
+                                            </foreignObject>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </foreignObject>
+
+                            <g class="right-ellipse">
+                                <circle cx="5" cy="234" r="5.5" />
+                                <circle cx="5" cy="249" r="5.5" fill="#FFFEF6" />
+                            </g>
+
+                            <g class="left-ellipse">
+                                <circle id="Ellipse 12_2" cx="399" cy="284" r="5.5" />
+                                <circle id="Ellipse 11_2" cx="399" cy="299" r="5" fill="#FFFEF6" />
+                            </g>
                         </g>
-                        <g id="Ellipse 10" filter="url(#filter2_d_305_607)">
-                            <circle cx="507" cy="104.5" r="5.5" fill="#FFFEF6" />
-                            <circle cx="507" cy="104.5" r="5" stroke="#D400A6" />
+                        <g id="Group 593" class="left-connectors">
+                            <path id="SSX to Artists Connector"
+                                d="M400.5 281.994C473.5 232.994 436 24.0001 506.5 91.0001" stroke-width="2"
+                                stroke-linecap="round" />
+                            <path id="SSX to Collections Connector" d="M400 283.494C586.5 341.994 838.5 401 1009.5 250"
+                                stroke-width="2" stroke-linecap="round" />
+                            <path id="SSX to Events Connector" d="M400 285.494C497.5 331.494 367.5 472.5 563 524.5"
+                                stroke-width="2" stroke-linecap="round" />
                         </g>
-                        <circle id="Ellipse 12" cx="901" cy="139.5" r="5.5" fill="#D400A6" />
-                        <circle id="Ellipse 11" cx="901" cy="154.5" r="5" fill="#FFFEF6" stroke="#D400A6" />
-                    </g>
-                    <g id="About Node Idle">
+                        <g id="Collections Node Idle">
+                            <foreignObject x="1005" y="164" width="400" height="271">
 
+                                <div class="right-box">
+                                    <div class="other-box-heading">
+                                        <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                                        <h2>Collections</h2>
+                                    </div>
+                                    <div class="other-box-subtitle">
+                                        <img v-show="isDecoractionCardSubtitlePink"
+                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleGray"
+                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleHighContrast"
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleWCAG"
+                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                        <p>Explore collections by SSX.</p>
+                                    </div>
+                                    <div class="other-box-photos">
+                                    </div>
 
+                                    <div class="other-box-action-call">
+                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                            <path
+                                                d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                            <path
+                                                d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
 
-                        <foreignObject x="46.5" y="231" width="394" height="274">
-                            <div class="left-box">
-                                <div class="left-box-heading">
-                                    <img v-show="isPinkLeftCardIconVisible"
-                                        :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="">
-                                    <img v-show="isGrayLeftCardIconVisible"
-                                        :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="">
-                                    <img v-show="isHighContrastLeftCardIconVisible"
-                                        :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
-                                    <img v-show="isWCAGLeftCardIconVisible"
-                                        :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
-                                    <h2>Sari-Sari Xchange</h2>
-                                </div>
-                                <div class="left-box-paragraph">
-                                    <p>SSX is a community-building research & creation project using Extended
-                                        Reality (XR) (ie. Virtual,
-                                        Augmented, Mixed Realities) to foster new works by artists from the
-                                        Asian diaspora.
-                                        <br><br>
-                                        Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created
-                                        with and for the Asian diaspora
-                                        community.
-                                    </p>
-                                </div>
-                                <div class="left-box-action-call">
-                                    <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
-                                        <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
-                                        <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
-
-                                        <foreignObject x="0" y="0" width="379" height="32">
-                                            <router-link :to="{ name: 'About' }" class="left-call-action">
-                                                <span>Learn More</span> <span class="left-goto-action"
-                                                    aria-hidden="true">OK</span>
-                                            </router-link>
-                                        </foreignObject>
-                                    </svg>
-                                </div>
-                            </div>
-                        </foreignObject>
-
-                        <g id="Ellipse 9_2" filter="url(#filter4_d_305_607)">
-                            <circle cx="46" cy="314.5" r="5.5" fill="#D400A6" />
-                        </g>
-                        <g id="Ellipse 10_2" filter="url(#filter5_d_305_607)">
-                            <circle cx="46" cy="329.5" r="5.5" fill="#FFFEF6" />
-                            <circle cx="46" cy="329.5" r="5" stroke="#D400A6" />
-                        </g>
-                        <circle id="Ellipse 12_2" cx="440" cy="364.5" r="5.5" fill="#F1AFDD" />
-                        <circle id="Ellipse 11_2" cx="440" cy="379.5" r="5" fill="#FFFEF6" stroke="#F1AFDD" />
-                    </g>
-                    <g id="Collections Node Idle">
-                        <foreignObject x="964" y="186" width="394" height="281">
-
-                            <div class="right-box">
-                                <div class="other-box-heading">
-                                    <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
-                                    <h2>Collections</h2>
-                                </div>
-                                <div class="other-box-subtitle">
-                                    <img v-show="isDecoractionCardSubtitlePink"
-                                        :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                                    <img v-show="isDecoractionCardSubtitleGray"
-                                        :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                                    <img v-show="isDecoractionCardSubtitleHighContrast"
-                                        :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                    <img v-show="isDecoractionCardSubtitleWCAG"
-                                        :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                                    <p>Explore collections by SSX.</p>
-                                </div>
-                                <div class="other-box-photos">
-                                </div>
-
-                                <div class="other-box-action-call">
-                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
-                                        <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
-                                        <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
-
-                                        <foreignObject x="0" y="0" width="379" height="32">
-                                            <router-link :to="{ name: 'Collections' }" class="other-call-action">
-                                                <span>Open Collections</span> <span class="call-goto-action"
-                                                    aria-hidden="true">></span>
-                                            </router-link>
-                                        </foreignObject>
-                                    </svg>
-                                </div>
-                            </div>
-                        </foreignObject>
-
-                        <g id="Ellipse 9_3" filter="url(#filter7_d_305_607)">
-                            <circle cx="963.5" cy="269.5" r="5.5" fill="#F1AFDD" />
-                        </g>
-                        <g id="Ellipse 10_3" filter="url(#filter8_d_305_607)">
-                            <circle cx="963.5" cy="284.5" r="5.5" fill="#FFFEF6" />
-                            <circle cx="963.5" cy="284.5" r="5" stroke="#D400A6" />
-                        </g>
-                        <circle id="Ellipse 12_3" cx="1357.5" cy="319.5" r="5.5" fill="#D400A6" />
-                        <circle id="Ellipse 11_3" cx="1357.5" cy="334.5" r="5" fill="#FFFEF6" stroke="#D400A6" />
-                    </g>
-                    <g id="Events Node Idle">
-
-                        <foreignObject x="551" y="462" width="394" height="262.459">
-
-                            <div class="center-bottom-box">
-                                <div class="other-box-heading">
-                                    <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
-                                    <h2>Events</h2>
-                                </div>
-                                <div class="other-box-subtitle">
-                                    <img v-show="isDecoractionCardSubtitlePink"
-                                        :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                                    <img v-show="isDecoractionCardSubtitleGray"
-                                        :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                                    <img v-show="isDecoractionCardSubtitleHighContrast"
-                                        :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                    <img v-show="isDecoractionCardSubtitleWCAG"
-                                        :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                                    <p>Assets created during SSX events.</p>
-                                </div>
-                                <div class="other-box-photos">
-                                </div>
-                                <div class="other-box-action-call">
-                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
-                                        <path
-                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
-                                        <path
-                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
-
-                                        <foreignObject x="0" y="0" width="379" height="32">
-                                            <a href="" class="other-call-action">
-                                                <router-link :to="{ name: 'Events' }" class="other-call-action">
-                                                    <span>Open Events</span> <span class="call-goto-action"
+                                            <foreignObject x="0" y="0" width="379" height="32">
+                                                <router-link :to="{ name: 'Collections' }" class="other-call-action">
+                                                    <span>Open Collections</span> <span class="call-goto-action"
                                                         aria-hidden="true">></span>
                                                 </router-link>
-                                            </a>
-                                        </foreignObject>
-                                    </svg>
+                                            </foreignObject>
+                                        </svg>
+                                    </div>
                                 </div>
-                            </div>
-                        </foreignObject>
+                            </foreignObject>
+                            <g class="left-ellipse">
+                                <circle cx="1010.5" cy="248" r="5.5" />
+                                <circle cx="1010.5" cy="263" r="5" fill="#FFFEF6" />
+                            </g>
 
-                        <g id="Ellipse 9_4" filter="url(#filter10_d_305_607)">
-                            <circle cx="550.5" cy="545.5" r="5.5" fill="#F1AFDD" />
+                            <g class="right-ellipse">
+                                <circle id="Ellipse 12_3" cx="1404.5" cy="298" r="5.5" />
+                                <circle id="Ellipse 11_3" cx="1404.5" cy="313" r="5" fill="#FFFEF6" />
+                            </g>
                         </g>
-                        <g id="Ellipse 10_4" filter="url(#filter11_d_305_607)">
-                            <circle cx="550.5" cy="560.5" r="5.5" fill="#FFFEF6" />
-                            <circle cx="550.5" cy="560.5" r="5" stroke="#D400A6" />
+                        <g id="Events Node Idle">
+
+                            <foreignObject x="559" y="440.5" width="405" height="276">
+
+                                <div class="center-bottom-box">
+                                    <div class="other-box-heading">
+                                        <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
+                                        <h2>Events</h2>
+                                    </div>
+                                    <div class="other-box-subtitle">
+                                        <img v-show="isDecoractionCardSubtitlePink"
+                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleGray"
+                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleHighContrast"
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleWCAG"
+                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                        <p>Assets created during SSX events.</p>
+                                    </div>
+                                    <div class="other-box-photos">
+                                    </div>
+                                    <div class="other-box-action-call">
+                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                            <path
+                                                d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                            <path
+                                                d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
+
+                                            <foreignObject x="0" y="0" width="379" height="32">
+                                                <a href="" class="other-call-action">
+                                                    <router-link :to="{ name: 'Events' }" class="other-call-action">
+                                                        <span>Open Events</span> <span class="call-goto-action"
+                                                            aria-hidden="true">></span>
+                                                    </router-link>
+                                                </a>
+                                            </foreignObject>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </foreignObject>
+
+
+                            <g class="left-ellipse">
+                                <circle cx="564.5" cy="524.5" r="5.5" />
+                                <circle cx="564.5" cy="539.5" r="5.5" fill="#FFFEF6" />
+
+                            </g>
+                            <g class="right-ellipse">
+                                <circle id="Ellipse 12_4" cx="958.5" cy="574.5" r="5.5" />
+                                <circle id="Ellipse 11_4" cx="958.5" cy="589.5" r="5" fill="#FFFEF6" />
+                            </g>
                         </g>
-                        <circle id="Ellipse 12_4" cx="944.5" cy="595.5" r="5.5" fill="#D400A6" />
-                        <circle id="Ellipse 11_4" cx="944.5" cy="610.5" r="5" fill="#FFFEF6" stroke="#D400A6" />
                     </g>
-                    <g id="nodes-left">
-                        <path id="SSX to Artists Connector" d="M442 362C515 313 436 22.9999 506.5 89.9999"
-                            stroke="#F1AFDD" stroke-width="2" stroke-linecap="round" />
-                        <path id="SSX to Collections Connector" d="M441.5 363.5C628 422 848.5 394.5 961.5 271"
-                            stroke="#F1AFDD" stroke-width="2" stroke-linecap="round" />
-                        <path id="SSX to Events Connector" d="M441.5 365.5C539 411.5 354.5 495.5 550 547.5"
-                            stroke="#F1AFDD" stroke-width="2" stroke-linecap="round" />
-                    </g>
-                    <g id="node-right">
-                        <path id="Artist Connector" d="M903 140C993 149 1354.9 -114.497 1471.5 192" stroke="#D400A6"
-                            stroke-width="2" stroke-linecap="round" />
-                        <path id="Collections Connector" d="M1358.5 320.5C1538.5 450 1264.5 438.5 1437.5 535"
-                            stroke="#D400A6" stroke-width="2" stroke-linecap="round" />
-                        <path id="Vector 6" d="M944.5 597C1116.5 448.5 1224.5 715.36 1461.5 672.86" stroke="#D400A6"
-                            stroke-width="2" stroke-linecap="round" />
-                    </g>
-                </g>
-                <defs>
-                    <filter id="filter0_d_305_607" x="503.5" y="6" width="398" height="274" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="4" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter1_d_305_607" x="497.5" y="84" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter2_d_305_607" x="497.5" y="99" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter3_d_305_607" x="42.5" y="231" width="398" height="278"
-                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="4" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter4_d_305_607" x="36.5" y="309" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter5_d_305_607" x="36.5" y="324" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter6_d_305_607" x="960" y="186" width="398" height="285" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="4" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter7_d_305_607" x="954" y="264" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter8_d_305_607" x="954" y="279" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter9_d_305_607" x="547" y="462" width="398" height="266.459"
-                        filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="4" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter10_d_305_607" x="541" y="540" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <filter id="filter11_d_305_607" x="541" y="555" width="15" height="13" filterUnits="userSpaceOnUse"
-                        color-interpolation-filters="sRGB">
-                        <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                            result="hardAlpha" />
-                        <feOffset dx="-4" dy="2" />
-                        <feComposite in2="hardAlpha" operator="out" />
-                        <feColorMatrix type="matrix"
-                            values="0 0 0 0 0.945098 0 0 0 0 0.686275 0 0 0 0 0.866667 0 0 0 1 0" />
-                        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_305_607" />
-                        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_305_607" result="shape" />
-                    </filter>
-                    <clipPath id="clip0_305_607">
-                        <rect width="1410" height="744" fill="white" />
-                    </clipPath>
-                </defs>
+                </g>                
             </svg>
 
         </div>

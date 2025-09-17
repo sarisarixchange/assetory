@@ -1497,7 +1497,7 @@
             {
   "id": 1,
   "name": "Assorted dimsum takeout",
-  "thumbnail": "",
+  "thumbnail": "collection-thumbnail-placeholder.jpeg",
   "creator": "Arturo",
   "tags": [
     "chinese food",
@@ -1516,7 +1516,8 @@
 {
   "id": 2,
   "name": "2ScaryCharacterforUE5",
-  "thumbnail": "",
+   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+
   "creator": "Arturo Jimenez",
   "tags": [
     "video game character",
@@ -1535,7 +1536,8 @@
 {
   "id": 3,
   "name": "3ubercharacter_ue5",
-  "thumbnail": "",
+   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+
   "creator": "Arturo Jimenez",
   "tags": [
     "video game character",
@@ -1555,7 +1557,8 @@
 {
   "id": 4,
   "name": "new_arttheboy_character",
-  "thumbnail": "",
+   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+
   "creator": "Arturo Jimenez",
   "tags": [
     "video game character",
@@ -1575,7 +1578,8 @@
 {
   "id": 5,
   "name": "newscaryCharacter",
-  "thumbnail": "",
+   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+
   "creator": "Arturo Jimenez",
   "tags": [
     "game ready",
@@ -1595,7 +1599,8 @@
 {
   "id": 6,
   "name": "Dinaguan, Chocolate Meat Plate",
-  "thumbnail": "",
+   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+
   "creator": "Arturo/ Yakari",
   "tags": [
     "filipino",

@@ -157,9 +157,8 @@ export default {
         this.currentResetIcon = 'resetIconWCAG',
           this.currentSvgButton = 'svgButtonDefault'
 
-      } else if (theme === 'originalInteractive') {  // high contrast theme
+      } else if (theme === 'originalInteractive') {  
         this.currentTheme = 'originalInteractive'; // Update currentTheme
-
 
 
 
@@ -179,7 +178,6 @@ export default {
         root.style.setProperty('--hover-text-color-left-box', '#D400A6');
 
 
-        // event emission
         this.$emit('theme-changed', {
           theme: 'originalInteractive',
           currentBackgroundLayer: 'background-layer',
@@ -201,6 +199,19 @@ export default {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
 
+             root.style.setProperty('--primary-color', '#D400A6');
+        root.style.setProperty('--secondary-color', '#FFEDF4');
+        root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
+
+        root.style.setProperty('--shadow', '#F1AFDD');
+        root.style.setProperty('--hover-color', '#D400A6');
+        root.style.setProperty('--hover-text-color', '#FFFFFF');
+
+        root.style.setProperty('--primary-color-left-box', '#E7EB17');
+        root.style.setProperty('--secondary-color-left-box', '#FCFCCE');
+        root.style.setProperty('--text-color-left-box', '#D400A6');
+        root.style.setProperty('--hover-color-left-box', '#E7EB17');
+        root.style.setProperty('--hover-text-color-left-box', '#D400A6');
 
         /* there is no hover color in the menu buttons, recommendation: keep no color */
         /* two different hover colors, blue and orange. Recommendation, keep only one color, especially orange since the letters will become white and that aligns with previouis designs  */
@@ -212,23 +223,22 @@ export default {
         // corner raudius of the buttons to 7 to get it less round, https://fonts.google.com/specimen/Kode+Mono > smaller font, visit the wesite here, 
         // alternating between the two photos, hover
 
-        root.style.setProperty('--primary-color', '#000000');
-        root.style.setProperty('--secondary-color', '#FFFEFA');
-        root.style.setProperty('--navigation-buttons-border-color', '#000000');
+        // root.style.setProperty('--primary-color', '#000000');
+        // root.style.setProperty('--secondary-color', '#FFFEFA');
+        // root.style.setProperty('--navigation-buttons-border-color', '#000000');
 
-        root.style.setProperty('--shadow', '#000000');
-        // root.style.setProperty('--hover-color', '#FD5733');
-        root.style.setProperty('--hover-color', '#DBF2FD');
+        // root.style.setProperty('--shadow', '#000000');
+        // root.style.setProperty('--hover-color', '#DBF2FD');
 
-        root.style.setProperty('--hover-text-color', '#FFFFFF');
-
+        // root.style.setProperty('--hover-text-color', '#FFFFFF');
 
 
-        root.style.setProperty('--primary-color-left-box', '#000000');
-        root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
-        root.style.setProperty('--text-color-left-box', '#FFFEFA');
-        root.style.setProperty('--hover-color-left-box', '#FD5733');
-        root.style.setProperty('--hover-text-color-left-box', '#000000');
+
+        // root.style.setProperty('--primary-color-left-box', '#000000');
+        // root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
+        // root.style.setProperty('--text-color-left-box', '#FFFEFA');
+        // root.style.setProperty('--hover-color-left-box', '#FD5733');
+        // root.style.setProperty('--hover-text-color-left-box', '#000000');
 
 
         // event emission
@@ -297,12 +307,12 @@ export default {
 
         this.isMenuVisible = settings.isMenuVisible ?? this.isMenuVisible,
           // Load the font size and apply it
-        // this.baseFontSize = parseFloat(settings.baseFontSize) || this.baseFontSize;
-        // this.fontSize = parseFloat(settings.fontSize) || this.fontSize;
-        // const pixelSize = this.baseFontSize * this.fontSize;
-        // document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
+          // this.baseFontSize = parseFloat(settings.baseFontSize) || this.baseFontSize;
+          // this.fontSize = parseFloat(settings.fontSize) || this.fontSize;
+          // const pixelSize = this.baseFontSize * this.fontSize;
+          // document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
 
-        this.fontSize = parseFloat(settings.fontSize) || 1;
+          this.fontSize = parseFloat(settings.fontSize) || 1;
         document.documentElement.style.setProperty('--font-scale', this.fontSize);
         // links decoration
         this.linkDecoration = settings.linkDecoration || this.linkDecoration,
@@ -339,47 +349,37 @@ export default {
       this.saveSettings();
     },
 
+updateContainerHeight() {
+  // Multiply base 100vh by the font scale
+  const newHeight = 100 * this.fontSize;
+  document.documentElement.style.setProperty('--container-height', `${newHeight}vh`);
 
-    // increase text size
-    // increaseTextSize() {
-    //   if (this.fontSize < 2) {
-    //     this.fontSize = parseFloat((this.fontSize + 0.1).toFixed(2));
-    //     this.updateFontSize();
-    //   }
-    // },
+  // Allow overflow when larger than 100
+  const container = document.querySelector('.grid-container');
+  if (this.fontSize > 1) {
+    container.style.overflow = 'visible';
+  } else {
+    container.style.overflow = 'hidden';
+  }
+},
 
     increaseTextSize() {
       if (this.fontSize < 2) {
         this.fontSize = parseFloat((this.fontSize + 0.1).toFixed(2));
         document.documentElement.style.setProperty('--font-scale', this.fontSize);
         this.saveSettings();
+        this.updateContainerHeight();
       }
     },
-    // decrease text size
-    // decreaseTextSize() {
-    //   if (this.fontSize > 0.5) {
-    //     this.fontSize = parseFloat((this.fontSize - 0.1).toFixed(2));
-    //     this.updateFontSize();
-    //   }
-    // },
+
 
     decreaseTextSize() {
       if (this.fontSize > 0.5) {
         this.fontSize = parseFloat((this.fontSize - 0.1).toFixed(2));
         document.documentElement.style.setProperty('--font-scale', this.fontSize);
         this.saveSettings();
+        this.updateContainerHeight();
       }
-    },
-
-    updateFontSize() {
-      if (!this.baseFontSize || isNaN(this.baseFontSize)) {
-        // fallback to default value (16px is common)
-        this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-      }
-      const pixelSize = this.baseFontSize * this.fontSize; // Calculate the new font size in pixels
-      document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
-
-      this.saveSettings(); // Save the updated font size to localStorage
     },
 
 
@@ -396,11 +396,8 @@ export default {
       // const pixelSize = this.baseFontSize * this.fontSize;
       this.fontSize = 1;
       document.documentElement.style.setProperty('--font-scale', this.fontSize);
+      this.updateContainerHeight();
 
-
-      // Apply the computed size
-      document.documentElement.style.fontSize = `${pixelSize}px`;
-      document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
 
       // Step 4: Reset custom link styles
       this.linkDecoration = "none";

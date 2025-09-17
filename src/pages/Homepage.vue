@@ -10,6 +10,9 @@ export default {
     data() {
         return {
             iconBasePath: 'icons/', // Base path for icons
+            artistBasePath: 'images/artists/', 
+            collectionsBasePath: 'images/collections/',
+            eventsBasePath: 'images/events/',
             marqueeBasePath: 'images/marquee/',
 
             isNotificationVisible: true,
@@ -198,13 +201,17 @@ export default {
 </script>
 <style scoped>
 .grid-container {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(12, 1fr);
-    /* grid-template-rows: 7% repeat(8, 1fr); */
-    grid-template-rows: 1fr repeat(8, 1fr);
+    grid-template-rows: 1fr repeat(7, 1fr) 1fr; */
+    display: flex;
+    flex-direction: column;
     width: 100vw;
-    height: 100vh;
+    height: var(--container-height, 100vh);
+    /* default */
 }
+
+
 
 .topBar {
     grid-column: 1/13;
@@ -347,6 +354,8 @@ export default {
     /* height: 15.73vh; */
     /* height: clamp(120px, 15.73vh, 220px); */
     /* preferred ~168px */
+        overflow: auto;
+
 }
 
 
@@ -363,7 +372,6 @@ export default {
     color: var(--primary-color);
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    overflow: auto;
 }
 
 
@@ -443,12 +451,9 @@ export default {
 }
 
 .center-top-box {
-    grid-column: 5 / 9;
-    grid-row: 2 / 5;
-    /* width: 100%; */
-    /* height: 100%; */
-    /* margin-top: 2.809vw; */
-    /* margin-left: 2.847vw; */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .center-bottom-box {
@@ -492,7 +497,10 @@ export default {
 
 }
 
-
+.other-box-heading,
+.other-box-action-call {
+    flex-shrink: 0;
+} 
 .other-box-heading img {
     width: 0.94081rem;
 
@@ -545,22 +553,23 @@ export default {
 
 .other-box-photos {
     flex: 1 1 auto;
-    height: 100%;
+    min-height: 0;
     display: flex;
-    /* height: 8.25rem;     */
-    padding: 0.5rem;
     justify-content: center;
     align-items: center;
     gap: 1.25rem;
     align-self: stretch;
     border-radius: 0.5rem;
     background-color: var(--secondary-color);
+    overflow: hidden; /* Prevents overflow */
 }
-
 
 
 .other-box-photos img {
     width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
 }
 
 .other-box-action-call {
@@ -886,8 +895,6 @@ export default {
 
                             <foreignObject x="501.5" y="6.5" width="400" height="271">
 
-
-
                                 <div class="center-top-box">
                                     <div class="other-box-heading">
                                         <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
@@ -907,12 +914,11 @@ export default {
                                     </div>
                                     <div class="other-box-photos" aria-hidden="true">
                                         <img v-show="arePinkTopCenterCardSampleImagesVisible"
-                                            :src="iconBasePath + 'sample-images-artists.png'" alt="">
+                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
                                         <img v-show="areGrayTopCenterCardSampleImagesVisible"
-                                            :src="iconBasePath + 'sample-images-artists-grayscale.png'" alt="">
+                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
                                         <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
-                                            :src="iconBasePath + 'sample-images-artists-highContrast.png'" alt="">
-
+                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
                                     </div>
 
                                     <div class="other-box-action-call">
@@ -939,7 +945,7 @@ export default {
                             <g class="left-ellipse">
                                 <circle cx="507" cy="90" r="5.5" />
                                 <circle cx="507" cy="105" r="5.5" fill="#FFFEF6" />
-                            
+
                             </g>
 
 
@@ -1034,8 +1040,17 @@ export default {
                                             :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
                                         <p>Explore collections by SSX.</p>
                                     </div>
-                                    <div class="other-box-photos">
+                                    <div class="other-box-photos" aria-hidden="true">
+                                        <img v-show="arePinkTopCenterCardSampleImagesVisible"
+                                            :src="collectionsBasePath + 'collection-thumbnail-placeholder.jpeg'" alt="">
+                                        <img v-show="areGrayTopCenterCardSampleImagesVisible"
+                                            :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                        <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
+                                            :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="">
                                     </div>
+
+
+                                        
 
                                     <div class="other-box-action-call">
                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
@@ -1087,8 +1102,15 @@ export default {
                                             :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
                                         <p>Assets created during SSX events.</p>
                                     </div>
-                                    <div class="other-box-photos">
+                                   <div class="other-box-photos" aria-hidden="true">
+                                        <img v-show="arePinkTopCenterCardSampleImagesVisible"
+                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                        <img v-show="areGrayTopCenterCardSampleImagesVisible"
+                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                        <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
+                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
                                     </div>
+
                                     <div class="other-box-action-call">
                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -1124,7 +1146,7 @@ export default {
                             </g>
                         </g>
                     </g>
-                </g>                
+                </g>
             </svg>
 
         </div>

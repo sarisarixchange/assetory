@@ -249,6 +249,8 @@ export default {
     align-self: stretch;
     border-radius: 8px;
     background-color: var(--secondary-color);
+        overflow: auto;
+
 }
 
 .boxOneParagraphContainer p {
@@ -341,7 +343,6 @@ export default {
     /* margin-left: auto; */
     /* margin-right: auto; */
     /* margin-top: 4rem; */
-    background-color: var(--secondary-color-left-box);
     grid-column: 2 / 4;
     grid-row: 3 / 5;
     flex-direction: column;
@@ -357,21 +358,25 @@ export default {
 }
 
 .boxTwoThreeAndFiveParagraphContainer {
-    height: 100%;
     display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
     padding: 1.25rem;
-    align-items: center;
+    align-items: center;    
     align-self: stretch;
     border-radius: 8px;
     background-color: var(--secondary-color-left-box);
+    overflow: auto;
 }
 
 .boxTwo p,
 .boxThree p,
-.boxFive p {
-    /* display: inline-flex; */
-    padding: 1.25rem;
+.boxFive p {    
+    /* padding: 1.25rem; */
     align-items: center;
+    justify-content: center;
+
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 8px;
@@ -380,10 +385,32 @@ export default {
     font-size: 1.25rem;
     font-weight: 500;
     color: var(--primary-color);
+}
+
+/* For smaller screens */
+@media (max-width: 1200px) {
+
+    .boxOneParagraphContainer p,
+    .boxTwo p,
+    .boxThree p,
+    .boxFive p {
+        font-size: 1.5rem;
+    }
 
 
 }
 
+/* for larger screens */
+@media (min-width: 1440px) {
+
+    .boxOneParagraphContainer p,
+    .boxTwo p,
+    .boxThree p,
+    .boxFive p {
+        font-size: 0.9rem;
+    }
+
+}
 
 .boxSix {
     /* width: 24.06rem; */
@@ -514,10 +541,10 @@ export default {
                         <foreignObject x="409.816" y="300.795" width="528" height="128">
                             <div class="boxThree">
                                 <div class="boxTwoThreeAndFiveParagraphContainer">
-                                <p>Beyond serving as an online asset repository, SSXA seeks to use the digital asset
-                                    library as a <strong>storytelling</strong> platform to represent individual
-                                    stories.</p>
-                            </div>
+                                    <p>Beyond serving as an online asset repository, SSXA seeks to use the digital asset
+                                        library as a <strong>storytelling</strong> platform to represent individual
+                                        stories.</p>
+                                </div>
                             </div>
                         </foreignObject>
                     </g>

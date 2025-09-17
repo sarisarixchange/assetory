@@ -35,9 +35,9 @@ export default {
     resolvedAssets() {
       return this.entity
         ? this.entity.assets.map((asset) => ({
-            ...asset,
-            thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
-          }))
+          ...asset,
+          thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
+        }))
         : [];
     },
   },
@@ -45,9 +45,24 @@ export default {
     updateTheme(payload) {
       this.currentTheme = payload;
     },
-    resolveCardImage(path) {  
+    resolveCardImage(path) {
       return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
     },
+
+    scrollCarousel(direction) {
+      const track = this.$refs.carouselTrack;
+      if (track) {
+        const scrollAmount = track.clientWidth; // one "page" width
+        if (typeof track.scrollBy === "function") {
+          // modern browsers
+          track.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
+        } else {
+          // fallback for older browsers
+          track.scrollLeft += direction * scrollAmount;
+        }
+      }
+    },
+
     resolveYoutubeUrl(url) {
       const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
       return match ? `https://www.youtube.com/embed/${match[1]}` : '';
@@ -61,30 +76,30 @@ export default {
 
 <style scoped>
 .page-container {
-position: relative;
+  position: relative;
 }
 
-.returnButton {  
-margin-left: 1.5rem;
-margin-top: 1.5rem;
-margin-bottom: 1.5rem;
+.returnButton {
+  margin-left: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 /* collection details */
-.collection-details-container{
-display: flex;
-flex-direction: column;
-align-items: center;
-width: 60.5625rem;
-/* height: 23.96563rem; */
-gap: 1.5rem;
+.collection-details-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60.5625rem;
+  /* height: 23.96563rem; */
+  gap: 1.5rem;
   margin-left: auto;
   margin-right: auto;
-margin-bottom: 4.5rem;
-color: var(--primary-color);
-font-family: 'Inter', sans-serif;
-font-size: 1rem;
-font-weight: 400;
+  margin-bottom: 4.5rem;
+  color: var(--primary-color);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
 
@@ -95,7 +110,7 @@ font-weight: 400;
   height: 18.75rem;
   overflow: hidden;
   align-self: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   background-color: var(--background-color);
 }
 
@@ -105,7 +120,7 @@ font-weight: 400;
   height: 100%;
   object-fit: contain;
   border: 1px solid var(--primary-color);
-  border-radius:1rem;
+  border-radius: 1rem;
   padding: 0.5rem;
 }
 
@@ -119,7 +134,7 @@ font-weight: 400;
   gap: 0.625rem;
   overflow: hidden;
   align-self: center;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .banner-image-collection {
@@ -127,139 +142,150 @@ font-weight: 400;
   /* height: 100%; */
   object-fit: contain;
   border: 1px solid var(--primary-color);
-  border-radius:1rem;
+  border-radius: 1rem;
   padding: 0.5rem;
 }
 
 
-.collection-details{
-display: flex;
-flex-direction: column;
-background-color: var(--background-color);
-width: 53.5rem;
-border: 1px solid var(--primary-color);;
-border-radius: 1rem;
-padding: 1.5rem;
-gap: 0.5rem;
-}
-/* heading of card */
-.collection-details h2{
-font-family: var(--font-family, 'Handjet'), sans-serif; 
-font-size: 1.5rem;
-font-style: normal;
-font-weight: 400;
+.collection-details {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  width: 53.5rem;
+  border: 1px solid var(--primary-color);
+  ;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  gap: 0.5rem;
 }
 
-.collection-details h3{
-font-family: var(--font-family, 'Handjet'), sans-serif; 
-font-size: 1.25rem;
-font-weight: 400;
+/* heading of card */
+.collection-details h2 {
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-size: 1.5rem;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.collection-details h3 {
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 
 /* collection cards */
 
 .collection-cards {
-display: flex;
-flex-direction: column;
-gap: 1rem; /* Space between cards */
-margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  /* Space between cards */
+  margin-top: 2rem;
 }
 
 .collection-card {
-display: flex;
+  display: flex;
 
-flex-direction: column;
-gap: 1rem;
-border: 1px solid var(--primary-color);
-border-radius: 8px;
-padding: 1rem;
-background-color: var(--secondary-color);
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: var(--secondary-color);
 }
 
 .collection-card-heading {
-flex: 0 0 auto; /* Ensure the heading stays at the top */
-font-family: 'Inter', sans-serif;
-font-size: var(--font-medium);
-font-weight: 400;
-color: var(--primary-color);
-margin-bottom: 0.5rem; /* Add spacing below the heading */
+  flex: 0 0 auto;
+  /* Ensure the heading stays at the top */
+  font-family: 'Inter', sans-serif;
+  font-size: var(--font-medium);
+  font-weight: 400;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  /* Add spacing below the heading */
 }
 
 .collection-card-content {
-display: flex;
-flex-direction: column; /* Default: stacked layout */
-gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* Default: stacked layout */
+  gap: 1rem;
 }
 
 .side-by-side {
-flex-direction: row;
-align-items: center;
+  flex-direction: row;
+  align-items: center;
 }
 
 
 .collection-card-text {
-display: flex;
-font-family: 'Inter', sans-serif;
-font-size: 1rem;
-font-style: normal;
-font-weight: 400;
-color: var(--primary-color);
+  display: flex;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--primary-color);
 }
 
 .collection-card-image {
-width: 50%;
-align-self: center;
-height: auto;
-border-radius: 8px;
-object-fit: cover;
+  width: 50%;
+  align-self: center;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .collection-card-video {
-/* width: 50%; */
-height: auto;
-aspect-ratio: 16 / 9; 
-border-radius: 8px;
-border: 1px solid var(--primary-color);
+  /* width: 50%; */
+  height: auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  border: 1px solid var(--primary-color);
 }
 
 .collection-assets {
   width: 53.5rem;
- text-align: center;    
+  text-align: center;
 }
 
-.collection-assets h2{
-font-family: var(--font-family, 'Handjet'), sans-serif; /* Uses Handjet by default */
-font-size: 1.25rem;
-font-style: normal;
-font-weight: 400;
-margin-bottom: 1.5rem;
+.collection-assets h2 {
+  font-family: var(--font-family, 'Handjet'), sans-serif;
+  /* Uses Handjet by default */
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
 
 }
 
-.collection-assets-card-container{
-display: grid;
-grid-template-columns: repeat(3, 1fr); /* 3 columns */
-gap: 2rem;
+.collection-assets-card-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* 3 columns */
+  gap: 2rem;
 
 }
 
 .collection-assets-card {
-width: 16.5rem;
-height: 16.5rem;
-border: 1px solid  var(--primary-color);
-border-radius: 0.625rem;
-color:  var(--primary-color);
-padding: 2rem;
+  width: 16.5rem;
+  height: 16.5rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 0.625rem;
+  color: var(--primary-color);
+  padding: 2rem;
 }
 
 .collection-assets-image {
-width: 100%;
-height: 100%;
-background-color: var(--secondary-color);
-object-fit: cover; /* Ensures the image covers the container without distortion */
-box-sizing: border-box; /* Includes padding in the element's total size */
-border-radius: 8px; /* Optional: Add rounded corners */
+  width: 100%;
+  height: 100%;
+  background-color: var(--secondary-color);
+  object-fit: cover;
+  /* Ensures the image covers the container without distortion */
+  box-sizing: border-box;
+  /* Includes padding in the element's total size */
+  border-radius: 8px;
+  /* Optional: Add rounded corners */
 }
 
 .collection-assets-card:hover {
@@ -267,12 +293,70 @@ border-radius: 8px; /* Optional: Add rounded corners */
 }
 
 .social-media-item {
-margin-right: 1rem; 
-font-size: 1rem;
-font-style: normal;
-font-weight: 400;
+  margin-right: 1rem;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
 }
-</style >
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  /* hide scrollbar for Firefox */
+  -ms-overflow-style: none;
+  /* hide scrollbar for IE/Edge */
+}
+
+.carousel-track::-webkit-scrollbar {
+  display: none;
+  /* hide scrollbar for Chrome/Safari */
+}
+
+.carousel-image {
+  flex: 0 0 auto;
+  /* width: 50%; */
+  max-width: 300px;
+  /* adjust per your card size */
+  margin-right: 10px;
+  border-radius: 1rem;
+}
+
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1;
+  padding: 0 10px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.carousel-arrow:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+.carousel-arrow.left {
+  left: 5px;
+}
+
+.carousel-arrow.right {
+  right: 5px;
+}
+</style>
 
 
 <template>
@@ -280,61 +364,55 @@ font-weight: 400;
     <Topbar @theme-changed="updateTheme" />
 
     <!-- Use the ReturnButton component -->
-     <div class="returnButton">
-    <ReturnButton :returnRoute="returnRoute" />
+    <div class="returnButton">
+      <ReturnButton :returnRoute="returnRoute" />
     </div>
 
     <div v-if="entity" class="collection-details-container">
       <!-- Background -->
-      <PageBackground
-      v-if="backgrounds"
-      :theme="currentTheme.theme"
-      :backgrounds="backgrounds"
-      v-bind="backgroundProps"
-    />
+      <PageBackground v-if="backgrounds" :theme="currentTheme.theme" :backgrounds="backgrounds"
+        v-bind="backgroundProps" />
       <!-- Banner -->
-      <div :class="['image-banner', (entityType === 'collection' ||  entityType === 'event') ? 'image-banner-collection' :  'image-banner-artist']">
-        <img :src="bannerImage" alt="Banner Image" :class="['banner-image', (entityType === 'collection' ||  entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
+      <div
+        :class="['image-banner', (entityType === 'collection' || entityType === 'event') ? 'image-banner-collection' : 'image-banner-artist']">
+        <img :src="bannerImage" alt="Banner Image"
+          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
       </div>
 
       <!-- Title + Cards -->
       <div class="collection-details">
         <h2>{{ entity.title }}</h2>
         <div class="collection-cards">
-          <div
-            v-for="(card, index) in entity.cards"
-            :key="index"
-            class="collection-card"
-          >
+          <div v-for="(card, index) in entity.cards" :key="index" class="collection-card">
             <h3 v-if="card.heading" v-html="card.heading" class="collection-card-heading" />
             <div :class="{ 'side-by-side': card.contentSideBySide }" class="collection-card-content">
-              
+
               <!-- Social (only for artists) -->
               <p v-if="card.social && typeof card.social === 'object'">
-                <span
-                  v-for="(value, key) in card.social"
-                  :key="key"
-                  class="social-media-item"
-                >
+                <span v-for="(value, key) in card.social" :key="key" class="social-media-item">
                   <strong>{{ key }}:</strong> {{ value }}
                 </span>
               </p>
               <p v-else-if="card.social" v-html="card.social" />
 
               <p v-if="card.description" v-html="card.description" class="collection-card-text" />
-              <iframe
-                v-if="card.youtubeUrl"
-                :src="resolveYoutubeUrl(card.youtubeUrl)"
-                class="collection-card-video"
-                frameborder="0"
-                allowfullscreen
-              />
-              <img
-                v-else-if="card.image"
-                :src="resolveCardImage(card.image)"
-                alt="Card Image"
-                class="collection-card-image"
-              />
+              <iframe v-if="card.youtubeUrl" :src="resolveYoutubeUrl(card.youtubeUrl)" class="collection-card-video"
+                frameborder="0" allowfullscreen />
+
+              <img v-else-if="Array.isArray(card.image) === false && card.image" :src="resolveCardImage(card.image)"
+                alt="Card Image" class="collection-card-image" />
+
+              <div v-else-if="Array.isArray(card.image) && card.image.length" class="carousel">
+                <button class="carousel-arrow left" @click="scrollCarousel(-1)">‹</button>
+
+                <div ref="carouselTrack" class="carousel-track">
+                  <img v-for="(img, index) in card.image" :key="index" :src="resolveCardImage(img)" alt="Carousel Image"
+                    class="carousel-image" />
+                </div>
+
+                <button class="carousel-arrow right" @click="scrollCarousel(1)">›</button>
+              </div>
+
             </div>
           </div>
         </div>
@@ -344,11 +422,7 @@ font-weight: 400;
       <div class="collection-assets">
         <h2>Assets</h2>
         <div class="collection-assets-card-container">
-          <div
-            v-for="(asset, index) in resolvedAssets"
-            :key="index"
-            class="collection-assets-card"
-          >
+          <div v-for="(asset, index) in resolvedAssets" :key="index" class="collection-assets-card">
             <router-link :to="getAssetLink(asset)" class="collection-assets-link">
               <img :src="asset.thumbnail" :alt="asset.name" class="collection-assets-image" />
             </router-link>
@@ -366,4 +440,3 @@ font-weight: 400;
   </div>
 
 </template>
-

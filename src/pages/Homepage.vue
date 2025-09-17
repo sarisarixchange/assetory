@@ -10,7 +10,7 @@ export default {
     data() {
         return {
             iconBasePath: 'icons/', // Base path for icons
-            artistBasePath: 'images/artists/', 
+            artistBasePath: 'images/artists/',
             collectionsBasePath: 'images/collections/',
             eventsBasePath: 'images/events/',
             marqueeBasePath: 'images/marquee/',
@@ -205,6 +205,8 @@ export default {
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr repeat(7, 1fr) 1fr; */
     display: flex;
+    position: relative;
+
     flex-direction: column;
     width: 100vw;
     height: var(--container-height, 100vh);
@@ -220,36 +222,41 @@ export default {
 
 /* BACKGROUNDS */
 .background-layer {
-    grid-column: 1 / 13;
-    grid-row: 2 / 9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
     background-image: url("/icons/xyz.svg");
-    /* background-image: url("/icons/xyz-default-blue.svg"); */
-
     background-repeat: no-repeat;
     background-size: 75%;
-    /* Sends it to the background */
-    z-index: -1;
 }
 
 .background-layer-grayscale {
-    grid-column: 1 / 13;
-    grid-row: 2 / 9;
+      position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
     background-image: url("/icons/xyz-gray.svg");
     background-repeat: no-repeat;
     background-size: 75%;
-    /* Sends it to the background */
-    z-index: -1;
 }
 
 
 .background-layer-highContrast {
-    grid-column: 1 / 13;
-    grid-row: 2 / 9;
+   position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
     background-image: url("/icons/xyz-highContrast.svg");
     background-repeat: no-repeat;
     background-size: 75%;
-    /* Sends it to the background */
-    z-index: -1;
+    
 }
 
 /* BACKGROUND LINES */
@@ -354,7 +361,7 @@ export default {
     /* height: 15.73vh; */
     /* height: clamp(120px, 15.73vh, 220px); */
     /* preferred ~168px */
-        overflow: auto;
+    overflow: auto;
 
 }
 
@@ -500,7 +507,8 @@ export default {
 .other-box-heading,
 .other-box-action-call {
     flex-shrink: 0;
-} 
+}
+
 .other-box-heading img {
     width: 0.94081rem;
 
@@ -561,7 +569,8 @@ export default {
     align-self: stretch;
     border-radius: 0.5rem;
     background-color: var(--secondary-color);
-    overflow: hidden; /* Prevents overflow */
+    overflow: hidden;
+    /* Prevents overflow */
 }
 
 
@@ -1050,7 +1059,7 @@ export default {
                                     </div>
 
 
-                                        
+
 
                                     <div class="other-box-action-call">
                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
@@ -1102,7 +1111,7 @@ export default {
                                             :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
                                         <p>Assets created during SSX events.</p>
                                     </div>
-                                   <div class="other-box-photos" aria-hidden="true">
+                                    <div class="other-box-photos" aria-hidden="true">
                                         <img v-show="arePinkTopCenterCardSampleImagesVisible"
                                             :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
                                         <img v-show="areGrayTopCenterCardSampleImagesVisible"

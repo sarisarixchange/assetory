@@ -8,6 +8,10 @@ export default {
       type: Boolean,
       default: true,
     },
+    interactiveMode: {
+      type: Boolean,
+      required: true
+    }
   },
   components: {
     AccessibilityMenu, // Register the AccessibilityMenu component
@@ -26,6 +30,13 @@ export default {
     isHomepage() {
       return this.$route.path === '/';
     },
+
+    headerWidth() {
+      if (this.interactiveMode) {
+        return '99%';
+      }
+      return ' 62.6875rem';
+    }
 
   },
 
@@ -80,11 +91,11 @@ export default {
   border-bottom: 1px solid #eee;
   background-color: transparent;
   border: solid 1px var(--primary-color);
-  border-radius: 1.875rem;
-  /* width:  88.0625rem; */
-  width: 99%;
-  /* height: 7.21vh; */
-  height: 4.8125rem;
+  border-radius: 1.25rem;
+  /*new radius*/
+
+  width: 62.6875rem;
+  height: 5rem;
 
 }
 
@@ -93,7 +104,7 @@ export default {
   display: flex;
   align-items: center;
   margin-left: 1.06rem;
-  
+
 }
 
 .logo {
@@ -153,7 +164,7 @@ export default {
   gap: 1rem;
   margin-right: 1.458vw;
   justify-content: flex-end;
-  
+
 }
 
 
@@ -164,8 +175,8 @@ export default {
   text-align: center;
   justify-content: center;
   align-items: center;
-  height: 2.1875rem;  
-  padding: 0.3125rem 1.25rem;  
+  height: 2.1875rem;
+  padding: 0.3125rem 1.25rem;
   border: 1px solid var(--navigation-buttons-border-color);
   background: none;
   color: var(--primary-color);
@@ -202,7 +213,7 @@ a {
 <template>
 
 
-  <div class="header">
+  <div class="header" :style="{ width: headerWidth }">
     <div class="logo-section">
       <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
       <div class="logo" aria-hidden="true">
@@ -217,7 +228,7 @@ a {
     </div>
 
     <!-- top marquee -->
-    <div v-if="isHomepage" class="marquee" aria-hidden="true">
+    <div v-if="isHomepage && interactiveMode" class="marquee" aria-hidden="true">
       <div class="marqueeItem">
         ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY *
         ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY *
@@ -229,28 +240,28 @@ a {
 
     </div>
 
-    <!-- Accessibility Menu -->
+        <!-- Accessibility Menu -->
       <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
         @update-notification-visible="$emit('update-notification-visible', $event)"
         @theme-changed="handleThemeChange" />
-        
+    
+
     <!-- navigation menu -->
     <div class="nav-buttons">
-      <router-link v-if="!isHomepage" :to="{ name: 'Artists' }" class="nav-button"
+      <router-link v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
         :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
-      <router-link v-if="!isHomepage" :to="{ name: 'Collections' }" class="nav-button"
+      <router-link v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"
         :class="{ active: this.$route.name === 'Collections' }">Collections</router-link>
-      <router-link v-if="!isHomepage" :to="{ name: 'Events' }" class="nav-button"
+      <router-link v-if="!interactiveMode" :to="{ name: 'Events' }" class="nav-button"
         :class="{ active: this.$route.name === 'Events' }">Events</router-link>
       <router-link :to="{ name: 'About' }" class="nav-button" :class="{ active: this.$route.name === 'About' }">About
       </router-link>
-      <router-link :to="{ name: 'Accessibility Statement' }" class="nav-button"
-        :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
       <router-link :to="{ name: 'Terms of Use' }" class="nav-button"
         :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
-
-   
-    </div>
+      <router-link :to="{ name: 'Accessibility Statement' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
   </div>
+  </div>
+
 
 </template>

@@ -18,6 +18,7 @@ export default {
 
   data() {
     return {
+      interactiveMode: false,
       currentTheme: { theme: 'default' }, // Default theme
       galleryName: 'Events',
       galleryDescription: 'Community events and activities',
@@ -25,12 +26,16 @@ export default {
       routeName: 'Event',
       data: eventsData,
       backgrounds: {
-         default: './backgrounds/background-events-page-default.svg',
-         grayscale: './backgrounds/background-events-page-grayscale.svg',
-         highContrast: './backgrounds/background-events-page-high-contrast.svg',
-         wcag: './backgrounds/background-events-page-default.svg'
+        default: './backgrounds/background-events-page-default.svg',
+        grayscale: './backgrounds/background-events-page-grayscale.svg',
+        highContrast: './backgrounds/background-events-page-high-contrast.svg',
+        wcag: './backgrounds/background-events-page-default.svg'
+      }
     }
-  }
+  },
+
+  mounted() {
+    this.loadInteractiveMode();
   },
 
   methods: {
@@ -39,7 +44,15 @@ export default {
     },
 
 
-
+    loadInteractiveMode() {
+      try {
+        const savedSettings =
+          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+        this.interactiveMode = savedSettings.interactiveMode ?? false;
+      } catch (error) {
+        console.error('Error in loadInteractiveMode:', error);
+      }
+    },
     // do not erase curly brackets below
   },
 }
@@ -66,22 +79,17 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode"  @theme-changed="updateTheme" />
 
     <div class="grid">
-        <!-- background image -->
-      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds"
-        top='3.375rem' 
-        left='0%'
-        transform='translateX(0%)' 
-        width= '44.83081rem'
-        height= '47.65975rem'
-        backgroundSize='50%'
+      <!-- background image -->
+      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='3.375rem' left='0%'
+        transform='translateX(0%)' width='44.83081rem' height='47.65975rem' backgroundSize='50%'
         backgroundPosition='left' />
 
       <!-- Collections Grid -->
       <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
-        :basePath="basePath" :routeName="routeName" :isEventsPage="true"/>
+        :basePath="basePath" :routeName="routeName" :isEventsPage="true" />
     </div>
 
     <BackTopButton />

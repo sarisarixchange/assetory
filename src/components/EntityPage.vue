@@ -25,9 +25,14 @@ export default {
   },
   data() {
     return {
+      interactiveMode: false,
       currentTheme: { theme: 'default' },
     };
   },
+  mounted() {
+    this.loadInteractiveMode();
+  },
+
   computed: {
     bannerImage() {
       return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
@@ -67,10 +72,24 @@ export default {
       const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
       return match ? `https://www.youtube.com/embed/${match[1]}` : '';
     },
+ 
     getAssetLink(asset) {
       return this.assetLinkFn ? this.assetLinkFn(asset, this.entity) : '#';
     },
+ 
+     loadInteractiveMode() {
+      try {
+        const savedSettings =
+          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+        this.interactiveMode = savedSettings.interactiveMode ?? false;
+      } catch (error) {
+        console.error('Error in loadInteractiveMode:', error);
+      }
+    },
+    
   },
+
+  
 };
 </script>
 
@@ -361,7 +380,7 @@ export default {
 
 <template>
   <div class="page-container">
-    <Topbar @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
     <!-- Use the ReturnButton component -->
     <div class="returnButton">

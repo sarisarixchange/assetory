@@ -18,19 +18,24 @@ export default {
 
   data() {
     return {
+      interactiveMode: false,
       currentTheme: { theme: 'default' }, // Default theme
       galleryName: 'Collections',
       galleryDescription: 'Curated assets created by the community.',
       basePath: 'collections/',
       routeName: 'Collection',
-      data: collectionsData, 
+      data: collectionsData,
       backgrounds: {
-         default: './backgrounds/background-collections-page-default.svg',
-         grayscale: './backgrounds/background-collections-page-grayscale.svg',
-         highContrast: './backgrounds/background-collections-page-high-contrast.svg',
-         wcag: './backgrounds/background-collections-page-default.svg'
-  }
+        default: './backgrounds/background-collections-page-default.svg',
+        grayscale: './backgrounds/background-collections-page-grayscale.svg',
+        highContrast: './backgrounds/background-collections-page-high-contrast.svg',
+        wcag: './backgrounds/background-collections-page-default.svg'
+      }
     }
+  },
+
+  mounted() {
+    this.loadInteractiveMode();
   },
 
   methods: {
@@ -38,7 +43,15 @@ export default {
       this.currentTheme = payload; // Update the theme
     },
 
-
+    loadInteractiveMode() {
+      try {
+        const savedSettings =
+          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+        this.interactiveMode = savedSettings.interactiveMode ?? false;
+      } catch (error) {
+        console.error('Error in loadInteractiveMode:', error);
+      }
+    },
 
     // do not erase curly brackets below
   },
@@ -50,7 +63,8 @@ export default {
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* full viewport height */
+  min-height: 100vh;
+  /* full viewport height */
 }
 
 .grid {
@@ -65,27 +79,19 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
-  <div class="grid">
+    <div class="grid">
 
       <!-- background image  -->
-      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" 
-        top='3.375rem'
-        left='0%'
-        transform='translateX(0%)'
-        width= '26.178rem'
-        height= '35.66881rem'
-        backgroundSize='50%'
+      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='3.375rem' left='0%'
+        transform='translateX(0%)' width='26.178rem' height='35.66881rem' backgroundSize='50%'
         backgroundPosition='left' />
 
-    <!-- Collections Grid -->
-    <GalleryGrid :galleryName="galleryName" 
-    :galleryDescription="galleryDescription" 
-    :items="data" 
-    :basePath="basePath"
-    :routeName="routeName" />
-</div>
+      <!-- Collections Grid -->
+      <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
+        :basePath="basePath" :routeName="routeName" />
+    </div>
 
     <BackTopButton />
 

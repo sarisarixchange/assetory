@@ -19,6 +19,7 @@ export default {
 
   data() {
     return {
+      interactiveMode: false,
       currentTheme: { theme: 'default' }, // Default theme
       pageBackgroundImage: 'page-background-image-default',
       galleryName: 'Artists',
@@ -38,12 +39,24 @@ export default {
     }
   },
 
+  mounted() {
+    this.loadInteractiveMode();
+  },
+
   methods: {
     updateTheme(payload) {
       this.currentTheme = payload; // Update the theme
-    }
+    },
 
-
+    loadInteractiveMode() {
+      try {
+        const savedSettings =
+          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+        this.interactiveMode = savedSettings.interactiveMode ?? false;
+      } catch (error) {
+        console.error('Error in loadInteractiveMode:', error);
+      }
+    },
 
   }
   // do not erase curly brackets below
@@ -71,7 +84,7 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
     <div class="grid">
 

@@ -1,14 +1,17 @@
 <script>
 import AccessibilityMenu from '../components/AccessibilityMenu.vue';
 import Topbar from '../components/Topbar.vue';
+import SimpleButton from '../widgets/SimpleButton.vue';
 
 export default {
     components: {
         AccessibilityMenu, // Register the AccessibilityMenu component
-        Topbar
+        Topbar,
+        SimpleButton
     },
     data() {
         return {
+            interactiveMode: false, // 👈 this must exist
             iconBasePath: 'icons/', // Base path for icons
             artistBasePath: 'images/artists/',
             collectionsBasePath: 'images/collections/',
@@ -48,6 +51,7 @@ export default {
     },
     mounted() {
         this.loadNotificationState(); // Load the notification state when the component is mounted
+        this.loadInteractiveMode();
         this.updateScale();
         window.addEventListener("resize", this.updateScale);
     },
@@ -57,6 +61,7 @@ export default {
     },
 
     methods: {
+        
         updateScale() {
             const designWidth = 1440;
             const designHeight = 1068;
@@ -71,132 +76,158 @@ export default {
             }
         },
 
+        toggleInteractiveMode() {
+                    try {
+            this.interactiveMode = !this.interactiveMode;
 
-        dismissNotification() {
-            try {
-                this.isNotificationVisible = false; // Update the state
-
-                // Check if refs are available
-                if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
-                    this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
-                        isNotificationVisible: this.isNotificationVisible,
-                    });
-                } else {
-                }
-            } catch (error) {
-                console.error('Error in dismissNotification:', error);
+            // Check if refs are available
+            if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
+                this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
+                    interactiveMode: this.interactiveMode,
+                });
+            } else {
             }
-        },
-
-        loadNotificationState() {
-            try {
-                const savedSettings =
-                    JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-                this.isNotificationVisible =
-                    savedSettings.isNotificationVisible ?? true; // Load the notification state
-            } catch (error) {
-                console.error('Error in loadNotificationState:', error);
-            }
-        },
-        updateTheme(payload) {
-            if (payload.theme === "default") {
-                this.currentBackgroundLayer = 'background-layer';
-                // leftbox
-                this.isPinkLeftCardIconVisible = true
-                this.isGrayLeftCardIconVisible = false
-                this.isHighContrastLeftCardIconVisible = false
-                this.isWCAGLeftCardIconVisible = false
-                // center-top-box images
-                this.arePinkTopCenterCardSampleImagesVisible = true
-                this.areGrayTopCenterCardSampleImagesVisible = false
-                this.areHighContrastTopCenterCardSampleImagesVisible = false
-                // other boxes icons
-                this.isDecoractionCardSubtitlePink = true;
-                this.isDecoractionCardSubtitleGray = false;
-                this.isDecoractionCardSubtitleHighContrast = false;
-                this.isDecoractionCardSubtitleWCAG = false;
-                // footer images
-                this.areFooterImagesDefaultVisible = true;
-                this.areFooterImagesGrayscaleVisible = false;
-                this.areFooterImagesHighContrastVisible = false;
-                this.areFooterImagesWCAGcolorsVisible = false;
-
-            } else if (payload.theme === "grayscale") {
-
-                this.isPinkLeftCardIconVisible = false;
-                this.isGrayLeftCardIconVisible = true;
-                this.isHighContrastLeftCardIconVisible = false;
-                this.isWCAGLeftCardIconVisible = false;
-                // center-top-box
-                this.arePinkTopCenterCardSampleImagesVisible = false;
-                this.areGrayTopCenterCardSampleImagesVisible = true;
-                this.areHighContrastTopCenterCardSampleImagesVisible = false;
-                // other boxes icons
-                this.isDecoractionCardSubtitlePink = false;
-                this.isDecoractionCardSubtitleGray = true;
-                this.isDecoractionCardSubtitleHighContrast = false;
-                this.isDecoractionCardSubtitleWCAG = false;
-                // footer images
-                this.areFooterImagesDefaultVisible = false;
-                this.areFooterImagesGrayscaleVisible = true;
-                this.areFooterImagesHighContrastVisible = false;
-                this.areFooterImagesWCAGcolorsVisible = false;
-                // background image
-                this.currentBackgroundLayer = 'background-layer-grayscale';
-
-            } else if (payload.theme === "highContrast") {
-                this.isPinkLeftCardIconVisible = false;
-                this.isGrayLeftCardIconVisible = false;
-                this.isHighContrastLeftCardIconVisible = true;
-                this.isWCAGLeftCardIconVisible = false;
-                // center-top-box
-                this.arePinkTopCenterCardSampleImagesVisible = false;
-                this.areGrayTopCenterCardSampleImagesVisible = false;
-                this.areHighContrastTopCenterCardSampleImagesVisible = true;
-                // other boxes icons
-                this.isDecoractionCardSubtitlePink = false;
-                this.isDecoractionCardSubtitleGray = false;
-                this.isDecoractionCardSubtitleHighContrast = true;
-                this.isDecoractionCardSubtitleWCAG = false;
-                // footer images
-                this.areFooterImagesDefaultVisible = false;
-                this.areFooterImagesGrayscaleVisible = false;
-                this.areFooterImagesHighContrastVisible = true;
-                this.areFooterImagesWCAGcolorsVisible = false;
-                // background image
-                this.currentBackgroundLayer = 'background-layer-highContrast';
-
-            } else if (payload.theme === "wcag") {
-                this.isPinkLeftCardIconVisible = false
-                this.isGrayLeftCardIconVisible = false
-                this.isHighContrastLeftCardIconVisible = false
-                this.isWCAGLeftCardIconVisible = true
-                // center-top-box
-                this.arePinkTopCenterCardSampleImagesVisible = true;
-                this.areGrayTopCenterCardSampleImagesVisible = false;
-                this.areHighContrastTopCenterCardSampleImagesVisible = false;
-                // other boxes icons
-                this.isDecoractionCardSubtitlePink = false;
-                this.isDecoractionCardSubtitleGray = false;
-                this.isDecoractionCardSubtitleHighContrast = false;
-                this.isDecoractionCardSubtitleWCAG = true;
-                // footer images
-                this.areFooterImagesDefaultVisible = false;
-                this.areFooterImagesGrayscaleVisible = false;
-                this.areFooterImagesHighContrastVisible = false;
-                this.areFooterImagesWCAGcolorsVisible = true;
-                // background image
-                this.currentBackgroundLayer = 'background-layer-wcag';
-
-            }
-        },
-
-
-
-
-
-        // do not erase curly brackets below
+        } catch(error) {
+            console.error('Error in dismissNotification:', error);
+        }
     },
+    dismissNotification() {
+        try {
+            this.isNotificationVisible = false; // Update the state
+
+            // Check if refs are available
+            if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
+                this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
+                    isNotificationVisible: this.isNotificationVisible,
+                });
+            } else {
+            }
+        } catch (error) {
+            console.error('Error in dismissNotification:', error);
+        }
+    },
+
+
+    loadNotificationState() {
+        try {
+            const savedSettings =
+                JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+            this.isNotificationVisible =
+                savedSettings.isNotificationVisible ?? true; // Load the notification state
+        } catch (error) {
+            console.error('Error in loadNotificationState:', error);
+        }
+    },
+
+    loadInteractiveMode() {
+        try {
+            const savedSettings =
+                JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+            this.interactiveMode = savedSettings.interactiveMode ?? false;
+        } catch (error) {
+            console.error('Error in loadInteractiveMode:', error);
+        }
+    },
+
+    updateTheme(payload) {
+        if (payload.theme === "default") {
+            this.currentBackgroundLayer = 'background-layer';
+            // leftbox
+            this.isPinkLeftCardIconVisible = true
+            this.isGrayLeftCardIconVisible = false
+            this.isHighContrastLeftCardIconVisible = false
+            this.isWCAGLeftCardIconVisible = false
+            // center-top-box images
+            this.arePinkTopCenterCardSampleImagesVisible = true
+            this.areGrayTopCenterCardSampleImagesVisible = false
+            this.areHighContrastTopCenterCardSampleImagesVisible = false
+            // other boxes icons
+            this.isDecoractionCardSubtitlePink = true;
+            this.isDecoractionCardSubtitleGray = false;
+            this.isDecoractionCardSubtitleHighContrast = false;
+            this.isDecoractionCardSubtitleWCAG = false;
+            // footer images
+            this.areFooterImagesDefaultVisible = true;
+            this.areFooterImagesGrayscaleVisible = false;
+            this.areFooterImagesHighContrastVisible = false;
+            this.areFooterImagesWCAGcolorsVisible = false;
+
+        } else if (payload.theme === "grayscale") {
+
+            this.isPinkLeftCardIconVisible = false;
+            this.isGrayLeftCardIconVisible = true;
+            this.isHighContrastLeftCardIconVisible = false;
+            this.isWCAGLeftCardIconVisible = false;
+            // center-top-box
+            this.arePinkTopCenterCardSampleImagesVisible = false;
+            this.areGrayTopCenterCardSampleImagesVisible = true;
+            this.areHighContrastTopCenterCardSampleImagesVisible = false;
+            // other boxes icons
+            this.isDecoractionCardSubtitlePink = false;
+            this.isDecoractionCardSubtitleGray = true;
+            this.isDecoractionCardSubtitleHighContrast = false;
+            this.isDecoractionCardSubtitleWCAG = false;
+            // footer images
+            this.areFooterImagesDefaultVisible = false;
+            this.areFooterImagesGrayscaleVisible = true;
+            this.areFooterImagesHighContrastVisible = false;
+            this.areFooterImagesWCAGcolorsVisible = false;
+            // background image
+            this.currentBackgroundLayer = 'background-layer-grayscale';
+
+        } else if (payload.theme === "highContrast") {
+            this.isPinkLeftCardIconVisible = false;
+            this.isGrayLeftCardIconVisible = false;
+            this.isHighContrastLeftCardIconVisible = true;
+            this.isWCAGLeftCardIconVisible = false;
+            // center-top-box
+            this.arePinkTopCenterCardSampleImagesVisible = false;
+            this.areGrayTopCenterCardSampleImagesVisible = false;
+            this.areHighContrastTopCenterCardSampleImagesVisible = true;
+            // other boxes icons
+            this.isDecoractionCardSubtitlePink = false;
+            this.isDecoractionCardSubtitleGray = false;
+            this.isDecoractionCardSubtitleHighContrast = true;
+            this.isDecoractionCardSubtitleWCAG = false;
+            // footer images
+            this.areFooterImagesDefaultVisible = false;
+            this.areFooterImagesGrayscaleVisible = false;
+            this.areFooterImagesHighContrastVisible = true;
+            this.areFooterImagesWCAGcolorsVisible = false;
+            // background image
+            this.currentBackgroundLayer = 'background-layer-highContrast';
+
+        } else if (payload.theme === "wcag") {
+            this.isPinkLeftCardIconVisible = false
+            this.isGrayLeftCardIconVisible = false
+            this.isHighContrastLeftCardIconVisible = false
+            this.isWCAGLeftCardIconVisible = true
+            // center-top-box
+            this.arePinkTopCenterCardSampleImagesVisible = true;
+            this.areGrayTopCenterCardSampleImagesVisible = false;
+            this.areHighContrastTopCenterCardSampleImagesVisible = false;
+            // other boxes icons
+            this.isDecoractionCardSubtitlePink = false;
+            this.isDecoractionCardSubtitleGray = false;
+            this.isDecoractionCardSubtitleHighContrast = false;
+            this.isDecoractionCardSubtitleWCAG = true;
+            // footer images
+            this.areFooterImagesDefaultVisible = false;
+            this.areFooterImagesGrayscaleVisible = false;
+            this.areFooterImagesHighContrastVisible = false;
+            this.areFooterImagesWCAGcolorsVisible = true;
+            // background image
+            this.currentBackgroundLayer = 'background-layer-wcag';
+
+        }
+    },
+
+
+
+
+
+    // do not erase curly brackets below
+},
 }
 </script>
 <style scoped>
@@ -234,7 +265,7 @@ export default {
 }
 
 .background-layer-grayscale {
-      position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
@@ -247,7 +278,7 @@ export default {
 
 
 .background-layer-highContrast {
-   position: absolute;
+    position: absolute;
     top: 0;
     left: 0;
     width: 100vw;
@@ -256,7 +287,7 @@ export default {
     background-image: url("/icons/xyz-highContrast.svg");
     background-repeat: no-repeat;
     background-size: 75%;
-    
+
 }
 
 /* BACKGROUND LINES */
@@ -289,14 +320,14 @@ export default {
 .homeSVG {
     width: 100%;
     height: 100%;
-    grid-column: 2 / 13;
-    grid-row: 2 / 9;
     overflow: hidden;
-    /* Prevents SVG from overflowing the grid area */
     display: flex;
-    /* Optional: helps SVG fill the container */
     align-items: stretch;
     justify-content: center;
+}
+
+.homeSVG #legacySVGContainer {
+    margin-left: 10rem;
 }
 
 .left-box {
@@ -751,6 +782,32 @@ export default {
     fill: var(--shadow);
     stroke: var(--shadow);
 }
+
+.interactiveModeButton {
+    width: 10rem;
+    height: 2.1875rem;
+    display: inline-block;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    position: absolute;
+    left: 0.94rem;
+    top: 6.13rem;
+
+    /* Thick bottom border */
+}
+
+.interactiveModeButton:hover {
+    color: var(--primary-color);
+    box-shadow: -3px 3px 0 0 var(--shadow);
+    /* background-color: var(--hover-color); */
+}
 </style>
 
 <template>
@@ -758,9 +815,10 @@ export default {
     <div class="grid-container">
         <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div>
         <div :class="['background-lines']" aria-hidden="true"></div>
+
         <!-- New background layer -->
         <div class="topBar">
-            <Topbar ref="topbar" :is-notification-visible="isNotificationVisible"
+            <Topbar ref="topbar" :interactive-mode="interactiveMode" :is-notification-visible="isNotificationVisible"
                 @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme" />
         </div>
 
@@ -769,127 +827,241 @@ export default {
         <div class="grid-background" aria-hidden="true"></div>
 
 
-        <!-- cards -->
-        <!-- <div class="left-box">
-            <div class="left-box-heading">
-                <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="">
-                <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="">
-                <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
-                <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'"
-                    alt="">
-                <h2>Sari-Sari Xchange</h2>
-            </div>
-            <div class="left-box-paragraph">
-                <p>SSX is a community-building research & creation project using Extended Reality (XR) (ie. Virtual,
-                    Augmented, Mixed Realities) to foster new works by artists from the Asian diaspora.
-                    <br><br>
-                    Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created with and for the Asian diaspora
-                    community.
-                </p>
-            </div>
-            <div class="left-box-action-call">
-                <router-link :to="{ name: 'About' }" class="left-call-action">
-                    <span>Learn More</span> <span class="left-goto-action" aria-hidden="true">OK</span>
-                </router-link>
-            </div>
-        </div>
-
-
-
-        <div class="center-top-box">
-            <div class="other-box-heading">
-                <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
-                <h2>Artists</h2>
-            </div>
-            <div class="other-box-subtitle">
-                <img v-show="isDecoractionCardSubtitlePink" :src="iconBasePath + 'decorationCardSubtitlePink.svg'"
-                    alt="">
-                <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'decorationCardSubtitleGray.svg'"
-                    alt="">
-                <img v-show="isDecoractionCardSubtitleHighContrast"
-                    :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'"
-                    alt="">
-                <p>Explore community assets created by artists.</p>
-
-            </div>
-            <div class="other-box-photos" aria-hidden="true">
-                <img v-show="arePinkTopCenterCardSampleImagesVisible" :src="iconBasePath + 'sample-images-artists.png'"
-                    alt="">
-                <img v-show="areGrayTopCenterCardSampleImagesVisible"
-                    :src="iconBasePath + 'sample-images-artists-grayscale.png'" alt="">
-                <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
-                    :src="iconBasePath + 'sample-images-artists-highContrast.png'" alt="">
-
-            </div>
-
-            <div class="other-box-action-call">
-                <router-link :to="{ name: 'Artists' }" class="other-call-action">
-                    <span class="call-action-text">Open Artists</span> <span class="call-goto-action"
-                        aria-hidden="true">></span>
-                </router-link>
-            </div>
-        </div>
-
-
-
-
-        <div class="center-bottom-box">
-            <div class="other-box-heading">
-                <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
-                <h2>Events</h2>
-            </div>
-            <div class="other-box-subtitle">
-                <img v-show="isDecoractionCardSubtitlePink" :src="iconBasePath + 'decorationCardSubtitlePink.svg'"
-                    alt="">
-                <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'decorationCardSubtitleGray.svg'"
-                    alt="">
-                <img v-show="isDecoractionCardSubtitleHighContrast"
-                    :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'"
-                    alt="">
-                <p>Assets created during SSX events.</p>
-            </div>
-            <div class="other-box-photos">
-                            </div>
-            <div class="other-box-action-call">
-                <a href="" class="other-call-action">
-                    <router-link :to="{ name: 'Events' }" class="other-call-action">
-                        <span>Open Events</span> <span class="call-goto-action" aria-hidden="true">></span>
-                    </router-link>
-                </a>
-            </div>
-        </div>
-
-
-        <div class="right-box">
-            <div class="other-box-heading">
-                <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
-                <h2>Collections</h2>
-            </div>
-            <div class="other-box-subtitle">
-                <img v-show="isDecoractionCardSubtitlePink" :src="iconBasePath + 'decorationCardSubtitlePink.svg'"
-                    alt="">
-                <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'decorationCardSubtitleGray.svg'"
-                    alt="">
-                <img v-show="isDecoractionCardSubtitleHighContrast"
-                    :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'"
-                    alt="">
-                <p>Explore collections by SSX.</p>
-            </div>
-            <div class="other-box-photos">
-            </div>
-            <div class="other-box-action-call">
-                <router-link :to="{ name: 'Collections' }" class="other-call-action">
-                    <span>Open Collections</span> <span class="call-goto-action" aria-hidden="true">></span>
-                </router-link>
-            </div>
-        </div> -->
 
         <div class="homeSVG">
 
-            <svg viewBox="0 0 1665 718" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <button class="interactiveModeButton" @click="toggleInteractiveMode">
+                {{ interactiveMode ? 'Interactive Mode On' : 'Interactive Mode Off' }}
+            </button>
+            <svg id="revisedSVGContainer" v-show="!interactiveMode" viewBox="0 0 842 576" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <g id="defaultTiles">
+                    <g id="Events Node Idle">
+                        <foreignObject x="8.5" y="306.5" width="393" height="269" rx="6.5">
+
+                            <div class="center-bottom-box">
+                                <div class="other-box-heading">
+                                    <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
+                                    <h2>Events</h2>
+                                </div>
+                                <div class="other-box-subtitle">
+                                    <img v-show="isDecoractionCardSubtitlePink"
+                                        :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleGray"
+                                        :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleHighContrast"
+                                        :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleWCAG"
+                                        :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                    <p>Assets created during SSX events.</p>
+                                </div>
+                                <div class="other-box-photos" aria-hidden="true">
+                                    <img v-show="arePinkTopCenterCardSampleImagesVisible"
+                                        :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                    <img v-show="areGrayTopCenterCardSampleImagesVisible"
+                                        :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                    <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
+                                        :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                </div>
+
+                                <div class="other-box-action-call">
+                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                        <path
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                        <path
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
+
+                                        <foreignObject x="0" y="0" width="379" height="32">
+                                            <a href="" class="other-call-action">
+                                                <router-link :to="{ name: 'Events' }" class="other-call-action">
+                                                    <span>Open Events</span> <span class="call-goto-action"
+                                                        aria-hidden="true">></span>
+                                                </router-link>
+                                            </a>
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                            </div>
+                        </foreignObject>
+
+                        <circle id="Ellipse 9" cx="6.5" cy="389.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 10" cx="6.5" cy="404.5" r="5" fill="#FFFEFA" stroke="black" />
+                        <circle id="Ellipse 12" cx="401.5" cy="439.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 11" cx="401.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
+                    </g>
+
+                    <g id="About Node Idle">
+                        <foreignObject x="8.5" y="9.5" width="393" height="252" rx="6.5">
+                            <div class="left-box">
+                                <div class="left-box-heading">
+                                    <img v-show="isPinkLeftCardIconVisible"
+                                        :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="">
+                                    <img v-show="isGrayLeftCardIconVisible"
+                                        :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="">
+                                    <img v-show="isHighContrastLeftCardIconVisible"
+                                        :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                                    <img v-show="isWCAGLeftCardIconVisible"
+                                        :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                                    <h2>Sari-Sari Xchange</h2>
+                                </div>
+                                <div class="left-box-paragraph">
+                                    <p>SSX is a community-building research & creation project using Extended
+                                        Reality (XR) (ie. Virtual,
+                                        Augmented, Mixed Realities) to foster new works by artists from the
+                                        Asian diaspora.
+                                        <br><br>
+                                        Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created
+                                        with and for the Asian diaspora
+                                        community.
+                                    </p>
+                                </div>
+                                <div class="left-box-action-call">
+                                    <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                        <path
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                        <path
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
+
+                                        <foreignObject x="0" y="0" width="379" height="32">
+                                            <router-link :to="{ name: 'About' }" class="left-call-action">
+                                                <span>Learn More</span> <span class="left-goto-action"
+                                                    aria-hidden="true">OK</span>
+                                            </router-link>
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                            </div>
+                        </foreignObject>
+                        <circle id="Ellipse 9_2" cx="6" cy="92.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 10_2" cx="6" cy="107.5" r="5" fill="#FFFEFA" stroke="black" />
+                        <circle id="Ellipse 12_2" cx="401" cy="142.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 11_2" cx="401" cy="157.5" r="5" fill="#FFFEFA" stroke="black" />
+                    </g>
+
+                    <g id="Collections Node Idle">
+                        <foreignObject x="443.5" y="306.5" width="393" height="267.809" rx="6.5">
+
+                            <div class="right-box">
+                                <div class="other-box-heading">
+                                    <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                                    <h2>Collections</h2>
+                                </div>
+                                <div class="other-box-subtitle">
+                                    <img v-show="isDecoractionCardSubtitlePink"
+                                        :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleGray"
+                                        :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleHighContrast"
+                                        :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleWCAG"
+                                        :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                    <p>Explore collections by SSX.</p>
+                                </div>
+                                <div class="other-box-photos" aria-hidden="true">
+                                    <img v-show="arePinkTopCenterCardSampleImagesVisible"
+                                        :src="collectionsBasePath + 'collection-thumbnail-placeholder.jpeg'" alt="">
+                                    <img v-show="areGrayTopCenterCardSampleImagesVisible"
+                                        :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                    <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
+                                        :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                </div>
+
+
+
+
+                                <div class="other-box-action-call">
+                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                        <path
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                        <path
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
+
+                                        <foreignObject x="0" y="0" width="379" height="32">
+                                            <router-link :to="{ name: 'Collections' }" class="other-call-action">
+                                                <span>Open Collections</span> <span class="call-goto-action"
+                                                    aria-hidden="true">></span>
+                                            </router-link>
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                            </div>
+                        </foreignObject>
+                        <circle id="Ellipse 9_3" cx="441.5" cy="390.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 10_3" cx="441.5" cy="405.5" r="5" fill="#FFFEFA" stroke="black" />
+                        <circle id="Ellipse 12_3" cx="836.5" cy="439.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 11_3" cx="836.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
+                    </g>
+
+                    <g id="Artist Node Idle">
+                        <foreignObject x="443.5" y="9.5" width="393" height="252" rx="6.5">
+
+                            <div class="center-top-box">
+                                <div class="other-box-heading">
+                                    <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                                    <h2>Artists</h2>
+                                </div>
+                                <div class="other-box-subtitle">
+                                    <img v-show="isDecoractionCardSubtitlePink"
+                                        :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleGray"
+                                        :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleHighContrast"
+                                        :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                    <img v-show="isDecoractionCardSubtitleWCAG"
+                                        :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                    <p>Explore community assets created by artists.</p>
+
+                                </div>
+                                <div class="other-box-photos" aria-hidden="true">
+                                    <img v-show="arePinkTopCenterCardSampleImagesVisible"
+                                        :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                    <img v-show="areGrayTopCenterCardSampleImagesVisible"
+                                        :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                    <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
+                                        :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                </div>
+
+                                <div class="other-box-action-call">
+                                    <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M348.5 7.5C348.5 3.63401 351.634 0.5 355.5 0.5H371.5C375.366 0.5 378.5 3.63401 378.5 7.5V24.5C378.5 28.366 375.366 31.5 371.5 31.5H355.5C351.634 31.5 348.5 28.366 348.5 24.5V7.5Z" />
+                                        <path
+                                            d="M0.5 7.5C0.5 3.63401 3.63401 0.5 7.5 0.5H333.5C337.366 0.5 340.5 3.63401 340.5 7.5V24.5C340.5 28.366 337.366 31.5 333.5 31.5H7.49999C3.634 31.5 0.5 28.366 0.5 24.5V7.5Z" />
+                                        <path
+                                            d="M331.5 12.6361C331.5 7.79994 337.13 5.14705 340.859 8.22569C342.973 9.97029 346.027 9.97029 348.141 8.22569C351.87 5.14705 357.5 7.79994 357.5 12.6361V18.452C357.5 23.2484 351.691 25.6395 348.315 22.233C346.213 20.1131 342.787 20.1131 340.685 22.233C337.309 25.6395 331.5 23.2484 331.5 18.452V12.6361Z" />
+
+                                        <foreignObject x="0" y="0" width="379" height="32">
+                                            <router-link :to="{ name: 'Artists' }" class="other-call-action">
+                                                <span class="call-action-text">Open Artists</span> <span
+                                                    class="call-goto-action" aria-hidden="true">></span>
+                                            </router-link>
+                                        </foreignObject>
+                                    </svg>
+                                </div>
+                            </div>
+                        </foreignObject>
+                        <circle id="Ellipse 12_4" cx="836.5" cy="133.5" r="5.5" fill="black" />
+                        <circle id="Ellipse 11_4" cx="836.5" cy="148.5" r="5" fill="#FFFEFA" stroke="black" />
+                        <circle id="Ellipse 10_4" cx="443.5" cy="98.5" r="5" fill="#FFFEFA" stroke="black" />
+                        <circle id="Ellipse 9_4" cx="443.5" cy="83.5" r="5.5" fill="black" />
+                    </g>
+                </g>
+            </svg>
+
+            <!-- legacy homepage design -->
+
+            <svg id="legacySVGContainer" v-show="interactiveMode" viewBox="0 0 1665 718" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
                 <g id="Group 641">
                     <g id="Group 594" class="right-connectors">
                         <path id="Artist Connector" d="M906 139.926C1026.16 148.939 1509.33 -114.93 1665 192"

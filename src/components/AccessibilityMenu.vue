@@ -7,10 +7,11 @@ export default {
     isNotificationVisible: {
       type: Boolean,
       default: true,
-    },
+    }
   },
   data() {
     return {
+      interactiveMode: false,
       isMenuVisible: false,
       fontSize: 1, // This is now a scale factor (1 = 16px)
       baseFontSize: null, // Default root font size in pixels
@@ -270,6 +271,7 @@ export default {
       // Merge existing settings with new settings
       const settings = {
         ...existingSettings,
+        interactiveMode: this.interactiveMode,
         isMenuVisible: this.isMenuVisible,
         fontSize: this.fontSize,
         baseFontSize: this.baseFontSize,

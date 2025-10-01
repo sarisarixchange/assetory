@@ -20,6 +20,7 @@ export default {
     },
     data() {
         return {
+            interactiveMode: false,
             currentTheme: { theme: 'default' }, // Default theme
             iconBasePath: 'icons/', // Base path for icons
             galleryName: '',
@@ -45,9 +46,23 @@ export default {
         }
     },
 
+    mounted() {
+        this.loadInteractiveMode();
+    },
+
     methods: {
         updateTheme(payload) {
             this.currentTheme = payload; // Update the theme
+        },
+
+        loadInteractiveMode() {
+            try {
+                const savedSettings =
+                    JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+                this.interactiveMode = savedSettings.interactiveMode ?? false;
+            } catch (error) {
+                console.error('Error in loadInteractiveMode:', error);
+            }
         }
     }
 }
@@ -69,6 +84,33 @@ export default {
     flex-direction: column;
     padding-left: 2rem;
     padding-right: 2rem;
+}
+
+.about {
+    margin: auto;
+    margin-bottom: 1.5rem;
+    display: flex;
+    width: 53.5rem;
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid var(--primary-color);
+    background: #FFFEFA;
+}
+
+.about h2 {
+
+    display: flex;
+    padding: 0.75rem 1.25rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    justify-content: center;
+    border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
+    background: var(--primary-color);
 }
 
 /* Ensure content boxes appear above background */
@@ -249,7 +291,7 @@ export default {
     align-self: stretch;
     border-radius: 8px;
     background-color: var(--secondary-color);
-        overflow: auto;
+    overflow: auto;
 
 }
 
@@ -363,7 +405,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     padding: 1.25rem;
-    align-items: center;    
+    align-items: center;
     align-self: stretch;
     border-radius: 8px;
     background-color: var(--secondary-color-left-box);
@@ -372,7 +414,7 @@ export default {
 
 .boxTwo p,
 .boxThree p,
-.boxFive p {    
+.boxFive p {
     /* padding: 1.25rem; */
     align-items: center;
     justify-content: center;
@@ -502,7 +544,7 @@ export default {
 
 
         <!-- top bar -->
-        <Topbar @theme-changed="updateTheme" />
+        <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
         <!-- body -->
         <div class="content">
@@ -533,8 +575,41 @@ export default {
                 transform="translateX(-50%)" width="100vw" height="54.36763rem" backgroundSize="cover"
                 backgroundPosition="center" />
 
+            <div class="about" v-show="interactiveMode == false">
+                <h2>About</h2>
+                <p>Asians are generally <b>underrepresented</b> and <b>misrepresented</b> in <b>new media</b> such as
+                    games, VR, and AR. We
+                    also recognize the lack of diverse representation of the Asian community’s everyday experiences on
+                    major digital asset platforms.<br><br>
 
-            <div class="svg-container">
+                    Inspired by the concept of the <b>Sari Sari store in the Philippines</b> —small neighborhood
+                    convenience
+                    stores run by women within the home as part of the local economic ecosystem — we are building a
+                    diverse and accessible “<b>glocal</b>” digital asset network for media art creation, including XR, games,
+                    and animation.<br><br>
+
+                    Beyond serving as an online asset repository, SSXA seeks to use the digital asset library as a
+                    <b>storytelling</b> platform to represent individual stories.<br><br>
+
+                    By deploying different tiers of <b>copyright</b> associated with digital assets, SSXA embraces an <b>
+                    ethics of care</b> for these assets, considering the <b>labor</b> involved in their creation and their emotional and
+                    sentimental value.<br><br>
+
+                    SSXA engages in community collaboration with local partners to disseminate knowledge in digital
+                    creation through activities such as <b>asset creation workshops</b> and <b>tech jams</b>.<br><br>
+
+                    Additionally, SSXA invests in innovative and accessible educational modules to further benefit
+                    community members at large.<br><br>
+
+                    By leveraging <b>horizontal modes of operation</b>, SSXA empowers various stakeholders to <b>
+                        challenge systemic injustices and inequalities
+                    </b> in the current <b>technological infrastructure</b>. </p>
+
+
+            </div>
+
+
+            <div v-show="interactiveMode == true" class="svg-container">
                 <svg viewBox="0 0 1360 782" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                     <g id="boxThree">

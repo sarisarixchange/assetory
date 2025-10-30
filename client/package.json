@@ -11,7 +11,7 @@
     "build:github": "vite build --mode github",
     "build:mcmaster": "vite build --mode mcmaster",
     "deploy": "npm run build:github && cp dist/index.html dist/404.html && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git",
-    "deploy-mcmaster": "npm run build:mcmaster && cp dist/index.html dist/404.html && git add dist && git commit -m \"Built files for McMaster $(date +'%Y-%m-%d %H:%M:%S')\" && git push origin HEAD:mcmaster-deploy -f"
+    "deploy-mcmaster": "npm run build:mcmaster && cp dist/index.html dist/404.html && git add dist && git commit -m \"Built files for McMaster $(date +'%Y-%m-%d %H:%M:%S')\" --allow-empty && git push origin HEAD:mcmaster-deploy -f"
   },
   "dependencies": {
     "aframe": "^1.7.1",

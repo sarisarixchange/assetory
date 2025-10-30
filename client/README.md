@@ -51,6 +51,7 @@ cd assetory
 ### Install Project
 
 ```sh
+cd client
 npm install
 ```
 

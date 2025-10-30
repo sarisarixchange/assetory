@@ -1,0 +1,30 @@
+{
+  "name": "assetory",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:local": "vite build --mode devlocal",
+    "build:github": "vite build --mode github",
+    "build:mcmaster": "vite build --mode mcmaster",
+    "deploy": "npm run build:github && cp dist/index.html dist/404.html && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git",
+    "deploy-mcmaster": "npm run build:mcmaster && cp dist/index.html dist/404.html && git add dist && git commit -m 'Built files for McMaster' && git push origin HEAD:mcmaster-deploy -f"
+  },
+  "dependencies": {
+    "aframe": "^1.7.1",
+    "aframe-extras": "^6.1.1",
+    "axios": "^1.13.1",
+    "pinia": "^3.0.2",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.1",
+    "gh-pages": "^6.3.0",
+    "vite": "^6.0.11",
+    "vite-plugin-vue-devtools": "^7.7.0"
+  }
+}

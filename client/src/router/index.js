@@ -11,6 +11,8 @@ import Events from '../pages/Events.vue';
 import Event from '../pages/Event.vue';
 import AccessibilityStatement from '../pages/AccessibilityStatement.vue'
 import TermsOfUse from '../pages/TermsOfUse.vue'
+import SubmitYourWorkForm from '../pages/SubmitYourWorkForm.vue';
+
 
 
 const routes = [
@@ -40,13 +42,22 @@ const routes = [
     }),
   },
   {path: '/events', component: Events, name: 'Events'}, 
-  {path: '/event/:id', component: Event, name: 'Event', props: true}
+  {path: '/event/:id', component: Event, name: 'Event', props: true}, 
+  {path: '/submit-your-work', component: SubmitYourWorkForm, name: 'Submit Your Work Form'}
+
 ]
 
 
-const router = createRouter({
-  history: createWebHistory('/assetory/'), // Set the base path here
-  routes,
-});
+const base =
+  import.meta.env.MODE === 'github'
+    ? '/assetory/'
+    : import.meta.env.MODE === 'mcmaster'
+    ? '/'
+    : './'
 
-export default router;
+const router = createRouter({
+  history: createWebHistory(base),
+  routes,
+})
+
+export default router

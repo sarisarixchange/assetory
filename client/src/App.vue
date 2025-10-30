@@ -47,7 +47,8 @@ body {
   --shadow: #000000; */
 
 
-  --background-color: #FFFEF6;
+  /* interactive theme */
+  /* --background-color: #FFFEF6;
   --primary-color: #D400A6;
   --secondary-color: #FFEDF4;
   --navigation-buttons-border-color: #F1AFDD;
@@ -60,6 +61,25 @@ body {
   --secondary-color-left-box: #FCFCCE;
   --text-color-left-box: #D400A6;
   --hover-color-left-box: #E7EB17;
-  --hover-text-color-left-box: #D400A6;
+  --hover-text-color-left-box: #D400A6; */
+
+  /* default (orange + blue theme) */
+  --background-color: #FFFEFA;
+  --primary-color: #000000;
+  --secondary-color: #FFFEFA;
+  --navigation-buttons-border-color: #000000;
+  --homepage-card-buttons-border-color: #000000;
+  --hover-color: #E7F6FC;
+  --hover-text-color: #000000;
+  --shadow: #000000;
+
+
+
+  --primary-color-left-box: #000000;
+  --secondary-color-left-box: #FFFEFA;
+  --text-color-left-box: #FFFEFA;
+  --hover-color-left-box: #E7F6FC;
+  --homepage-left-card-button-border-color: #000000;
+  
 }
 </style>

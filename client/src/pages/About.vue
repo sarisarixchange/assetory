@@ -568,7 +568,8 @@ export default {
                     <img v-show="isDecoractionCardSubtitlePink"
                         :src="iconBasePath + 'arrowRightHomePageDefaultTheme.svg'" alt="">
                 </div>
-                <SimpleButton to="" text="Submit your work" />
+                <SimpleButton :to="{name: 'Submit Your Work Form'}" text="Submit your work" />
+
             </div>
 
             <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top="40rem" left="50%"

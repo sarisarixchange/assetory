@@ -61,6 +61,8 @@ export default {
         root.style.setProperty('--primary-color', '#525252');
         root.style.setProperty('--secondary-color', '#F3F3F3');
         root.style.setProperty('--navigation-buttons-border-color', '#C8C8C8');
+        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
+
         root.style.setProperty('--shadow', '#C8C8C8');
         root.style.setProperty('--hover-color', '#525252');
         root.style.setProperty('--hover-text-color', '#FFFFFF');
@@ -70,6 +72,8 @@ export default {
         root.style.setProperty('--text-color-left-box', '#525252');
         root.style.setProperty('--hover-color-left-box', '#D2D2D2');
         root.style.setProperty('--hover-text-color-left-box', '#525252');
+        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
+
 
 
         // event emission 
@@ -97,12 +101,16 @@ export default {
         root.style.setProperty('--shadow', '#F1AFDD');
         root.style.setProperty('--hover-color', '#FF42D6');
         root.style.setProperty('--hover-text-color', '#000000');
+        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
+
 
         root.style.setProperty('--primary-color-left-box', '#000000');
         root.style.setProperty('--secondary-color-left-box', '#FFFFFF');
         root.style.setProperty('--text-color-left-box', '#FFFFFF');
         root.style.setProperty('--hover-color-left-box', '#FF42D6');
         root.style.setProperty('--hover-text-color-left-box', '#000000');
+        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
+
 
 
         // event emission
@@ -127,12 +135,11 @@ export default {
         root.style.setProperty('--primary-color', '#A80084');
         root.style.setProperty('--secondary-color', '#FFEDF4');
         root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
-
+        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
         root.style.setProperty('--shadow', '#F1AFDD');
         root.style.setProperty('--hover-color', '#A80084');
         root.style.setProperty('--hover-text-color', '#FFFFFF');
-
-
+        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
 
         root.style.setProperty('--primary-color-left-box', '#E7EB17');
         root.style.setProperty('--secondary-color-left-box', '#FCFCCE');
@@ -158,7 +165,7 @@ export default {
         this.currentResetIcon = 'resetIconWCAG',
           this.currentSvgButton = 'svgButtonDefault'
 
-      } else if (theme === 'originalInteractive') {  
+      } else if (theme === 'originalInteractive') {
         this.currentTheme = 'originalInteractive'; // Update currentTheme
 
 
@@ -167,7 +174,7 @@ export default {
         root.style.setProperty('--primary-color', '#D400A6');
         root.style.setProperty('--secondary-color', '#FFEDF4');
         root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
-
+        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
         root.style.setProperty('--shadow', '#F1AFDD');
         root.style.setProperty('--hover-color', '#D400A6');
         root.style.setProperty('--hover-text-color', '#FFFFFF');
@@ -177,6 +184,7 @@ export default {
         root.style.setProperty('--text-color-left-box', '#D400A6');
         root.style.setProperty('--hover-color-left-box', '#E7EB17');
         root.style.setProperty('--hover-text-color-left-box', '#D400A6');
+        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
 
 
         this.$emit('theme-changed', {
@@ -200,46 +208,22 @@ export default {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
 
-             root.style.setProperty('--primary-color', '#D400A6');
-        root.style.setProperty('--secondary-color', '#FFEDF4');
-        root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
+        root.style.setProperty('--primary-color', '#000000');
+        root.style.setProperty('--secondary-color', '#FFFEFA');
+        root.style.setProperty('--navigation-buttons-border-color', '#000000');
+        root.style.setProperty('--homepage-card-buttons-border-color', '#000000');
+        root.style.setProperty('--shadow', '#000000');
+        root.style.setProperty('--hover-color', '#E7F6FC');
+        root.style.setProperty('--hover-text-color', '#000000');
 
-        root.style.setProperty('--shadow', '#F1AFDD');
-        root.style.setProperty('--hover-color', '#D400A6');
-        root.style.setProperty('--hover-text-color', '#FFFFFF');
-
-        root.style.setProperty('--primary-color-left-box', '#E7EB17');
-        root.style.setProperty('--secondary-color-left-box', '#FCFCCE');
-        root.style.setProperty('--text-color-left-box', '#D400A6');
-        root.style.setProperty('--hover-color-left-box', '#E7EB17');
-        root.style.setProperty('--hover-text-color-left-box', '#D400A6');
-
-        /* there is no hover color in the menu buttons, recommendation: keep no color */
-        /* two different hover colors, blue and orange. Recommendation, keep only one color, especially orange since the letters will become white and that aligns with previouis designs  */
-        /* two diferent shadow colors one orange and one black, Recommendation: keep only 1 color*/
-        /* The heading of accessibility tools is the same as the tiles in previous designs. Recommendation: keep them the same */
-        /*The hover over on accessibility tools options is the same as the hover over the tiles in previous designs. Recommendation: keep them the same */
-        /* Is it necessary to change the radius of the objects since that would affect the design of previous pages */
-        // Where can I find the design of the main homepage
-        // corner raudius of the buttons to 7 to get it less round, https://fonts.google.com/specimen/Kode+Mono > smaller font, visit the wesite here, 
-        // alternating between the two photos, hover
-
-        // root.style.setProperty('--primary-color', '#000000');
-        // root.style.setProperty('--secondary-color', '#FFFEFA');
-        // root.style.setProperty('--navigation-buttons-border-color', '#000000');
-
-        // root.style.setProperty('--shadow', '#000000');
-        // root.style.setProperty('--hover-color', '#DBF2FD');
-
-        // root.style.setProperty('--hover-text-color', '#FFFFFF');
+        root.style.setProperty('--primary-color-left-box', '#000000');
+        root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
+        root.style.setProperty('--text-color-left-box', '#FFFEFA');
+        root.style.setProperty('--hover-color-left-box', '#E7F6FC');
+        root.style.setProperty('--hover-text-color-left-box', '#000000');
+        root.style.setProperty('--homepage-left-card-button-border-color', '#000000');
 
 
-
-        // root.style.setProperty('--primary-color-left-box', '#000000');
-        // root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
-        // root.style.setProperty('--text-color-left-box', '#FFFEFA');
-        // root.style.setProperty('--hover-color-left-box', '#FD5733');
-        // root.style.setProperty('--hover-text-color-left-box', '#000000');
 
 
         // event emission
@@ -351,19 +335,19 @@ export default {
       this.saveSettings();
     },
 
-updateContainerHeight() {
-  // Multiply base 100vh by the font scale
-  const newHeight = 100 * this.fontSize;
-  document.documentElement.style.setProperty('--container-height', `${newHeight}vh`);
+    updateContainerHeight() {
+      // Multiply base 100vh by the font scale
+      const newHeight = 100 * this.fontSize;
+      document.documentElement.style.setProperty('--container-height', `${newHeight}vh`);
 
-  // Allow overflow when larger than 100
-  const container = document.querySelector('.grid-container');
-  if (this.fontSize > 1) {
-    container.style.overflow = 'visible';
-  } else {
-    container.style.overflow = 'hidden';
-  }
-},
+      // Allow overflow when larger than 100
+      const container = document.querySelector('.grid-container');
+      if (this.fontSize > 1) {
+        container.style.overflow = 'visible';
+      } else {
+        container.style.overflow = 'hidden';
+      }
+    },
 
     increaseTextSize() {
       if (this.fontSize < 2) {
@@ -479,24 +463,23 @@ updateContainerHeight() {
   padding: 0.749rem 1.667rem;
   width: 3.125rem;
   height: 2.1875rem;
-  background-image: url('/icons/person.svg');
+  background-image: url('/icons/personBlack.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: transparent;
+  background-color: white;
   border: 1px solid var(--navigation-buttons-border-color);
-  transition: background-color 0.2s;
   cursor: pointer;
 }
 
 .nav-buttonAccessibilityIcon:hover {
-  background-image: url('/icons/person.svg');
+  background-image: url('/icons/personWhite.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  /* background-color: var(--primary-color); */
+  background-color: var(--primary-color);
   color: var(--primary-color);
-  box-shadow: -3px 3px 0 0 var(--shadow);
+  /* box-shadow: -3px 3px 0 0 var(--shadow); */
 }
 
 
@@ -576,11 +559,9 @@ updateContainerHeight() {
   padding: 0.75rem;
   gap: 0.625rem;
   background-color: white;
-  border: 1px solid var(--primary-color);
+  border: 1px solid var(--navigation-buttons-border-color);
   border-radius: 15px 15px 5px 5px;
   position: absolute;
-  right: 0.94rem;
-  top: 6.13rem;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
   cursor: pointer;
@@ -620,17 +601,18 @@ updateContainerHeight() {
 
 
 .accessibilityButtonDiv:hover {
-  color: var(--secondary-color);
+  color: var(--hover-text-color);
   /* background-color: var(--primary-color);   */
 }
 
 .svgButtonDefault {
   fill: var(--secondary-color);
+  stroke:var(--navigation-buttons-border-color);
 
 }
 
 .svgButtonDefault:hover {
-  fill: var(--primary-color);
+  fill: var(--hover-color);
 }
 
 .svgButtonGray {
@@ -638,7 +620,7 @@ updateContainerHeight() {
 }
 
 .svgButtonGray:hover {
-  fill: var(--primary-color);
+  fill: var(--hover-color);
 }
 
 .svgButtonHighContrast {
@@ -646,7 +628,7 @@ updateContainerHeight() {
 }
 
 .svgButtonHighContrast:hover {
-  fill: var(--primary-color);
+  fill: var(--hover-color);
 }
 
 
@@ -1044,24 +1026,29 @@ a {
 
 /* Sticky left wrapper for accessibility button and menu */
 .accessibility-sticky-wrapper {
-  position: fixed;
-  left: 1rem;
-  top: 10rem;
-  transform: translateY(-50%);
+  /* position: fixed; */
+  /* right: clamp(18rem, 1vw, 18rem); */
+  /* never smaller than 1rem, scales with vw, max 18rem */
+  /* top: 3.5rem; */
+  /* transform: translateY(-50%); */
   z-index: 1000;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  /* flex-direction: column; */
+  /* align-items: flex-start; */
 }
 
 /* Adjust dropdown to appear right of button */
 .dropdown-content {
-  left: 3.5rem;
+
   /* Move menu to the right of the button */
   right: auto;
-  top: 14rem;
+  top: 19rem;
   transform: translateY(-50%);
 }
+
+
+
+
 </style>
 
 <template>
@@ -1077,6 +1064,8 @@ a {
           Accessibility Tools
         </h2>
       </div>
+
+
 
       <!-- buttons -->
       <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">

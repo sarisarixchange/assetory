@@ -1207,8 +1207,8 @@
     {
         "id": 2,
         "title": "Carmela Laganse",
-        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
-        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "thumbnail": "carmela-laganse/carmela-laganse.png",     
+        "bannerImage": "carmela-laganse/carmela-laganse.png",   
         "cards": [
             {
                "heading":"",
@@ -1481,8 +1481,8 @@
        {
         "id": 3,
         "title": "Arturo Jimenez",
-        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
-        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "thumbnail": "arturo-jimenez/arturo-jimenez.png",     
+        "bannerImage": "arturo-jimenez/arturo-jimenez.png",   
         "cards": [
             {
                "heading":"",
@@ -1572,8 +1572,8 @@
   "acknowledgement": "Personal Artist Collections",
   "fileSize": "",
   "copyright": "CC BY-NC 4.0 DEED",
-  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/new_arttheboy_character.fbx",
-  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/new_arttheboy_character.fbx"
+  "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/new_arttheboy_character.FBX",
+  "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/nnew_arttheboy_character.FBX"
 },
 {
   "id": 5,
@@ -1674,7 +1674,7 @@
                 "id": 1,
                 "name": "wallet",
                 "thumbnail": "yuanzhi-zhang/Wallet.png",
-                "creator": "Olesia Kopusova",
+                "creator": "Yuanzhi Zhang",
                 "tags": [],
                 "description": "This is a wallet, an orange wallet. I bought it on an online shopping platform in China and used it for a month.I like this wallet very much. The color is very good and the functionality is strong. It can hold 7 cards and some cash.",
                 "assetType": "3D Model",
@@ -1689,13 +1689,13 @@
       },
        {
         "id": 6,
-        "title": "Amber Forno",
+        "title": "Mittha",
         "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
         "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
         "cards": [
             {
                "heading":"",
-               "description": "Amber Forno is a participant in the SSX Object of Care Scanning Party",
+               "description": "Mittha is a participant in is a participant in the SSX Story-telling workshop at Woosong University",
                "social": {"instagram": ""}, 
                "image": "",
                "youtubeUrl": "",
@@ -1705,20 +1705,152 @@
         "assets": [
             {
                 "id": 1,
-                "name": "N/A",
-                "thumbnail": "yuanzhi-zhang/Wallet.png",
-                "creator": "Amber Forno",
+                "name": "Mittha Bike",
+                "thumbnail": "mittha/Mittha Bike.png",
+                "creator": "Mittha",
                 "tags": [],
-                "description": "",
+                "description": "This is the bike that provided by the Daejeon’s government. We can rent it for a really cheap price and going around Daejeon with the bike. I’ve been using the bike, almost everyday and it’s really convenient. Also we can enjoying everything that we passed by and if we’re lucky we can find some interesting thing that we can’t find anywhere else",
                 "assetType": "3D Model",
                 "creationMethod": "Photogrammetry",
                 "acknowledgement": "",
                 "fileSize": "",
                 "copyright": "CC BY-NC 4.0 DEED",
-                "gltfModel": "https://drive.google.com/open?id=1O_h78vutEuOFE-9ZsBgoqkv2ibWq_trG",
-                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_wallet.glb"
+                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_Mittha - bike.glb",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_Mittha - bike.glb"
               }
         ]
+      },
+      {
+        "id": 7,
+        "title": "Dylan Fogler",
+        "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",     
+        "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",   
+        "cards": [
+            {
+               "heading":"",
+               "description": "Dylan Fogler is a participant in is a participant in the SSX Story-telling workshop at Woosong University",
+               "social": {"instagram": ""}, 
+               "image": "",
+               "youtubeUrl": "",
+               "contentSideBySide": false
+        }
+      ],
+        "assets": [
+            {
+                "id": 1,
+                "name": "Train Ticket",
+                "thumbnail": "dylan-fogler/Train Ticket.png",
+                "creator": "Dylan Fogler",
+                "tags": [],
+                "description": "A train ticket from 대전역. A special memory of my baby's first Christmas. These days I buy tickets online but when first started taking the train I would buy them from the kiosk, my physical tickets are my own personal time machine. ",
+                "assetType": "3D Model",
+                "creationMethod": "Photogrammetry",
+                "acknowledgement": "",
+                "fileSize": "",
+                "copyright": "CC BY-NC 4.0 DEED",
+                "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_Train Ticket.glb",
+                "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/25SK_Train Ticket.glb"
+              }
+        ]
+      },
+  {
+    "id": 8,
+    "title": "Paryse Reed",
+    "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",
+    "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",
+    "cards": [
+      {
+        "heading": "",
+        "description": "Paryse Reed is a participant in the SSX Story-telling workshop at Woosong University.",
+        "social": { "instagram": "" },
+        "image": "",
+        "youtubeUrl": "",
+        "contentSideBySide": false
       }
+    ],
+    "assets": [
+      {
+        "id": 1,
+        "name": "Lip glosses and Lip balm",
+        "thumbnail": "collection-thumbnail-placeholder.jpeg",
+        "creator": "Paryse Reed",
+        "tags": [],
+        "description": "My friends (Theodora Oyinloye and Alysha Aran) and myself scanned all of our lip balms and lip care items.",
+        "assetType": "3D Model",
+        "creationMethod": "Photogrammetry",
+        "acknowledgement": "",
+        "fileSize": "",
+        "copyright": "CC BY 4.0 DEED",
+        "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/24-object-of-care-Paryse Reed.glb",
+        "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/24-object-of-care-Paryse Reed.glb"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Nasser Al-Shalabi",
+    "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",
+    "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",
+    "cards": [
+      {
+        "heading": "",
+        "description": "Nasser Al-Shalabi is a participant in the SSX Story-telling workshop at Woosong University.",
+        "social": { "instagram": "" },
+        "image": "",
+        "youtubeUrl": "",
+        "contentSideBySide": false
+      }
+    ],
+    "assets": [
+      {
+        "id": 1,
+        "name": "Scooping the Zucchini",
+        "thumbnail": "collection-thumbnail-placeholder.jpeg",
+        "creator": "Nasser Al-Shalabi",
+        "tags": [],
+        "description": "The story about this tool reminded me of my mom. She used to use it to make us a dinner stuffed with rice and meat, and I was sitting on the table trying to help her. But I was not doing a good job because when you scoop the inside you have to be careful to not poke it, and my mom said, “If you keep doing it like that, we won’t have a dinner tonight.”",
+        "assetType": "3D Model",
+        "creationMethod": "Photogrammetry",
+        "acknowledgement": "",
+        "fileSize": "",
+        "copyright": "CC BY 4.0 DEED",
+        "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/24-object-of-care-scoopingtheZucchini.glb",
+        "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/24-object-of-care-scoopingtheZucchini.glb"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Theodora Oyinloye",
+    "thumbnail": "carmela-laganse/Thumbnail_Anonymous.png",
+    "bannerImage": "carmela-laganse/Thumbnail_Anonymous.png",
+    "cards": [
+      {
+        "heading": "",
+        "description": "Theodora Oyinloye is a participant in the SSX Story-telling workshop at Woosong University.",
+        "social": { "instagram": "" },
+        "image": "",
+        "youtubeUrl": "",
+        "contentSideBySide": false
+      }
+    ],
+    "assets": [
+      {
+        "id": 1,
+        "name": "Vaseline Cocoa Radiant",
+        "thumbnail": "collection-thumbnail-placeholder.jpeg",
+        "creator": "Theodora Oyinloye",
+        "tags": [],
+        "description": "My Vaseline Cocoa Radiant, it’s lotion. 48hr moisture and hydration and I bring it everywhere.",
+        "assetType": "3D Model",
+        "creationMethod": "Photogrammetry",
+        "acknowledgement": "",
+        "fileSize": "",
+        "copyright": "CC BY 4.0 DEED",
+        "gltfModel": "https://sarisarixchange.github.io/SSXAssetLibrary/24-object-of-care-Vaseline Cocoa Radiant.glb",
+        "downloadLink": "https://sarisarixchange.github.io/SSXAssetLibrary/24-object-of-care-Vaseline Cocoa Radiant.glb"
+      }
+    ]
+  }
 ]
     

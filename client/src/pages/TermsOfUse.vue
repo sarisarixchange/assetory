@@ -108,13 +108,13 @@ the creator’s choice:
         <li>CC BY 4.0 DEED: Users are permitted to share (copy and redistribute the material in any 
 medium or format) and adapt (remix, transform, and build upon the material) the assets, with 
 commercial use allowed. More details can be found at:
-https://creativecommons.org/licenses/by/4.0/
+<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by/4.0/</a>
 </li>
         <li>CC BY-NC 4.0 DEED: Users are permitted to share and adapt the assets for non-commercial 
-use only. More details can be found at: https://creativecommons.org/licenses/by-nc/4.0/
+use only. More details can be found at: <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc/4.0/</a>
 </li>
         <li>CC BY-NC-ND: Users can share but not adapt the materials, with only noncommercial uses 
-permitted. More detail can be found: https://creativecommons.org/licenses/by-nc-nd/4.0/
+permitted. More detail can be found:  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>
 </li>
         <li>Upon Request: Users cannot access the digital asset directly but need to contact SSXAL and fill out a form to gain access to it.
 </li>
@@ -136,9 +136,34 @@ permitted. More detail can be found: https://creativecommons.org/licenses/by-nc-
     </p>
 
      <p><strong>Frequently Asked Questions</strong></p>
-<p>What can I do with the assets?</p>
-<p></p>
-    </div>
+<p>1. Do I own the copyright of the asset if I contribute to SSXA?</p>
+<p>Yes! You retain full copyright ownership of your asset. SSXA does not claim ownership and we simply present and promote your work as it is.</p>
+
+<p>2. What can I do with the assets published on SSXA?</p>
+<p>Everyone is welcome to use the assets according to their associated copyright licenses. Please visit the Copyright License page for detailed information on permitted uses, attributions, and restrictions.</p>
+
+<p>3. If I am not part of the Asian diaspora community, can I still use these assets?</p>
+<p>Yes, absolutely. SSXA encourages cultural exchange and learning. However, please use the materials respectfully.</p>
+
+<p>4. What is prohibited when using assets from SSXA?</p>
+<p>You must follow the copyright license associated with each asset when using, adapting, or distributing it. Assets may not be used in ways that are disrespectful, exploitative, or culturally insensitive. You should also respect moral rights under Canadian copyright law, which protect the integrity and attribution of the creator’s work.</p>
+
+<p>5. How can I contribute to SSXA?</p>
+<p>Visit the About page and click the Submit button to share your assets. We will review your submission and contact you if your work is accepted into our library. Selected assets may also be featured in curated theme collections.</p>
+
+<p>6. What types of assets can I submit?</p>
+<p>You can contribute a wide range of cultural materials, such as 3D models, motion capture data, and audio files. All submissions should relate to the experiences, histories, or expressions of the Asian diaspora.</p>
+
+<p>7. Can I edit or remove my submission later?</p>
+<p>Yes. As the copyright holder, you may request to update or remove your contribution at any time.</p>
+
+<p>8. Is there a review process before assets are published?</p>
+<p>Yes. Every submission is reviewed by our curatorial team to ensure it aligns with SSXA’s mission, values, and quality standards. We may reach out to you for clarification or additional information before publishing your asset.</p>
+
+<p><small>If you have any questions or feedback regarding the terms, please contact us: <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
+</small></p>
+
+</div>
 
    
 

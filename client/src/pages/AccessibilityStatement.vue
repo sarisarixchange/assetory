@@ -95,9 +95,9 @@ export default {
     
       <!-- Replace with accessibility statement below -->
     <p>
-      This is the accessibility statement for our website. <br>
-      We are committed to ensuring digital accessibility for people with disabilities.</br>
-      We are continually improving the user experience for everyone, and applying the relevant accessibility standards.
+      Our website is still a work in progress. We are working with our accessibility consultant to ensure compliance with accessibility standards and will publish a full accessibility statement once the website is complete. <br>
+      </br>
+      If you have any questions or feedback regarding the accessibility of our website, please fill out the following Google Form: <a href="https://forms.gle/3YJm5f6b6Uu4z1Zt7" target="_blank" rel="noopener">Accessibility Feedback Form</a>
     </p>
       
     </div>

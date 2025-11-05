@@ -12,6 +12,7 @@ import Event from '../pages/Event.vue';
 import AccessibilityStatement from '../pages/AccessibilityStatement.vue'
 import TermsOfUse from '../pages/TermsOfUse.vue'
 import SubmitYourWorkForm from '../pages/SubmitYourWorkForm.vue';
+import Submissions from '../pages/Submissions.vue';
 
 
 
@@ -43,7 +44,8 @@ const routes = [
   },
   {path: '/events', component: Events, name: 'Events'}, 
   {path: '/event/:id', component: Event, name: 'Event', props: true}, 
-  {path: '/submit-your-work', component: SubmitYourWorkForm, name: 'Submit Your Work Form'}
+  {path: '/submit-your-work', component: SubmitYourWorkForm, name: 'Submit Your Work Form'},
+  {path: '/submissions', component: Submissions, name: 'Submissions'},
 
 ]
 

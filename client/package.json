@@ -14,10 +14,12 @@
     "deploy-mcmaster": "npm run build:mcmaster && cp dist/index.html dist/404.html && gh-pages -d dist -b mcmaster-dist-files -r https://github.com/sarisarixchange/assetory.git"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.79.0",
     "aframe": "^1.7.1",
     "aframe-extras": "^6.1.1",
     "axios": "^1.13.1",
     "pinia": "^3.0.2",
+    "uuid": "^13.0.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"
   },

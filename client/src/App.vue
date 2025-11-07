@@ -36,6 +36,7 @@ body {
 
 :root {
   --base-gap: 16rem;
+  --font-family-Decorative: 'Kode Mono', sans-serif;
 
   /* new default theme */
   /* --background-color: #FFFEFA;

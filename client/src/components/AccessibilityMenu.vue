@@ -305,7 +305,7 @@ export default {
           document.documentElement.style.setProperty("--link-decoration", this.linkDecoration);
         // readable font
         this.readableFont = settings.readableFont || this.readableFont,
-          document.documentElement.style.setProperty("--font-family", this.readableFont);
+          document.documentElement.style.setProperty("--font-family-Decorative", this.readableFont);
         // load current theme
         this.currentTheme = settings.currentTheme || this.currentTheme; // Load the current theme
         this.applyTheme(this.currentTheme); // Apply the loaded theme
@@ -390,8 +390,8 @@ export default {
       document.documentElement.style.setProperty("--link-decoration", this.linkDecoration);
 
       // Step 5: Reset font family
-      this.readableFont = "'Handjet', sans-serif";
-      document.documentElement.style.setProperty("--font-family", this.readableFont);
+      this.readableFont = "'Kode Mono', sans-serif";
+      document.documentElement.style.setProperty("--font-family-Decorative", this.readableFont);
 
 
       // Step 6: Reset notification UI
@@ -445,7 +445,7 @@ export default {
     //redable font
     activateReadableFont() {
       this.readableFont = "'Inter', sans-serif";
-      document.documentElement.style.setProperty("--font-family", this.readableFont);
+      document.documentElement.style.setProperty("--font-family-Decorative", this.readableFont);
       // Save the updated setting
       this.saveSettings();
     },
@@ -572,9 +572,9 @@ export default {
   border-radius: 10px;
   background-color: var(--primary-color);
   color: white;
-  font-family: var(--font-family, 'Handjet'), sans-serif;
+    font-family: var(--font-family-Decorative);
   /* Uses Handjet by default */
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: 400;
   text-align: center;
   cursor: default;

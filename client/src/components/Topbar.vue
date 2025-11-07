@@ -101,9 +101,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
-  background-color: transparent;
+  /* background-color: transparent; */
   border: solid 1px var(--primary-color);
   border-radius: 1.25rem;
+  background-color: var(--background-color);
   /*new radius*/
 
   /* width: 62.6875rem; */

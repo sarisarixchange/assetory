@@ -11,7 +11,7 @@
     "build:github": "vite build --mode github",
     "build:mcmaster": "vite build --mode mcmaster",
     "deploy": "npm run build:github && cp dist/index.html dist/404.html && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git",
-    "deploy-mcmaster": "npm run build:mcmaster && cp dist/index.html dist/404.html && gh-pages -d dist -b mcmaster-dist-files -r https://github.com/sarisarixchange/assetory.git"
+    "deploy:mcmaster": "bash ./deploy-mcmaster.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.79.0",

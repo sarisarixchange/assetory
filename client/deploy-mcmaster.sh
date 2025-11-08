@@ -6,7 +6,11 @@
 # connect to VPN sslvpn.mcmaster.ca/vpnusers 
 #############################################
 
-LOCAL_DIST="./client/dist"
+# Inside client/ folder
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+LOCAL_DIST="$SCRIPT_DIR/dist" 
+
+
 REMOTE_USER="navarrol"
 REMOTE_HOST="web-backend.mcmaster.ca"
 REMOTE_DIR="~/public_html"

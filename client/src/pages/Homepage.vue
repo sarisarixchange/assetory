@@ -31,7 +31,7 @@ export default {
             // leftbox
 
             isDefaultCardVisible: true,
-            isPinkLeftCardIconVisible: true,
+            isPinkLeftCardIconVisible: false,
             isGrayLeftCardIconVisible: false,
             isHighContrastLeftCardIconVisible: false,
             isWCAGLeftCardIconVisible: false,
@@ -453,11 +453,10 @@ export default {
     background-color: var(--background-color);
     z-index: 3;
     cursor: default;
-    box-shadow:
+    /* box-shadow:
         -6px 6px 0 var(--shadow),
-        /* Thick left border */
-        0 6px 1px var(--shadow);
-    /* Thick bottom border */
+           0 6px 1px var(--shadow); */
+   
 }
 
 .homeSVG {
@@ -479,47 +478,12 @@ export default {
 
 /* Large screens (desktops) */
 .cardsContainer {
-
-    margin: auto;
-    width: 37.5%;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 54.5rem;
+    height: 35.9375rem;
+    flex-shrink: 0;
 }
-
-/* Medium desktops / laptops (<= 1400px) */
-@media (max-width: 1400px) {
-    .cardsContainer {
-        width: 49%;
-    }
-}
-
-/* Smaller laptops / large tablets (<= 1200px) */
-@media (max-width: 1200px) {
-    .cardsContainer {
-        width: 50%;
-    }
-}
-
-/* Small laptops / tablets (<= 1024px) */
-@media (max-width: 1024px) {
-    .cardsContainer {
-        width: 55%;
-    }
-}
-
-
-/* Tablets / portrait (<= 768px) */
-@media (max-width: 768px) {
-    .cardsContainer {
-        width: 75%;
-    }
-}
-
-/* Phones / small screens (<= 480px) */
-@media (max-width: 480px) {
-    .cardsContainer {
-        width: 90%;
-    }
-}
-
 
 
 /* box sizes new design */
@@ -637,8 +601,6 @@ export default {
     width: 100%;
     height: 100%;
     display: flex;
-    /* width: 21.25rem; */
-    /* height: 1.9375rem; */
     flex-shrink: 0;
     color: var(--primary-color);
     display: flex;
@@ -646,17 +608,26 @@ export default {
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
+    margin-right: 5rem;
 }
 
 
 
 .left-goto-action {
-    font-size: 1.5rem;
+    font-size: 1rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 400;
-    margin-right: 0.25rem;
+    padding-right: 0rem;
+}
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+   .left-goto-action {
+    font-size: 1.5rem;   
+    padding-right: 0.25rem;
+}
 }
 
 
@@ -864,14 +835,13 @@ export default {
 
 
 
+
 .other-call-action {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     width: 100%;
     height: 100%;
     display: flex;
-    /* width: 21.25rem; */
-    /* height: 1.9375rem; */
     flex-shrink: 0;
     color: var(--primary-color);
     display: flex;
@@ -979,11 +949,24 @@ export default {
     flex-wrap: nowrap;
 }
 
+/* larger desktops / laptops (> 1400px) */
+
 .footer-image {
-    width: 5%;
+    width: 3%;
+    object-fit: contain;
+    flex-shrink: 0;
+    /* margin-bottom: 3rem; */
+}
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+.footer-image {
+    width: 4%;
     object-fit: contain;
     flex-shrink: 0;
 }
+}
+
 
 @keyframes scroll {
     0% {
@@ -1069,62 +1052,6 @@ export default {
 
                 <svg id="revisedSVGContainer" viewBox="0 0 842 576" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="defaultTiles">
-                        <g id="Events Node Idle">
-
-                            <foreignObject x="8.5" y="306.5" width="393" height="269" rx="6.5">
-
-                                <div class="center-bottom-box">
-                                    <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
-                                        <h2>Events</h2>
-                                    </div>
-                                    <div class="other-box-subtitle">
-                                        <img v-show="isDecoractionCardSubtitleDefault"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                                        <p>Assets created during SSX events.</p>
-                                    </div>
-                                    <div class="other-box-photos" aria-hidden="true">
-                                        <img :src="randomEventImage" alt="">
-                                    </div>
-
-
-                                    <div class="other-box-action-call">
-                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path class="oddShapeButton"
-                                                d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
-
-                                            <foreignObject x="0" y="0" width="379" height="32">
-                                                <a href="" class="other-call-action">
-                                                    <router-link :to="{ name: 'Events' }" class="other-call-action">
-                                                        <span>Open Events</span> <span class="call-goto-action"
-                                                            aria-hidden="true">
-                                                            <img class="goToArrow"
-                                                                :src="iconBasePath + 'arrow-right-black.svg'" alt="">
-                                                        </span>
-                                                    </router-link>
-                                                </a>
-                                            </foreignObject>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </foreignObject>
-
-                            <circle id="Ellipse 9" cx="6.5" cy="389.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 10" cx="6.5" cy="404.5" r="5" fill="#FFFEFA" stroke="black" />
-                            <circle id="Ellipse 12" cx="401.5" cy="439.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 11" cx="401.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
-                        </g>
-
-
                         <g id="About Node Idle">
                             <foreignObject x="8.5" y="9.5" width="393" height="252" rx="6.5">
                                 <div class="left-box">
@@ -1173,6 +1100,60 @@ export default {
                             <circle id="Ellipse 11_2" cx="401" cy="157.5" r="5" fill="#FFFEFA" stroke="black" />
                         </g>
 
+                        <g id="Events Node Idle">
+
+                            <foreignObject x="8.5" y="306.5" width="393" height="269" rx="6.5">
+
+                                <div class="center-bottom-box">
+                                    <div class="other-box-heading">
+                                        <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
+                                        <h2>Events</h2>
+                                    </div>
+                                    <div class="other-box-subtitle">
+                                        <img v-show="isDecoractionCardSubtitleDefault"
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitlePink"
+                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleGray"
+                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleHighContrast"
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                        <img v-show="isDecoractionCardSubtitleWCAG"
+                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                        <p>Assets created during SSX events.</p>
+                                    </div>
+                                    <div class="other-box-photos" aria-hidden="true">
+                                        <img :src="randomEventImage" alt="">
+                                    </div>
+
+
+                                    <div class="other-box-action-call">
+                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path class="oddShapeButton"
+                                                d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
+
+                                            <foreignObject x="0" y="0" width="379" height="32">
+                                                <router-link :to="{ name: 'Events' }" class="other-call-action">
+                                                    <span>Open Events</span> <span class="call-goto-action"
+                                                        aria-hidden="true">
+                                                        <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
+                                                    </span>
+                                                </router-link>
+                                            </foreignObject>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </foreignObject>
+
+                            <circle id="Ellipse 9" cx="6.5" cy="389.5" r="5.5" fill="black" />
+                            <circle id="Ellipse 10" cx="6.5" cy="404.5" r="5" fill="#FFFEFA" stroke="black" />
+                            <circle id="Ellipse 12" cx="401.5" cy="439.5" r="5.5" fill="black" />
+                            <circle id="Ellipse 11" cx="401.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
+                        </g>
+
+
+
                         <g id="Collections Node Idle">
                             <foreignObject x="443.5" y="306.5" width="393" height="267.809" rx="6.5">
 
@@ -1210,8 +1191,7 @@ export default {
                                                 <router-link :to="{ name: 'Collections' }" class="other-call-action">
                                                     <span>Open Collections</span> <span class="call-goto-action"
                                                         aria-hidden="true">
-                                                        <img class="goToArrow"
-                                                            :src="iconBasePath + 'arrow-right-black.svg'" alt="">
+                                                        <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
                                                     </span>
                                                 </router-link>
                                             </foreignObject>
@@ -1260,8 +1240,7 @@ export default {
                                                 <router-link :to="{ name: 'Artists' }" class="other-call-action">
                                                     <span class="call-action-text">Open Artists</span> <span
                                                         class="call-goto-action" aria-hidden="true">
-                                                        <img class="goToArrow"
-                                                            :src="iconBasePath + 'arrow-right-black.svg'" alt="">
+                                                        <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
                                                     </span>
                                                 </router-link>
                                             </foreignObject>

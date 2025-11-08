@@ -572,7 +572,7 @@ export default {
   border-radius: 10px;
   background-color: var(--primary-color);
   color: white;
-    font-family: var(--font-family-Decorative);
+  font-family: var(--font-family-Decorative);
   /* Uses Handjet by default */
   font-size: 1.25rem;
   font-weight: 400;
@@ -607,7 +607,7 @@ export default {
 
 .svgButtonDefault {
   fill: var(--secondary-color);
-  stroke:var(--navigation-buttons-border-color);
+  stroke: var(--navigation-buttons-border-color);
 
 }
 
@@ -638,7 +638,51 @@ a {
   /* Default: No underline */
 }
 
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+  .increaseTextIcon, .increaseTextIconPink, .increaseTextIconGray, .increaseTextIconHighContrast, .increaseTextIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+    .decreaseTextIcon, .decreaseTextIconPink, .decreaseTextIconGray, .decreaseTextIconHighContrast, .decreaseTextIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+.grayscaleIcon, .grayscaleIconPink, .grayscaleIconGray, .grayscaleIconHighContrast, .grayscaleIconWCAG {
+    margin-right: 0.3rem;
+  } 
+
+  .highContrastIcon, .highContrastIconPink, .highContrastIconGray, .highContrastIconHighContrast, .highContrastIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+  .linksUnderlineIcon, .linksUnderlineIconPink, .linksUnderlineIconGray, .linksUnderlineIconHighContrast, .linksUnderlineIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+  .readableFontIcon, .readableFontIconPink, .readableFontIconGray, .readableFontIconHighContrast, .readableFontIconWCAG {
+    margin-right: 0.3rem;
+  } 
+  
+  .wcagColoursIcon, .wcagColoursIconPink, .wcagColoursIconGray, .wcagColoursIconHighContrast, .wcagColoursIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+  .resetIcon, .resetIconPink, .resetIconGray, .resetIconHighContrast, .resetIconWCAG {
+    margin-right: 0.3rem;
+  }
+}
+
 .increaseTextIcon {
+  width: 1rem;
+  height: 1rem;
+  background-image: url("/icons/IncreaseTextIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.increaseTextIconPink {
   width: 1rem;
   height: 1rem;
   background-image: url("/icons/IncreaseTextIcon.svg");
@@ -676,8 +720,16 @@ a {
   background-position: center;
 }
 
-
 .decreaseTextIcon {
+  width: 1rem;
+  height: 1rem;
+  background-image: url("/icons/decreaseTextIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.decreaseTextIconPink {
   width: 1rem;
   height: 1rem;
   background-image: url("/icons/decreaseTextIconPink.svg");
@@ -718,6 +770,16 @@ a {
 .grayscaleIcon {
   width: 1rem;
   height: 1rem;
+  background-image: url("/icons/grayscaleIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+
+.grayscaleIconPink {
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/grayscaleIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -752,8 +814,18 @@ a {
   margin-right: 0.10em;
 }
 
-
 .highContrastIcon {
+  width: 1rem;
+  height: 1rem;
+  background-image: url("/icons/highContrastIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+
+
+.highContrastIconPink {
   width: 1rem;
   height: 1rem;
   background-image: url("/icons/highContrastIconPink.svg");
@@ -794,6 +866,16 @@ a {
 .linksUnderlineIcon {
   width: 1rem;
   height: 1rem;
+  background-image: url("/icons/linksUnderlineIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+
+.linksUnderlineIconPink {
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/linksUnderlineIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -829,6 +911,15 @@ a {
 }
 
 .readableFontIcon {
+  width: 1rem;
+  height: 1rem;
+  background-image: url("/icons/readableFontIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.readableFontIconPink {
   width: 1rem;
   height: 1rem;
   background-image: url("/icons/readableFontIconPink.svg");
@@ -867,6 +958,15 @@ a {
 .wcagColoursIcon {
   width: 1rem;
   height: 1rem;
+  background-image: url("/icons/wcagColorsIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.wcagColoursIconPink {
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/wcagColorsIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -903,6 +1003,15 @@ a {
 .resetIcon {
   width: 1rem;
   height: 1rem;
+  background-image: url("/icons/resetIconBlack.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.resetIconPink {
+  width: 1rem;
+  height: 1rem;
   background-image: url("/icons/resetIconPink.svg");
   background-repeat: no-repeat;
   background-size: contain;
@@ -937,7 +1046,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .increaseTextIcon,
+/* .accessibilityButtonDiv:hover .increaseTextIcon, */
 .accessibilityButtonDiv:hover .increaseTextIconGray,
 .accessibilityButtonDiv:hover .increaseTextIconHighContrast,
 .accessibilityButtonDiv:hover .increaseTextIconWCAG {
@@ -947,7 +1056,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .decreaseTextIcon,
+/* .accessibilityButtonDiv:hover .decreaseTextIcon, */
 .accessibilityButtonDiv:hover .decreaseTextIconGray,
 .accessibilityButtonDiv:hover .decreaseTextIconHighContrast,
 .accessibilityButtonDiv:hover .decreaseTextIconWCAG {
@@ -957,7 +1066,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .grayscaleIcon,
+/* .accessibilityButtonDiv:hover .grayscaleIcon, */
 .accessibilityButtonDiv:hover .grayscaleIconGray,
 .accessibilityButtonDiv:hover .grayscaleIconHighContrast,
 .accessibilityButtonDiv:hover .grayscaleIconWCAG {
@@ -967,7 +1076,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .highContrastIcon,
+/* .accessibilityButtonDiv:hover .highContrastIcon, */
 .accessibilityButtonDiv:hover .highContrastIconGray,
 .accessibilityButtonDiv:hover .highContrastIconHighContrast,
 .accessibilityButtonDiv:hover .highContrastIconWCAG {
@@ -977,7 +1086,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .wcagColoursIcon,
+/* .accessibilityButtonDiv:hover .wcagColoursIcon, */
 .accessibilityButtonDiv:hover .wcagColoursIconGray,
 .accessibilityButtonDiv:hover .wcagColoursIconHighContrast,
 .accessibilityButtonDiv:hover .wcagColoursIconWCAG {
@@ -987,7 +1096,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .linksUnderlineIcon,
+/* .accessibilityButtonDiv:hover .linksUnderlineIcon, */
 .accessibilityButtonDiv:hover .linksUnderlineIconGray,
 .accessibilityButtonDiv:hover .linksUnderlineIconHighContrast,
 .accessibilityButtonDiv:hover .linksUnderlineIconWCAG {
@@ -997,7 +1106,7 @@ a {
   background-position: center;
 }
 
-.accessibilityButtonDiv:hover .readableFontIcon,
+/* .accessibilityButtonDiv:hover .readableFontIcon, */
 .accessibilityButtonDiv:hover .readableFontIconGray,
 .accessibilityButtonDiv:hover .readableFontIconHighContrast,
 .accessibilityButtonDiv:hover .readableFontIconWCAG {
@@ -1009,7 +1118,7 @@ a {
 
 
 
-.accessibilityButtonDiv:hover .resetIcon,
+/* .accessibilityButtonDiv:hover .resetIcon, */
 .accessibilityButtonDiv:hover .resetIconGray,
 .accessibilityButtonDiv:hover .resetIconHighContrast,
 .accessibilityButtonDiv:hover .resetIconWCAG {
@@ -1042,13 +1151,9 @@ a {
 
   /* Move menu to the right of the button */
   right: auto;
-  top: 19rem;
+  top: 17.5rem;
   transform: translateY(-50%);
 }
-
-
-
-
 </style>
 
 <template>
@@ -1154,7 +1259,7 @@ a {
         </foreignObject>
       </svg>
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1163,7 +1268,7 @@ a {
             <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
           </button>
         </foreignObject>
-      </svg>
+      </svg> -->
 
       <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path

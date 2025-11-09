@@ -58,7 +58,9 @@ export default {
       if (theme === 'grayscale') {   // grayscale Theme
         this.currentTheme = 'grayscale'; // Update currentTheme
 
+        root.style.setProperty('--background-color', '#FFFEFA');
         root.style.setProperty('--primary-color', '#525252');
+        root.style.setProperty('--background-color-headings', '#525252');
         root.style.setProperty('--secondary-color', '#F3F3F3');
         root.style.setProperty('--navigation-buttons-border-color', '#C8C8C8');
         root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
@@ -67,12 +69,14 @@ export default {
         root.style.setProperty('--hover-color', '#525252');
         root.style.setProperty('--hover-text-color', '#FFFFFF');
 
+
         root.style.setProperty('--primary-color-left-box', '#D2D2D2');
         root.style.setProperty('--secondary-color-left-box', '#F3F3F3');
         root.style.setProperty('--text-color-left-box', '#525252');
         root.style.setProperty('--hover-color-left-box', '#D2D2D2');
         root.style.setProperty('--hover-text-color-left-box', '#525252');
         root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
+
 
 
 
@@ -95,7 +99,9 @@ export default {
 
       } else if (theme === 'highContrast') {  // high contrast theme
         this.currentTheme = 'highContrast'; // Update currentTheme
+        root.style.setProperty('--background-color', '#FFFEFA');
         root.style.setProperty('--primary-color', '#000000');
+        root.style.setProperty('--background-color-headings', '#525252');
         root.style.setProperty('--secondary-color', '#FFFFFF');
         root.style.setProperty('--navigation-buttons-border-color', '#FF42D6');
         root.style.setProperty('--shadow', '#F1AFDD');
@@ -133,6 +139,8 @@ export default {
       } else if (theme === 'wcag') { // WCAG colors theme
         this.currentTheme = 'wcag'; // Update currentTheme
         root.style.setProperty('--primary-color', '#A80084');
+        root.style.setProperty('--background-color', '#FFFEFA');
+        root.style.setProperty('--background-color-headings', '#525252');
         root.style.setProperty('--secondary-color', '#FFEDF4');
         root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
         root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
@@ -170,8 +178,9 @@ export default {
 
 
 
-
+        root.style.setProperty('--background-color', '#FFFEFA');
         root.style.setProperty('--primary-color', '#D400A6');
+        root.style.setProperty('--background-color-headings', '#FD5733');
         root.style.setProperty('--secondary-color', '#FFEDF4');
         root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
         root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
@@ -207,7 +216,8 @@ export default {
       } else {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
-
+        root.style.setProperty('--background-color', '#FFFEFA');
+        root.style.setProperty('--background-color-headings', '#FD5733');
         root.style.setProperty('--primary-color', '#000000');
         root.style.setProperty('--secondary-color', '#FFFEFA');
         root.style.setProperty('--navigation-buttons-border-color', '#000000');
@@ -459,7 +469,7 @@ export default {
 <style scoped>
 .nav-buttonAccessibilityIcon {
   color: var(--primary-color);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   padding: 0.749rem 1.667rem;
   width: 3.125rem;
   height: 2.1875rem;
@@ -640,35 +650,68 @@ a {
 
 /* Medium desktops / laptops (<= 1400px) */
 @media (max-width: 1400px) {
-  .increaseTextIcon, .increaseTextIconPink, .increaseTextIconGray, .increaseTextIconHighContrast, .increaseTextIconWCAG {
+
+  .increaseTextIcon,
+  .increaseTextIconPink,
+  .increaseTextIconGray,
+  .increaseTextIconHighContrast,
+  .increaseTextIconWCAG {
     margin-right: 0.3rem;
   }
 
-    .decreaseTextIcon, .decreaseTextIconPink, .decreaseTextIconGray, .decreaseTextIconHighContrast, .decreaseTextIconWCAG {
+  .decreaseTextIcon,
+  .decreaseTextIconPink,
+  .decreaseTextIconGray,
+  .decreaseTextIconHighContrast,
+  .decreaseTextIconWCAG {
     margin-right: 0.3rem;
   }
 
-.grayscaleIcon, .grayscaleIconPink, .grayscaleIconGray, .grayscaleIconHighContrast, .grayscaleIconWCAG {
-    margin-right: 0.3rem;
-  } 
-
-  .highContrastIcon, .highContrastIconPink, .highContrastIconGray, .highContrastIconHighContrast, .highContrastIconWCAG {
-    margin-right: 0.3rem;
-  }
-
-  .linksUnderlineIcon, .linksUnderlineIconPink, .linksUnderlineIconGray, .linksUnderlineIconHighContrast, .linksUnderlineIconWCAG {
+  .grayscaleIcon,
+  .grayscaleIconPink,
+  .grayscaleIconGray,
+  .grayscaleIconHighContrast,
+  .grayscaleIconWCAG {
     margin-right: 0.3rem;
   }
 
-  .readableFontIcon, .readableFontIconPink, .readableFontIconGray, .readableFontIconHighContrast, .readableFontIconWCAG {
-    margin-right: 0.3rem;
-  } 
-  
-  .wcagColoursIcon, .wcagColoursIconPink, .wcagColoursIconGray, .wcagColoursIconHighContrast, .wcagColoursIconWCAG {
+  .highContrastIcon,
+  .highContrastIconPink,
+  .highContrastIconGray,
+  .highContrastIconHighContrast,
+  .highContrastIconWCAG {
     margin-right: 0.3rem;
   }
 
-  .resetIcon, .resetIconPink, .resetIconGray, .resetIconHighContrast, .resetIconWCAG {
+  .linksUnderlineIcon,
+  .linksUnderlineIconPink,
+  .linksUnderlineIconGray,
+  .linksUnderlineIconHighContrast,
+  .linksUnderlineIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+  .readableFontIcon,
+  .readableFontIconPink,
+  .readableFontIconGray,
+  .readableFontIconHighContrast,
+  .readableFontIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+  .wcagColoursIcon,
+  .wcagColoursIconPink,
+  .wcagColoursIconGray,
+  .wcagColoursIconHighContrast,
+  .wcagColoursIconWCAG {
+    margin-right: 0.3rem;
+  }
+
+  .resetIcon,
+  .resetIconPink,
+  .resetIconGray,
+  .resetIconHighContrast,
+  .resetIconWCAG {
     margin-right: 0.3rem;
   }
 }

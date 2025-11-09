@@ -1,36 +1,49 @@
 [
     {
         "title": "Taien Ng-Chan",
-        "thumbnail": "taien-ng-chan.png"      
-    }, 
+        "thumbnail": "taien-ng-chan.png",
+        "status": "current",
+        "about": "Taien Ng-Chan is a writer and media artist whose work explores location, sound, and futurist imaginings of everyday life through immersive cinema. She is a professor in Cinema & Media Arts at York University, and York Research Chair in Marginal & Emergent Media."
+    },
     {
         "title": "Haoran Chang",
-        "thumbnail": "haoran-chang.png"
-    }, 
-    { 
-    "title": "Serena Walk",
-    "thumbnail": "serena-walk.png"  
-    }, 
-
-    { 
-    "title": "Sana Akram",
-    "thumbnail": "sana-akram.png"  
-    }, 
-    { 
-    "title": "Jet Coghlan",
-    "thumbnail": "jet-coghlan.png"  
-    }, 
-    { 
-    "title": "Carmela Laganse",
-    "thumbnail": "carmela-laganse.png"  
-    }, 
-    { 
-    "title": "Jenny Kim",
-    "thumbnail": "jenny-kim.png"  
-    }, 
-    { 
-    "title": "Arturo Jimenez",
-    "thumbnail": "arturo-jimenez.png"  
+        "thumbnail": "haoran-chang.png",
+        "about": "Haoran Chang is a multidisciplinary artist and designer whose practice spans interactive media, installation, and digital art. He is passionate about exploring the intersection of technology and human experience through innovative design solutions."
+    },
+    {
+        "title": "Serena Walk",
+        "thumbnail": "serena-walk.png",
+        "status": "past",
+        "about": ""
+    },
+    {
+        "title": "Sana Akram",
+        "thumbnail": "sana-akram.png",
+        "status": "current",
+        "about": ""
+    },
+    {
+        "title": "Jet Coghlan",
+        "thumbnail": "jet-coghlan.png",
+        "status": "current",
+        "about": ""
+    },
+    {
+        "title": "Carmela Laganse",
+        "thumbnail": "carmela-laganse.png",
+        "status": "current",
+        "about": ""
+    },
+    {
+        "title": "Jenny Kim",
+        "thumbnail": "jenny-kim.png",
+        "status": "current",
+        "about": ""
+    },
+    {
+        "title": "Arturo Jimenez",
+        "thumbnail": "arturo-jimenez.png",
+        "status": "current",
+        "about": ""
     }
-
 ]

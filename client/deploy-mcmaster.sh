@@ -69,6 +69,6 @@ ssh $REMOTE_USER@$REMOTE_HOST "chmod -R 755 $REMOTE_DIR/*"
 
 echo "✅ Deployment successful!"
 echo "🌐 View your site at:"
-echo "👉 http://$REMOTE_HOST/~$REMOTE_USER/"
+echo "👉 https://sarisarixchange.ca/"
 echo "---------------------------------------"
 echo "🚀 Deployment Complete!"

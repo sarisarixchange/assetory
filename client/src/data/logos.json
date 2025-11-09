@@ -1,0 +1,42 @@
+[
+    {
+        "src": "/images/logos/tangled-logo.png",
+        "alt": "Logo of Tangled Art + Disability"
+    },
+    {
+        "src": "/images/logos/reel-asian-logo.png",
+        "alt": "Logo of Toronto Reel Asian International Festival"
+    },
+    {
+        "src": "/images/logos/centre3-logo.png",
+        "alt": "Logo of Centre3 for artistic and social practice"
+    },
+    {
+        "src": "/images/logos/york-university-logo.png",
+        "alt": "Logo of York University"
+    },
+    {
+        "src": "/images/logos/mcmaster-logo.png",
+        "alt": "Logo of McMaster University"
+    },
+
+    {
+        "src": "/images/logos/interaccess-logo.png",
+        "alt": "Logo of Interaccess"
+    },
+    
+    {
+        "src": "/images/logos/mitacs-logo.png",
+        "alt": "Logo of MITACS"
+    },
+    
+    {
+        "src": "/images/logos/agh-logo.png",
+        "alt": "Logo of Art Gallery of Hamilton"
+    },
+
+    {
+        "src": "/images/logos/sshrc-logo.png",
+        "alt": "Logo of Social Sciences and Humanities Research Council of Canada"
+    }
+]

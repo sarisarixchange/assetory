@@ -12,7 +12,7 @@ export default {
 
   components: {
     SearchBar // Register the SearchBar component
-      },
+  },
 
   props: {
     galleryName: {
@@ -54,19 +54,24 @@ export default {
     isEventsPage: {
       type: Boolean,
       default: false
-    }, 
+    },
 
-     
-      theme: {
-        type: String,
-        default: 'default'
-      },
 
-  },  
+    theme: {
+      type: String,
+      default: 'default'
+    },
+
+  },
 
   data() {
     return {
-     backgrounds: {
+      isDescriptionShown: false,
+      cardHeight: '23.125rem',
+      openCurrentIndex: null,
+      openPastIndex: null,
+
+      backgrounds: {
         default: './backgrounds/background-meet-the-team-default.svg',
         grayscale: './backgrounds/background-meet-the-team-grayscale.svg',
         highContrast: './backgrounds/background-meet-the-team-high-contrast.svg',
@@ -91,12 +96,50 @@ export default {
           ...item,
           thumbnail: `images/${this.basePath}` + item.thumbnail
         }));
+    },
+
+    imageUrl() {
+      return this.backgrounds[this.theme] || this.backgrounds['default']
+    },
+
+    currentTeam() {
+      return this.filteredGalleryWithFullPath.filter(
+        (p) => p.status === "current"
+      );
+    },
+    pastTeam() {
+      return this.filteredGalleryWithFullPath.filter(
+        (p) => p.status === "past"
+      );
+    }
+  },
+
+  methods: {
+    showCurrentAbout(index) {
+      // If clicking the same card, toggle it closed.
+      if (this.openCurrentIndex === index) {
+        this.openCurrentIndex = null;
+        this.cardHeight = '23.125rem';
+        return;
+      }
+
+      // Otherwise open the clicked card
+      this.openCurrentIndex = index;
+      this.cardHeight = '30.5624rem';
     }, 
 
-     
-imageUrl() {
-      return this.backgrounds[this.theme] || this.backgrounds['default']
-  }
+    showPastAbout(index) {
+      // If clicking the same card, toggle it closed.
+      if (this.openPastIndex === index) {
+        this.openPastIndex = null;
+        this.cardHeight = '23.125rem';
+        return;
+      }
+
+      // Otherwise open the clicked card
+      this.openPastIndex = index;
+      this.cardHeight = '30.5624rem';
+    }
   }
 
   // do not erase curly brackets below
@@ -107,40 +150,74 @@ imageUrl() {
 <!-- params: { id: gallery.id } -->
 
 <template>
-  <div
-    v-if="isAboutPage"
-    class="aboutPage"
-    :style="{
-       backgroundImage: `url('${this.imageUrl}')`,
-      backgroundSize: 'contain'
-    }"
-  >
-    <!-- heading and searchbar -->
+  <div v-if="isAboutPage" class="aboutPage" :style="{
+    // backgroundImage: `url('${this.imageUrl}')`,
+    // backgroundSize: 'contain'
+  }">
+    <!-- current team members -->
     <div class="meetTheTeamHeader">
-    
+
       <h3>
-        <img class="asterisksHeading" src="/icons/left-decor-default.svg">
+        <img class="arrowHeadingAboutPage" src="/icons/left-decor-default.svg">
         Meet the Team
-        <img class="asterisksHeading" src="/icons/right-decor-default.svg">
+        <img class="arrowHeadingAboutPage" src="/icons/right-decor-default.svg">
       </h3>
     </div>
 
     <div class="heading-and-searchbar">
 
-      <!-- searchbar only show if enabled -->
-      <SearchBar v-if="showSearchBar" />
+      <div class="gallery-section-heading-about">
+        <img class="arrow" src="/icons/arrow-left-white.svg">
+        Our Team
+        <img class="arrow" src="/icons/arrow-right-white.svg">
+      </div>
+
+
     </div>
 
-    <div class="galleryGrid">
-      <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-        <div class="galleryCardContent">
-          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+    <div class="galleryGridAboutPage">
+      <div class="galleryCardAboutPage" :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
+        v-for="(gallery, index) in currentTeam" :key="'current-' + index">
+        <div class="galleryCardContentAboutPage">
+          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
         </div>
-        <div class="galleryCardBottomText">
-          <img class="asterisk-in-name" src="/icons/asteriskWhite.svg" alt="">
-          <p>{{ gallery.title }}</p>
 
+        <!-- CLICKABLE TITLE AREA -->
+        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openCurrentIndex === index }"
+          @click="showCurrentAbout(index)">
+          <p>{{ gallery.title }}</p>
+          <img class="asterisk-in-name-about-page" src="/icons/arrow-right-black.svg" alt="">
         </div>
+
+        <p v-show="openCurrentIndex === index">{{ gallery.about }}</p>
+
+      </div>
+    </div>
+
+    <!-- past team members -->
+    <div class="heading-and-searchbar">
+      <div class="gallery-section-heading-about">
+        <img class="arrow" src="/icons/arrow-left-white.svg">
+        Past Team Members
+        <img class="arrow" src="/icons/arrow-right-white.svg">
+      </div>
+    </div>
+
+    <div class="galleryGridAboutPage">
+      <div class="galleryCardAboutPage" :style="{ height: openPastIndex === index ? '30.5624rem' : '23.125rem' }"
+        v-for="(gallery, index) in pastTeam" :key="'past-' + index">
+        <div class="galleryCardContentAboutPage">
+          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
+        </div>
+
+        <!-- CLICKABLE TITLE AREA -->
+        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openPastIndex === index }"
+          @click="showPastAbout(index)">
+          <p>{{ gallery.title }}</p>
+          <img class="asterisk-in-name-about-page" src="/icons/arrow-right-black.svg" alt="">
+        </div>
+
+        <p v-show="openPastIndex === index">{{ gallery.about }}</p>
 
       </div>
     </div>
@@ -221,6 +298,28 @@ imageUrl() {
   align-items: center;
 }
 
+.gallery-section-heading {
+  display: flex;
+  height: 1.875rem;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  background-color: black;
+  color: white;
+  font-family: var(--font-family-Decorative);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+}
+
+.arrow {
+  width: 0.54rem;
+
+
+}
 
 
 .heading-and-searchbar input[type=text] {
@@ -377,15 +476,21 @@ imageUrl() {
 
 /* css only if in about page */
 .aboutPage {
-  margin-left: 3.44rem;
-  margin-right: 3.44rem;
+  border: 1px solid var(--primary-color);
+  border-radius: 1rem;
+  width: 93.375rem;
+  margin: auto;
+  padding: 1.25rem 1.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.5rem;
 }
 
 .meetTheTeamHeader {
   width: 100%;
   background-color: var(--primary-color);
   text-align: center;
-  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-family: var(--font-family-Decorative);
   color: var(--secondary-color);
   border: none;
   border-radius: 12px;
@@ -393,75 +498,107 @@ imageUrl() {
   font-weight: 400;
 }
 
-.meetTheTeamHeader .asterisksHeading {
+
+.gallery-section-heading-about {
+  display: flex;
+  height: 1.875rem;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  background-color: black;
+  color: white;
+  font-family: var(--font-family-Decorative);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+}
+
+.arrowHeadingAboutPage {
   width: 5.45231rem;
   height: 1.96581rem;
 
 }
 
-.aboutPage .galleryGrid {
+.galleryGridAboutPage {
   display: flex;
   width: 100%;
   justify-content: center;
-  gap: 2.5rem;
+  gap: 2.94rem;
   flex-wrap: wrap;
-  padding-left: 10rem;
-  padding-right: 10rem;
+  background-color: var(--background-color);
 }
 
 
-.aboutPage .galleryGrid .galleryCard {
+.galleryCardAboutPage {
   display: flex;
-  width: 19.6875rem;
-  height: 16.10363rem;
+  width: 20.25rem;
+  height: 23.125rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  /* keep content of the card at the top*/
   align-items: center;
-  padding: 0.5rem;
+  padding: 0.75rem;
   border-radius: 1rem;
   gap: 0.5rem;
   border: 1px solid var(--primary-color);
   background-color: #fff;
 }
 
-.aboutPage .galleryCardContent {
-  width: 18.6875rem;
-  height: 12.125rem;
+.galleryCardContentAboutPage {
+  width: 18.75rem;
+  height: 18.75rem;
   align-self: stretch;
-  border-radius: 0.628rem;
+  border-radius: 0.625rem;
   background-color: var(--secondary-color);
   color: var(--primary-color);
 }
 
-.aboutPage .galleryCardContent .galleryCardContentImage {
+.galleryCardContentImageAboutPage {
   width: 100%;
   height: 100%;
   background-color: var(--secondary-color);
   object-fit: cover;
   box-sizing: border-box;
-  border-radius: 0.628rem;
+  border-radius: 0.625rem;
 }
 
 
-.aboutPage .galleryCardBottomText {
+.galleryCardBottomTextAboutPage {
   display: flex;
   padding: 0.75rem;
   align-items: center;
   gap: 0.5rem;
   align-self: stretch;
   border-radius: 0.5rem;
-  background-color: var(--primary-color);
-  font-family: var(--font-family, 'Handjet'), sans-serif;
-  color: white;
+  border: 1px solid var(--primary-color);
+  background-color: var(--background-color);
+  font-family: var(--font-family-Decorative);
+  color: var(--primary-color);
   font-size: 1.25rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: normal;
-  letter-spacing: -0.0125rem;
+  letter-spacing: -0.05625rem;
+  justify-content: space-between;
 }
 
-.aboutPage .asterisk-in-name {
+.galleryCardBottomTextAboutPage:hover {
+  background-color: var(--hover-color-left-box);
+  color: var(--hover-text-color-left-box);
+}
+
+.asterisk-in-name-about-page {
   width: 0.94081rem;
   height: 0.97863rem;
 }
+
+.galleryCardBottomTextAboutPage.expanded {
+  background-color: var(--background-color-headings);
+  color: white;
+  border-color: var(--primary-color);
+}
+
 </style>

@@ -173,7 +173,7 @@ h2 {
 
       <div class="footer-links">
           <h2>Contact</h2>
-          <a href="mailto:sarisarixchange@email.com">sarisarixchange@email.com</a>
+          <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
           <a href="https://www.instagram.com/sarisarixchange/" target="_blank">@sarisarixchange</a>
           
       </div>

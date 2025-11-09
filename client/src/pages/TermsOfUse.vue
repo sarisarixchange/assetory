@@ -3,7 +3,7 @@ import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 import BackTopButton from '../widgets/BackTopButton.vue';
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import TermsOfUseData from '../data/termsofuse.json';
- // Import the TermsOfUse component
+// Import the TermsOfUse component
 
 export default {
   components: {
@@ -21,23 +21,23 @@ export default {
   },
 
   mounted() {
-        this.loadInteractiveMode();
-    },
+    this.loadInteractiveMode();
+  },
 
   methods: {
     updateTheme(payload) {
       this.currentTheme = payload; // Update the theme
     },
 
-  loadInteractiveMode() {
-    try {
-      const savedSettings =
-        JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-      this.interactiveMode = savedSettings.interactiveMode ?? false;
-    } catch (error) {
-      console.error('Error in loadInteractiveMode:', error);
-    }
-  },
+    loadInteractiveMode() {
+      try {
+        const savedSettings =
+          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+        this.interactiveMode = savedSettings.interactiveMode ?? false;
+      } catch (error) {
+        console.error('Error in loadInteractiveMode:', error);
+      }
+    },
 
     // do not erase curly brackets below
   },
@@ -49,18 +49,32 @@ export default {
 .page-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* full viewport height */
+  min-height: 100vh;
+  /* full viewport height */
 }
 
-/* Accessibility statement should grow to fill available space */
-.terms-of-use {
-  flex: 1; /* takes up remaining space */
+
+.terms-of-use-page-content {
+  flex: 1;
+  /* takes up remaining space */
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.terms-of-use {
+  width: 53.5rem;
+  margin: auto;
+  margin-top: 1.5rem;
   flex-direction: column;
   gap: 2rem;
   color: var(--primary-color);
   padding: 4rem;
-  font-size: 1.5rem;  
+  font-size: 1.5rem;
+  border-radius: 1rem;
+  border: 1px solid var(--primary-color);
+  background: #FFFEFA;
 }
 
 .terms-of-use h2 {
@@ -68,13 +82,20 @@ export default {
   font-weight: bold;
   margin-bottom: 1rem;
   text-align: center;
+  border-radius: 0.5rem;
+  font-family: var(--font-family-Decorative);
+  border: 1px solid var(--primary-color);
+  background: var(--background-color-headings);
+  color: white;
 }
+
+
 
 .terms-of-use p {
   font-size: 1.5rem;
   /* line-height: 1.5; */
   text-align: justify;
-  
+
 }
 </style>
 
@@ -83,90 +104,119 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode"  @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
-  
 
-    <div class="terms-of-use">
-      <h2>Terms of Use</h2>
-    
-      <p><strong>Definition</strong></p>
-      <p>
-        Sari Sari Xchange Asset Library (“SSXAL” or “SSX Asset Library” or “The Library”) is a digital asset library catering to animation, gaming, XR, and other digital creations, with a focus on Asian diaspora representation. SSXAL may encompass various assets such as 3D models, motion captures, texture materials, shaders, audio assets, imagery, vector graphics, videos, rigging data, special effects, HDRIs, and skyboxes. 
-   Sari Sari Xchange (“SSX”) is a community-building research and creation project utilizing Extended Reality (XR), including Virtual, Augmented, and Mixed Realities, to foster new works by artists from the Asian diaspora. 
-To streamline the agreement, the terms “include,” “including,” and “such as” are considered to be followed by “but not limited to.” Examples in this Terms of Use serve to illustrate, not limit, the scope of the terms. 
-      </p>
+    <div class="terms-of-use-page-content">
 
-      <!-- Replace with actual terms of use below -->
-      <p><strong>General Use </strong></p>
-      <p>
-        The creator of the assets retains copyrights to digital assets, including the digital file, 
-name, and associated information. SSX, as the library service provider, owns the website. We operates as a “Semi” Open-Source collective digital asset library created with and for the community in a respectful, accessible, responsive, and friendly environment. We encourage digital artists, designers, and hobbyists to use assets respectfully, with love and care for our labor, culture, and community. We offers four different copyright licenses, depending on 
-the creator’s choice:
-      </p>
-       <ul>
-        <li>CC BY 4.0 DEED: Users are permitted to share (copy and redistribute the material in any 
-medium or format) and adapt (remix, transform, and build upon the material) the assets, with 
-commercial use allowed. More details can be found at:
-<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by/4.0/</a>
-</li>
-        <li>CC BY-NC 4.0 DEED: Users are permitted to share and adapt the assets for non-commercial 
-use only. More details can be found at: <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc/4.0/</a>
-</li>
-        <li>CC BY-NC-ND: Users can share but not adapt the materials, with only noncommercial uses 
-permitted. More detail can be found:  <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>
-</li>
-        <li>Upon Request: Users cannot access the digital asset directly but need to contact SSXAL and fill out a form to gain access to it.
-</li>
-      </ul>
-      <p>
-        All four-tier copyrights are subject to Moral Rights in Canadian copyright law. Users are strictly prohibited from using SSAXL assets in disrespectful ways, such as cultural appropriation or discrediting the creator. 
-      </p>
-      <p>
-        Digital assets are provided “as-is,” with no warranties, conditions, or guarantees attached to the digital assets at SSXAL. 
-      </p>
-<p><strong>Statement on AI Training </strong></p>
-      <p>
-        The assets published on the website cannot be used for AI training. 
-      </p>
+      <div class="terms-of-use">
+        <h2>Terms of Use</h2>
 
-<p><strong>Data Storage</strong></p>
-    <p>
-      All the 3D assets is stored at the McMaster University server. 
-    </p>
+        <p><strong>Definition</strong></p>
+        <p>
+          Sari Sari Xchange Asset Library (“SSXAL” or “SSX Asset Library” or “The Library”) is a digital asset library
+          catering to animation, gaming, XR, and other digital creations, with a focus on Asian diaspora representation.
+          SSXAL may encompass various assets such as 3D models, motion captures, texture materials, shaders, audio
+          assets, imagery, vector graphics, videos, rigging data, special effects, HDRIs, and skyboxes.
+          Sari Sari Xchange (“SSX”) is a community-building research and creation project utilizing Extended Reality
+          (XR), including Virtual, Augmented, and Mixed Realities, to foster new works by artists from the Asian
+          diaspora.
+          To streamline the agreement, the terms “include,” “including,” and “such as” are considered to be followed by
+          “but not limited to.” Examples in this Terms of Use serve to illustrate, not limit, the scope of the terms.
+        </p>
 
-     <p><strong>Frequently Asked Questions</strong></p>
-<p>1. Do I own the copyright of the asset if I contribute to SSXA?</p>
-<p>Yes! You retain full copyright ownership of your asset. SSXA does not claim ownership and we simply present and promote your work as it is.</p>
+        <!-- Replace with actual terms of use below -->
+        <p><strong>General Use </strong></p>
+        <p>
+          The creator of the assets retains copyrights to digital assets, including the digital file,
+          name, and associated information. SSX, as the library service provider, owns the website. We operates as a
+          “Semi” Open-Source collective digital asset library created with and for the community in a respectful,
+          accessible, responsive, and friendly environment. We encourage digital artists, designers, and hobbyists to
+          use assets respectfully, with love and care for our labor, culture, and community. We offers four different
+          copyright licenses, depending on
+          the creator’s choice:
+        </p>
+        <ul>
+          <li>CC BY 4.0 DEED: Users are permitted to share (copy and redistribute the material in any
+            medium or format) and adapt (remix, transform, and build upon the material) the assets, with
+            commercial use allowed. More details can be found at:
+            <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank"
+              rel="noopener">https://creativecommons.org/licenses/by/4.0/</a>
+          </li>
+          <li>CC BY-NC 4.0 DEED: Users are permitted to share and adapt the assets for non-commercial
+            use only. More details can be found at: <a href="https://creativecommons.org/licenses/by-nc/4.0/"
+              target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc/4.0/</a>
+          </li>
+          <li>CC BY-NC-ND: Users can share but not adapt the materials, with only noncommercial uses
+            permitted. More detail can be found: <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/"
+              target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc-nd/4.0/</a>
+          </li>
+          <li>Upon Request: Users cannot access the digital asset directly but need to contact SSXAL and fill out a form
+            to gain access to it.
+          </li>
+        </ul>
+        <p>
+          All four-tier copyrights are subject to Moral Rights in Canadian copyright law. Users are strictly prohibited
+          from using SSAXL assets in disrespectful ways, such as cultural appropriation or discrediting the creator.
+        </p>
+        <p>
+          Digital assets are provided “as-is,” with no warranties, conditions, or guarantees attached to the digital
+          assets at SSXAL.
+        </p>
+        <p><strong>Statement on AI Training </strong></p>
+        <p>
+          The assets published on the website cannot be used for AI training.
+        </p>
 
-<p>2. What can I do with the assets published on SSXA?</p>
-<p>Everyone is welcome to use the assets according to their associated copyright licenses. Please visit the Copyright License page for detailed information on permitted uses, attributions, and restrictions.</p>
+        <p><strong>Data Storage</strong></p>
+        <p>
+          All the 3D assets is stored at the McMaster University server.
+        </p>
 
-<p>3. If I am not part of the Asian diaspora community, can I still use these assets?</p>
-<p>Yes, absolutely. SSXA encourages cultural exchange and learning. However, please use the materials respectfully.</p>
+        <p><strong>Frequently Asked Questions</strong></p>
+        <p>1. Do I own the copyright of the asset if I contribute to SSXA?</p>
+        <p>Yes! You retain full copyright ownership of your asset. SSXA does not claim ownership and we simply present
+          and promote your work as it is.</p>
 
-<p>4. What is prohibited when using assets from SSXA?</p>
-<p>You must follow the copyright license associated with each asset when using, adapting, or distributing it. Assets may not be used in ways that are disrespectful, exploitative, or culturally insensitive. You should also respect moral rights under Canadian copyright law, which protect the integrity and attribution of the creator’s work.</p>
+        <p>2. What can I do with the assets published on SSXA?</p>
+        <p>Everyone is welcome to use the assets according to their associated copyright licenses. Please visit the
+          Copyright License page for detailed information on permitted uses, attributions, and restrictions.</p>
 
-<p>5. How can I contribute to SSXA?</p>
-<p>Visit the About page and click the Submit button to share your assets. We will review your submission and contact you if your work is accepted into our library. Selected assets may also be featured in curated theme collections.</p>
+        <p>3. If I am not part of the Asian diaspora community, can I still use these assets?</p>
+        <p>Yes, absolutely. SSXA encourages cultural exchange and learning. However, please use the materials
+          respectfully.</p>
 
-<p>6. What types of assets can I submit?</p>
-<p>You can contribute a wide range of cultural materials, such as 3D models, motion capture data, and audio files. All submissions should relate to the experiences, histories, or expressions of the Asian diaspora.</p>
+        <p>4. What is prohibited when using assets from SSXA?</p>
+        <p>You must follow the copyright license associated with each asset when using, adapting, or distributing it.
+          Assets may not be used in ways that are disrespectful, exploitative, or culturally insensitive. You should
+          also respect moral rights under Canadian copyright law, which protect the integrity and attribution of the
+          creator’s work.</p>
 
-<p>7. Can I edit or remove my submission later?</p>
-<p>Yes. As the copyright holder, you may request to update or remove your contribution at any time.</p>
+        <p>5. How can I contribute to SSXA?</p>
+        <p>Visit the About page and click the Submit button to share your assets. We will review your submission and
+          contact you if your work is accepted into our library. Selected assets may also be featured in curated theme
+          collections.</p>
 
-<p>8. Is there a review process before assets are published?</p>
-<p>Yes. Every submission is reviewed by our curatorial team to ensure it aligns with SSXA’s mission, values, and quality standards. We may reach out to you for clarification or additional information before publishing your asset.</p>
+        <p>6. What types of assets can I submit?</p>
+        <p>You can contribute a wide range of cultural materials, such as 3D models, motion capture data, and audio
+          files. All submissions should relate to the experiences, histories, or expressions of the Asian diaspora.</p>
 
-<p><small>If you have any questions or feedback regarding the terms, please contact us: <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
-</small></p>
+        <p>7. Can I edit or remove my submission later?</p>
+        <p>Yes. As the copyright holder, you may request to update or remove your contribution at any time.</p>
 
-</div>
+        <p>8. Is there a review process before assets are published?</p>
+        <p>Yes. Every submission is reviewed by our curatorial team to ensure it aligns with SSXA’s mission, values, and
+          quality standards. We may reach out to you for clarification or additional information before publishing your
+          asset.</p>
 
-   
+        <p><small>If you have any questions or feedback regarding the terms, please contact us: <a
+              href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
+          </small></p>
 
+      </div>
+
+
+    </div>
 
     <BackTopButton />
 

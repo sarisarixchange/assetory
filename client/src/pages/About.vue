@@ -6,6 +6,8 @@ import BackTopButton from '../widgets/BackTopButton.vue';
 import SimpleButton from '../widgets/SimpleButton.vue';
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import teamData from '../data/team.json';
+import LogoSection from '../components/LogoSection.vue';
+import { formToJSON } from 'axios';
 
 
 
@@ -16,6 +18,7 @@ export default {
         GalleryGrid, // Register the Grid component
         BackTopButton,
         SimpleButton,
+        LogoSection,
         Footer, // Register the Footer component
     },
     data() {
@@ -29,8 +32,8 @@ export default {
             routeName: '',
             data: teamData,
             backgrounds: {
-                //  default: 'backgrounds/background-artists-page-default.svg',
-                default: './backgrounds/background-about-page-default.svg',
+                default: 'backgrounds/background-about-page-orange.svg',
+                interactive: './backgrounds/background-about-page-default.svg',
                 grayscale: './backgrounds/background-about-page-grayscale.svg',
                 highContrast: './backgrounds/background-about-page-high-contrast.svg',
                 wcag: './backgrounds/background-about-page-default.svg'
@@ -38,7 +41,8 @@ export default {
 
 
             // other boxes icons
-            isDecoractionCardSubtitlePink: true,
+            isDecoractionCardSubtitleOrange: true,
+            isDecoractionCardSubtitlePink: false,
             isDecoractionCardSubtitleGray: false,
             isDecoractionCardSubtitleHighContrast: false,
             isDecoractionCardSubtitleWCAG: false,
@@ -109,8 +113,17 @@ export default {
     align-self: stretch;
     justify-content: center;
     border-radius: 0.5rem;
+    font-family: var(--font-family-Decorative);
     border: 1px solid var(--primary-color);
-    background: var(--primary-color);
+    background: var(--background-color-headings);
+    color: white;
+}
+
+.separator {
+    width: 9.02819rem;
+    height: auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Ensure content boxes appear above background */
@@ -134,7 +147,6 @@ export default {
 
 .titleAndIntroText {
     text-align: center;
-    margin-bottom: 1rem;
 }
 
 .mainTitle {
@@ -478,53 +490,8 @@ export default {
 
 
 
-.background-layer {
-    grid-column: 1 / 9;
-    /* Full width */
-    grid-row: 1 / 9;
-    /* Covers rows 2 to 9 */
-    background-image: url("backgrounds/backgroundAboutPageDefault.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
-    /* background-position: center; */
-    z-index: -1;
-    /* Sends it to the background */
-}
 
 
-.logoSection {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    border: 1px dashed var(--primary-color);
-    border-radius: 44px;
-    margin-top: 2rem;
-}
-
-.logosRow {
-    display: flex;
-    gap: 2rem;
-    /* Adjust gap for smaller screens */
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 1rem;
-    padding: 1rem;
-    flex-wrap: wrap;
-    /* Allow logos to wrap on smaller screens */
-    justify-content: center;
-    /* Center the logos */
-}
-
-.logosRow img {
-    max-width: 100%;
-    /* Ensure the image doesn't exceed its container */
-    height: auto;
-    /* Maintain aspect ratio */
-    max-height: 100px;
-    /* Set a maximum height for the logos */
-    object-fit: contain;
-    /* Ensure the image fits within its container */
-}
 
 .lines {
     stroke: var(--primary-color);
@@ -534,24 +501,28 @@ export default {
     fill: var(--primary-color);
     stroke: var(--primary-color);
 }
+
+.buttonsRow {
+    display: flex;
+    justify-content: center;
+    gap: 1.25rem;
+    /* margin-top: 1rem; */
+}
 </style>
 
 <template>
     <div class="page-container">
-
-
-
-
-
         <!-- top bar -->
         <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
         <!-- body -->
         <div class="content">
             <div class="titleAndIntroText">
-                <h2 class="mainTitle"> SARI-SARI XCHANGE</h2>
+
                 <div class="textPlusArrows">
 
+                    <img v-show="isDecoractionCardSubtitleOrange"
+                        :src="iconBasePath + 'arrowLeftHomepageOrangeTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitlePink"
                         :src="iconBasePath + 'arrowLeftHomePageDefaultTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'decorationCardSubtitleGray.svg'"
@@ -565,19 +536,31 @@ export default {
                         and for the Asian
                         diaspora community. </p>
 
+
+                    <img v-show="isDecoractionCardSubtitleOrange"
+                        :src="iconBasePath + 'arrowRightHomepageOrangeTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitlePink"
                         :src="iconBasePath + 'arrowRightHomePageDefaultTheme.svg'" alt="">
                 </div>
-                <SimpleButton :to="{name: 'Submit Your Work Form'}" text="Submit your work" />
+
+                <div class="buttonsRow">
+                    <SimpleButton :to="{ name: '' }" text="Visit the SSX website"
+                        :icon="iconBasePath + 'arrow-right-black.svg'" />
+                    <SimpleButton :to="{ name: 'Submit Your Work Form' }" text="Submit your work"
+                        :icon="iconBasePath + 'submit-your-work-icon-black.svg'" />
+                </div>
+
+                <img class="separator" v-show="isDecoractionCardSubtitleOrange"
+                    :src="iconBasePath + 'separator-orange.svg'" alt="">
 
             </div>
 
-            <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top="40rem" left="50%"
-                transform="translateX(-50%)" width="100vw" height="54.36763rem" backgroundSize="cover"
+            <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top="-4rem" left="50%"
+                transform="translateX(-50%)" width="100%" height="65rem" backgroundSize="contain"
                 backgroundPosition="center" />
 
             <div class="about" v-show="interactiveMode == false">
-                <h2>About</h2>
+                <h2>About this asset library</h2>
                 <p>Asians are generally <b>underrepresented</b> and <b>misrepresented</b> in <b>new media</b> such as
                     games, VR, and AR. We
                     also recognize the lack of diverse representation of the Asian community’s everyday experiences on
@@ -586,14 +569,17 @@ export default {
                     Inspired by the concept of the <b>Sari Sari store in the Philippines</b> —small neighborhood
                     convenience
                     stores run by women within the home as part of the local economic ecosystem — we are building a
-                    diverse and accessible “<b>glocal</b>” digital asset network for media art creation, including XR, games,
+                    diverse and accessible “<b>glocal</b>” digital asset network for media art creation, including XR,
+                    games,
                     and animation.<br><br>
 
                     Beyond serving as an online asset repository, SSXA seeks to use the digital asset library as a
                     <b>storytelling</b> platform to represent individual stories.<br><br>
 
-                    By deploying different tiers of <b>copyright</b> associated with digital assets, SSXA embraces an <b>
-                    ethics of care</b> for these assets, considering the <b>labor</b> involved in their creation and their emotional and
+                    By deploying different tiers of <b>copyright</b> associated with digital assets, SSXA embraces an
+                    <b>
+                        ethics of care</b> for these assets, considering the <b>labor</b> involved in their creation and
+                    their emotional and
                     sentimental value.<br><br>
 
                     SSXA engages in community collaboration with local partners to disseminate knowledge in digital
@@ -604,7 +590,8 @@ export default {
 
                     By leveraging <b>horizontal modes of operation</b>, SSXA empowers various stakeholders to <b>
                         challenge systemic injustices and inequalities
-                    </b> in the current <b>technological infrastructure</b>. </p>
+                    </b> in the current <b>technological infrastructure</b>.
+                </p>
 
 
             </div>
@@ -768,22 +755,9 @@ export default {
                 :basePath="basePath" :routeName="routeName" :showSearchBar="false" :isAboutPage="true"
                 :theme="currentTheme.theme" />
 
-            <div class="logoSection">
-                <div class="logosRow">
-                    <img src="/images/logos/tangled-logo.png" alt="Logo of Tangled Art + Disability">
-                    <img src="/images/logos/reel-asian-logo.png"
-                        alt="Logo of Toronto Reel Asian International Festival">
-                </div>
-                <div class="logosRow">
-                    <img src="/images/logos/centre3-logo.png" alt="Logo of Centre3 for artistic and social practice">
-                    <img src="/images/logos/york-university-logo.png" alt="Logo of York University">
-                    <img src="/images/logos/mcmaster-logo.png" alt="Logo of McMaster University">
-                </div>
-                <div class="logosRow">
-                    <img src="/images/logos/sshrc-logo.png"
-                        alt="Logo of Social Sciences and Humanities Research Council of Canada">
-                </div>
-            </div>
+            <!-- Logos -->
+            <LogoSection />
+
 
             <!-- back to top button -->
             <BackTopButton />

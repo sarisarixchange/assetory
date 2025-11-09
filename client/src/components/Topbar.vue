@@ -195,7 +195,7 @@ export default {
   border: 1px solid var(--navigation-buttons-border-color);
   background: none;
   color: var(--primary-color);
-  border-radius: 1rem;
+  border-radius: 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;

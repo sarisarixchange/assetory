@@ -583,6 +583,7 @@ export default {
   line-height: normal;
   letter-spacing: -0.05625rem;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .galleryCardBottomTextAboutPage:hover {

@@ -98,20 +98,22 @@ export default {
   position: relative;
 }
 
-.returnButton {
-  margin-left: 1.5rem;
+
+.returnButton {  
+  margin-left: 12rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 /* collection details */
-.collection-details-container {
+.collection-details-container {  
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60.5625rem;
+  width: 62.75rem;
   /* height: 23.96563rem; */
   gap: 1.5rem;
+  margin-top: -4rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 4.5rem;
@@ -128,7 +130,7 @@ export default {
   width: 18.75rem;
   height: 18.75rem;
   overflow: hidden;
-  align-self: center;
+  align-self: center;     
   box-sizing: border-box;
   background-color: var(--background-color);
 }
@@ -147,7 +149,7 @@ export default {
 
 .image-banner-collection {
   display: flex;
-  width: 54.8rem;
+  width: 62.75rem;
   padding: 0.5rem;
   align-items: center;
   gap: 0.625rem;
@@ -170,7 +172,7 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: var(--background-color);
-  width: 53.5rem;
+  width: 62.75rem;
   border: 1px solid var(--primary-color);
   ;
   border-radius: 1rem;
@@ -180,16 +182,16 @@ export default {
 
 /* heading of card */
 .collection-details h2 {
-  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-family: var(--font-family-Decorative);
   font-size: 1.5rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 .collection-details h3 {
-  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-family: var(--font-family-Decorative);
   font-size: 1.25rem;
-  font-weight: 400;
+  font-weight: 700;
 }
 
 
@@ -264,7 +266,8 @@ export default {
 }
 
 .collection-assets {
-  width: 53.5rem;
+  width: 62.75rem;
+
   text-align: center;
 }
 
@@ -279,11 +282,10 @@ export default {
 }
 
 .collection-assets-card-container {
-  display: grid;
+  display: grid;  
   grid-template-columns: repeat(3, 1fr);
   /* 3 columns */
-  gap: 2rem;
-
+  gap: 1.25rem 6.125rem;
 }
 
 .collection-assets-card {
@@ -382,7 +384,7 @@ export default {
   <div class="page-container">
     <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
-    <!-- Use the ReturnButton component -->
+    <!-- Use the ReturnButton component -->     
     <div class="returnButton">
       <ReturnButton :returnRoute="returnRoute" />
     </div>
@@ -395,7 +397,8 @@ export default {
       <div
         :class="['image-banner', (entityType === 'collection' || entityType === 'event') ? 'image-banner-collection' : 'image-banner-artist']">
         <img :src="bannerImage" alt="Banner Image"
-          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
+          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" 
+          />
       </div>
 
       <!-- Title + Cards -->
@@ -457,5 +460,6 @@ export default {
     <BackTopButton />
     <Footer :theme="currentTheme" />
   </div>
+  
 
 </template>

@@ -20,8 +20,7 @@ export default {
   data() {
     return {
       interactiveMode: false,
-      currentTheme: { theme: 'default' }, // Default theme
-      pageBackgroundImage: 'page-background-image-default',
+      currentTheme: { theme: 'default' }, // Default theme      
       galleryName: 'Artists',
       galleryDescription: 'Explore artists & assets.',
       basePath: 'artists/',
@@ -30,7 +29,7 @@ export default {
       // backgrounds
       backgrounds: {
         //  default: 'backgrounds/background-artists-page-default.svg',
-        default: './backgrounds/background-artists-page-default.svg',
+        default: './backgrounds/background-artists-blue.svg',
         grayscale: './backgrounds/background-artists-page-grayscale.svg',
         highContrast: './backgrounds/background-artists-page-high-contrast.svg',
         wcag: './backgrounds/background-artists-page-default.svg'
@@ -89,14 +88,14 @@ export default {
     <div class="grid">
 
       <!-- background image -->
-      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='3.375rem' left='0%'
-        transform='translateX(0%)' width='25.8125rem' height='26.76038rem' backgroundSize='50%'
-        backgroundPosition='left' />
+      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='0rem' left='0%'
+        transform='translateX(0%)' width='100%' height='100%' backgroundSize='100%'
+        backgroundPosition='center' />
 
 
       <!-- Artists Grid -->
       <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
-        :basePath="basePath" :routeName="routeName" />
+        :basePath="basePath" :isArtistsPage="true" :routeName="routeName" />
 
     </div>
     <BackTopButton />

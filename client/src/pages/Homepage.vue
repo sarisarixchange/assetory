@@ -28,6 +28,11 @@ export default {
 
             isNotificationVisible: true,
 
+            isCollectionsHovered: false,
+            isAboutHovered: false,
+            isEventsHovered: false,
+            isArtistsHovered: false,
+
             // leftbox
 
             isDefaultCardVisible: true,
@@ -456,7 +461,7 @@ export default {
     /* box-shadow:
         -6px 6px 0 var(--shadow),
            0 6px 1px var(--shadow); */
-   
+
 }
 
 .homeSVG {
@@ -624,10 +629,10 @@ export default {
 
 /* Medium desktops / laptops (<= 1400px) */
 @media (max-width: 1400px) {
-   .left-goto-action {
-    font-size: 1.5rem;   
-    padding-right: 0.25rem;
-}
+    .left-goto-action {
+        font-size: 1.5rem;
+        padding-right: 0.25rem;
+    }
 }
 
 
@@ -834,8 +839,6 @@ export default {
 
 
 
-
-
 .other-call-action {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -860,12 +863,23 @@ export default {
     height: 100%;
 }
 
+
+
+
 /* .svgDefaultButton-other-box:hover {
     fill: var(--hover-color);
 } */
 
 .other-box-action-call:hover .other-call-action {
     color: var(--hover-text-color);
+}
+
+.right-box:has(.other-box-action-call:hover) {
+    box-shadow: -4px 4px 0 0 var(--primary-color);
+}
+
+.eventsGalleryCard:has(.galleryCardContentGoTo:hover) {
+    box-shadow: -4px 4px 0 0 var(--primary-color);
 }
 
 /* .goToArrow {
@@ -960,11 +974,11 @@ export default {
 
 /* Medium desktops / laptops (<= 1400px) */
 @media (max-width: 1400px) {
-.footer-image {
-    width: 4%;
-    object-fit: contain;
-    flex-shrink: 0;
-}
+    .footer-image {
+        width: 4%;
+        object-fit: contain;
+        flex-shrink: 0;
+    }
 }
 
 
@@ -1024,6 +1038,23 @@ export default {
     box-shadow: -3px 3px 0 0 var(--shadow);
     /* background-color: var(--hover-color); */
 }
+
+#collectionsTile.hovered {
+    filter: url(#tileShadow);
+}
+
+#aboutTile.hovered {
+    filter: url(#tileShadowAbout);
+}
+
+#eventsTile.hovered {
+    filter: url(#tileShadowEvents);
+}
+
+
+#artistsTile.hovered {
+    filter: url(#tileShadowArtists);
+}
 </style>
 
 <template>
@@ -1052,7 +1083,16 @@ export default {
 
                 <svg id="revisedSVGContainer" viewBox="0 0 842 576" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g id="defaultTiles">
-                        <g id="About Node Idle">
+
+                        <!-- ✅ SVG Drop Shadow Filter (add somewhere inside your main <svg> ) -->
+                        <defs>
+
+                            <filter id="tileShadowAbout" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
+                            </filter>
+                        </defs>
+
+                        <g id="aboutTile" :class="{ hovered: isAboutHovered }">
                             <foreignObject x="8.5" y="9.5" width="393" height="252" rx="6.5">
                                 <div class="left-box">
                                     <div class="left-box-heading">
@@ -1079,7 +1119,9 @@ export default {
                                             community.
                                         </p>
                                     </div>
-                                    <div class="left-box-action-call">
+
+                                    <div class="left-box-action-call" @mouseenter="isAboutHovered = true"
+                                        @mouseleave="isAboutHovered = false">
                                         <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path class="oddShapeButton"
@@ -1100,7 +1142,13 @@ export default {
                             <circle id="Ellipse 11_2" cx="401" cy="157.5" r="5" fill="#FFFEFA" stroke="black" />
                         </g>
 
-                        <g id="Events Node Idle">
+                        <defs>
+                            <filter id="tileShadowEvents" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
+                            </filter>
+                        </defs>
+
+                        <g id="eventsTile" :class="{ hovered: isEventsHovered }">
 
                             <foreignObject x="8.5" y="306.5" width="393" height="269" rx="6.5">
 
@@ -1127,7 +1175,8 @@ export default {
                                     </div>
 
 
-                                    <div class="other-box-action-call">
+                                    <div class="other-box-action-call" @mouseenter="isEventsHovered = true"
+                                        @mouseleave="isEventsHovered = false">
                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path class="oddShapeButton"
@@ -1154,14 +1203,27 @@ export default {
 
 
 
-                        <g id="Collections Node Idle">
-                            <foreignObject x="443.5" y="306.5" width="393" height="267.809" rx="6.5">
+                        <!-- ✅ SVG Drop Shadow Filter (add somewhere inside your main <svg> ) -->
+                        <defs>
 
+                            <filter id="tileShadow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
+                            </filter>
+                        </defs>
+
+
+                        <!-- ✅ Entire tile gets a dynamic class -->
+                        <g id="collectionsTile" :class="{ hovered: isCollectionsHovered }">
+
+
+                            <foreignObject x="443.5" y="306.5" width="393" height="267.809" rx="6.5">
                                 <div class="right-box">
+
                                     <div class="other-box-heading">
                                         <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
                                         <h2>Collections</h2>
                                     </div>
+
                                     <div class="other-box-subtitle">
                                         <img v-show="isDecoractionCardSubtitleDefault"
                                             :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
@@ -1175,37 +1237,49 @@ export default {
                                             :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
                                         <p>Explore collections by SSX.</p>
                                     </div>
+
                                     <div class="other-box-photos" aria-hidden="true">
                                         <img :src="randomCollectionImage" alt="">
                                     </div>
 
+                                    <!-- ✅ When hovered, triggers class on the SVG <g> -->
+                                    <div class="other-box-action-call" @mouseenter="isCollectionsHovered = true"
+                                        @mouseleave="isCollectionsHovered = false">
 
-
-
-                                    <div class="other-box-action-call">
                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
                                             xmlns="http://www.w3.org/2000/svg">
+
                                             <path class="oddShapeButton"
                                                 d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
+
                                             <foreignObject x="0" y="0" width="379" height="32">
                                                 <router-link :to="{ name: 'Collections' }" class="other-call-action">
-                                                    <span>Open Collections</span> <span class="call-goto-action"
-                                                        aria-hidden="true">
+                                                    <span>Open Collections</span>
+                                                    <span class="call-goto-action" aria-hidden="true">
                                                         <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
                                                     </span>
                                                 </router-link>
                                             </foreignObject>
+
                                         </svg>
                                     </div>
                                 </div>
                             </foreignObject>
+
                             <circle id="Ellipse 9_3" cx="441.5" cy="390.5" r="5.5" fill="black" />
                             <circle id="Ellipse 10_3" cx="441.5" cy="405.5" r="5" fill="#FFFEFA" stroke="black" />
                             <circle id="Ellipse 12_3" cx="836.5" cy="439.5" r="5.5" fill="black" />
                             <circle id="Ellipse 11_3" cx="836.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
+
                         </g>
 
-                        <g id="Artist Node Idle">
+                        <defs>
+                            <filter id="tileShadowArtists" x="-50%" y="-50%" width="200%" height="200%">
+                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
+                            </filter>
+                        </defs>
+
+                        <g id="artistsTile" :class="{ hovered: isArtistsHovered }">
                             <foreignObject x="443.5" y="9.5" width="393" height="252" rx="6.5">
 
                                 <div class="center-top-box">
@@ -1231,7 +1305,8 @@ export default {
                                         <img :src="randomArtistImage" alt="">
                                     </div>
 
-                                    <div class="other-box-action-call">
+                                    <div class="other-box-action-call" @mouseenter="isArtistsHovered = true"
+                                        @mouseleave="isArtistsHovered = false">
                                         <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
                                             xmlns="http://www.w3.org/2000/svg">
                                             <path class="oddShapeButton"

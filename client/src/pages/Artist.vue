@@ -8,7 +8,8 @@ export default {
     return {
       collection: null,
       backgrounds: {
-        default: '../backgrounds/background-artist-page-default.svg',
+        // default: '../backgrounds/background-artist-page-default.svg',
+        default: '../backgrounds/background-artist-blue.svg',
         grayscale: '../backgrounds/background-artist-page-grayscale.svg',
         highContrast: '../backgrounds/background-artist-page-high-contrast.svg',
         wcag: '../backgrounds/background-artist-page-default.svg',

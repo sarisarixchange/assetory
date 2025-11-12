@@ -67,6 +67,8 @@ body {
   /* default (orange + blue theme) */
   --background-color: #FFFEFA;
   --background-color-headings: #FD5733;
+  --return-button-background-color: #FD5733;
+  --return-button-text-color: #FFFEFA;
   --primary-color: #000000;
   --secondary-color: #FFFEFA;
   --navigation-buttons-border-color: #000000;

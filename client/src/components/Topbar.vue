@@ -36,7 +36,7 @@ export default {
       if (this.interactiveMode) {
         return '99%';
       }
-      return '57.125rem';
+      return '63.5625rem';
       
     }
 
@@ -104,13 +104,8 @@ export default {
   /* background-color: transparent; */
   border: solid 1px var(--primary-color);
   border-radius: 1.25rem;
-  background-color: var(--background-color);
-  /*new radius*/
-
-  /* width: 62.6875rem; */
-  width: 57.125rem;
-  height: 5rem;
-  
+  background-color: var(--background-color);  
+  height: 5rem;  
 
 }
 
@@ -230,8 +225,8 @@ a {
   flex-direction: row;
   margin: auto;
   /* background-color: red; */
-  width: 62.6875rem;
-  /* height: 5rem; */
+  width: 69.125rem;
+  height: 5rem;
   justify-content: center;
   align-items: center;
 
@@ -283,6 +278,8 @@ a {
 
       <!-- navigation menu -->
       <div class="nav-buttons">
+          <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
           :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"

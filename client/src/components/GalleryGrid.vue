@@ -56,6 +56,11 @@ export default {
       default: false
     },
 
+    isArtistsPage: {
+      type: Boolean,
+      default: false
+    },
+
 
     theme: {
       type: String,
@@ -126,7 +131,7 @@ export default {
       // Otherwise open the clicked card
       this.openCurrentIndex = index;
       this.cardHeight = '30.5624rem';
-    }, 
+    },
 
     showPastAbout(index) {
       // If clicking the same card, toggle it closed.
@@ -164,7 +169,7 @@ export default {
       </h3>
     </div>
 
-    <div class="heading-and-searchbar">
+    <div class="heading-and-searchbar-about">
 
       <div class="gallery-section-heading-about">
         <img class="arrow" src="/icons/arrow-left-white.svg">
@@ -186,7 +191,9 @@ export default {
         <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openCurrentIndex === index }"
           @click="showCurrentAbout(index)">
           <p>{{ gallery.title }}</p>
-          <img class="asterisk-in-name-about-page" src="/icons/arrow-right-black.svg" alt="">
+          <img class="asterisk-in-name-about-page"
+            :src="openCurrentIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
+            src="/icons/arrow-right-black.svg" alt="">
         </div>
 
         <p v-show="openCurrentIndex === index">{{ gallery.about }}</p>
@@ -195,7 +202,7 @@ export default {
     </div>
 
     <!-- past team members -->
-    <div class="heading-and-searchbar">
+    <div class="heading-and-searchbar-about">
       <div class="gallery-section-heading-about">
         <img class="arrow" src="/icons/arrow-left-white.svg">
         Past Team Members
@@ -207,14 +214,18 @@ export default {
       <div class="galleryCardAboutPage" :style="{ height: openPastIndex === index ? '30.5624rem' : '23.125rem' }"
         v-for="(gallery, index) in pastTeam" :key="'past-' + index">
         <div class="galleryCardContentAboutPage">
-          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
+          <img :src="gallery.thumbnail" 
+          :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+          class="galleryCardContentImageAboutPage">
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
         <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openPastIndex === index }"
           @click="showPastAbout(index)">
           <p>{{ gallery.title }}</p>
-          <img class="asterisk-in-name-about-page" src="/icons/arrow-right-black.svg" alt="">
+          <img class="asterisk-in-name-about-page"
+            :src="openPastIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
+            src="/icons/arrow-right-black.svg" alt="">
         </div>
 
         <p v-show="openPastIndex === index">{{ gallery.about }}</p>
@@ -239,20 +250,25 @@ export default {
     <div class="eventsGalleryGrid">
       <div class="eventsGalleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="eventsGalleryCardContent">
-          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+          <img :src="gallery.thumbnail" 
+          :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+          class="galleryCardContentImage">
         </div>
 
 
         <div class="galleryCardContentGoTo">
           <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
             <span class="learn-more">{{ gallery.title }}</span>
-            <span class="ok-action" aria-hidden="true">></span>
+            <span class="galleryCardGoToArrow" aria-hidden="true">
+              <img src="/icons/arrow-right-black.svg" alt="" />
+            </span>
           </router-link>
         </div>
       </div>
     </div>
 
   </div>
+
 
   <div v-else>
 
@@ -268,16 +284,22 @@ export default {
     </div>
 
     <div class="galleryGrid">
-      <div class="galleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+      <div :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'"
+      v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="galleryCardContent">
-          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImage">
+          <img :src="gallery.thumbnail"
+            :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+            class="galleryCardContentImage">
         </div>
+
 
 
         <div class="galleryCardContentGoTo">
           <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
             <span class="learn-more">{{ gallery.title }}</span>
-            <span class="ok-action" aria-hidden="true">></span>
+            <span class="galleryCardGoToArrow" aria-hidden="true">
+              <img src="/icons/arrow-right-black.svg" alt="" />
+            </span>
           </router-link>
         </div>
       </div>
@@ -286,13 +308,25 @@ export default {
 </template>
 
 <style scoped>
-.heading-and-searchbar {
+.heading-and-searchbar-about {
   color: var(--primary-color);
   width: 100%;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
   padding-left: 1rem;
   padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading-and-searchbar {
+  color: var(--primary-color);
+  width: 62.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -321,6 +355,15 @@ export default {
 
 }
 
+.galleryGrid {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-left: 5.53rem;
+  padding-right: 5.53rem;
+}
 
 .heading-and-searchbar input[type=text] {
   width: 14.875rem;
@@ -339,7 +382,7 @@ export default {
 }
 
 .gallery-heading h2 {
-  font-family: var(--font-family, 'Handjet'), sans-serif;
+  font-family: var(--font-family-Decorative);
   font-size: 1.5rem;
   font-weight: 400;
 }
@@ -347,35 +390,12 @@ export default {
 .gallery-heading p {
   font-size: 1rem;
   font-weight: 400;
-
-}
-
-
-.galleryGrid {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 2.5rem;
-  flex-wrap: wrap;
-  padding-left: 5.53rem;
-  padding-right: 5.53rem;
-}
-
-.eventsGalleryGrid {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  gap: 2.5rem;
-  padding-left: 5.53rem;
-  padding-right: 5.53rem;
-  align-items: center;
 }
 
 .galleryCard {
   display: flex;
   width: 24rem;
-  height: 24rem;
+  /* height: 24rem; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -387,10 +407,10 @@ export default {
   background-color: #fff;
 }
 
-.eventsGalleryCard {
+.galleryCardArtists {
   display: flex;
-  width: 60.5625rem;
-  height: 18.125rem;
+  width: 20.25rem;
+  height: 23.125rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -400,16 +420,6 @@ export default {
   border: 1px solid var(--primary-color);
   /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
   background-color: #fff;
-
-
-}
-
-.eventsGalleryCardContent {
-  height: 13.75rem;
-  align-self: stretch;
-  border-radius: 8px;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
 }
 
 .galleryCardContent {
@@ -418,8 +428,8 @@ export default {
   border-radius: 8px;
   background-color: var(--secondary-color);
   color: var(--primary-color);
+  border: 1px solid var(--primary-color);
 }
-
 
 
 .galleryCardContentImage {
@@ -435,9 +445,10 @@ export default {
   display: flex;
   height: 2.375rem;
   border-radius: 0.5rem;
-  font-family: var(--font-family, 'Handjet'), sans-serif;
+  border: 1px solid var(--primary-color);
+  font-family: var(--font-family-Decorative);
   color: var(--primary-color);
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 400;
   background-color: var(--secondary-color);
   align-items: center;
@@ -445,9 +456,17 @@ export default {
   padding: 0.75rem;
 }
 
+.galleryCardGoToArrow img {
+  width: 0.55rem;
+}
+
 /* CSS normally can’t “select the parent” of a hovered element, but :has() flips that — it says “select .galleryCard if it has a child .galleryCardContentGoTo that’s being hovered.” */
 /* Not compatible with Firefox? */
 .galleryCard:has(.galleryCardContentGoTo:hover) {
+  box-shadow: -4px 4px 0 0 var(--primary-color);
+}
+
+.galleryCardArtists:has(.galleryCardContentGoTo:hover) {
   box-shadow: -4px 4px 0 0 var(--primary-color);
 }
 
@@ -474,6 +493,49 @@ export default {
   color: var(--hover-text-color);
 }
 
+
+
+/* Events */
+
+.eventsGalleryGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+  padding-left: 5.53rem;
+  padding-right: 5.53rem;
+  align-items: center;
+}
+
+
+
+.eventsGalleryCard {
+  display: flex;
+  width: 60.5625rem;
+  height: 18.125rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  border: 1px solid var(--primary-color);
+  /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
+  background-color: #fff;
+
+
+}
+
+.eventsGalleryCardContent {
+  height: 13.75rem;
+  align-self: stretch;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* About page */
 /* css only if in about page */
 .aboutPage {
   border: 1px solid var(--primary-color);
@@ -591,9 +653,20 @@ export default {
   color: var(--hover-text-color-left-box);
 }
 
+
+
 .asterisk-in-name-about-page {
+  color: black;
   width: 0.94081rem;
   height: 0.97863rem;
+  transition: transform 0.25s ease;
+  /* smooth rotation */
+}
+
+/* optional: if you also want it rotated when expanded */
+.galleryCardBottomTextAboutPage.expanded .asterisk-in-name-about-page {
+  transform: rotate(-90deg);
+  /* arrow points up when expanded */
 }
 
 .galleryCardBottomTextAboutPage.expanded {
@@ -601,5 +674,4 @@ export default {
   color: white;
   border-color: var(--primary-color);
 }
-
 </style>

@@ -9,7 +9,8 @@ export default {
     return {
       collection: null,
       backgrounds: {
-        default: '../backgrounds/background-event-page-default.svg',
+        // default: '../backgrounds/background-event-page-default.svg',
+        default: '../backgrounds/background-event-blue.svg',
         grayscale: '../backgrounds/background-event-page-grayscale.svg',
         highContrast: '../backgrounds/background-event-page-high-contrast.svg',
         wcag: '../backgrounds/background-event-page-default.svg'
@@ -60,13 +61,14 @@ export default {
 <template>
   <EntityPage :entity="enrichedCollection" :entityType="'event'" :backgrounds="backgrounds"
     bannerAndCardImagePrefix="../images/events/" assetImagePrefix="../images/artists/" :returnRoute="'/events'"
-    :assetLinkFn="linkToAsset" :backgroundProps="{
-      top: '15rem',
-      left: '50%',
-      transform: 'translateX(-50%)',
-      width: '72.90375rem',
-      height: '23.65413rem',
-      backgroundSize: '100%',
-      backgroundPosition: 'center'
+    :assetLinkFn="linkToAsset" 
+    :backgroundProps="{
+      top: '10rem',
+      left: '5rem',
+      transform: 'none',
+      width: '90%',
+      height: '100%',      
+      backgroundSize: 'contain',
+      backgroundPosition: 'top center'
     }" />
 </template>

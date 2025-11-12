@@ -26,7 +26,8 @@ export default {
       routeName: 'Collection',
       data: collectionsData,
       backgrounds: {
-        default: './backgrounds/background-collections-page-default.svg',
+        // default: './backgrounds/background-collections-page-default.svg',
+        default: './backgrounds/background-collections-blue.svg',
         grayscale: './backgrounds/background-collections-page-grayscale.svg',
         highContrast: './backgrounds/background-collections-page-high-contrast.svg',
         wcag: './backgrounds/background-collections-page-default.svg'
@@ -68,10 +69,13 @@ export default {
 }
 
 .grid {
+  /* position: relative;     */
+
   flex: 1;
   display: flex;
   flex-direction: column;
 }
+
 </style>
 
 
@@ -84,9 +88,15 @@ export default {
     <div class="grid">
 
       <!-- background image  -->
-      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='3.375rem' left='0%'
-        transform='translateX(0%)' width='26.178rem' height='35.66881rem' backgroundSize='50%'
-        backgroundPosition='left' />
+      <PageBackground
+       :theme="currentTheme.theme"
+        :backgrounds="backgrounds" 
+        top='0' left='0'
+        transform='translateX(0%)'
+        width='100%' 
+        height='100%' 
+        backgroundSize='cover'
+        backgroundPosition='center' />
 
       <!-- Collections Grid -->
       <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"

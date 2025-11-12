@@ -3,19 +3,21 @@
 
 
 .buttonStyle {
-    fill: var(--secondary-color);
+    fill: var(--return-button-background-color);
 }
 
 .textStyle{
-fill:var(--primary-color);
+fill:var(--return-button-text-color);
+font-family: var(--font-family-Decorative);
+font-size: 1.25rem;
 }
 
-.strokeStyle{
+/* .strokeStyle{
   stroke: var(--primary-color);
-}
+} */
 
 .svg-class{
-  fill: var(--primary-color);
+  fill: var(--return-button-text-color);
 }
 
 /* .buttonStyle:hover, .textStyle:hover, .strokeStyle:hover {
@@ -32,7 +34,7 @@ fill:var(--primary-color);
           <rect class="buttonStyle" id="Rectangle 26" width="98" height="31" rx="7"/>
           <path class="buttonStyle" id="Rectangle 32" d="M90 12.1361C90 7.29994 95.6298 4.64705 99.3594 7.72569C101.473 9.47029 104.527 9.47029 106.641 7.72569C110.37 4.64705 116 7.29994 116 12.1361V17.952C116 22.7484 110.191 25.1395 106.815 21.733C104.713 19.6131 101.287 19.6131 99.1855 21.733C95.8089 25.1395 90 22.7484 90 17.952V12.1361Z" />
           <g id="Group 467">
-            <text class="textStyle" id="Return"  xml:space="preserve" style="white-space: pre" font-family="Handjet" font-size="20" letter-spacing="-0.01em"><tspan x="8" y="23.4706">Return</tspan></text>
+            <text class="textStyle" id="Return"  xml:space="preserve" style="white-space: pre"  letter-spacing="-0.01em"><tspan x="8" y="23.4706">Return</tspan></text>
             <!-- <line id="Line 30" x1="10.5" y1="24.5" x2="15.5" y2="24.5" stroke="#D400A6" stroke-linecap="round"/> -->
           </g>
           <g id="Group 468"  >

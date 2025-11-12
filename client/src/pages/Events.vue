@@ -26,7 +26,8 @@ export default {
       routeName: 'Event',
       data: eventsData,
       backgrounds: {
-        default: './backgrounds/background-events-page-default.svg',
+        // default: './backgrounds/background-events-page-default.svg',
+        default: './backgrounds/background-events-blue.svg',
         grayscale: './backgrounds/background-events-page-grayscale.svg',
         highContrast: './backgrounds/background-events-page-high-contrast.svg',
         wcag: './backgrounds/background-events-page-default.svg'
@@ -83,8 +84,8 @@ export default {
 
     <div class="grid">
       <!-- background image -->
-      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='3.375rem' left='0%'
-        transform='translateX(0%)' width='44.83081rem' height='47.65975rem' backgroundSize='50%'
+      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='0' left='0%'
+        transform='translateX(0%)' width='100%' height='100%' backgroundSize='100%'
         backgroundPosition='left' />
 
       <!-- Collections Grid -->

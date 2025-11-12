@@ -72,9 +72,11 @@ h2 {
   margin-right: 0.97rem; /* Add margin to the right */
   color: var(--primary-color);
   font-family: 'Inter', sans-serif;
+  /* width: 107.5rem; */
   height: 14.5625rem;
-  /* height: 16.667vh; */
-  /* height: 4.8125rem; */
+  /* margin: auto; */
+  margin-left: 6.25rem; 
+   margin-right: 6.25rem;
 }
 
 .leftSideFooter{

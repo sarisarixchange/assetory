@@ -17,6 +17,7 @@ export default {
 
 <style scoped>
 .logoSection {
+  padding: 1.5rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

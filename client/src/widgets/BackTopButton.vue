@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 .backTop {
-
+  margin-right: 15.94rem;
   display: flex;
   padding: 1rem;
   align-items: center;
@@ -56,7 +56,7 @@ img {
   <div class="backTop">
     <div style="width:93%"></div>
     <button @click="scrollToTop">
-      <span><img src="/icons/arrow-up-default.svg" aria-hidden="true" alt=""></img></span>
+      <span><img src="/icons/arrow-down-black.svg" aria-hidden="true" alt=""></img></span>
       <span> Back to Top </span>
 
     </button>

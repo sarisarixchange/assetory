@@ -104,18 +104,7 @@ export default {
 
 
 
-.returnButtonAsset {
-  margin-left: 0.4rem;
-  border: 1px solid var(--primary-color);
-  border-radius: 0 0 0.5rem 0;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  padding-right: 2rem;
-  padding-bottom: 0.25rem;
-  height: 115%;
 
-}
 
 
 .svg-class {
@@ -149,28 +138,31 @@ export default {
 .assetDetails {
   flex: 1;
   display: flex;
-  margin: 2.19rem;
+  padding: 2.19rem;
   flex-direction: column;
   gap: 0.5rem;
   width: 100%;
+  height: auto;
   background-color: transparent;
   color: var(--primary-color);
   font-family: 'Inter', sans-serif;
   border-radius: 0 0 0.5rem 0.5rem;
+  overflow-y: auto;
 }
 
 .assetDetailsContainer {
   width: 38.25rem;
   height: 21.875rem;
+  
+
+ 
 }
 
 .returnButtonAbsolute {
   display: flex;
   position: absolute;
   top: 6rem;
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-
+  margin-top: 1rem;
 }
 
 .assetDetails h2 {
@@ -190,7 +182,16 @@ export default {
 .assetDetails p {
   font-size: 1rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 400; 
+}
+
+.descriptionParagraph {
+  /* background-color: red; */
+  height: auto;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;  
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
 }
 
 hr {
@@ -269,7 +270,7 @@ hr {
 .technical-info-table td {
   padding: 0.5rem;
   vertical-align: top;
-  border: 1px solid var(--secondary-color);
+  border: 1px solid var(--primary-color);
   /* Add borders between rows and columns */
 
 }
@@ -359,7 +360,10 @@ a-scene {
   font-style: normal;
   font-weight: 500;
   color: var(--primary-color);
+}
 
+.download-button:hover {
+  background-color: var(--hover-color);
 }
 </style>
 
@@ -409,7 +413,7 @@ a-scene {
                     </li>
                   </ul>
                   <h3>Description</h3>
-                  <p>{{ asset.description }}</p>
+                  <p class="descriptionParagraph">{{ asset.description }}</p>
                 </div>
 
                 <div v-else>

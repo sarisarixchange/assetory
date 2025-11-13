@@ -476,7 +476,7 @@ export default {
 }
 
 .left-top-box-heading img {
-    width: 1.57994rem;
+    width: 1.25rem;
 }
 
 .left-top-box-paragraph {
@@ -597,7 +597,7 @@ export default {
 }
 
 .left-bottom-box-heading img {
-    width: 1.57994rem;
+    width: 1.25rem;
 }
 
 .left-bottom-box-paragraph {
@@ -717,8 +717,13 @@ export default {
     }
 }
 
+.right-top-box-subtitle img {
+    width: 1.18756rem;
+    height: 0.71619rem;
+}
+
 .right-top-box-heading img {
-    width: 1.57994rem;
+    width: 0.94rem;
 }
 
 .right-top-box-photo img {
@@ -822,6 +827,10 @@ export default {
     letter-spacing: -0.015;
 }
 
+.right-bottom-box-heading img {
+    width: 0.94rem;
+}
+
 .right-bottom-box-subtitle {
     display: flex;
     padding: 0.5rem;
@@ -849,102 +858,106 @@ export default {
     }
 }
 
-.right-bottom-box-heading {
-    width: 23.62rem;
+.right-bottom-box-subtitle img {
+    width: 1.18756rem;
+    height: 0.71619rem;
 }
 
-.right-bottom-box-photo img {
-    display: flex;
-    height: 8.25rem;
-    padding: 0.5rem;
-    justify-content: center;
-    align-items: center;
-    gap: 1.25rem;
-    align-self: stretch;
-}
-
-
-
-.right-bottom-box-action-call {
-    display: flex;
-    border-radius: 0.5rem;
-    font-family: var(--font-family-Decorative);
-    color: var(--primary-color);
-    font-size: 1.25rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.0625rem;
-    align-self: stretch;
-}
-
-.right-bottom-box-call-action {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-shrink: 0;
-    color: var(--primary-color);
-    display: flex;
-    justify-content: space-between;
-    border-radius: 0.5rem;
-    align-items: center;
-    background-color: transparent;
-    margin-right: 5rem;
-}
-
-
-
-.right-bottom-box-goto-action {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 400;
-    padding-right: 0rem;
-
-}
-
-.right-bottom-box-goto-action img {
-    width: 1.45881rem;
-    height: 0.96119rem;
-}
-
-.left-top-box:has(.left-top-box-action-call:hover),
-.right-top-box:has(.right-top-box-action-call:hover),
-.right-bottom-box:has(.right-bottom-box-action-call:hover){
-    box-shadow: -4px 4px 0 0 var(--primary-color);
-}
-
-
-
-
-/* FOOTER */
-
-.footer {
-    /* flex: 0 0 auto; */
-    background-image: url("/images/logos/logos-condensed.svg");
-    background-size: contain;
-    background-color: var(--background-color);
-    display: flex;
-    height: 6.6875rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--primary-color);
-    margin-left: 2.28rem;
-    margin-right: 2.28rem;
-    margin-bottom: 0.5rem;
-}
-
-
-/* Medium desktops / laptops (<= 1400px) */
-@media (max-width: 1400px) {
-    .footer-image {
-        width: 4%;
-        object-fit: contain;
-        flex-shrink: 0;
+    .right-bottom-box-heading {
+        width: 23.62rem;
     }
-}
-</style>
+
+    .right-bottom-box-photo img {
+        display: flex;
+        height: 8.25rem;
+        padding: 0.5rem;
+        justify-content: center;
+        align-items: center;
+        gap: 1.25rem;
+        align-self: stretch;
+    }
+
+
+
+    .right-bottom-box-action-call {
+        display: flex;
+        border-radius: 0.5rem;
+        font-family: var(--font-family-Decorative);
+        color: var(--primary-color);
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: -0.0625rem;
+        align-self: stretch;
+    }
+
+    .right-bottom-box-call-action {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-shrink: 0;
+        color: var(--primary-color);
+        display: flex;
+        justify-content: space-between;
+        border-radius: 0.5rem;
+        align-items: center;
+        background-color: transparent;
+        margin-right: 5rem;
+    }
+
+
+
+    .right-bottom-box-goto-action {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        padding-right: 0rem;
+
+    }
+
+    .right-bottom-box-goto-action img {
+        width: 1.45881rem;
+        height: 0.96119rem;
+    }
+
+    .left-top-box:has(.left-top-box-action-call:hover),
+    .right-top-box:has(.right-top-box-action-call:hover),
+    .right-bottom-box:has(.right-bottom-box-action-call:hover) {
+        box-shadow: -4px 4px 0 0 var(--primary-color);
+    }
+
+
+
+
+    /* FOOTER */
+
+    .footer {
+        /* flex: 0 0 auto; */
+        background-image: url("/images/logos/logos-condensed.svg");
+        background-size: contain;
+        background-color: var(--background-color);
+        display: flex;
+        height: 6.6875rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--primary-color);
+        margin-left: 2.28rem;
+        margin-right: 2.28rem;
+        margin-bottom: 0.5rem;
+    }
+
+
+    /* Medium desktops / laptops (<= 1400px) */
+    @media (max-width: 1400px) {
+        .footer-image {
+            width: 4%;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+    }</style>
 
 <template>
 
@@ -1074,9 +1087,9 @@ export default {
                         @mouseleave="isAboutHovered = false">
 
 
-                        <OddShapeButton label="Open Projects"
-                            iconSrc='/icons/arrow-right-black.svg' iconAlt=""
-                            :to="{ name: '' }" fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
+                        <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-black.svg' iconAlt=""
+                            :to="{ name: '' }" fillColor="var(--background-color)"
+                            hoverColor="var(--hover-color-main)" />
 
 
                     </div>
@@ -1117,9 +1130,9 @@ export default {
                     <div class="right-bottom-box-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
 
-                         <OddShapeButton label="Open SSXA"
-                            iconSrc='/icons/arrow-right-black.svg' iconAlt=""
-                            :to="{ name: 'Assetory' }" fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
+                        <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-black.svg' iconAlt=""
+                            :to="{ name: 'Assetory' }" fillColor="var(--background-color)"
+                            hoverColor="var(--hover-color-main)" />
                     </div>
                 </div>
             </div>

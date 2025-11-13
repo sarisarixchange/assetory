@@ -9,7 +9,7 @@
         "title": "Haoran Chang",
         "thumbnail": "haoran-chang.png",
         "status": "current",
-        "about": "Haoran Chang is a multidisciplinary artist and designer whose practice spans interactive media, installation, and digital art. He is passionate about exploring the intersection of technology and human experience through innovative design solutions."
+        "about": "Haoran Chang is a visual artist, media art researcher, and experimental game designer. He is currently a Ph.D. candidate at York University in Cinema and Media Studies. His practice and research focus on game studies, immersive media, posthuman media, ethnographic game design, somatic design, re-enactment studies, and art in cosmotechnics. His research-creation dissertation examines how ethnographic game design methods and somatic principles can address the limitations of current health gamification applications through the lens of Daoist practice. He uses game creation as research to explore a non-Eurocentric framework of games for healing through autoethnography studies and co-creation workshops with various Tai Chi communities rooted in Daoist tradition. His works have been shown in many international conferences and festivals, including ISEA, xCoAx, CHI Play, SIGGRAPH Asia, and HASTAC. He has also exhibited works in museums and galleries, including CICA museum in South Korea, Walter Otero Contemporary Art in Puerto Rico, Vox Populi in Philadelphia, Hunan Museum of Art in China, Center 3 in Toronto and many more. His VR works and films have been exhibited in many international film festivals, such as Slamdance, FIVARS (Festival of International Virtual and Augmented Reality Storytelling), Ji.hlava International documentary festival, and Pleasure Dome. He is also the founder of Mixed Reality collective Chameleon Gallery."
     },
     {
         "title": "Serena Walk",
@@ -19,31 +19,49 @@
     },
     {
         "title": "Sana Akram",
-        "thumbnail": "sana-akram.png",
+        "thumbnail": "sana-akram.jpeg",
         "status": "current",
-        "about": ""
+        "about": "Sana Akram is a Pakistani XR creator, media artist and an urbanist based in Toronto, Canada. As a Fulbright alum, she graduated with a MS in Design and Urban Ecologies from Parsons School of Design, The New School, where she diversified her research-practice by implementing an interdisciplinary design approach. Her award-winning interactive documentary, Little Pakistan - Future Histories, has showcased at several international festivals and her research has been published in Convergence: The International Journal of Research into New Media Technologies. For her, this marked the beginning of a progressive professional exploration of new media for civic engagement。 Currently, she is pursuing a Doctorate in Cinema and Media Studies at York University as a recipient of the prestigious Elia Scholars Program Award with a research-creation focus on realizing the transformative, generative, and creative potential of the historical Urdu language storytelling tradition and performative art of Tilismi Dastan with emergent media technologies and XR. In conjunction, her evolving artistic practice and iterative XR works probe how the themes of wonder, relationality, and enchantment manifest and are enacted in storytelling, performance, and worlding traditions. Her broader research interests include immersive storytelling and performance, interactive documentary, oral tradition, worldbuilding, emergent media, and cocreation."
     },
     {
         "title": "Jet Coghlan",
         "thumbnail": "jet-coghlan.png",
-        "status": "current",
+        "status": "past",
         "about": ""
     },
     {
         "title": "Carmela Laganse",
         "thumbnail": "carmela-laganse.png",
         "status": "current",
-        "about": ""
+        "about": "Carmela Laganse’s practice is engaged with the intersections of embodied experience and perception as well as exploring the agency and ideologies embedded in objects. Her work explores the effects of colonialism and examines how it contributes to material culture and identity. Working in a variety of media, she often builds interactive work or portable, modular environments that playfully and critically integrate physical, emotional, ritualistic, and intellectual processes through an intersectional lens. Included in her multidisciplinary art practice is her research and involvement in collaborations centred around the under-representation of marginalized people and anti-oppression practice. She is a co-founder of the NEW Committee at the Hamilton Artists Inc. and is a co-investigator/ researcher on a project titled “Direct[Message]” to develop a digital prototype that improves online access and social engagement for older adults through creative activity and participation. She has partnered with Centre[3] for Artistic and Social Practice on various community centred collaborations including the creation of video tutorials to improve digital literacy for older adults funded by New Horizons for Seniors and co-coordinated the Reception funded by the Canada Council for the Arts which was a two- day forum that aimed to help decolonize arts institutions through community-building, advocacy, and socially engaged art events and workshops. Laganse received an MFA from Ohio University and a BFA from the University of Manitoba in Winnipeg and is an Associate Professor in the School of the Arts at McMaster University. She has exhibited nationally and internationally since 2005. Recent exhibitions include Hamilton Now, Object at the Art Gallery of Hamilton and Spread at the Art Gallery of Guelph, ON"
     },
     {
         "title": "Jenny Kim",
         "thumbnail": "jenny-kim.png",
-        "status": "current",
+        "status": "past",
         "about": ""
     },
     {
         "title": "Arturo Jimenez",
         "thumbnail": "arturo-jimenez.png",
+        "status": "current",
+        "about": ""
+    },
+    {
+        "title": "Cyril Chen",
+        "thumbnail": "cyril-chen.jpg",
+        "status": "current",
+        "about": "Cyril Chen (they/them/ta) is a media artist and animator interested in critically-informed interdisciplinary praxis and pedagogy. Their work/research is supported by the Ontario Graduate Scholarship program, Canada Council for the Arts, and the University of Saskatchewan special archives & collections. Chen’s collaborative works/words have homed themselves at Neutral Ground ARC, Mackenzie Art Gallery, TIFF and Hyperallergic. As a doctoral student in Communications, New Media and Cultural Studies at McMaster University, Chen is involved with the Networked Imagination Lab, Pulse Lab, and sometimes plays percussion/drumset for pit bands. They hold a Bachelors of Animation from Sheridan College. "
+    },
+    {
+        "title": "Chsristina Dovolis",
+        "thumbnail": "christina-dovolis.jpg",
+        "status": "current",
+        "about": "Christina Dovolis is an interdisciplinary filmmaker and geographer, often working with cutting-edge technologies to explore how our built environments shape community and identity. Hailing from the Midwest, Christina draws inspiration from themes of girlhood and gossip, religious mythologies, and the complexities of urban development. As an educator, Christina is committed to making new media programs more accessible to the public, particularly focusing on empowering women and marginalized groups. She has achieved acclaim for her projects, with presentations at Museum of the Moving Image, SXSW Sydney, Nuit Blanche, Calgary Underground Film Festival, and more. Christina holds a MA in Urban Planning from the National University of Singapore and a MFA in Film Production from York University, where she continues to work as a researcher."
+    },
+    {
+        "title": "Adrian De Jesus",
+        "thumbnail": "adrian-de-jesus.jpg",
         "status": "current",
         "about": ""
     }

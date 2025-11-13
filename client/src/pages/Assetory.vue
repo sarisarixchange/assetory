@@ -540,33 +540,34 @@ export default {
 
 /* left top box */
 
+
 .left-top-box-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--background-color);
+    align-self: stretch;
+    background: var(--background-color);    
+    width: 25.3125rem;
+    height: 16.875rem;
+    border-radius: 0.4375rem;
+    padding: 0.5rem;
     background-image: url('/backgrounds/about-tile-circles.svg');
-    background-size: 98%;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 24.625rem;
-    padding: 0.5rem;
-    border-radius: 0.4375rem;
-
 }
 
 .left-top-box {
-    width: 100%;
+    width: 100%;    
+    height: 16rem;    
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    border-radius: inherit;
-    border: 1px solid var(--primary-color);
+    /* gap: 0.5rem; */
+    border-radius: inherit;    
 }
-
 
 /* LEFT BOX CONTENTS */
 .left-top-box-heading {
@@ -668,56 +669,41 @@ export default {
     padding-right: 0rem;
 }
 
-/* Medium desktops / laptops (<= 1400px) */
-@media (max-width: 1400px) {
-    .left-goto-action {
-        font-size: 1.5rem;
-        padding-right: 0.25rem;
-    }
-}
+
 
 /* left bottom box */
+
 
 
 .left-bottom-box-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--background-color);
+    align-self: stretch;
+    background: var(--background-color);    
+    width: 25.3125rem;
+    height: 16.875rem;
+    border-radius: 0.4375rem;
+    padding: 0.5rem;
     background-image: url('/backgrounds/about-tile-circles.svg');
-    background-size: 98%;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 24.625rem;
-    padding: 0.5rem;
-    border-radius: 0.4375rem;
-
 }
 
 .left-bottom-box {
-    width: 100%;
+    width: 100%;    
+    height: 16rem;
+    /* background-color: blue; */
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: inherit;
-    border: 1px solid var(--primary-color);
+    border-radius: inherit;    
 }
 
-/* .left-bottom-box {
-    display: flex;
-    width: 24.625rem;
-    padding: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
-} */
 
 /* LEFT BOX CONTENTS */
 .left-bottom-box-heading {
@@ -750,7 +736,7 @@ export default {
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 0.5rem;
-    gap: 0.5vw;
+    gap: 0.5rem;
     background-color: var(--background-color);
     border: 1px solid #000;
 }
@@ -758,17 +744,13 @@ export default {
 .left-bottom-box-subtitle p {
     font-family: 'Inter', sans-serif;
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-@media (max-width: 1400px) {
-    .left-bottom-box-subtitle p {
-        font-size: 0.8rem;
-    }
-}
+
 
 .left-bottom-box-subtitle img {
     width: 1.18756rem;
@@ -810,12 +792,14 @@ export default {
 .left-bottom-box-photo {
     display: flex;
     height: 8.25rem;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     justify-content: center;
     align-items: center;
     gap: 1.25rem;
     align-self: stretch;
     overflow: hidden;
+
+
     /* optional: prevents any overflow */
 }
 
@@ -823,6 +807,7 @@ export default {
     height: 100%;
     width: auto;
     object-fit: contain;
+    border-radius: 0.5rem;
 }
 
 
@@ -870,13 +855,6 @@ export default {
     padding-right: 0rem;
 }
 
-/* Medium desktops / laptops (<= 1400px) */
-@media (max-width: 1400px) {
-    .left-goto-action {
-        font-size: 1.5rem;
-        padding-right: 0.25rem;
-    }
-}
 
 
 /* right top box */
@@ -886,41 +864,32 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    align-self: stretch;
     background: var(--background-color);
+    /* background-color: red; */
+    width: 25.3125rem;
+    height: 16.875rem;
+    border-radius: 0.4375rem;
+    padding: 0.5rem;
     background-image: url('/backgrounds/about-tile-circles.svg');
-    background-size: 98%;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 24.625rem;
-    padding: 0.5rem;
-    border-radius: 0.4375rem;
-
 }
 
 .right-top-box {
-    width: 100%;
+    width: 100%;    
+    height: 16rem;
+    /* background-color: blue; */
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: inherit;
-    border: 1px solid var(--primary-color);
+    border-radius: inherit;    
 }
 
-/* .right-top-box {
-    width: 24.625rem;
-    display: inline-flex;
-    padding: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
-} */
 
 .right-top-box-heading {
     height: 2rem;
@@ -959,17 +928,13 @@ export default {
 .right-top-box-subtitle p {
     font-family: 'Inter', sans-serif;
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-@media (max-width: 1400px) {
-    .right-top-box-subtitle p {
-        font-size: 0.8rem;
-    }
-}
+
 
 .right-top-box-subtitle img {
     width: 1.18756rem;
@@ -983,7 +948,7 @@ export default {
 .right-top-box-photo {
     display: flex;
     height: 8.25rem;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     justify-content: center;
     align-items: center;
     gap: 1.25rem;
@@ -996,6 +961,7 @@ export default {
     height: 100%;
     width: auto;
     object-fit: contain;
+    border-radius: 0.5rem;
 }
 
 .right-top-box-action-call {
@@ -1043,60 +1009,40 @@ export default {
 
 
 
-/* Medium desktops / laptops (<= 1400px) */
-@media (max-width: 1400px) {
-    .right-top-box-goto-action {
-        font-size: 1.5rem;
-        padding-right: 0.25rem;
-    }
-}
 
 /* right bottom box */
+
 
 .right-bottom-box-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: var(--background-color);
+    align-self: stretch;
+    background: var(--background-color);    
+    width: 25.3125rem;
+    height: 16.875rem;
+    border-radius: 0.4375rem;
+    padding: 0.5rem;
     background-image: url('/backgrounds/about-tile-circles.svg');
-    background-size: 98%;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    width: 24.625rem;
-    padding: 0.5rem;
-    border-radius: 0.4375rem;
-
 }
 
 .right-bottom-box {
-    width: 100%;
+    width: 100%;    
+    height: 16rem;    
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: inherit;
-    border: 1px solid var(--primary-color);
+    border-radius: inherit;    
 }
 
 
-
-/* .right-bottom-box {
-    width: 24.625rem;
-    display: inline-flex;
-    padding: 0.5rem;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
-    border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
-
-} */
-
-.right-bottom-box-heading {    
+.right-bottom-box-heading {
     height: 2rem;
     display: flex;
     padding: 0.5rem;
@@ -1138,17 +1084,13 @@ export default {
 .right-bottom-box-subtitle p {
     font-family: 'Inter', sans-serif;
     color: var(--primary-color);
-    font-size: 1rem;
+    font-size: 0.85rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-@media (max-width: 1400px) {
-    .right-bottom-box-subtitle p {
-        font-size: 0.8rem;
-    }
-}
+
 
 .right-bottom-box-subtitle img {
     width: 1.18756rem;
@@ -1159,7 +1101,7 @@ export default {
 .right-bottom-box-photo {
     display: flex;
     height: 8.25rem;
-    padding: 0.5rem;
+    /* padding: 0.5rem; */
     justify-content: center;
     align-items: center;
     gap: 1.25rem;
@@ -1172,6 +1114,7 @@ export default {
     height: 100%;
     width: auto;
     object-fit: contain;
+    border-radius: 0.5rem;
 }
 
 
@@ -1225,11 +1168,10 @@ export default {
 .left-bottom-box:has(.left-bottom-box-action-call:hover),
 .right-top-box:has(.right-top-box-action-call:hover),
 .right-bottom-box:has(.right-bottom-box-action-call:hover) {
-    box-shadow: -4px 4px 0 0 var(--primary-color);
+box-shadow:
+  -4px 4px 0 0 var(--primary-color), /* original */
+   0px 4px 0 0 var(--primary-color); /* extra to the right */
 }
-
-
-
 
 
 /* /////////////// */
@@ -1494,14 +1436,7 @@ export default {
 
 }
 
-/* For smaller screens */
-@media (max-width: 1200px) {
-    .left-box-paragraph p {
-        font-size: 1.5rem;
-    }
 
-
-}
 
 /* for larger screens */
 @media (min-width: 1440px) {
@@ -1538,6 +1473,7 @@ export default {
     height: 100%;
     object-fit: contain;
     display: block;
+
 }
 
 .other-box-action-call {

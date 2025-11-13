@@ -370,7 +370,7 @@ a {
         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Assetory' }">Assetory Home</router-link>
+          :class="{ active: this.$route.name === 'Assetory' }">Assetory</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
           :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"

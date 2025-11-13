@@ -598,7 +598,7 @@ export default {
                 </div>
 
                 <div class="buttonsRow">
-                    <SimpleButton :to="{ name: '' }" text="Visit the SSX website"
+                    <SimpleButton :to="{ name: 'Homepage' }" text="Visit the SSX website"
                         :icon="iconBasePath + 'arrow-right-black.svg'" />
                     <SimpleButton :to="{ name: 'Submit Your Work Form' }" text="Submit your work"
                         :icon="iconBasePath + 'submit-your-work-icon-black.svg'" />

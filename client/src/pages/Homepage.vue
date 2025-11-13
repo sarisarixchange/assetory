@@ -8,7 +8,7 @@ import collections from '/src/data/collections.json';
 import LogoSection from '../components/LogoSection.vue';
 import OddShapeButton from '../widgets/OddShapeButton.vue';
 
-
+ 
 export default {
     components: {
         AccessibilityMenu, // Register the AccessibilityMenu component
@@ -653,7 +653,7 @@ export default {
 }
 
 
-/* left top box */
+/* right top box */
 
 .right-top-box {
     width: 24.625rem;

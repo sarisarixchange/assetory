@@ -5,13 +5,15 @@ import SimpleButton from '../widgets/SimpleButton.vue';
 import artists from '/src/data/artists.json';
 import events from '/src/data/events.json';
 import collections from '/src/data/collections.json';
+import OddShapeButton from '../widgets/OddShapeButton.vue';
 
 
 export default {
     components: {
         AccessibilityMenu, // Register the AccessibilityMenu component
         Topbar,
-        SimpleButton
+        SimpleButton,
+        OddShapeButton
     },
     data() {
         return {
@@ -451,18 +453,18 @@ export default {
 
 /* LEFT BOX */
 
-.left-box,
+/* .left-box,
 .right-box,
 .center-top-box,
 .center-bottom-box {
     background-color: var(--background-color);
     z-index: 3;
     cursor: default;
-    /* box-shadow:
+    box-shadow:
         -6px 6px 0 var(--shadow),
-           0 6px 1px var(--shadow); */
+           0 6px 1px var(--shadow);
 
-}
+} */
 
 .homeSVG {
 
@@ -482,13 +484,755 @@ export default {
 }
 
 /* Large screens (desktops) */
-.cardsContainer {
+/* .cardsContainer {
     margin-top: auto;
     margin-bottom: auto;
     width: 54.5rem;
     height: 35.9375rem;
     flex-shrink: 0;
+} */
+
+
+/* Large screens (desktops) */
+.cardsContainer {
+    /* background-color: red; */
+    display: flex;
+    margin: auto;
+    width: 52.5rem;
+    height: 36rem;
+    flex-shrink: 0;
+    gap: 3rem;
+
 }
+
+
+
+/* box sizes new design */
+.cardsContainerLeftSide {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+    .cardsContainerLeftSide {
+        gap: 1rem;
+        margin-top: 0.75rem;
+    }
+}
+
+
+.cardsContainerRightSide {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+@media (max-width: 1400px) {
+    .cardsContainerRightSide {
+        gap: 1rem;
+        margin-top: 0.75rem;
+    }
+}
+
+/* //////////////// */
+
+/* left top box */
+
+.left-top-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+    background-image: url('/backgrounds/about-tile-circles.svg');
+    background-size: 98%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24.625rem;
+    padding: 0.5rem;
+    border-radius: 0.4375rem;
+
+}
+
+.left-top-box {
+    width: 100%;
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: inherit;
+    border: 1px solid var(--primary-color);
+}
+
+
+/* LEFT BOX CONTENTS */
+.left-top-box-heading {
+    height: 2rem;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color-left-box);
+}
+
+.left-top-box-heading h2 {
+    font-family: var(--font-family-Decorative);
+    color: var(--text-color-left-box);
+    font-size: 1.25rem;
+    /* font-size: clamp(1rem, 1.85rem, 2rem); */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.015;
+}
+
+
+.left-top-box-heading img {
+    width: 1.25rem;
+}
+
+
+.left-top-box-paragraph {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0.5rem;
+
+    justify-content: center;
+    /* align-items: center; */
+    align-self: stretch;
+    border-radius: 0.5rem;
+    /* background-color: var(--secondary-color-left-box); */
+    overflow: auto;
+
+}
+
+
+.left-top-box-paragraph p {
+    /* height: 4.75rem; */
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.05rem;
+    color: var(--primary-color);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+
+
+.left-top-box-action-call {
+    height: 2rem;
+    display: flex;
+    border-radius: 0.5rem;
+    font-family: var(--font-family-Decorative);
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0625rem;
+    align-self: stretch;
+    /* background-color: var(--secondary-color-left-box); */
+}
+
+.left-top-box-call-action {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    align-items: center;
+    background-color: transparent;
+    margin-right: 5rem;
+}
+
+
+
+.left-top-box-goto-action {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    padding-right: 0rem;
+}
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+    .left-goto-action {
+        font-size: 1.5rem;
+        padding-right: 0.25rem;
+    }
+}
+
+/* left bottom box */
+
+
+.left-bottom-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+    background-image: url('/backgrounds/about-tile-circles.svg');
+    background-size: 98%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24.625rem;
+    padding: 0.5rem;
+    border-radius: 0.4375rem;
+
+}
+
+.left-bottom-box {
+    width: 100%;
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: inherit;
+    border: 1px solid var(--primary-color);
+}
+
+/* .left-bottom-box {
+    display: flex;
+    width: 24.625rem;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.4375rem;
+    border: 1px solid var(--primary-color);
+    background: var(--background-color);
+} */
+
+/* LEFT BOX CONTENTS */
+.left-bottom-box-heading {
+    height: 2rem;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color-left-box);
+}
+
+.left-bottom-box-heading h2 {
+    font-family: var(--font-family-Decorative);
+    color: var(--text-color-left-box);
+    font-size: 1.25rem;
+    /* font-size: clamp(1rem, 1.85rem, 2rem); */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.015;
+}
+
+
+.left-bottom-box-subtitle {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    gap: 0.5vw;
+    background-color: var(--background-color);
+    border: 1px solid #000;
+}
+
+.left-bottom-box-subtitle p {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1400px) {
+    .left-bottom-box-subtitle p {
+        font-size: 0.8rem;
+    }
+}
+
+.left-bottom-box-subtitle img {
+    width: 1.18756rem;
+    height: 0.71619rem;
+}
+
+.left-bottom-box-heading img {
+    width: 1.25rem;
+}
+
+.left-bottom-box-paragraph {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background-color: var(--secondary-color-left-box);
+    overflow: auto;
+}
+
+
+.left-bottom-box-paragraph p {
+    height: 100%;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.05rem;
+    color: var(--primary-color);
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+
+
+
+.left-bottom-box-photo {
+    display: flex;
+    height: 8.25rem;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    align-self: stretch;
+    overflow: hidden;
+    /* optional: prevents any overflow */
+}
+
+.left-bottom-box-photo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+
+
+
+.left-bottom-box-action-call {
+    height: 2rem;
+    display: flex;
+    border-radius: 0.5rem;
+    font-family: var(--font-family-Decorative);
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0625rem;
+    align-self: stretch;
+    /* background-color: var(--secondary-color-left-box); */
+}
+
+.left-bottom-box-call-action {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    align-items: center;
+    background-color: transparent;
+    margin-right: 5rem;
+}
+
+
+
+.left-bottom-box-goto-action {
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    padding-right: 0rem;
+}
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+    .left-goto-action {
+        font-size: 1.5rem;
+        padding-right: 0.25rem;
+    }
+}
+
+
+/* right top box */
+
+
+.right-top-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+    background-image: url('/backgrounds/about-tile-circles.svg');
+    background-size: 98%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24.625rem;
+    padding: 0.5rem;
+    border-radius: 0.4375rem;
+
+}
+
+.right-top-box {
+    width: 100%;
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: inherit;
+    border: 1px solid var(--primary-color);
+}
+
+/* .right-top-box {
+    width: 24.625rem;
+    display: inline-flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.4375rem;
+    border: 1px solid var(--primary-color);
+    background: var(--background-color);
+} */
+
+.right-top-box-heading {
+    height: 2rem;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color-left-box);
+}
+
+.right-top-box-heading h2 {
+    font-family: var(--font-family-Decorative);
+    color: var(--text-color-left-box);
+    font-size: 1.25rem;
+    /* font-size: clamp(1rem, 1.85rem, 2rem); */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.015;
+}
+
+.right-top-box-subtitle {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    gap: 0.5vw;
+    background-color: var(--background-color);
+    border: 1px solid #000;
+}
+
+.right-top-box-subtitle p {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1400px) {
+    .right-top-box-subtitle p {
+        font-size: 0.8rem;
+    }
+}
+
+.right-top-box-subtitle img {
+    width: 1.18756rem;
+    height: 0.71619rem;
+}
+
+.right-top-box-heading img {
+    width: 0.94rem;
+}
+
+.right-top-box-photo {
+    display: flex;
+    height: 8.25rem;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    align-self: stretch;
+    overflow: hidden;
+    /* optional: prevents any overflow */
+}
+
+.right-top-box-photo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.right-top-box-action-call {
+    display: flex;
+    border-radius: 0.5rem;
+    font-family: var(--font-family-Decorative);
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0625rem;
+    align-self: stretch;
+}
+
+.right-top-box-call-action {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    align-items: center;
+    background-color: transparent;
+    margin-right: 5rem;
+}
+
+.right-top-box-goto-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    padding-right: 0rem;
+
+}
+
+.right-top-box-goto-action img {
+    width: 1.45881rem;
+    height: 0.96119rem;
+}
+
+
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+    .right-top-box-goto-action {
+        font-size: 1.5rem;
+        padding-right: 0.25rem;
+    }
+}
+
+/* right bottom box */
+
+.right-bottom-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: var(--background-color);
+    background-image: url('/backgrounds/about-tile-circles.svg');
+    background-size: 98%;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 24.625rem;
+    padding: 0.5rem;
+    border-radius: 0.4375rem;
+
+}
+
+.right-bottom-box {
+    width: 100%;
+    display: flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: inherit;
+    border: 1px solid var(--primary-color);
+}
+
+
+
+/* .right-bottom-box {
+    width: 24.625rem;
+    display: inline-flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.4375rem;
+    border: 1px solid var(--primary-color);
+    background: var(--background-color);
+
+} */
+
+.right-bottom-box-heading {    
+    height: 2rem;
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background-color: var(--primary-color-left-box);
+}
+
+.right-bottom-box-heading h2 {
+    font-family: var(--font-family-Decorative);
+    color: var(--text-color-left-box);
+    font-size: 1.25rem;
+    /* font-size: clamp(1rem, 1.85rem, 2rem); */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.015;
+}
+
+
+.right-bottom-box-heading img {
+    width: 0.94rem;
+}
+
+.right-bottom-box-subtitle {
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    gap: 0.5vw;
+    background-color: var(--background-color);
+    border: 1px solid #000;
+}
+
+.right-bottom-box-subtitle p {
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+@media (max-width: 1400px) {
+    .right-bottom-box-subtitle p {
+        font-size: 0.8rem;
+    }
+}
+
+.right-bottom-box-subtitle img {
+    width: 1.18756rem;
+    height: 0.71619rem;
+}
+
+
+.right-bottom-box-photo {
+    display: flex;
+    height: 8.25rem;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    align-self: stretch;
+    overflow: hidden;
+    /* optional: prevents any overflow */
+}
+
+.right-bottom-box-photo img {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+
+
+.right-bottom-box-action-call {
+    display: flex;
+    border-radius: 0.5rem;
+    font-family: var(--font-family-Decorative);
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0625rem;
+    align-self: stretch;
+}
+
+.right-bottom-box-call-action {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    align-items: center;
+    background-color: transparent;
+    margin-right: 5rem;
+}
+
+
+
+.right-bottom-box-goto-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    padding-right: 0rem;
+
+}
+
+.right-bottom-box-goto-action img {
+    width: 1.45881rem;
+    height: 0.96119rem;
+}
+
+.left-top-box:has(.left-top-box-action-call:hover),
+.left-bottom-box:has(.left-bottom-box-action-call:hover),
+.right-top-box:has(.right-top-box-action-call:hover),
+.right-bottom-box:has(.right-bottom-box-action-call:hover) {
+    box-shadow: -4px 4px 0 0 var(--primary-color);
+}
+
+
+
+
+
+/* /////////////// */
 
 
 /* box sizes new design */
@@ -747,7 +1491,7 @@ export default {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    
+
 }
 
 /* For smaller screens */
@@ -1076,269 +1820,165 @@ export default {
         <div class="grid-background" aria-hidden="true"></div>
 
 
-
-        <div class="homeSVG">
-            <!-- <button class="interactiveModeButton" @click="toggleInteractiveMode">
+        <!-- <button class="interactiveModeButton" @click="toggleInteractiveMode">
                 {{ interactiveMode ? 'Interactive Mode On' : 'Interactive Mode Off' }}
             </button> -->
-            <div class="cardsContainer" v-show="!interactiveMode">
-
-                <svg id="revisedSVGContainer" viewBox="0 0 842 576" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="defaultTiles">
-
-                        <!-- ✅ SVG Drop Shadow Filter (add somewhere inside your main <svg> ) -->
-                        <defs>
-
-                            <filter id="tileShadowAbout" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
-                            </filter>
-                        </defs>
-
-                        <g id="aboutTile" :class="{ hovered: isAboutHovered }">
-                            <foreignObject x="8.5" y="9.5" width="393" height="252" rx="6.5">
-                                <div class="left-box">
-                                    <div class="left-box-heading">
-                                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'"
-                                            alt="">
-                                        <img v-show="isPinkLeftCardIconVisible"
-                                            :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="">
-                                        <img v-show="isGrayLeftCardIconVisible"
-                                            :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="">
-                                        <img v-show="isHighContrastLeftCardIconVisible"
-                                            :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
-                                        <img v-show="isWCAGLeftCardIconVisible"
-                                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
-                                        <h2>Sari-Sari Xchange</h2>
-                                    </div>
-                                    <div class="left-box-paragraph">
-                                        <p>SSX is a community-building research & creation project using Extended
-                                            Reality (XR) (ie. Virtual,
-                                            Augmented, Mixed Realities) to foster new works by artists from the
-                                            Asian diaspora.
-                                            <br><br>
-                                            Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created
-                                            with and for the Asian diaspora
-                                            community.
-                                        </p>
-                                    </div>
-
-                                    <div class="left-box-action-call" @mouseenter="isAboutHovered = true"
-                                        @mouseleave="isAboutHovered = false">
-                                        <svg class="svgDefaultButton-left-box" viewBox="0 0 379 32"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path class="oddShapeButton"
-                                                d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
-                                            <foreignObject x="0" y="0" width="379" height="32">
-                                                <router-link :to="{ name: 'About' }" class="left-call-action">
-                                                    <span>Learn More</span> <span class="left-goto-action"
-                                                        aria-hidden="true">OK</span>
-                                                </router-link>
-                                            </foreignObject>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </foreignObject>
-                            <circle id="Ellipse 9_2" cx="6" cy="92.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 10_2" cx="6" cy="107.5" r="5" fill="#FFFEFA" stroke="black" />
-                            <circle id="Ellipse 12_2" cx="401" cy="142.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 11_2" cx="401" cy="157.5" r="5" fill="#FFFEFA" stroke="black" />
-                        </g>
-
-                        <defs>
-                            <filter id="tileShadowEvents" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
-                            </filter>
-                        </defs>
-
-                        <g id="eventsTile" :class="{ hovered: isEventsHovered }">
-
-                            <foreignObject x="8.5" y="306.5" width="393" height="269" rx="6.5">
-
-                                <div class="center-bottom-box">
-                                    <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
-                                        <h2>Events</h2>
-                                    </div>
-                                    <div class="other-box-subtitle">
-                                        <img v-show="isDecoractionCardSubtitleDefault"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                                        <p>Assets created during SSX events.</p>
-                                    </div>
-                                    <div class="other-box-photos" aria-hidden="true">
-                                        <img :src="randomEventImage" alt="">
-                                    </div>
 
 
-                                    <div class="other-box-action-call" @mouseenter="isEventsHovered = true"
-                                        @mouseleave="isEventsHovered = false">
-                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path class="oddShapeButton"
-                                                d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
+        <div class="cardsContainer" v-show="!interactiveMode">
+            <div class="cardsContainerLeftSide">
+                <div class="left-top-box-container">
+                    <div class="left-top-box">
+                        <div class="left-top-box-heading">
+                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                            <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
+                                alt="">
+                            <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
+                                alt="">
+                            <img v-show="isHighContrastLeftCardIconVisible"
+                                :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                            <img v-show="isWCAGLeftCardIconVisible"
+                                :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                            <h2>Sari-Sari Xchange</h2>
+                        </div>
+                        <div class="left-top-box-paragraph">
+                            <p>SSX is a community-building research & creation project using Extended
+                                Reality (XR) (ie. Virtual,
+                                Augmented, Mixed Realities) to foster new works by artists from the
+                                Asian diaspora.
+                                <br><br>
+                                Sari-Sari Xchange Assetory (SSXA) is a virtual asset library created
+                                with and for the Asian diaspora
+                                community.
+                            </p>
+                        </div>
 
-                                            <foreignObject x="0" y="0" width="379" height="32">
-                                                <router-link :to="{ name: 'Events' }" class="other-call-action">
-                                                    <span>Open Events</span> <span class="call-goto-action"
-                                                        aria-hidden="true">
-                                                        <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
-                                                    </span>
-                                                </router-link>
-                                            </foreignObject>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </foreignObject>
+                        <div class="left-top-box-action-call" @mouseenter="isAboutHovered = true"
+                            @mouseleave="isAboutHovered = false">
+                            <OddShapeButton label="Learn More" iconText="OK" :to="{ name: 'About' }"
+                                fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color)" />
+                        </div>
+                    </div>
+                </div>
 
-                            <circle id="Ellipse 9" cx="6.5" cy="389.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 10" cx="6.5" cy="404.5" r="5" fill="#FFFEFA" stroke="black" />
-                            <circle id="Ellipse 12" cx="401.5" cy="439.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 11" cx="401.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
-                        </g>
-
-
-
-                        <!-- ✅ SVG Drop Shadow Filter (add somewhere inside your main <svg> ) -->
-                        <defs>
-
-                            <filter id="tileShadow" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
-                            </filter>
-                        </defs>
-
-
-                        <!-- ✅ Entire tile gets a dynamic class -->
-                        <g id="collectionsTile" :class="{ hovered: isCollectionsHovered }">
+                <div class="left-bottom-box-container">
+                    <div class="left-bottom-box">
+                        <div class="left-bottom-box-heading">
+                            <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
+                            <h2>Events</h2>
+                        </div>
+                        <div class="left-bottom-box-subtitle">
+                            <img v-show="isDecoractionCardSubtitleDefault"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitlePink"
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleGray"
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleHighContrast"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleWCAG"
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                            <p>Assets created during SSX events.</p>
+                        </div>
+                        <div class="left-bottom-box-photo" aria-hidden="true">
+                            <img :src="randomEventImage" alt="">
+                        </div>
 
 
-                            <foreignObject x="443.5" y="306.5" width="393" height="267.809" rx="6.5">
-                                <div class="right-box">
+                        <div class="left-bottom-box-action-call" @mouseenter="isEventsHovered = true"
+                            @mouseleave="isEventsHovered = false">
 
-                                    <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
-                                        <h2>Collections</h2>
-                                    </div>
+                            <OddShapeButton label="Open Events" iconSrc="/icons/arrow-right-black.svg"
+                                :to="{ name: 'Events' }" fillColor="var(--secondary-color-left-box)"
+                                hoverColor="var(--hover-color)" />
 
-                                    <div class="other-box-subtitle">
-                                        <img v-show="isDecoractionCardSubtitleDefault"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                                        <p>Explore collections by SSX.</p>
-                                    </div>
 
-                                    <div class="other-box-photos" aria-hidden="true">
-                                        <img :src="randomCollectionImage" alt="">
-                                    </div>
-
-                                    <!-- ✅ When hovered, triggers class on the SVG <g> -->
-                                    <div class="other-box-action-call" @mouseenter="isCollectionsHovered = true"
-                                        @mouseleave="isCollectionsHovered = false">
-
-                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
-                                            xmlns="http://www.w3.org/2000/svg">
-
-                                            <path class="oddShapeButton"
-                                                d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
-
-                                            <foreignObject x="0" y="0" width="379" height="32">
-                                                <router-link :to="{ name: 'Collections' }" class="other-call-action">
-                                                    <span>Open Collections</span>
-                                                    <span class="call-goto-action" aria-hidden="true">
-                                                        <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
-                                                    </span>
-                                                </router-link>
-                                            </foreignObject>
-
-                                        </svg>
-                                    </div>
-                                </div>
-                            </foreignObject>
-
-                            <circle id="Ellipse 9_3" cx="441.5" cy="390.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 10_3" cx="441.5" cy="405.5" r="5" fill="#FFFEFA" stroke="black" />
-                            <circle id="Ellipse 12_3" cx="836.5" cy="439.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 11_3" cx="836.5" cy="454.5" r="5" fill="#FFFEFA" stroke="black" />
-
-                        </g>
-
-                        <defs>
-                            <filter id="tileShadowArtists" x="-50%" y="-50%" width="200%" height="200%">
-                                <feDropShadow dx="-4" dy="4" stdDeviation="0" flood-color="var(--primary-color)" />
-                            </filter>
-                        </defs>
-
-                        <g id="artistsTile" :class="{ hovered: isArtistsHovered }">
-                            <foreignObject x="443.5" y="9.5" width="393" height="252" rx="6.5">
-
-                                <div class="center-top-box">
-                                    <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
-                                        <h2>Artists</h2>
-                                    </div>
-                                    <div class="other-box-subtitle">
-                                        <img v-show="isDecoractionCardSubtitleDefault"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                                        <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                                        <p>Explore community assets created by artists.</p>
-
-                                    </div>
-                                    <div class="other-box-photos" aria-hidden="true">
-                                        <img :src="randomArtistImage" alt="">
-                                    </div>
-
-                                    <div class="other-box-action-call" @mouseenter="isArtistsHovered = true"
-                                        @mouseleave="isArtistsHovered = false">
-                                        <svg class="svgDefaultButton-other-box" viewBox="0 0 379 32"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <path class="oddShapeButton"
-                                                d="M6 0.5H335.09C337.525 0.5 339.5 2.47463 339.5 4.91016V6.99707C339.5 7.4492 339.722 7.84826 340.041 8.11133C342.339 10.0084 345.661 10.0084 347.959 8.11133C348.278 7.84826 348.5 7.4492 348.5 6.99707V4.91016C348.5 2.47463 350.475 0.5 352.91 0.5H372C375.038 0.5 377.5 2.96243 377.5 6V25C377.5 28.0376 375.038 30.5 372 30.5H354C350.962 30.5 348.5 28.0376 348.5 25V22.168C348.5 21.8592 348.368 21.5818 348.17 21.3818C345.873 19.0646 342.127 19.0646 339.83 21.3818C339.632 21.5818 339.5 21.8592 339.5 22.168V25C339.5 28.0376 337.038 30.5 334 30.5H6C2.96244 30.5 0.5 28.0376 0.5 25V6C0.5 2.96243 2.96243 0.5 6 0.5Z" />
-                                            <foreignObject x="0" y="0" width="379" height="32">
-                                                <router-link :to="{ name: 'Artists' }" class="other-call-action">
-                                                    <span class="call-action-text">Open Artists</span> <span
-                                                        class="call-goto-action" aria-hidden="true">
-                                                        <img :src="iconBasePath + 'arrow-right-black.svg'" alt="">
-                                                    </span>
-                                                </router-link>
-                                            </foreignObject>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </foreignObject>
-                            <circle id="Ellipse 12_4" cx="836.5" cy="133.5" r="5.5" fill="black" />
-                            <circle id="Ellipse 11_4" cx="836.5" cy="148.5" r="5" fill="#FFFEFA" stroke="black" />
-                            <circle id="Ellipse 10_4" cx="443.5" cy="98.5" r="5" fill="#FFFEFA" stroke="black" />
-                            <circle id="Ellipse 9_4" cx="443.5" cy="83.5" r="5.5" fill="black" />
-                        </g>
-                    </g>
-                </svg>
+                        </div>
+                    </div>
+                </div>
             </div>
 
 
+
+
+            <div class="cardsContainerRightSide">
+                <div class="right-top-box-container">
+                    <div class="right-top-box">
+                        <div class="right-top-box-heading">
+                            <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                            <h2>Collections</h2>
+                        </div>
+
+                        <div class="right-top-box-subtitle">
+                            <img v-show="isDecoractionCardSubtitleDefault"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitlePink"
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleGray"
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleHighContrast"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleWCAG"
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                            <p>Explore collections by SSX.</p>
+                        </div>
+
+                        <div class="right-top-box-photo" aria-hidden="true">
+                            <img :src="randomCollectionImage" alt="">
+                        </div>
+
+                        <!-- ✅ When hovered, triggers class on the SVG <g> -->
+                        <div class="right-top-box-action-call" @mouseenter="isCollectionsHovered = true"
+                            @mouseleave="isCollectionsHovered = false">
+
+                            <OddShapeButton label="Open Collections" iconSrc="/icons/arrow-right-black.svg"
+                                :to="{ name: 'Collections' }" fillColor="var(--secondary-color-left-box)"
+                                hoverColor="var(--hover-color)" />
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-bottom-box-container">
+                    <div class="right-bottom-box">
+                        <div class="right-bottom-box-heading">
+                            <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                            <h2>Artists</h2>
+                        </div>
+                        <div class="right-bottom-box-subtitle">
+                            <img v-show="isDecoractionCardSubtitleDefault"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitlePink"
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleGray"
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleHighContrast"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleWCAG"
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                            <p>Explore community assets created by artists.</p>
+
+                        </div>
+                        <div class="right-bottom-box-photo" aria-hidden="true">
+                            <img :src="randomArtistImage" alt="">
+                        </div>
+
+                        <div class="right-bottom-box-action-call" @mouseenter="isArtistsHovered = true"
+                            @mouseleave="isArtistsHovered = false">
+
+                            <OddShapeButton label="Open Artists" iconSrc="/icons/arrow-right-black.svg"
+                                :to="{ name: 'Artists' }" fillColor="var(--secondary-color-left-box)"
+                                hoverColor="var(--hover-color)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="homeSVG" v-show="interactiveMode">
             <!-- legacy homepage design -->
 
-            <svg id="legacySVGContainer" v-show="interactiveMode" viewBox="0 0 1665 718" fill="none"
-                xmlns="http://www.w3.org/2000/svg">
+            <svg id="legacySVGContainer" viewBox="0 0 1665 718" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g id="Group 641">
                     <g id="Group 594" class="right-connectors">
                         <path id="Artist Connector" d="M906 139.926C1026.16 148.939 1509.33 -114.93 1665 192"
@@ -1611,7 +2251,8 @@ export default {
         <!-- Notification Window -->
         <div v-if="isNotificationVisible" class="notification-window">
             <p>
-                This website stores accessibility menu settings you select in your browser to enhance your experience.
+                This website stores accessibility menu settings you select in your browser to enhance your
+                experience.
                 No
                 cookies or tracking are used.
             </p>

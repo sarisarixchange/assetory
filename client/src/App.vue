@@ -65,6 +65,14 @@ body {
   --hover-text-color-left-box: #D400A6; */
 
   /* default (orange + blue theme) */
+
+  /* Main Sari Sari website */
+  --active-color-main: #D400A6;
+  --active-text-color-main: #FFFEFA;
+  --hover-color-main: #FFEDF4;
+  --hover-text-color-main: #000000;
+
+  /* Assetory */
   --background-color: #FFFEFA;
   --background-color-headings: #FD5733;
   --return-button-background-color: #FD5733;
@@ -77,13 +85,13 @@ body {
   --hover-text-color: #000000;
   --shadow: #000000;
 
-
-
   --primary-color-left-box: #000000;
   --secondary-color-left-box: #FFFEFA;
   --text-color-left-box: #FFFEFA;
   --hover-color-left-box: #E7F6FC;
   --homepage-left-card-button-border-color: #000000;
-  
+
+
+
 }
 </style>

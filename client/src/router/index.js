@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Homepage from '../pages/Homepage.vue';
+import Assetory from '../pages/Assetory.vue';
 import HomepageAutoScaling from '../pages/HomepageAutoScaling.vue';
 import About from '../pages/About.vue';
 import Collections from '../pages/Collections.vue';
@@ -15,9 +16,9 @@ import SubmitYourWorkForm from '../pages/SubmitYourWorkForm.vue';
 import Submissions from '../pages/Submissions.vue';
 
 
-
 const routes = [
-  { path: '/', component: Homepage, name: 'Homepage' },
+  { path: '/', component: Homepage, name: 'Homepage'},
+  {path: '/assetory', component: Assetory, name: 'Assetory'},
   { path: '/homeautoscaling', component: HomepageAutoScaling, name: 'Homepage Auto Scaling' },
   {path: '/about', component: About, name: 'About'},
   {path: '/accessibility-statement', component: AccessibilityStatement, name: 'Accessibility Statement'},

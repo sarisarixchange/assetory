@@ -135,35 +135,60 @@ export default {
 
 }
 
-.assetDetails {
-  flex: 1;
-  display: flex;
-  padding: 2.19rem;
-  flex-direction: column;
-  gap: 0.5rem;
-  width: 100%;
-  height: auto;
-  background-color: transparent;
-  color: var(--primary-color);
-  font-family: 'Inter', sans-serif;
-  border-radius: 0 0 0.5rem 0.5rem;
-  overflow-y: auto;
-}
-
-.assetDetailsContainer {
-  width: 38.25rem;
-  height: 21.875rem;
-  
-
- 
-}
-
 .returnButtonAbsolute {
   display: flex;
   position: absolute;
   top: 6rem;
   margin-top: 1rem;
 }
+
+.assetDetailsContainer {  
+  width: 38.25rem;
+  height: 22.1rem;
+  display: flex;  
+  flex-direction: column;
+  background-image: url('/divs/asset-upward-div.svg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 1rem; /* optional if the SVG already has curves */
+  /* box-shadow: 0 4px 10px rgba(0,0,0,0.15); */
+  overflow: hidden; /* keeps rounded corners clean */
+}
+
+
+.assetDetails {  
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 2.19rem;
+  padding-top: 3rem;;
+  padding-bottom: 1rem;
+  gap: 0.5rem;
+  width: 100%;
+  overflow-y: auto;
+  /* background-color: red; */
+  color: var(--primary-color);
+  font-family: 'Inter', sans-serif;
+  border-radius: 0 0 0.5rem 0.5rem;
+  background-color: transparent;
+}
+
+/* .assetDetailsContainer {
+  position: absolute;
+  top: 5rem;
+  left: 20px;
+  width: 38.25rem;
+  height: 21.875rem;
+  overflow: hidden;
+}
+
+.assetDetails {
+  height: 100%;
+  overflow-y: auto;
+} */
+
+
 
 .assetDetails h2 {
   font-size: 1.25rem;
@@ -182,16 +207,16 @@ export default {
 .assetDetails p {
   font-size: 1rem;
   font-style: normal;
-  font-weight: 400; 
+  font-weight: 400;
 }
 
 .descriptionParagraph {
-  /* background-color: red; */
-  height: auto;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 400;  
-  overflow-y: auto; /* Enable vertical scrolling if content exceeds max height */
+  font-weight: 400;
+  flex-shrink: 0;
+  overflow-y: visible;
+  /* let parent handle the scrolling */
 }
 
 hr {
@@ -353,7 +378,9 @@ a-scene {
   justify-content: center;
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
+
 
 .download-button a {
   font-size: 1.25rem;
@@ -362,8 +389,16 @@ a-scene {
   color: var(--primary-color);
 }
 
+.download-button img {
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: 1rem;
+
+}
+
 .download-button:hover {
   background-color: var(--hover-color);
+  box-shadow: -4px 4px 0 0 #000;
 }
 </style>
 
@@ -389,8 +424,7 @@ a-scene {
         <!-- return button -->
 
 
-        <div class="assetDetailsContainer">
-          <!-- Asset details information -->
+        <!-- <div class="assetDetailsContainer">
           <svg class="svg-class" viewBox="0 0 621 358" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g id="Vector 7" filter="url(#filter0_d_292_1817)">
               <path
@@ -437,7 +471,39 @@ a-scene {
               </filter>
             </defs>
           </svg>
+        </div> -->
+
+
+    
+
+        <div class="assetDetailsContainer">
+          <!-- Asset details information -->
+
+          <div v-if="asset" class="assetDetails">
+            <h2>Asset Details</h2>
+            <hr>
+            <h3>Creator</h3>
+            <p>{{ asset.creator }}</p>
+            <h3>Asset Name</h3>
+            <p>{{ asset.name }}</p>
+            <h3>Keywords/Tags</h3>
+            <ul class="tags-list">
+              <li v-for="(tag, index) in asset.tags" :key="index" class="tag-item">
+                {{ tag }}
+              </li>
+            </ul>
+            <h3>Description</h3>
+            <p class="descriptionParagraph">{{ asset.description }}</p>
+          </div>
+
+          <div v-else>
+            <p>Asset not found.</p>
+          </div>
+
+
         </div>
+
+
 
         <div class="technicalInformation">
 
@@ -539,6 +605,7 @@ a-scene {
         </div>
         <div class="download-button">
           <a :href="asset.downloadLink">Download</a>
+          <img src="/icons/download-icon-black.svg" alt="Download Icon" />
         </div>
       </div>
 

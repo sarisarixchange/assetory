@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { createClient } from "@supabase/supabase-js";
+import Topbar from '../components/Topbar.vue';
 
 // --------------------
 // Supabase setup
@@ -205,6 +206,8 @@ onMounted(() => {
 </script>
 
 <template>
+      <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+
   <div class="submissions-container">
     <div class="header">
       <h1>Asset Submissions</h1>

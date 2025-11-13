@@ -31,13 +31,16 @@ export default {
     isHomepage() {
       return this.$route.path === '/';
     },
+    isAssetory() {
+      return this.$route.path === '/assetory';
+    },
 
     headerWidth() {
       if (this.interactiveMode) {
         return '99%';
       }
-      return '63.5625rem';
-      
+      // return '63.5625rem';
+      return '74rem';
     }
 
   },
@@ -92,7 +95,30 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+.nav-buttons-wrapper {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  /* width: 69.125rem; */
+  width: 79rem;
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+  /* background-color: red; */
+}
+
+
+.nav-buttons-wrapper-homepage {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  width: 32.09375rem;
+  height: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+
 .header {
   margin-top: 0.87rem;
   margin-left: auto;
@@ -101,12 +127,25 @@ export default {
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
-  /* background-color: transparent; */
   border: solid 1px var(--primary-color);
   border-radius: 1.25rem;
-  background-color: var(--background-color);  
-  height: 5rem;  
+  background-color: var(--background-color);
+  height: 5rem;
+}
 
+.header-homepage {
+  width: 26.53125rem;
+  margin-top: 0.87rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  border: solid 1px var(--primary-color);
+  border-radius: 1.25rem;
+  background-color: var(--background-color);
+  height: 5rem;
 }
 
 
@@ -174,7 +213,6 @@ export default {
   gap: 1rem;
   margin-right: 1.458vw;
   justify-content: flex-end;
-
 }
 
 
@@ -197,6 +235,25 @@ export default {
   transition: background-color 0.2s;
 }
 
+.nav-button-homepage {
+  display: inline-flex;
+  width: max-content;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  height: 2.1875rem;
+  padding: 0.3125rem 1.25rem;
+  border: 1px solid var(--navigation-buttons-border-color);
+  background: none;
+  color: var(--primary-color);
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+
 .nav-button.active {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
@@ -205,6 +262,16 @@ export default {
 .nav-button.active:hover {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
+}
+
+.nav-button-homepage.active {
+  background-color: var(--active-color-main);
+  color: var(--active-text-color-main);
+}
+
+.nav-button-homepage.active:hover {
+  background-color: var(--hover-color-main);
+  color: var(--hover-text-color-main);
 }
 
 
@@ -220,22 +287,50 @@ a {
   box-shadow: -3px 3px 0 0 var(--shadow);
 }
 
-.nav-buttons-wrapper {
-  display: flex;
-  flex-direction: row;
-  margin: auto;
-  /* background-color: red; */
-  width: 69.125rem;
-  height: 5rem;
-  justify-content: center;
-  align-items: center;
-
+.nav-button-homepage:hover {
+  background-color: var(--hover-color-main);
+  color: var(--hover-text-color-main);
+  box-shadow: -3px 3px 0 0 var(--shadow);
 }
 </style>
 
 <template>
+  <div v-if="isHomepage" class="nav-buttons-wrapper-homepage">
+    <div class="header-homepage">
+      <div class="logo-section">
+        <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
+        <div class="logo" aria-hidden="true">
+          <img v-show="isDefaultLogoIconVisible" src="/icons/logoPink.svg" alt="Sari-Sari Asset Library Logo"
+            class="logo" />
+          <img v-show="isGrayscaleLogoIconVisible" src="/icons/logoGray.svg" alt="Sari-Sari Asset Library Logo"
+            class="logo" />
+          <img v-show="isHighContrastLogoIconVisible" src="/icons/logoBlack.svg" alt="Sari-Sari Asset Library Logo"
+            class="logo" />
+          <img v-show="isWCAGLogoIconVisible" src="/icons/logoWCAG.svg" alt="Sari-Sari Asset Library Logo"
+            class="logo" />
+          <img v-show="isOriginalInteractiveIconVisible" src="/icons/logoPink.svg" alt="Sari-Sari Asset Library Logo"
+            class="logo" />
+        </div>
+      </div>
 
-  <div class="nav-buttons-wrapper">
+      <!-- navigation menu -->
+      <div class="nav-buttons">
+        <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
+          :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
+        <router-link to="" class="nav-button-homepage">About
+        </router-link>
+        <router-link to="" class="nav-button-homepage">Projects</router-link>
+
+      </div>
+    </div>
+    <!-- Accessibility Menu -->
+    <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
+      @update-notification-visible="$emit('update-notification-visible', $event)" @theme-changed="handleThemeChange" />
+
+  </div>
+
+
+  <div v-else class="nav-buttons-wrapper">
     <div class="header" :style="{ width: headerWidth }">
       <div class="logo-section">
         <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
@@ -250,14 +345,12 @@ a {
             class="logo" />
           <img v-show="isOriginalInteractiveIconVisible" src="/icons/logoPink.svg" alt="Sari-Sari Asset Library Logo"
             class="logo" />
-
-
         </div>
-        <!-- <router-link v-if="!isHomepage" to="/" class="nav-button">Home</router-link> -->
+
       </div>
 
       <!-- top marquee -->
-      <div v-if="isHomepage && interactiveMode" class="marquee" aria-hidden="true">
+      <div v-if="interactiveMode" class="marquee" aria-hidden="true">
         <div class="marqueeItem">
           ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY
           *
@@ -270,16 +363,14 @@ a {
           ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY * ASSET LIBRARY
           *
         </div>
-
       </div>
-
-
-
 
       <!-- navigation menu -->
       <div class="nav-buttons">
-          <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
+        <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
+        <router-link v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Assetory' }">Assetory Home</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
           :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"
@@ -292,16 +383,15 @@ a {
           :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
         <router-link :to="{ name: 'Accessibility Statement' }" class="nav-button"
           :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
-  
-        </div>
 
-
-
+      </div>
     </div>
-  
+
     <!-- Accessibility Menu -->
     <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
       @update-notification-visible="$emit('update-notification-visible', $event)" @theme-changed="handleThemeChange" />
 
   </div>
+
+
 </template>

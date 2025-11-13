@@ -196,7 +196,9 @@ export default {
             src="/icons/arrow-right-black.svg" alt="">
         </div>
 
-        <p v-show="openCurrentIndex === index">{{ gallery.about }}</p>
+        <div class="about-paragraph" v-show="openCurrentIndex === index">
+        <p >{{ gallery.about }}</p>
+        </div>
 
       </div>
     </div>
@@ -674,4 +676,9 @@ export default {
   color: white;
   border-color: var(--primary-color);
 }
+
+.about-paragraph{
+overflow-y: auto;
+}
+
 </style>

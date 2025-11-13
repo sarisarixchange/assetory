@@ -89,9 +89,8 @@ body {
   --secondary-color-left-box: #FFFEFA;
   --text-color-left-box: #FFFEFA;
   --hover-color-left-box: #E7F6FC;
+  --hover-text-color-left-box: #000000;
   --homepage-left-card-button-border-color: #000000;
-
-
 
 }
 </style>

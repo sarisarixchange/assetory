@@ -734,6 +734,7 @@ export default {
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
     gap: 0.5vw;
     background-color: var(--secondary-color);
 
@@ -746,6 +747,7 @@ export default {
     font-style: normal;
     font-weight: 400;
     line-height: normal;
+    
 }
 
 /* For smaller screens */

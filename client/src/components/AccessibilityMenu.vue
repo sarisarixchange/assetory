@@ -58,26 +58,26 @@ export default {
       if (theme === 'grayscale') {   // grayscale Theme
         this.currentTheme = 'grayscale'; // Update currentTheme
 
-        root.style.setProperty('--background-color', '#FFFEFA');
-        root.style.setProperty('--primary-color', '#525252');
-        root.style.setProperty('--background-color-headings', '#525252');
-        root.style.setProperty('--secondary-color', '#F3F3F3');
-        root.style.setProperty('--navigation-buttons-border-color', '#C8C8C8');
-        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
 
-        root.style.setProperty('--shadow', '#C8C8C8');
-        root.style.setProperty('--hover-color', '#525252');
-        root.style.setProperty('--hover-text-color', '#FFFFFF');
-
-
-        root.style.setProperty('--primary-color-left-box', '#D2D2D2');
-        root.style.setProperty('--secondary-color-left-box', '#F3F3F3');
-        root.style.setProperty('--text-color-left-box', '#525252');
-        root.style.setProperty('--hover-color-left-box', '#D2D2D2');
-        root.style.setProperty('--hover-text-color-left-box', '#525252');
-        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
+        root.style.setProperty('--background-color', '#FFFFFF');
+        root.style.setProperty('--background-color-headings', '#828282');
+        root.style.setProperty('--return-button-background-color', '#828282');
+        root.style.setProperty('--return-button-text-color', '#FFFEFA');
+        root.style.setProperty('--primary-color', '#2B2B2B');
+        root.style.setProperty('--secondary-color', '#FFFFFF');
+        root.style.setProperty('--navigation-buttons-border-color', '#2B2B2B');
+        root.style.setProperty('--homepage-card-buttons-border-color', '#2B2B2B');
+        root.style.setProperty('--hover-color', '#C8C8C8');
+        root.style.setProperty('--hover-text-color', '#2B2B2B');
+        root.style.setProperty('--shadow', '#2B2B2B');
 
 
+        root.style.setProperty('--primary-color-left-box', '#2B2B2B');
+        root.style.setProperty('--secondary-color-left-box', '#FFFFFF');
+        root.style.setProperty('--text-color-left-box', '#FFFFFF');
+        root.style.setProperty('--hover-color-left-box', '#C8C8C8');
+        root.style.setProperty('--hover-text-color-left-box', '#2B2B2B');
+        root.style.setProperty('--homepage-left-card-button-border-color', '#2B2B2B');
 
 
         // event emission 
@@ -96,6 +96,7 @@ export default {
         this.currentWcagColoursIcon = 'wcagColoursIconGray'
         this.currentResetIcon = 'resetIconGray',
           this.currentSvgButton = 'svgButtonGray'
+
 
       } else if (theme === 'highContrast') {  // high contrast theme
         this.currentTheme = 'highContrast'; // Update currentTheme
@@ -216,15 +217,19 @@ export default {
       } else {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
+
         root.style.setProperty('--background-color', '#FFFEFA');
         root.style.setProperty('--background-color-headings', '#FD5733');
+        root.style.setProperty('--return-button-background-color', '#FD5733');
+        root.style.setProperty('--return-button-text-color', '#FFFEFA');
         root.style.setProperty('--primary-color', '#000000');
         root.style.setProperty('--secondary-color', '#FFFEFA');
         root.style.setProperty('--navigation-buttons-border-color', '#000000');
         root.style.setProperty('--homepage-card-buttons-border-color', '#000000');
-        root.style.setProperty('--shadow', '#000000');
         root.style.setProperty('--hover-color', '#E7F6FC');
         root.style.setProperty('--hover-text-color', '#000000');
+        root.style.setProperty('--shadow', '#000000');
+
 
         root.style.setProperty('--primary-color-left-box', '#000000');
         root.style.setProperty('--secondary-color-left-box', '#FFFEFA');
@@ -618,7 +623,6 @@ export default {
 .svgButtonDefault {
   fill: var(--secondary-color);
   stroke: var(--navigation-buttons-border-color);
-
 }
 
 .svgButtonDefault:hover {

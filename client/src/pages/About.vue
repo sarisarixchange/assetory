@@ -57,6 +57,42 @@ export default {
     methods: {
         updateTheme(payload) {
             this.currentTheme = payload; // Update the theme
+            if (payload.theme === "default") {
+                this.isDecoractionCardSubtitleOrange = true
+                this.isDecoractionCardSubtitlePink = false
+                this.isDecoractionCardSubtitleGray = false
+                this.isDecoractionCardSubtitleHighContrast = false
+                this.isDecoractionCardSubtitleWCAG = false
+
+            } else if (payload.theme === "originalInteractive") {
+                this.isDecoractionCardSubtitleOrange = false
+                this.isDecoractionCardSubtitlePink = true
+                this.isDecoractionCardSubtitleGray = false
+                this.isDecoractionCardSubtitleHighContrast = false
+                this.isDecoractionCardSubtitleWCAG = false
+
+            } else if (payload.theme === "grayscale") {
+                this.isDecoractionCardSubtitleOrange = false
+                this.isDecoractionCardSubtitlePink = false
+                this.isDecoractionCardSubtitleGray = true
+                this.isDecoractionCardSubtitleHighContrast = false
+                this.isDecoractionCardSubtitleWCAG = false
+
+            } else if (payload.theme === "highContrast") {
+
+                this.isDecoractionCardSubtitleOrange = false
+                this.isDecoractionCardSubtitlePink = false
+                this.isDecoractionCardSubtitleGray = false
+                this.isDecoractionCardSubtitleHighContrast = true
+                this.isDecoractionCardSubtitleWCAG = false
+
+            } else if (payload.theme === "wcag") {
+                this.isDecoractionCardSubtitleOrange = false
+                this.isDecoractionCardSubtitlePink = false
+                this.isDecoractionCardSubtitleGray = false
+                this.isDecoractionCardSubtitleHighContrast = false
+                this.isDecoractionCardSubtitleWCAG = true
+            }
         },
 
         loadInteractiveMode() {
@@ -509,6 +545,21 @@ export default {
     gap: 1.25rem;
     /* margin-top: 1rem; */
 }
+
+    .logos {
+        /* flex: 0 0 auto; */
+        background-image: url("/images/logos/logos-condensed.svg");
+        background-size: contain;
+        background-color: var(--background-color);
+        display: flex;
+        height: 6.6875rem;
+        border-radius: 0.5rem;
+        border: 1px solid var(--primary-color);
+        margin-top: 1.5rem;
+        margin-left: 2.28rem;
+        margin-right: 2.28rem;
+        /* margin-bottom: 0.5 rem; */
+    }
 </style>
 
 <template>
@@ -526,8 +577,8 @@ export default {
                         :src="iconBasePath + 'arrowLeftHomepageOrangeTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitlePink"
                         :src="iconBasePath + 'arrowLeftHomePageDefaultTheme.svg'" alt="">
-                    <img v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'decorationCardSubtitleGray.svg'"
-                        alt="">
+                    <img v-show="isDecoractionCardSubtitleGray"
+                        :src="iconBasePath + 'arrowLeftHomepageGrayscaleTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitleHighContrast"
                         :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'"
@@ -542,6 +593,8 @@ export default {
                         :src="iconBasePath + 'arrowRightHomepageOrangeTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitlePink"
                         :src="iconBasePath + 'arrowRightHomePageDefaultTheme.svg'" alt="">
+                    <img v-show="isDecoractionCardSubtitleGray"
+                        :src="iconBasePath + 'arrowRightHomepageGrayscaleTheme.svg'" alt="">
                 </div>
 
                 <div class="buttonsRow">
@@ -554,6 +607,8 @@ export default {
                 <img class="separator" v-show="isDecoractionCardSubtitleOrange"
                     :src="iconBasePath + 'separator-orange.svg'" alt="">
 
+                <img class="separator" v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'separator-gray.svg'"
+                    alt="">
             </div>
 
             <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top="-4rem" left="50%"
@@ -757,7 +812,9 @@ export default {
                 :theme="currentTheme.theme" />
 
             <!-- Logos -->
-            <LogoSection />
+            <!-- <LogoSection /> -->
+            <div class="logos">
+            </div>
 
 
             <!-- back to top button -->

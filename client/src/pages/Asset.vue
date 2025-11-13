@@ -46,31 +46,70 @@ export default {
       position: { x: 0, y: 0, z: -3 },
       scale: { x: 15, y: 15, z: 15 },
       rotation: { x: 0, y: 0, z: 0 },
+      asset: null,
+      localFromPage: null,
+      localPageId: null,
 
 
     };
 
-
   },
-  mounted() {
 
-    this.loadInteractiveMode();
-
-    //extract params from previous route/page, either from artist.vue or collection.vue
-    const artistId = parseInt(this.$route.params.artistId, 10);
-    // const artistAssetId = parseInt(this.$route.params.artistAssetId, 10);
-    const artistAssetId = this.$route.params.artistAssetId;
-
-
-
-
-    //find collection if user came from an Artist
-    const artists = artistsData.find((item) => item.id === artistId);
-    // set local reactive value
-    if (artists) {
-      this.asset = artists.assets.find((item) => item.name === artistAssetId);
+  beforeUnmount() {
+  const scene = document.querySelector('a-scene');
+  if (scene && scene.renderer) {
+    try {
+      scene.renderer.dispose();
+      scene.parentNode?.removeChild(scene);
+      console.log('🧹 A-Frame scene cleaned up');
+    } catch (err) {
+      console.warn('⚠️ Scene cleanup skipped:', err);
     }
-  },
+  }
+},
+
+mounted() {
+  this.loadInteractiveMode();
+
+  const artistAssetId = this.$route.params.artistAssetId;
+  const fromPage = this.$route.query.fromPage;
+  const pageId = parseInt(this.$route.query.pageId, 10);
+
+  console.log('🟢 Route info:', { artistAssetId, fromPage, pageId });
+
+  // Try to find the asset anywhere in artistsData
+  let foundAsset = null;
+  let foundArtist = null;
+
+  for (const artist of artistsData) {
+    const asset = artist.assets.find(
+      (a) => a.name.trim().toLowerCase() === artistAssetId.trim().toLowerCase()
+    );
+    if (asset) {
+      foundArtist = artist;
+      foundAsset = asset;
+      break;
+    }
+  }
+
+  if (foundAsset) {
+    this.asset = {
+      ...foundAsset,
+      artistId: foundArtist.id,
+      artistName: foundArtist.name,
+    };
+    console.log('✅ Asset found:', this.asset);
+  } else {
+    console.warn('⚠️ Asset not found:', artistAssetId);
+  }
+
+  // ✅ store locally instead of mutating props
+  this.localFromPage = fromPage;
+  this.localPageId = pageId;
+},
+
+
+
 
   methods: {
 
@@ -142,27 +181,30 @@ export default {
   margin-top: 1rem;
 }
 
-.assetDetailsContainer {  
+.assetDetailsContainer {
   width: 38.25rem;
   height: 22.1rem;
-  display: flex;  
+  display: flex;
   flex-direction: column;
   background-image: url('/divs/asset-upward-div.svg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 1rem; /* optional if the SVG already has curves */
+  border-radius: 1rem;
+  /* optional if the SVG already has curves */
   /* box-shadow: 0 4px 10px rgba(0,0,0,0.15); */
-  overflow: hidden; /* keeps rounded corners clean */
+  overflow: hidden;
+  /* keeps rounded corners clean */
 }
 
 
-.assetDetails {  
+.assetDetails {
   flex: 1;
   display: flex;
   flex-direction: column;
   padding: 2.19rem;
-  padding-top: 3rem;;
+  padding-top: 3rem;
+  ;
   padding-bottom: 1rem;
   gap: 0.5rem;
   width: 100%;
@@ -421,60 +463,10 @@ a-scene {
       <!-- Asset details -->
 
       <div class="assetDetails-and-info-wrapper">
-        <!-- return button -->
 
 
-        <!-- <div class="assetDetailsContainer">
-          <svg class="svg-class" viewBox="0 0 621 358" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g id="Vector 7" filter="url(#filter0_d_292_1817)">
-              <path
-                d="M602.5 350H18.5C10.768 350 4.5 343.732 4.5 336V53.5C4.5 45.768 10.768 39.5 18.5 39.5H138.758C146.49 39.5 152.758 33.232 152.758 25.5V14C152.758 6.26801 159.026 0 166.758 0H602.5C610.232 0 616.5 6.26802 616.5 14V336C616.5 343.732 610.232 350 602.5 350Z"
-                fill="#FFFEF6" />
-              <path
-                d="M166.758 0.5H602.5C609.956 0.5 616 6.54416 616 14V336C616 343.456 609.956 349.5 602.5 349.5H18.5C11.0442 349.5 5 343.456 5 336V53.5C5 46.0442 11.0442 40 18.5 40H138.758C146.766 40 153.258 33.5081 153.258 25.5V14C153.258 6.54416 159.302 0.5 166.758 0.5Z" />
-              <foreignObject x="20" y="60" width="580" height="280">
-                <div v-if="asset" class="assetDetails">
-                  <h2>Asset Details</h2>
-                  <hr>
-                  <h3>Creator</h3>
-                  <p>{{ asset.creator }}</p>
-                  <h3>Asset Name</h3>
-                  <p>{{ asset.name }}</p>
-                  <h3>Keywords/Tags</h3>
-                  <ul class="tags-list">
-                    <li v-for="(tag, index) in asset.tags" :key="index" class="tag-item">
-                      {{ tag }}
-                    </li>
-                  </ul>
-                  <h3>Description</h3>
-                  <p class="descriptionParagraph">{{ asset.description }}</p>
-                </div>
-
-                <div v-else>
-                  <p>Asset not found.</p>
-                </div>
-              </foreignObject>
-
-            </g>
-            <defs>
-              <filter id="filter0_d_292_1817" x="0.5" y="0" width="620" height="358" filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB">
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
-                <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-                  result="hardAlpha" />
-                <feOffset dy="4" />
-                <feGaussianBlur stdDeviation="2" />
-                <feComposite in2="hardAlpha" operator="out" />
-                <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" />
-                <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_292_1817" />
-                <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_292_1817" result="shape" />
-              </filter>
-            </defs>
-          </svg>
-        </div> -->
 
 
-    
 
         <div class="assetDetailsContainer">
           <!-- Asset details information -->
@@ -588,7 +580,8 @@ a-scene {
 
         <!-- 3D Model Preview -->
         <div class="preview">
-          <a-scene embedded vr-mode-ui="enabled: false" enderer="vr: false">
+          <a-scene embedded vr-mode-ui="enabled: false" renderer="vr: false">
+
             <!-- Add a light source -->
             <a-light type="directional" position="0 1 1" intensity="1"></a-light>
 
@@ -612,6 +605,28 @@ a-scene {
     </div>
     <!-- Fallback content when no asset is found -->
     <div v-else>
+      <!-- 3D Model Preview -->
+      <div class="preview">
+        <a-scene embedded vr-mode-ui="enabled: false" renderer="vr: false">
+
+          <!-- Add a light source -->
+          <a-light type="directional" position="0 1 1" intensity="1"></a-light>
+
+          <!-- Add a camera -->
+          <a-camera position="0 1.6 3"></a-camera>
+
+          <!-- Add the 3D model -->
+          <a-entity :position="`${position.x} ${position.y} ${position.z}`" :scale="`${scale.x} ${scale.y} ${scale.z}`"
+            :rotation="`${rotation.x} ${rotation.y} ${rotation.z}`"
+            gltf-model="https://sarisarixchange.github.io/SSXAssetLibrary/Dragon Fruit.glb" animation-mixer></a-entity>
+        </a-scene>
+
+      </div>
+      <!-- <div class="download-button">
+          <a :href="asset.downloadLink">Download</a>
+          <img src="/icons/download-icon-black.svg" alt="Download Icon" />
+        </div> -->
+
 
       <div class="no-asset">
         <h2>Asset Not Found</h2>

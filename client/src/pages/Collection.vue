@@ -28,6 +28,7 @@ export default {
       const enrichedAssets = this.collection.assets.map((asset) => {
         const artist = artistsData.find((a) => a.id === asset.artistId);
         const artistAsset = artist?.assets.find((a) => a.name === asset.name);
+        
 
         return {
           ...asset,

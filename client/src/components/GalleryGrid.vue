@@ -183,8 +183,10 @@ export default {
     <div class="galleryGridAboutPage">
       <div class="galleryCardAboutPage" :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
         v-for="(gallery, index) in currentTeam" :key="'current-' + index">
+        <div class="galleryCardImageWrapper">
         <div class="galleryCardContentAboutPage">
           <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
+        </div>
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
@@ -620,13 +622,21 @@ export default {
   color: var(--primary-color);
 }
 
+.galleryCardImageWrapper {
+  /* aspect-ratio: 1 / 1;  */
+  overflow: hidden;
+  background-color: var(--secondary-color);
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .galleryCardContentImageAboutPage {
   width: 100%;
   height: 100%;
-  background-color: var(--secondary-color);
   object-fit: cover;
-  box-sizing: border-box;
-  border-radius: 0.625rem;
+  display: block;
 }
 
 

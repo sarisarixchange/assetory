@@ -313,19 +313,19 @@ a {
     display: flex;
     flex-direction: row;
     margin: auto;
-    width: 35%;
-    height: 5rem;
+    width: 30%;
+    height: 5rem;    
     justify-content: center;
     align-items: center;
+    gap: 1rem;
   }
 
   /* Shrink header container */
   .header,
   .header-homepage {
-    width: 40% !important;
+    width: 100% !important;
     padding-right: 1rem;
     padding-left: 1rem;
-
     margin-top: 0.87rem;
     margin-left: 1rem;
     margin-right: auto;
@@ -333,7 +333,7 @@ a {
     justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid #eee;
-    border: none;
+    border: 1px solid var(--navigation-buttons-border-color);
     border-radius: 1.25rem;
     background-color: var(--background-color);
     height: 5rem;

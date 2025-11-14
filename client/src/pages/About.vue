@@ -552,6 +552,7 @@ export default {
     background-image: url("/images/logos/logos-condensed.svg");
     background-size: contain;
     background-color: var(--background-color);
+    background-repeat: no-repeat;
     display: flex;
     height: 6.6875rem;
     border-radius: 0.5rem;

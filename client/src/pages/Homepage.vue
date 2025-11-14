@@ -526,7 +526,7 @@ export default {
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
-    margin-right: 5rem;
+    margin-right: 0rem;
 }
 
 
@@ -754,7 +754,7 @@ export default {
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
-    margin-right: 5rem;
+    margin-right: 0rem;
 }
 
 .right-top-box-goto-action {
@@ -895,7 +895,7 @@ export default {
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
-    margin-right: 5rem;
+    margin-right: 0rem;
 }
 
 

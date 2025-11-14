@@ -27,6 +27,7 @@ export default {
             marqueeBasePath: 'images/marquee/',
 
             iconHoveredSrc: '/icons/arrow-right-black.svg',
+              isNotificationVisible: true,
 
             randomArtistImage: null,
             randomEventImage: null,
@@ -89,6 +90,35 @@ export default {
     },
 
     methods: {
+
+         dismissNotification() {
+            try {
+                this.isNotificationVisible = false; // Update the state
+
+                // Check if refs are available
+                if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
+                    this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
+                        isNotificationVisible: this.isNotificationVisible,
+                    });
+                } else {
+                }
+            } catch (error) {
+                console.error('Error in dismissNotification:', error);
+            }
+        },
+
+
+        loadNotificationState() {
+            try {
+                const savedSettings =
+                    JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+                this.isNotificationVisible =
+                    savedSettings.isNotificationVisible ?? true; // Load the notification state
+            } catch (error) {
+                console.error('Error in loadNotificationState:', error);
+            }
+        },
+
 
         pickRandomArtistImage() {
             // Build list of full image URLs
@@ -509,8 +539,7 @@ export default {
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.0625rem;
-    align-self: stretch;
-    /* background-color: var(--secondary-color-left-box); */
+    align-self: stretch;    
 }
 
 .left-top-box-call-action {
@@ -520,13 +549,12 @@ export default {
     height: 100%;
     display: flex;
     flex-shrink: 0;
-    color: var(--primary-color);
-    display: flex;
+    color: var(--primary-color);    
     justify-content: space-between;
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
-    margin-right: 0rem;
+    margin-right: 5rem;
 }
 
 
@@ -729,6 +757,7 @@ export default {
 }
 
 .right-top-box-action-call {
+    height: 2rem;
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
@@ -740,6 +769,8 @@ export default {
     letter-spacing: -0.0625rem;
     align-self: stretch;
 }
+
+
 
 .right-top-box-call-action {
     padding-left: 0.5rem;
@@ -754,7 +785,7 @@ export default {
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
-    margin-right: 0rem;
+    margin-right: 5rem;
 }
 
 .right-top-box-goto-action {
@@ -870,6 +901,7 @@ export default {
 
 
 .right-bottom-box-action-call {
+    height: 2rem;
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
@@ -895,7 +927,7 @@ export default {
     border-radius: 0.5rem;
     align-items: center;
     background-color: transparent;
-    margin-right: 0rem;
+    margin-right: 5rem;
 }
 
 
@@ -921,6 +953,66 @@ export default {
 }
 
 
+/* notification window */
+
+/* notification window */
+.notification-window {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    /* Ensures it's positioned relative to the viewport */
+    bottom: 0vh;
+    /* Adjust to place it above the footer */
+    left: 50%;
+    /* Center horizontally */
+    transform: translateX(-50%);
+    /* Center alignment */
+    background-color: var(--background-color);
+    border: 2px solid var(--primary-color);
+    border-bottom: none;
+    /* Removes the bottom border */
+    border-radius: 60px 60px 0 0;
+    /* Top-left and top-right corners rounded */
+    padding: 1rem;
+    width: 106.5625rem;
+    height: 12.125rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    /* Ensure it appears above other elements */
+
+}
+
+.notification-window p {
+    width: 85%;
+    color: var(--primary-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.1rem;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+}
+
+.notification-dismiss-button {
+
+    display: inline-flex;
+    padding: 0.3125rem 1.25rem;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.notification-dismiss-button:hover {
+    background-color: var(--primary-color);
+}
 
 
 /* FOOTER */
@@ -948,6 +1040,25 @@ export default {
         object-fit: contain;
         flex-shrink: 0;
     }
+
+    .notification-window {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    border-radius: 30px 30px 0 0;
+  }
+
+  .notification-window p {
+    font-size: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    letter-spacing: -0.05rem;
+  }
+
+  .notification-dismiss-button {
+    font-size: 1rem;
+    padding: 0.4rem 1rem;
+  }
 }
 </style>
 
@@ -1071,20 +1182,19 @@ export default {
                             :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
                         <p>See what we’re up to!</p>
                     </div>
+
+                    
                     <div class="right-top-box-photo" aria-hidden="true">
                         <img src="/images/homepage/right-top-card-background-image.png" alt="">
                     </div>
 
                     <div class="right-top-box-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
-
-
                         <OddShapeButton label="Open Projects (Coming soon!)" iconSrc='/icons/arrow-right-black.svg'
                             :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }"
                             fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
-
-
                     </div>
+
                 </div>
 
 
@@ -1129,6 +1239,17 @@ export default {
                 </div>
             </div>
 
+        </div>
+
+           <!-- Notification Window -->
+        <div v-if="isNotificationVisible" class="notification-window">
+            <p>
+                This website stores accessibility menu settings you select in your browser to enhance your
+                experience.
+                No
+                cookies or tracking are used.
+            </p>
+            <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
         </div>
 
         <div class="footer">

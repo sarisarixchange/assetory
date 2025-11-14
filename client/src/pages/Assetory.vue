@@ -30,7 +30,7 @@ export default {
             randomEventImage: null,
             randomCollectionImage: null,
 
-            isNotificationVisible: true,
+          
 
             isCollectionsHovered: false,
             isAboutHovered: false,
@@ -70,7 +70,7 @@ export default {
         }
     },
     mounted() {
-        this.loadNotificationState(); // Load the notification state when the component is mounted
+        
         this.loadInteractiveMode();
         this.updateScale();
         window.addEventListener("resize", this.updateScale);
@@ -153,44 +153,17 @@ export default {
                 this.interactiveMode = !this.interactiveMode;
 
                 // Check if refs are available
-                if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
-                    this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
-                        interactiveMode: this.interactiveMode,
-                    });
-                } else {
-                }
+                // if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
+                //     this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
+                //         interactiveMode: this.interactiveMode,
+                //     });
+                // } else {
+                // }
             } catch (error) {
                 console.error('Error in dismissNotification:', error);
             }
         },
-        dismissNotification() {
-            try {
-                this.isNotificationVisible = false; // Update the state
-
-                // Check if refs are available
-                if (this.$refs.topbar && this.$refs.topbar.$refs.accessibilityMenu) {
-                    this.$refs.topbar.$refs.accessibilityMenu.saveSettings({
-                        isNotificationVisible: this.isNotificationVisible,
-                    });
-                } else {
-                }
-            } catch (error) {
-                console.error('Error in dismissNotification:', error);
-            }
-        },
-
-
-        loadNotificationState() {
-            try {
-                const savedSettings =
-                    JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-                this.isNotificationVisible =
-                    savedSettings.isNotificationVisible ?? true; // Load the notification state
-            } catch (error) {
-                console.error('Error in loadNotificationState:', error);
-            }
-        },
-
+       
         loadInteractiveMode() {
             try {
                 const savedSettings =
@@ -950,6 +923,7 @@ export default {
 }
 
 .right-top-box-action-call {
+    height: 2rem;
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
@@ -1105,6 +1079,7 @@ export default {
 
 
 .right-bottom-box-action-call {
+    height: 2rem;
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
@@ -1555,64 +1530,6 @@ export default {
 
 } */
 
-/* notification window */
-.notification-window {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    /* Ensures it's positioned relative to the viewport */
-    bottom: 0vh;
-    /* Adjust to place it above the footer */
-    left: 50%;
-    /* Center horizontally */
-    transform: translateX(-50%);
-    /* Center alignment */
-    background-color: var(--background-color);
-    border: 2px solid var(--primary-color);
-    border-bottom: none;
-    /* Removes the bottom border */
-    border-radius: 60px 60px 0 0;
-    /* Top-left and top-right corners rounded */
-    padding: 1rem;
-    width: 106.5625rem;
-    height: 12.125rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-    /* Ensure it appears above other elements */
-
-}
-
-.notification-window p {
-    width: 85%;
-    color: var(--primary-color);
-    font-family: 'Inter', sans-serif;
-    font-size: 2rem;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    letter-spacing: -0.1rem;
-    margin-left: 2.5rem;
-    margin-right: 2.5rem;
-}
-
-.notification-dismiss-button {
-
-    display: inline-flex;
-    padding: 0.3125rem 1.25rem;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 1rem;
-    cursor: pointer;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-.notification-dismiss-button:hover {
-    background-color: var(--primary-color);
-}
 
 
 /* FOOTER */
@@ -1762,8 +1679,7 @@ export default {
 
         <!-- New background layer -->
         <div class="topBar">
-            <Topbar ref="topbar" :interactive-mode="interactiveMode" :is-notification-visible="isNotificationVisible"
-                @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme" />
+            <Topbar ref="topbar" :interactive-mode="interactiveMode"  @theme-changed="updateTheme" />
         </div>
 
         <!-- background image -->
@@ -1851,8 +1767,42 @@ export default {
 
 
 
-
             <div class="cardsContainerRightSide">
+                <div class="right-bottom-box-container">
+                    <div class="right-bottom-box">
+                        <div class="right-bottom-box-heading">
+                            <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                            <h2>Artists</h2>
+                        </div>
+                        <div class="right-bottom-box-subtitle">
+                            <img v-show="isDecoractionCardSubtitleDefault"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitlePink"
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleGray"
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleHighContrast"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            <img v-show="isDecoractionCardSubtitleWCAG"
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                            <p>Explore community assets created by artists.</p>
+
+                        </div>
+                        <div class="right-bottom-box-photo" aria-hidden="true">
+                            <img :src="randomArtistImage" alt="">
+                        </div>
+
+                        <div class="right-bottom-box-action-call" @mouseenter="isArtistsHovered = true"
+                            @mouseleave="isArtistsHovered = false">
+
+                            <OddShapeButton label="Open Artists" iconSrc="/icons/arrow-right-black.svg"
+                                :hoverIconSrc="iconHoveredSrc" :to="{ name: 'Artists' }"
+                                fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color)" />
+                        </div>
+                    </div>
+                </div>
+
+
                 <div class="right-top-box-container">
                     <div class="right-top-box">
                         <div class="right-top-box-heading">
@@ -1890,39 +1840,7 @@ export default {
                     </div>
                 </div>
 
-                <div class="right-bottom-box-container">
-                    <div class="right-bottom-box">
-                        <div class="right-bottom-box-heading">
-                            <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
-                            <h2>Artists</h2>
-                        </div>
-                        <div class="right-bottom-box-subtitle">
-                            <img v-show="isDecoractionCardSubtitleDefault"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                            <img v-show="isDecoractionCardSubtitlePink"
-                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
-                            <img v-show="isDecoractionCardSubtitleGray"
-                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
-                            <img v-show="isDecoractionCardSubtitleHighContrast"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                            <img v-show="isDecoractionCardSubtitleWCAG"
-                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
-                            <p>Explore community assets created by artists.</p>
 
-                        </div>
-                        <div class="right-bottom-box-photo" aria-hidden="true">
-                            <img :src="randomArtistImage" alt="">
-                        </div>
-
-                        <div class="right-bottom-box-action-call" @mouseenter="isArtistsHovered = true"
-                            @mouseleave="isArtistsHovered = false">
-
-                            <OddShapeButton label="Open Artists" iconSrc="/icons/arrow-right-black.svg"
-                                :hoverIconSrc="iconHoveredSrc" :to="{ name: 'Artists' }"
-                                fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color)" />
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -2199,16 +2117,7 @@ export default {
             </svg>
         </div>
 
-        <!-- Notification Window -->
-        <div v-if="isNotificationVisible" class="notification-window">
-            <p>
-                This website stores accessibility menu settings you select in your browser to enhance your
-                experience.
-                No
-                cookies or tracking are used.
-            </p>
-            <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
-        </div>
+     
 
         <!-- footer -->
         <div class="footer">

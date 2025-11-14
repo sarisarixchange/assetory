@@ -304,6 +304,11 @@ a {
   display: none;
 }
 
+  .mobile-menu, .mobile-menu a {
+   visibility: hidden;
+  }
+
+
 /* mobile CSS */
 /* Hide desktop nav on mobile */
 @media (max-width: 768px) {
@@ -314,7 +319,7 @@ a {
     flex-direction: row;
     margin: auto;
     width: 30%;
-    height: 5rem;    
+    height: 5rem;
     justify-content: center;
     align-items: center;
     gap: 1rem;
@@ -349,9 +354,12 @@ a {
     border: none;
     padding: 0.5rem;
     cursor: pointer;
+    color: var(--primary-color);
+
   }
 
   .mobile-menu {
+    visibility: visible;
     position: absolute;
     top: 5rem;
     right: 0;
@@ -366,6 +374,7 @@ a {
   }
 
   .mobile-menu a {
+    visibility: visible;
     font-size: 1.1rem;
     padding: 0.75rem 1rem;
     border-bottom: 1px solid var(--primary-color);
@@ -419,9 +428,9 @@ a {
       <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
         :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
       <router-link :to="{ name: 'About' }" class="nav-button-homepage"
-        :class="{ active: this.$route.name === 'Homepage' }" >About</router-link>
+        :class="{ active: this.$route.name === 'Homepage' }">About</router-link>
       <router-link :to="{ name: 'Assetory' }" class="nav-button-homepage"
-        :class="{ active: this.$route.name === 'Homepage' }" >Assetory</router-link>
+        :class="{ active: this.$route.name === 'Homepage' }">Assetory</router-link>
     </div>
 
 
@@ -474,29 +483,7 @@ a {
 
       <!-- navigation menu -->
       <div class="nav-buttons">
-        <router-link   v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
-        <router-link   v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Assetory' }">Assetory</router-link>
-        <router-link   v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
-        <router-link   v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Collections' }">Collections</router-link>
-        <router-link   v-if="!interactiveMode" :to="{ name: 'Events' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Events' }">Events</router-link>
-        <router-link   :to="{ name: 'About' }" class="nav-button" :class="{ active: this.$route.name === 'About' }">About
-        </router-link>
-        <router-link   :to="{ name: 'Terms of Use' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
-        <router-link   :to="{ name: 'Accessibility Statement' }" class="nav-button"
-          :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
-
-      </div>
-    </div>
-
-    <!-- MOBILE MENU (shows only when hamburger is clicked) -->
-    <div class="mobile-menu" v-if="isMobileMenuOpen">
-         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
+        <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
           :class="{ active: this.$route.name === 'Assetory' }">Assetory</router-link>
@@ -512,6 +499,28 @@ a {
           :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
         <router-link :to="{ name: 'Accessibility Statement' }" class="nav-button"
           :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
+
+      </div>
+    </div>
+
+    <!-- MOBILE MENU (shows only when hamburger is clicked) -->
+    <div class="mobile-menu" v-if="isMobileMenuOpen">
+      <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
+      <router-link v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Assetory' }">Assetory</router-link>
+      <router-link v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
+      <router-link v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Collections' }">Collections</router-link>
+      <router-link v-if="!interactiveMode" :to="{ name: 'Events' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Events' }">Events</router-link>
+      <router-link :to="{ name: 'About' }" class="nav-button" :class="{ active: this.$route.name === 'About' }">About
+      </router-link>
+      <router-link :to="{ name: 'Terms of Use' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
+      <router-link :to="{ name: 'Accessibility Statement' }" class="nav-button"
+        :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
 
     </div>
 

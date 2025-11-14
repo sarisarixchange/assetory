@@ -126,7 +126,7 @@ export default {
         root.style.setProperty('--navigation-buttons-border-color', '#2B2B2B');
         root.style.setProperty('--homepage-card-buttons-border-color', '#2B2B2B');
         root.style.setProperty('--hover-color', '#019AED');
-        root.style.setProperty('--hover-text-color', '#2B2B2B');
+        root.style.setProperty('--hover-text-color', '#FFFEFA');
         root.style.setProperty('--shadow', '#2B2B2B');
 
 
@@ -495,7 +495,7 @@ export default {
 
 .navAccessibilityButtonGrayscaleColorPalette:hover {
   background-color: transparent;
-  background-image: url('/icons/personGray.svg');
+  background-image: url('/icons/personBlack.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -735,7 +735,7 @@ a {
 .increaseTextIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/IncreaseTextIconGray.svg");
+  background-image: url("/icons/IncreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -781,7 +781,7 @@ a {
 .decreaseTextIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/decreaseTextIconGray.svg");
+  background-image: url("/icons/decreaseTextIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -829,7 +829,7 @@ a {
 .grayscaleIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/grayscaleIconGray.svg");
+  background-image: url("/icons/grayscaleIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -877,7 +877,7 @@ a {
 .highContrastIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/highContrastIconGray.svg");
+  background-image: url("/icons/highContrastIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -926,7 +926,7 @@ a {
 .linksUnderlineIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/linksUnderlineIconGray.svg");
+  background-image: url("/icons/linksUnderlineIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -971,7 +971,7 @@ a {
 .readableFontIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/readableFontIconGray.svg");
+  background-image: url("/icons/readableFontIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1016,7 +1016,7 @@ a {
 .wcagColoursIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/wcagColorsIconGray.svg");
+  background-image: url("/icons/wcagColorsIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1062,7 +1062,7 @@ a {
 .resetIconGray {
   width: 1rem;
   height: 1rem;
-  background-image: url("/icons/resetIconGray.svg");
+  background-image: url("/icons/resetIconBlack.svg");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -1087,7 +1087,7 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .increaseTextIcon, */
-.accessibilityButtonDiv:hover .increaseTextIconGray,
+
 .accessibilityButtonDiv:hover .increaseTextIconHighContrast,
 .accessibilityButtonDiv:hover .increaseTextIconWCAG {
   background-image: url("/icons/IncreaseTextIconWhite.svg");
@@ -1097,7 +1097,7 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .decreaseTextIcon, */
-.accessibilityButtonDiv:hover .decreaseTextIconGray,
+
 .accessibilityButtonDiv:hover .decreaseTextIconHighContrast,
 .accessibilityButtonDiv:hover .decreaseTextIconWCAG {
   background-image: url("/icons/decreaseTextIconWhite.svg");
@@ -1107,7 +1107,6 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .grayscaleIcon, */
-.accessibilityButtonDiv:hover .grayscaleIconGray,
 .accessibilityButtonDiv:hover .grayscaleIconHighContrast,
 .accessibilityButtonDiv:hover .grayscaleIconWCAG {
   background-image: url("/icons/grayscaleIconWhite.svg");
@@ -1117,7 +1116,7 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .highContrastIcon, */
-.accessibilityButtonDiv:hover .highContrastIconGray,
+
 .accessibilityButtonDiv:hover .highContrastIconHighContrast,
 .accessibilityButtonDiv:hover .highContrastIconWCAG {
   background-image: url("/icons/highContrastIconWhite.svg");
@@ -1127,7 +1126,7 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .wcagColoursIcon, */
-.accessibilityButtonDiv:hover .wcagColoursIconGray,
+
 .accessibilityButtonDiv:hover .wcagColoursIconHighContrast,
 .accessibilityButtonDiv:hover .wcagColoursIconWCAG {
   background-image: url("/icons/wcagColorsIconWhite.svg");
@@ -1137,7 +1136,7 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .linksUnderlineIcon, */
-.accessibilityButtonDiv:hover .linksUnderlineIconGray,
+
 .accessibilityButtonDiv:hover .linksUnderlineIconHighContrast,
 .accessibilityButtonDiv:hover .linksUnderlineIconWCAG {
   background-image: url("/icons/linksUnderlineIconWhite.svg");
@@ -1147,7 +1146,7 @@ a {
 }
 
 /* .accessibilityButtonDiv:hover .readableFontIcon, */
-.accessibilityButtonDiv:hover .readableFontIconGray,
+
 .accessibilityButtonDiv:hover .readableFontIconHighContrast,
 .accessibilityButtonDiv:hover .readableFontIconWCAG {
   background-image: url("/icons/readableFontIconWhite.svg");
@@ -1159,7 +1158,7 @@ a {
 
 
 /* .accessibilityButtonDiv:hover .resetIcon, */
-.accessibilityButtonDiv:hover .resetIconGray,
+
 .accessibilityButtonDiv:hover .resetIconHighContrast,
 .accessibilityButtonDiv:hover .resetIconWCAG {
   background-image: url("/icons/resetIconWhite.svg");

@@ -212,6 +212,7 @@ export default {
     font-size: 2rem;
     font-weight: 400;
     color: var(--primary-color);
+    background-color: var(--background-color);
 }
 
 
@@ -560,6 +561,34 @@ export default {
     margin-right: 2.28rem;
     /* margin-bottom: 0.5 rem; */
 }
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+
+  .terms-of-use-page-content {
+    padding: 1rem;
+
+  }
+
+  .about {
+    width: 100%;
+    padding: 1.5rem;
+    margin: auto;
+
+  }
+
+  .about h2 {
+    font-size: 1.5rem;
+    /* smaller heading */
+  }
+
+  .about p {
+    font-size: 1.25rem;
+    overflow-wrap: break-word;
+  }
+}
 </style>
 
 <template>
@@ -580,9 +609,8 @@ export default {
                     <img v-show="isDecoractionCardSubtitleGray"
                         :src="iconBasePath + 'arrowLeftHomepageGrayscaleTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitleHighContrast"
-                        :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
-                    <img v-show="isDecoractionCardSubtitleWCAG" :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'"
-                        alt="">
+                        :src="iconBasePath + 'arrowLightHomeHighContrastTheme.svg'" alt="">
+
 
                     <p>The <strong>Sari-Sari Xchange Assetory</strong> (SSXA) is a virtual asset library created with
                         and for the Asian
@@ -595,6 +623,9 @@ export default {
                         :src="iconBasePath + 'arrowRightHomePageDefaultTheme.svg'" alt="">
                     <img v-show="isDecoractionCardSubtitleGray"
                         :src="iconBasePath + 'arrowRightHomepageGrayscaleTheme.svg'" alt="">
+                    <img v-show="isDecoractionCardSubtitleHighContrast"
+                        :src="iconBasePath + 'arrowRightHomeHighContrastTheme.svg'" alt="">
+
                 </div>
 
                 <div class="buttonsRow">
@@ -609,7 +640,7 @@ export default {
 
                 <img class="separator" v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'separator-gray.svg'"
                     alt="">
-                    
+
                 <img class="separator" v-show="isDecoractionCardSubtitleHighContrast"
                     :src="iconBasePath + 'separator-highContrast.svg'" alt="">
             </div>

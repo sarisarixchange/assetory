@@ -22,7 +22,9 @@ export default {
       isGrayscaleLogoIconVisible: false,
       isHighContrastLogoIconVisible: false,
       isWCAGLogoIconVisible: false,
-      isOriginalInteractiveIconVisible: false
+      isOriginalInteractiveIconVisible: false,
+
+      isMobileMenuOpen: false // <-- for responsiveness in cellphones
     }
   },
 
@@ -88,6 +90,10 @@ export default {
 
       // Propagate the event to the parent
       this.$emit('theme-changed', payload);
+    },
+
+    toggleMobileMenu() {
+      this.isMobileMenuOpen = !this.isMobileMenuOpen;
     },
     // dont erase curly brackets below
   }
@@ -292,6 +298,83 @@ a {
   color: var(--hover-text-color-main);
   box-shadow: -3px 3px 0 0 var(--shadow);
 }
+
+/* Show hamburger only on mobile */
+.hamburger {
+  display: none;
+}
+
+/* mobile CSS */
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+
+  .nav-buttons-wrapper,
+  .nav-buttons-wrapper-homepage {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 35%;
+    height: 5rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Shrink header container */
+  .header,
+  .header-homepage {
+    width: 40% !important;
+    padding-right: 1rem;
+    padding-left: 1rem;
+
+    margin-top: 0.87rem;
+    margin-left: 1rem;
+    margin-right: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    border: none;
+    border-radius: 1.25rem;
+    background-color: var(--background-color);
+    height: 5rem;
+  }
+
+  .nav-buttons {
+    display: none !important;
+  }
+
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 5rem;
+    right: 0;
+    width: 100%;
+    background: var(--background-color);
+    border-top: 1px solid var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    z-index: 1000;
+  }
+
+  .mobile-menu a {
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--primary-color);
+    text-decoration: none;
+    color: var(--primary-color)
+  }
+
+
+}
 </style>
 
 <template>
@@ -313,16 +396,35 @@ a {
         </div>
       </div>
 
-      <!-- navigation menu -->
+
+      <!-- ✅ HAMBURGER BUTTON (mobile only) -->
+      <button class="hamburger" @click="toggleMobileMenu" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+
+      <!-- navigation menu (desktop only) -->
       <div class="nav-buttons">
         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
-        <router-link :to="{name: 'About'}" class="nav-button-homepage">About</router-link>
-        <router-link :to="{name: 'Assetory'}" class="nav-button-homepage">Assetory</router-link>
+        <router-link :to="{ name: 'About' }" class="nav-button-homepage">About</router-link>
+        <router-link :to="{ name: 'Assetory' }" class="nav-button-homepage">Assetory</router-link>
         <!-- <router-link to="" class="nav-button-homepage">Projects</router-link> -->
 
       </div>
+
     </div>
+    <!-- MOBILE MENU (shows only when hamburger is clicked) -->
+    <div class="mobile-menu" v-if="isMobileMenuOpen">
+      <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
+        :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
+      <router-link :to="{ name: 'About' }" class="nav-button-homepage"
+        :class="{ active: this.$route.name === 'Homepage' }" >About</router-link>
+      <router-link :to="{ name: 'Assetory' }" class="nav-button-homepage"
+        :class="{ active: this.$route.name === 'Homepage' }" >Assetory</router-link>
+    </div>
+
+
     <!-- Accessibility Menu -->
     <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
       @update-notification-visible="$emit('update-notification-visible', $event)" @theme-changed="handleThemeChange" />
@@ -365,9 +467,36 @@ a {
         </div>
       </div>
 
+      <!-- ✅ HAMBURGER BUTTON (mobile only) -->
+      <button class="hamburger" @click="toggleMobileMenu" aria-label="Toggle menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
       <!-- navigation menu -->
       <div class="nav-buttons">
-        <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
+        <router-link   v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
+        <router-link   v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Assetory' }">Assetory</router-link>
+        <router-link   v-if="!interactiveMode" :to="{ name: 'Artists' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Artists' }">Artists</router-link>
+        <router-link   v-if="!interactiveMode" :to="{ name: 'Collections' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Collections' }">Collections</router-link>
+        <router-link   v-if="!interactiveMode" :to="{ name: 'Events' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Events' }">Events</router-link>
+        <router-link   :to="{ name: 'About' }" class="nav-button" :class="{ active: this.$route.name === 'About' }">About
+        </router-link>
+        <router-link   :to="{ name: 'Terms of Use' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Terms of Use' }">Terms of Use</router-link>
+        <router-link   :to="{ name: 'Accessibility Statement' }" class="nav-button"
+          :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
+
+      </div>
+    </div>
+
+    <!-- MOBILE MENU (shows only when hamburger is clicked) -->
+    <div class="mobile-menu" v-if="isMobileMenuOpen">
+         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
         <router-link v-if="!interactiveMode" :to="{ name: 'Assetory' }" class="nav-button"
           :class="{ active: this.$route.name === 'Assetory' }">Assetory</router-link>
@@ -384,7 +513,6 @@ a {
         <router-link :to="{ name: 'Accessibility Statement' }" class="nav-button"
           :class="{ active: this.$route.name === 'Accessibility Statement' }">Accessibility Statement</router-link>
 
-      </div>
     </div>
 
     <!-- Accessibility Menu -->

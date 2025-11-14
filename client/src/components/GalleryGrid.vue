@@ -551,6 +551,7 @@ export default {
   padding: 1.25rem 1.5rem;
   flex-direction: column;
   align-items: flex-start;
+  flex-wrap: wrap;
   gap: 1.5rem;
 }
 
@@ -590,6 +591,7 @@ export default {
 
 }
 
+
 .galleryGridAboutPage {
   display: flex;
   width: 100%;
@@ -597,11 +599,13 @@ export default {
   gap: 2.94rem;
   flex-wrap: wrap;
   background-color: var(--background-color);
+  /* padding-left: 5.53rem; */
+  /* padding-right: 5.53rem; */
 }
 
 
 .galleryCardAboutPage {
-  display: flex;
+  display: flex;  
   width: 20.25rem;
   height: 23.125rem;
   flex-direction: column;
@@ -691,5 +695,63 @@ export default {
 
 .about-paragraph {
   overflow-y: auto;
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+.aboutPage {  
+  width: 100%;
+  margin: auto;
+  padding: 1.25rem 1.5rem;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.meetTheTeamHeader {
+  width: 100%;
+  background-color: var(--primary-color);
+  text-align: center;
+  font-family: var(--font-family-Decorative);
+  color: var(--secondary-color);
+  border: none;
+  border-radius: 12px;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+
+.eventsGalleryGrid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+  padding-left: 5.53rem;
+  padding-right: 5.53rem;
+  align-items: center;
+}
+
+
+
+.eventsGalleryCard {
+  display: flex;
+  width: 100%;
+  height: auto;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  border: 1px solid var(--primary-color);
+  /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
+  background-color: #fff;
+
+
+}
 }
 </style>

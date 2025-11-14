@@ -376,6 +376,91 @@ export default {
 .carousel-arrow.right {
   right: 5px;
 }
+
+
+/* MOBILE FIXES */
+@media (max-width: 768px) {
+
+  /* space around the return button */
+  .returnButton {
+    margin-left: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* main info container */
+  .collection-details-container,
+  .collection-details,
+  .image-banner-collection,
+  .collection-assets {
+    width: 100% !important;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem;
+  }
+
+  /* banner image full width */
+  .image-banner-collection,
+  .banner-image-collection {
+    width: 100%;
+  }
+
+  /* artist banner */
+  .image-banner-artist {
+    width: 12rem;
+    height: auto;
+  }
+
+  /* collection card layout: stack on mobile */
+  .collection-card-content {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .collection-card-image,
+  .collection-card-video {
+    width: 100%;
+  }
+
+  /* text fills the width */
+  .collection-card-text {
+    width: 100%;
+    font-size: 0.95rem;
+  }
+
+  /* asset grid: turn into 1 column */
+  .collection-assets-card-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .collection-assets-card {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+  }
+
+  .collection-assets-image {
+    width: 100%;
+    height: auto;
+  }
+
+  /* carousel – maintain responsiveness */
+  .carousel-image {
+    max-width: 70%;
+  }
+
+  /* shrink headings */
+  .collection-details h2 {
+    font-size: 1.25rem;
+  }
+
+  .collection-details h3 {
+    font-size: 1.1rem;
+  }
+}
+
+
 </style>
 
 

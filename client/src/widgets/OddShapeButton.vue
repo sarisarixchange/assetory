@@ -10,12 +10,12 @@
             <router-link :to="to" class="button-text">
                 <span class="label">{{ label }}</span>
                 <!-- Either show text icon or image icon -->
-                <img v-if="iconSrc" class="icon-img" :src="iconSrc" :alt="iconAlt" /> 
+                <img v-if="iconSrc" class="icon-img"   :src="isHovered ? hoverIconSrc : iconSrc" :alt="iconAlt" />
                 <span v-else-if="iconText" class="icon-text" aria-hidden="true">
                     {{ iconText }}
                 </span>
 
-                
+
             </router-link>
         </foreignObject>
     </svg>
@@ -29,13 +29,17 @@ const props = defineProps({
     label: { type: String, default: 'Learn More' },
     iconText: { type: String, default: '→' },
     iconSrc: { type: String, default: '' },  // e.g. "/icons/arrow-right-black.svg"
-    iconAlt: { type: String, default: 'button icon' },    
+    iconAlt: { type: String, default: 'button icon' },
+    hoverIconSrc: String,   // <-- new
     fillColor: { type: String, default: 'var(--secondary-color-left-box)' },
     hoverColor: { type: String, default: 'var(--hover-color-left-box)' },
     strokeColor: { type: String, default: 'var(--homepage-left-card-button-border-color)' },
 })
 
 const isHovered = ref(false)
+
+
+
 </script>
 
 <style scoped>
@@ -65,26 +69,31 @@ const isHovered = ref(false)
     height: 100%;
     display: flex;
     flex-shrink: 0;
-    color: var(--primary-color);
+    /* color: var(--primary-color); */
     display: flex;
     /* justify-content: space-between; */
     border-radius: 0.5rem;
     align-items: center;
+}
 
+.button-text:hover {
+
+    color: var(--hover-text-color);
 }
 
 
 
 .iconText {
     font-family: var(--font-family-Decorative);
-
 }
 
+
+
 .icon-img {
-  width: 1rem;
-  height: 1rem;
-  object-fit: contain;
-  display: inline-block;
-  /* margin-left: 0.5rem; */
+    width: 1rem;
+    height: 1rem;
+    object-fit: contain;
+    display: inline-block;
+    /* margin-left: 0.5rem; */
 }
 </style>

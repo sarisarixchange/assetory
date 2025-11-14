@@ -8,7 +8,7 @@ import collections from '/src/data/collections.json';
 import LogoSection from '../components/LogoSection.vue';
 import OddShapeButton from '../widgets/OddShapeButton.vue';
 
- 
+
 export default {
     components: {
         AccessibilityMenu, // Register the AccessibilityMenu component
@@ -25,6 +25,8 @@ export default {
             collectionsBasePath: 'images/collections/',
             eventsBasePath: 'images/events/',
             marqueeBasePath: 'images/marquee/',
+
+            iconHoveredSrc: '/icons/arrow-right-black.svg',
 
             randomArtistImage: null,
             randomEventImage: null,
@@ -225,6 +227,7 @@ export default {
                 this.areFooterImagesGrayscaleVisible = false;
                 this.areFooterImagesHighContrastVisible = false;
                 this.areFooterImagesWCAGcolorsVisible = false;
+                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
 
             } else if (payload.theme === "originalInteractive") {
 
@@ -250,6 +253,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-grayscale';
+                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
 
             } else if (payload.theme === "grayscale") {
 
@@ -275,6 +279,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-grayscale';
+                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
 
             } else if (payload.theme === "highContrast") {
                 this.isDefaultCardVisible = false;
@@ -299,30 +304,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-highContrast';
-
-            } else if (payload.theme === "wcag") {
-
-                this.isPinkLeftCardIconVisible = false
-                this.isGrayLeftCardIconVisible = false
-                this.isHighContrastLeftCardIconVisible = false
-                this.isWCAGLeftCardIconVisible = true
-                // center-top-box
-                this.arePinkTopCenterCardSampleImagesVisible = true;
-                this.areGrayTopCenterCardSampleImagesVisible = false;
-                this.areHighContrastTopCenterCardSampleImagesVisible = false;
-                // other boxes icons
-                this.isDecoractionCardSubtitleDefault = false;
-                this.isDecoractionCardSubtitlePink = false;
-                this.isDecoractionCardSubtitleGray = false;
-                this.isDecoractionCardSubtitleHighContrast = false;
-                this.isDecoractionCardSubtitleWCAG = true;
-                // footer images
-                this.areFooterImagesDefaultVisible = false;
-                this.areFooterImagesGrayscaleVisible = false;
-                this.areFooterImagesHighContrastVisible = false;
-                this.areFooterImagesWCAGcolorsVisible = true;
-                // background image
-                this.currentBackgroundLayer = 'background-layer-wcag';
+                this.iconHoveredSrc = '/icons/arrow-right-white.svg';
 
             }
         },
@@ -410,16 +392,24 @@ export default {
 /* Large screens (desktops) */
 .cardsContainer {
     /* background-color: red; */
-    display: flex;
+    display: flex;    
     margin: auto;
     width: 51.8125rem;
-    height: 43.4375rem;
+    /* height: 43.4375rem; */
+    justify-content: center;
+    /* Center cards horizontally */
     flex-shrink: 0;
     gap: 3rem;
-
 }
 
-
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .cardsContainer {
+    flex-wrap: wrap;
+    width: 100%;            /* Use full screen width */
+    gap: 1rem;              /* Smaller gap for mobile */
+  }
+}
 
 /* box sizes new design */
 .cardsContainerLeftSide {
@@ -863,101 +853,103 @@ export default {
     height: 0.71619rem;
 }
 
-    .right-bottom-box-heading {
-        width: 23.62rem;
-    }
+.right-bottom-box-heading {
+    width: 23.62rem;
+}
 
-    .right-bottom-box-photo img {
-        display: flex;
-        height: 8.25rem;
-        padding: 0.5rem;
-        justify-content: center;
-        align-items: center;
-        gap: 1.25rem;
-        align-self: stretch;
-    }
+.right-bottom-box-photo img {
+    display: flex;
+    height: 8.25rem;
+    padding: 0.5rem;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    align-self: stretch;
+}
 
 
 
-    .right-bottom-box-action-call {
-        display: flex;
-        border-radius: 0.5rem;
-        font-family: var(--font-family-Decorative);
-        color: var(--primary-color);
-        font-size: 1.25rem;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        letter-spacing: -0.0625rem;
-        align-self: stretch;
-    }
+.right-bottom-box-action-call {
+    display: flex;
+    border-radius: 0.5rem;
+    font-family: var(--font-family-Decorative);
+    color: var(--primary-color);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.0625rem;
+    align-self: stretch;
+}
 
-    .right-bottom-box-call-action {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        width: 100%;
-        height: 100%;
-        display: flex;
+.right-bottom-box-call-action {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-shrink: 0;
+    color: var(--primary-color);
+    display: flex;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    align-items: center;
+    background-color: transparent;
+    margin-right: 5rem;
+}
+
+
+
+.right-bottom-box-goto-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 400;
+    padding-right: 0rem;
+
+}
+
+.right-bottom-box-goto-action img {
+    width: 1.45881rem;
+    height: 0.96119rem;
+}
+
+.left-top-box:has(.left-top-box-action-call:hover),
+.right-top-box:has(.right-top-box-action-call:hover),
+.right-bottom-box:has(.right-bottom-box-action-call:hover) {
+    box-shadow: -4px 4px 0 0 var(--primary-color);
+}
+
+
+
+
+/* FOOTER */
+
+.footer {
+    /* flex: 0 0 auto; */
+    background-image: url("/images/logos/logos-condensed.svg");
+    background-size: contain;
+    background-color: var(--background-color);
+    background-repeat: no-repeat;
+    display: flex;
+    height: 6.6875rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
+    margin-left: 2.28rem;
+    margin-right: 2.28rem;
+    margin-bottom: 0.5rem;
+}
+
+
+/* Medium desktops / laptops (<= 1400px) */
+@media (max-width: 1400px) {
+    .footer-image {
+        width: 4%;
+        object-fit: contain;
         flex-shrink: 0;
-        color: var(--primary-color);
-        display: flex;
-        justify-content: space-between;
-        border-radius: 0.5rem;
-        align-items: center;
-        background-color: transparent;
-        margin-right: 5rem;
     }
-
-
-
-    .right-bottom-box-goto-action {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 400;
-        padding-right: 0rem;
-
-    }
-
-    .right-bottom-box-goto-action img {
-        width: 1.45881rem;
-        height: 0.96119rem;
-    }
-
-    .left-top-box:has(.left-top-box-action-call:hover),
-    .right-top-box:has(.right-top-box-action-call:hover),
-    .right-bottom-box:has(.right-bottom-box-action-call:hover) {
-        box-shadow: -4px 4px 0 0 var(--primary-color);
-    }
-
-
-
-
-    /* FOOTER */
-
-    .footer {
-        /* flex: 0 0 auto; */
-        background-image: url("/images/logos/logos-condensed.svg");
-        background-size: contain;
-        background-color: var(--background-color);
-        display: flex;
-        height: 6.6875rem;
-        border-radius: 0.5rem;
-        border: 1px solid var(--primary-color);
-        margin-left: 2.28rem;
-        margin-right: 2.28rem;
-        margin-bottom: 0.5rem;
-    }
-
-
-    /* Medium desktops / laptops (<= 1400px) */
-    @media (max-width: 1400px) {
-        .footer-image {
-            width: 4%;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-    }</style>
+}
+</style>
 
 <template>
 
@@ -1087,9 +1079,9 @@ export default {
                         @mouseleave="isAboutHovered = false">
 
 
-                        <OddShapeButton label="Open Projects (Coming soon!)" iconSrc='/icons/arrow-right-black.svg' iconAlt=""
-                            :to="{ name: '' }" fillColor="var(--background-color)"
-                            hoverColor="var(--hover-color-main)" />
+                        <OddShapeButton label="Open Projects (Coming soon!)" iconSrc='/icons/arrow-right-black.svg'
+                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }"
+                            fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
 
 
                     </div>
@@ -1130,9 +1122,9 @@ export default {
                     <div class="right-bottom-box-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
 
-                        <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-black.svg' iconAlt=""
-                            :to="{ name: 'Assetory' }" fillColor="var(--background-color)"
-                            hoverColor="var(--hover-color-main)" />
+                        <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-black.svg'
+                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Assetory' }"
+                            fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
                     </div>
                 </div>
             </div>

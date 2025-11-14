@@ -23,6 +23,8 @@ export default {
             collectionsBasePath: 'images/collections/',
             eventsBasePath: 'images/events/',
             marqueeBasePath: 'images/marquee/',
+            iconHoveredSrc: '/icons/arrow-right-white.svg',
+
 
             randomArtistImage: null,
             randomEventImage: null,
@@ -224,6 +226,8 @@ export default {
                 this.areFooterImagesHighContrastVisible = false;
                 this.areFooterImagesWCAGcolorsVisible = false;
 
+                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
+
             } else if (payload.theme === "originalInteractive") {
 
                 this.isDefaultCardVisible = false;
@@ -248,6 +252,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-grayscale';
+                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
 
             } else if (payload.theme === "grayscale") {
 
@@ -273,6 +278,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-grayscale';
+                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
 
             } else if (payload.theme === "highContrast") {
                 this.isDefaultCardVisible = false;
@@ -297,30 +303,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-highContrast';
-
-            } else if (payload.theme === "wcag") {
-
-                this.isPinkLeftCardIconVisible = false
-                this.isGrayLeftCardIconVisible = false
-                this.isHighContrastLeftCardIconVisible = false
-                this.isWCAGLeftCardIconVisible = true
-                // center-top-box
-                this.arePinkTopCenterCardSampleImagesVisible = true;
-                this.areGrayTopCenterCardSampleImagesVisible = false;
-                this.areHighContrastTopCenterCardSampleImagesVisible = false;
-                // other boxes icons
-                this.isDecoractionCardSubtitleDefault = false;
-                this.isDecoractionCardSubtitlePink = false;
-                this.isDecoractionCardSubtitleGray = false;
-                this.isDecoractionCardSubtitleHighContrast = false;
-                this.isDecoractionCardSubtitleWCAG = true;
-                // footer images
-                this.areFooterImagesDefaultVisible = false;
-                this.areFooterImagesGrayscaleVisible = false;
-                this.areFooterImagesHighContrastVisible = false;
-                this.areFooterImagesWCAGcolorsVisible = true;
-                // background image
-                this.currentBackgroundLayer = 'background-layer-wcag';
+                this.iconHoveredSrc = '/icons/arrow-right-white.svg';
 
             }
         },
@@ -343,9 +326,8 @@ export default {
 
     flex-direction: column;
     width: 100vw;
-    /* height: var(--container-height, 100vh); */
     height: 100vh;
-    /* default */
+
 }
 
 
@@ -496,14 +478,17 @@ export default {
 /* Large screens (desktops) */
 .cardsContainer {
     /* background-color: red; */
+    justify-content: center;
     display: flex;
     margin: auto;
     width: 52.5rem;
-    height: 36rem;
+    /* height: 36rem; */
     flex-shrink: 0;
     gap: 3rem;
 
 }
+
+
 
 
 
@@ -546,7 +531,7 @@ export default {
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    background: var(--background-color);    
+    background: var(--background-color);
     width: 25.3125rem;
     height: 16.875rem;
     border-radius: 0.4375rem;
@@ -558,15 +543,15 @@ export default {
 }
 
 .left-top-box {
-    width: 100%;    
-    height: 16rem;    
+    width: 100%;
+    height: 16rem;
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     /* gap: 0.5rem; */
-    border-radius: inherit;    
+    border-radius: inherit;
 }
 
 /* LEFT BOX CONTENTS */
@@ -680,7 +665,7 @@ export default {
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    background: var(--background-color);    
+    background: var(--background-color);
     width: 25.3125rem;
     height: 16.875rem;
     border-radius: 0.4375rem;
@@ -692,7 +677,7 @@ export default {
 }
 
 .left-bottom-box {
-    width: 100%;    
+    width: 100%;
     height: 16rem;
     /* background-color: blue; */
     display: flex;
@@ -701,7 +686,7 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: inherit;    
+    border-radius: inherit;
 }
 
 
@@ -878,7 +863,7 @@ export default {
 }
 
 .right-top-box {
-    width: 100%;    
+    width: 100%;
     height: 16rem;
     /* background-color: blue; */
     display: flex;
@@ -887,7 +872,7 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: inherit;    
+    border-radius: inherit;
 }
 
 
@@ -1018,7 +1003,7 @@ export default {
     justify-content: center;
     align-items: center;
     align-self: stretch;
-    background: var(--background-color);    
+    background: var(--background-color);
     width: 25.3125rem;
     height: 16.875rem;
     border-radius: 0.4375rem;
@@ -1030,15 +1015,15 @@ export default {
 }
 
 .right-bottom-box {
-    width: 100%;    
-    height: 16rem;    
+    width: 100%;
+    height: 16rem;
     display: flex;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
-    border-radius: inherit;    
+    border-radius: inherit;
 }
 
 
@@ -1168,9 +1153,11 @@ export default {
 .left-bottom-box:has(.left-bottom-box-action-call:hover),
 .right-top-box:has(.right-top-box-action-call:hover),
 .right-bottom-box:has(.right-bottom-box-action-call:hover) {
-box-shadow:
-  -4px 4px 0 0 var(--primary-color), /* original */
-   0px 4px 0 0 var(--primary-color); /* extra to the right */
+    box-shadow:
+        -4px 4px 0 0 var(--primary-color),
+        /* original */
+        0px 4px 0 0 var(--primary-color);
+    /* extra to the right */
 }
 
 
@@ -1661,6 +1648,8 @@ box-shadow:
         object-fit: contain;
         flex-shrink: 0;
     }
+
+
 }
 
 
@@ -1736,6 +1725,32 @@ box-shadow:
 
 #artistsTile.hovered {
     filter: url(#tileShadowArtists);
+}
+
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+
+    .grid-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        /* height: 90vh; */
+        /* background-color: red; */
+    }
+
+
+    .cardsContainer {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+        justify-self: center
+    }
+
+
 }
 </style>
 
@@ -1825,8 +1840,8 @@ box-shadow:
                             @mouseleave="isEventsHovered = false">
 
                             <OddShapeButton label="Open Events" iconSrc="/icons/arrow-right-black.svg"
-                                :to="{ name: 'Events' }" fillColor="var(--secondary-color-left-box)"
-                                hoverColor="var(--hover-color)" />
+                                :hoverIconSrc="iconHoveredSrc" :to="{ name: 'Events' }"
+                                fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color)" />
 
 
                         </div>
@@ -1868,8 +1883,8 @@ box-shadow:
                             @mouseleave="isCollectionsHovered = false">
 
                             <OddShapeButton label="Open Collections" iconSrc="/icons/arrow-right-black.svg"
-                                :to="{ name: 'Collections' }" fillColor="var(--secondary-color-left-box)"
-                                hoverColor="var(--hover-color)" />
+                                :hoverIconSrc="iconHoveredSrc" :to="{ name: 'Collections' }"
+                                fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color)" />
 
                         </div>
                     </div>
@@ -1903,8 +1918,8 @@ box-shadow:
                             @mouseleave="isArtistsHovered = false">
 
                             <OddShapeButton label="Open Artists" iconSrc="/icons/arrow-right-black.svg"
-                                :to="{ name: 'Artists' }" fillColor="var(--secondary-color-left-box)"
-                                hoverColor="var(--hover-color)" />
+                                :hoverIconSrc="iconHoveredSrc" :to="{ name: 'Artists' }"
+                                fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color)" />
                         </div>
                     </div>
                 </div>
@@ -2331,7 +2346,7 @@ box-shadow:
                 <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
 
-                 <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
@@ -2340,7 +2355,7 @@ box-shadow:
                 <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
 
-             <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
@@ -2349,7 +2364,7 @@ box-shadow:
                 <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
 
-               <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
                 <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">

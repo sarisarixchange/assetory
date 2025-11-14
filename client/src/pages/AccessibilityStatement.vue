@@ -64,7 +64,7 @@ export default {
 }
 
 /* Accessibility statement should grow to fill available space */
-.accessibility-statement {  
+.accessibility-statement {
   width: 53.5rem;
   margin: auto;
   margin-top: 1.5rem;
@@ -94,7 +94,29 @@ export default {
   font-size: 1.5rem;
   /* line-height: 1.5; */
   text-align: justify;
+}
 
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+  .accessibility-page-content {
+    padding: 1rem;
+  }
+
+  .accessibility-statement {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .accessibility-statement h2 {
+    font-size: 1.5rem;
+  }
+
+  .accessibility-statement p,
+  .accessibility-statement li {
+    font-size: 1.25rem;
+    overflow-wrap: break-word;
+  }
 }
 </style>
 
@@ -106,27 +128,30 @@ export default {
     <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
 
-<div class="accessibility-page-content">
-    <div class="accessibility-statement">
-      <h2>Accessibility Statement</h2>
+    <div class="accessibility-page-content">
+      <div class="accessibility-statement">
+        <h2>Accessibility Statement</h2>
 
-      <!-- Replace with accessibility statement below -->
-      <p>
-        Our website is still a work in progress. We are working with our accessibility consultant to ensure compliance
-        with accessibility standards and will publish a full accessibility statement once the website is complete. <br>
-        </br>
-        If you have any questions or feedback regarding the accessibility of our website, please fill out the following
-        Google Form: <a href="https://forms.gle/RhMw4uxXS19Z5qvj7" target="_blank" rel="noopener">Accessibility Feedback
-          Form</a>
-      </p>
+        <!-- Replace with accessibility statement below -->
+        <p>
+          Our website is still a work in progress. We are working with our accessibility consultant to ensure compliance
+          with accessibility standards and will publish a full accessibility statement once the website is complete.
+          <br>
+          </br>
+          If you have any questions or feedback regarding the accessibility of our website, please fill out the
+          following
+          Google Form: <a href="https://forms.gle/RhMw4uxXS19Z5qvj7" target="_blank" rel="noopener">Accessibility
+            Feedback
+            Form</a>
+        </p>
 
+      </div>
     </div>
-</div>
     <BackTopButton />
 
     <!-- footer -->
 
     <Footer :theme="currentTheme" />
-  
+
   </div>
 </template>

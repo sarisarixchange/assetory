@@ -128,6 +128,48 @@ h2 {
   color: var(--primary-color);
 }
 
+@media (max-width: 768px) {
+  .non-homepage-footer {
+    flex-direction: column;
+    height: auto;           /* let it grow with content */
+    padding: 1.5rem;        /* smaller padding */
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .leftSideFooter,
+  .rightSideFooter {
+    width: 100%;           /* full width for each section */
+    display: flex;
+    flex-direction: column;
+    align-items: center;   /* center logos and links */
+    gap: 1rem;
+  }
+
+  .rightSideFooter {
+    justify-content: center; /* center all link blocks */
+    gap: 1.5rem;
+  }
+
+  .footer-links {
+    align-items: center;    /* center links */
+    text-align: center;
+  }
+
+  .footerLogo img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .footerCopyright h2,
+  .footerCopyright h3,
+  .acknowledgements p,
+  .footer-links a,
+  .footer-links h2 {
+    font-size: 0.875rem;  /* smaller text for mobile */
+  }
+}
+
 
 </style>
 

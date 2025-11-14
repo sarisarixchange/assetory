@@ -97,6 +97,34 @@ export default {
   text-align: justify;
 
 }
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+
+
+  .terms-of-use-page-content {
+    padding: 1rem;
+
+  }
+
+  .terms-of-use {
+    width: 100%;
+    padding: 1.5rem;
+    margin: auto;
+
+  }
+
+  .terms-of-use h2 {
+    font-size: 1.5rem;
+    /* smaller heading */
+  }
+
+  .terms-of-use p,
+  .terms-of-use li {
+    font-size: 1.25rem;
+    overflow-wrap: break-word;
+  }
+}
 </style>
 
 

@@ -77,6 +77,7 @@ h2 {
   /* margin: auto; */
   margin-left: 6.25rem; 
    margin-right: 6.25rem;
+   background-color: var(--background-color);
 }
 
 .leftSideFooter{

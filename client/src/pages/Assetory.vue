@@ -1648,7 +1648,7 @@ box-shadow:
 /* larger desktops / laptops (> 1400px) */
 
 .footer-image {
-    width: 3%;
+    width: 4%;
     object-fit: contain;
     flex-shrink: 0;
     /* margin-bottom: 3rem; */
@@ -2322,41 +2322,41 @@ box-shadow:
 
             <div v-show="areFooterImagesHighContrastVisible" class="footer-images">
 
-                <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
 
-                <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
+                 <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
 
-                <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
+             <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
 
-                <img :src="marqueeBasePath + 'item1-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-highContrast.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-highContrast.png'" alt="" class="footer-image">
+               <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
             </div>
 
 

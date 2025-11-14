@@ -31,6 +31,7 @@ export default {
       // svgButtons
       currentSvgButton: 'svgButtonDefault',
 
+
       // links decoration
 
       linkDecoration: "none", // Stores the value of --link-decoration
@@ -43,13 +44,18 @@ export default {
   },
 
   mounted() {
-    // call saved accessibility settings
     this.loadSettings();
-    // Get the actual current root font size when component mounts
-    // this.baseFontSize = parseFloat(getComputedStyle(document.documentElement).fontSize);
+
+  },
+  computed: {
+
+    isHomepage() {
+      return this.$route.path === '/';
+    },
 
 
   },
+
   methods: {
 
     applyTheme(theme) {
@@ -58,6 +64,10 @@ export default {
       if (theme === 'grayscale') {   // grayscale Theme
         this.currentTheme = 'grayscale'; // Update currentTheme
 
+        root.style.setProperty('--active-color-main', '#828282');
+        root.style.setProperty('--active-text-color-main', '#FFFEFA');
+        root.style.setProperty('--hover-color-main', '#C8C8C8');
+        root.style.setProperty('--hover-text-color-main', '#2B2B2B');
 
         root.style.setProperty('--background-color', '#FFFFFF');
         root.style.setProperty('--background-color-headings', '#828282');
@@ -100,25 +110,32 @@ export default {
 
       } else if (theme === 'highContrast') {  // high contrast theme
         this.currentTheme = 'highContrast'; // Update currentTheme
-        root.style.setProperty('--background-color', '#FFFEFA');
-        root.style.setProperty('--primary-color', '#000000');
-        root.style.setProperty('--background-color-headings', '#525252');
+
+        root.style.setProperty('--active-color-main', '#019AED');
+        root.style.setProperty('--active-text-color-main', '#FFFEFA');
+        root.style.setProperty('--hover-color-main', '#019AED');
+        root.style.setProperty('--hover-text-color-main', '#FFFEFA');
+
+
+        root.style.setProperty('--background-color', '#FFFFFF');
+        root.style.setProperty('--background-color-headings', '#000000');
+        root.style.setProperty('--return-button-background-color', '#000000');
+        root.style.setProperty('--return-button-text-color', '#FFFFFF');
+        root.style.setProperty('--primary-color', '#2B2B2B');
         root.style.setProperty('--secondary-color', '#FFFFFF');
-        root.style.setProperty('--navigation-buttons-border-color', '#FF42D6');
-        root.style.setProperty('--shadow', '#F1AFDD');
-        root.style.setProperty('--hover-color', '#FF42D6');
-        root.style.setProperty('--hover-text-color', '#000000');
-        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
+        root.style.setProperty('--navigation-buttons-border-color', '#2B2B2B');
+        root.style.setProperty('--homepage-card-buttons-border-color', '#2B2B2B');
+        root.style.setProperty('--hover-color', '#019AED');
+        root.style.setProperty('--hover-text-color', '#2B2B2B');
+        root.style.setProperty('--shadow', '#2B2B2B');
 
 
-        root.style.setProperty('--primary-color-left-box', '#000000');
+        root.style.setProperty('--primary-color-left-box', '#2B2B2B');
         root.style.setProperty('--secondary-color-left-box', '#FFFFFF');
         root.style.setProperty('--text-color-left-box', '#FFFFFF');
-        root.style.setProperty('--hover-color-left-box', '#FF42D6');
-        root.style.setProperty('--hover-text-color-left-box', '#000000');
-        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
-
-
+        root.style.setProperty('--hover-color-left-box', '#C8C8C8');
+        root.style.setProperty('--hover-text-color-left-box', '#2B2B2B');
+        root.style.setProperty('--homepage-left-card-button-border-color', '#2B2B2B');
 
         // event emission
         this.$emit('theme-changed', {
@@ -137,46 +154,13 @@ export default {
         this.currentResetIcon = 'resetIconHighContrast',
           this.currentSvgButton = 'svgButtonHighContrast'
 
-      } else if (theme === 'wcag') { // WCAG colors theme
-        this.currentTheme = 'wcag'; // Update currentTheme
-        root.style.setProperty('--primary-color', '#A80084');
-        root.style.setProperty('--background-color', '#FFFEFA');
-        root.style.setProperty('--background-color-headings', '#525252');
-        root.style.setProperty('--secondary-color', '#FFEDF4');
-        root.style.setProperty('--navigation-buttons-border-color', '#F1AFDD');
-        root.style.setProperty('--homepage-card-buttons-border-color', 'transparent');
-        root.style.setProperty('--shadow', '#F1AFDD');
-        root.style.setProperty('--hover-color', '#A80084');
-        root.style.setProperty('--hover-text-color', '#FFFFFF');
-        root.style.setProperty('--homepage-left-card-button-border-color', 'transparent');
-
-        root.style.setProperty('--primary-color-left-box', '#E7EB17');
-        root.style.setProperty('--secondary-color-left-box', '#FCFCCE');
-        root.style.setProperty('--text-color-left-box', '#A80084');
-        root.style.setProperty('--hover-color-left-box', '#E7EB17');
-        root.style.setProperty('--hover-text-color-left-box', '#A80084');
-
-        // event emission
-        this.$emit('theme-changed', {
-          theme: 'wcag',
-          currentBackgroundLayer: 'background-layer',
-        });
-
-        // acc menu icons
-        this.currentNavAccessibilityIcon = 'navAccessibilityButtonWCAGcolorPalette'
-        this.currentIncreaseTextIcon = 'increaseTextIconWCAG'
-        this.currentDecreaseTextIcon = 'decreaseTextIconWCAG'
-        this.currentGrayScaleIcon = 'grayscaleIconWCAG'
-        this.currentHighContrastIcon = 'highContrastIconWCAG'
-        this.currentLinksUnderlineIcon = 'linksUnderlineIconWCAG'
-        this.currentReadableFontIcon = 'readableFontIconWCAG'
-        this.currentWcagColoursIcon = 'wcagColoursIconWCAG'
-        this.currentResetIcon = 'resetIconWCAG',
-          this.currentSvgButton = 'svgButtonDefault'
-
       } else if (theme === 'originalInteractive') {
         this.currentTheme = 'originalInteractive'; // Update currentTheme
 
+        root.style.setProperty('--active-color-main', '#828282');
+        root.style.setProperty('--active-text-color-main', '#FFFEFA');
+        root.style.setProperty('--hover-color-main', '#C8C8C8');
+        root.style.setProperty('--hover-text-color-main', '#2B2B2B');
 
 
         root.style.setProperty('--background-color', '#FFFEFA');
@@ -217,6 +201,12 @@ export default {
       } else {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
+
+        root.style.setProperty('--active-color-main', '#D400A6');
+        root.style.setProperty('--active-text-color-main', '#FFFEFA');
+        root.style.setProperty('--hover-color-main', '#FFEDF4');
+        root.style.setProperty('--hover-text-color-main', '#000000');
+
 
         root.style.setProperty('--background-color', '#FFFEFA');
         root.style.setProperty('--background-color-headings', '#FD5733');
@@ -305,13 +295,7 @@ export default {
         const settings = JSON.parse(savedSettings);
         console.log('AccessibilityMenu: Loaded settings from localStorage:', settings);
 
-
         this.isMenuVisible = settings.isMenuVisible ?? this.isMenuVisible,
-          // Load the font size and apply it
-          // this.baseFontSize = parseFloat(settings.baseFontSize) || this.baseFontSize;
-          // this.fontSize = parseFloat(settings.fontSize) || this.fontSize;
-          // const pixelSize = this.baseFontSize * this.fontSize;
-          // document.documentElement.style.setProperty('--dynamic-font-size', `${pixelSize}px`);
 
           this.fontSize = parseFloat(settings.fontSize) || 1;
         document.documentElement.style.setProperty('--font-scale', this.fontSize);
@@ -350,26 +334,26 @@ export default {
       this.saveSettings();
     },
 
-    updateContainerHeight() {
-      // Multiply base 100vh by the font scale
-      const newHeight = 100 * this.fontSize;
-      document.documentElement.style.setProperty('--container-height', `${newHeight}vh`);
+    // updateContainerHeight() {
+    //   // Multiply base 100vh by the font scale
+    //   const newHeight = 100 * this.fontSize;
+    //   document.documentElement.style.setProperty('--container-height', `${newHeight}vh`);
 
-      // Allow overflow when larger than 100
-      const container = document.querySelector('.grid-container');
-      if (this.fontSize > 1) {
-        container.style.overflow = 'visible';
-      } else {
-        container.style.overflow = 'hidden';
-      }
-    },
+    //   // Allow overflow when larger than 100
+    //   const container = document.querySelector('.grid-container');
+    //   if (this.fontSize > 1) {
+    //     container.style.overflow = 'visible';
+    //   } else {
+    //     container.style.overflow = 'hidden';
+    //   }
+    // },
 
     increaseTextSize() {
       if (this.fontSize < 2) {
         this.fontSize = parseFloat((this.fontSize + 0.1).toFixed(2));
         document.documentElement.style.setProperty('--font-scale', this.fontSize);
         this.saveSettings();
-        this.updateContainerHeight();
+        // this.updateContainerHeight();
       }
     },
 
@@ -379,7 +363,7 @@ export default {
         this.fontSize = parseFloat((this.fontSize - 0.1).toFixed(2));
         document.documentElement.style.setProperty('--font-scale', this.fontSize);
         this.saveSettings();
-        this.updateContainerHeight();
+        // this.updateContainerHeight();
       }
     },
 
@@ -397,7 +381,7 @@ export default {
       // const pixelSize = this.baseFontSize * this.fontSize;
       this.fontSize = 1;
       document.documentElement.style.setProperty('--font-scale', this.fontSize);
-      this.updateContainerHeight();
+      // this.updateContainerHeight();
 
 
       // Step 4: Reset custom link styles
@@ -617,7 +601,6 @@ export default {
 
 .accessibilityButtonDiv:hover {
   color: var(--hover-text-color);
-  /* background-color: var(--primary-color);   */
 }
 
 .svgButtonDefault {
@@ -628,6 +611,7 @@ export default {
 .svgButtonDefault:hover {
   fill: var(--hover-color);
 }
+
 
 .svgButtonGray {
   fill: var(--secondary-color);
@@ -645,6 +629,15 @@ export default {
   fill: var(--hover-color);
 }
 
+/*  */
+.svgButtonHomepage {
+  fill: var(--secondary-color);
+  stroke: var(--navigation-buttons-border-color);
+}
+
+.svgButtonHomepage:hover {
+  fill: var(--hover-color-main);
+}
 
 
 a {
@@ -1198,7 +1191,7 @@ a {
 
   /* Move menu to the right of the button */
   right: auto;
-  top: 17.5rem;
+  top: 15.5rem;
   transform: translateY(-50%);
 }
 </style>
@@ -1220,7 +1213,8 @@ a {
 
 
       <!-- buttons -->
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1232,7 +1226,8 @@ a {
       </svg>
 
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1243,7 +1238,8 @@ a {
         </foreignObject>
       </svg>
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1256,7 +1252,8 @@ a {
 
 
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1269,7 +1266,8 @@ a {
 
 
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1283,7 +1281,8 @@ a {
 
 
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">
@@ -1295,29 +1294,9 @@ a {
       </svg>
 
 
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-        <foreignObject x="0" y="0" width="301" height="31">
-          <button @click="changeToWCAGcolors" class="accessibilityButtonDiv">
-            <span>WCAG AAA Colours</span>
-            <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
-          </button>
-        </foreignObject>
-      </svg>
 
-      <!-- <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
-        <foreignObject x="0" y="0" width="301" height="31">
-          <button @click="changeToOriginalInteractive" class="accessibilityButtonDiv">
-            <span>Interactive Mode</span>
-            <span :class="currentWcagColoursIcon" aria-hidden="true"></span>
-          </button>
-        </foreignObject>
-      </svg> -->
-
-      <svg :class="currentSvgButton" viewBox="0 0 301 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg :class="['svgButtonDefault', { svgButtonHomepage: isHomepage }]" viewBox="0 0 301 31" fill="none"
+        xmlns="http://www.w3.org/2000/svg">
         <path
           d="M0 5C0 2.23858 2.23858 0 5 0H256C258.761 0 261 2.23858 261 5V7.07403C261.397 7.26364 261.785 7.49998 262.158 7.78584C264.425 9.52329 267.575 9.52329 269.842 7.78584C270.215 7.49998 270.603 7.26364 271 7.07403V7C271 3.13401 274.134 0 278 0H294C297.866 0 301 3.13401 301 7V24C301 27.866 297.866 31 294 31H278C274.134 31 271 27.866 271 24V22.4094C270.668 22.2029 270.348 21.9578 270.043 21.6723C267.769 19.5416 264.231 19.5416 261.957 21.6723C261.652 21.9578 261.332 22.2029 261 22.4095V26C261 28.7614 258.761 31 256 31H5.00001C2.23858 31 0 28.7614 0 26V5Z" />
         <foreignObject x="0" y="0" width="301" height="31">

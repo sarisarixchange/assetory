@@ -1005,7 +1005,7 @@ export default {
                     <div class="left-top-box-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
 
-                        <OddShapeButton label="Learn More" iconText="OK" :to="{ name: '' }"
+                        <OddShapeButton label="Learn More" iconText="OK" :to="{ name: 'About' }"
                             fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color-main)" />
                     </div>
                 </div>
@@ -1087,7 +1087,7 @@ export default {
                         @mouseleave="isAboutHovered = false">
 
 
-                        <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-black.svg' iconAlt=""
+                        <OddShapeButton label="Open Projects (Coming soon!)" iconSrc='/icons/arrow-right-black.svg' iconAlt=""
                             :to="{ name: '' }" fillColor="var(--background-color)"
                             hoverColor="var(--hover-color-main)" />
 

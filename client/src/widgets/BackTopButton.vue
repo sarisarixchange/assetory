@@ -32,7 +32,7 @@ export default {
 }
 
 .backTop button {
-  background-color: transparent;
+  background-color: var(--background-color);
   color: var(--primary-color);
   border: 1px solid var(--primary-color);
   border-radius: 0.5625rem;

@@ -12,8 +12,7 @@ export default {
         // default: '../backgrounds/background-event-page-default.svg',
         default: '../backgrounds/background-event-blue.svg',
         grayscale: '../backgrounds/background-event-page-grayscale.svg',
-        highContrast: '../backgrounds/background-event-page-high-contrast.svg',
-        wcag: '../backgrounds/background-event-page-default.svg'
+        highContrast: '../backgrounds/background-event-page-high-contrast.svg'
       }
     };
   },

@@ -184,9 +184,9 @@ export default {
       <div class="galleryCardAboutPage" :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
         v-for="(gallery, index) in currentTeam" :key="'current-' + index">
         <div class="galleryCardImageWrapper">
-        <div class="galleryCardContentAboutPage">
-          <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
-        </div>
+          <div class="galleryCardContentAboutPage">
+            <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
+          </div>
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
@@ -199,7 +199,7 @@ export default {
         </div>
 
         <div class="about-paragraph" v-show="openCurrentIndex === index">
-        <p >{{ gallery.about }}</p>
+          <p>{{ gallery.about }}</p>
         </div>
 
       </div>
@@ -218,9 +218,9 @@ export default {
       <div class="galleryCardAboutPage" :style="{ height: openPastIndex === index ? '30.5624rem' : '23.125rem' }"
         v-for="(gallery, index) in pastTeam" :key="'past-' + index">
         <div class="galleryCardContentAboutPage">
-          <img :src="gallery.thumbnail" 
-          :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
-          class="galleryCardContentImageAboutPage">
+          <img :src="gallery.thumbnail"
+            :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+            class="galleryCardContentImageAboutPage">
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
@@ -254,9 +254,9 @@ export default {
     <div class="eventsGalleryGrid">
       <div class="eventsGalleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="eventsGalleryCardContent">
-          <img :src="gallery.thumbnail" 
-          :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
-          class="galleryCardContentImage">
+          <img :src="gallery.thumbnail"
+            :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+            class="galleryCardContentImage">
         </div>
 
 
@@ -289,7 +289,7 @@ export default {
 
     <div class="galleryGrid">
       <div :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'"
-      v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
+        v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="galleryCardContent">
           <img :src="gallery.thumbnail"
             :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
@@ -411,8 +411,9 @@ export default {
   background-color: #fff;
 }
 
+
 .galleryCardArtists {
-  display: flex;
+  display: flex;  
   width: 20.25rem;
   height: 23.125rem;
   flex-direction: column;
@@ -425,6 +426,7 @@ export default {
   /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
   background-color: #fff;
 }
+
 
 .galleryCardContent {
   height: 18.75rem;
@@ -687,8 +689,7 @@ export default {
   border-color: var(--primary-color);
 }
 
-.about-paragraph{
-overflow-y: auto;
+.about-paragraph {
+  overflow-y: auto;
 }
-
 </style>

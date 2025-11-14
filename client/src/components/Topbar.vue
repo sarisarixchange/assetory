@@ -317,9 +317,9 @@ a {
       <div class="nav-buttons">
         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
-        <router-link to="" class="nav-button-homepage">About
-        </router-link>
-        <router-link to="" class="nav-button-homepage">Projects</router-link>
+        <router-link :to="{name: 'About'}" class="nav-button-homepage">About</router-link>
+        <router-link :to="{name: 'Assetory'}" class="nav-button-homepage">Assetory</router-link>
+        <!-- <router-link to="" class="nav-button-homepage">Projects</router-link> -->
 
       </div>
     </div>

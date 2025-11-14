@@ -546,20 +546,20 @@ export default {
     /* margin-top: 1rem; */
 }
 
-    .logos {
-        /* flex: 0 0 auto; */
-        background-image: url("/images/logos/logos-condensed.svg");
-        background-size: contain;
-        background-color: var(--background-color);
-        display: flex;
-        height: 6.6875rem;
-        border-radius: 0.5rem;
-        border: 1px solid var(--primary-color);
-        margin-top: 1.5rem;
-        margin-left: 2.28rem;
-        margin-right: 2.28rem;
-        /* margin-bottom: 0.5 rem; */
-    }
+.logos {
+    /* flex: 0 0 auto; */
+    background-image: url("/images/logos/logos-condensed.svg");
+    background-size: contain;
+    background-color: var(--background-color);
+    display: flex;
+    height: 6.6875rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--primary-color);
+    margin-top: 1.5rem;
+    margin-left: 2.28rem;
+    margin-right: 2.28rem;
+    /* margin-bottom: 0.5 rem; */
+}
 </style>
 
 <template>
@@ -609,6 +609,9 @@ export default {
 
                 <img class="separator" v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'separator-gray.svg'"
                     alt="">
+                    
+                <img class="separator" v-show="isDecoractionCardSubtitleHighContrast"
+                    :src="iconBasePath + 'separator-highContrast.svg'" alt="">
             </div>
 
             <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top="-4rem" left="50%"

@@ -54,30 +54,26 @@ export default {
       return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
     },
 
-    scrollCarousel(direction) {
-      const track = this.$refs.carouselTrack;
-      if (track) {
-        const scrollAmount = track.clientWidth; // one "page" width
-        if (typeof track.scrollBy === "function") {
-          // modern browsers
-          track.scrollBy({ left: direction * scrollAmount, behavior: "smooth" });
-        } else {
-          // fallback for older browsers
-          track.scrollLeft += direction * scrollAmount;
-        }
-      }
-    },
+    scrollCarousel(direction, index) {
+  const track = this.$refs['carouselTrack_' + index];
+
+  // If Vue returns an array (rare but can happen), pick the first element
+  const el = Array.isArray(track) ? track[0] : track;
+  if (!el) return;
+
+  el.scrollBy({ left: direction * 300, behavior: 'smooth' });
+},
 
     resolveYoutubeUrl(url) {
       const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
       return match ? `https://www.youtube.com/embed/${match[1]}` : '';
     },
- 
+
     getAssetLink(asset) {
       return this.assetLinkFn ? this.assetLinkFn(asset, this.entity) : '#';
     },
- 
-     loadInteractiveMode() {
+
+    loadInteractiveMode() {
       try {
         const savedSettings =
           JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
@@ -86,10 +82,10 @@ export default {
         console.error('Error in loadInteractiveMode:', error);
       }
     },
-    
+
   },
 
-  
+
 };
 </script>
 
@@ -99,14 +95,14 @@ export default {
 }
 
 
-.returnButton {  
+.returnButton {
   margin-left: 12rem;
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
 }
 
 /* collection details */
-.collection-details-container {  
+.collection-details-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,7 +126,7 @@ export default {
   width: 18.75rem;
   height: 18.75rem;
   overflow: hidden;
-  align-self: center;     
+  align-self: center;
   box-sizing: border-box;
   background-color: var(--background-color);
 }
@@ -282,7 +278,7 @@ export default {
 }
 
 .collection-assets-card-container {
-  display: grid;  
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   /* 3 columns */
   gap: 1.25rem 6.125rem;
@@ -336,6 +332,7 @@ export default {
   /* hide scrollbar for Firefox */
   -ms-overflow-style: none;
   /* hide scrollbar for IE/Edge */
+  white-space: nowrap;
 }
 
 .carousel-track::-webkit-scrollbar {
@@ -350,6 +347,8 @@ export default {
   /* adjust per your card size */
   margin-right: 10px;
   border-radius: 1rem;
+  display: inline-block;
+
 }
 
 .carousel-arrow {
@@ -384,7 +383,7 @@ export default {
   <div class="page-container">
     <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
 
-    <!-- Use the ReturnButton component -->     
+    <!-- Use the ReturnButton component -->
     <div class="returnButton">
       <ReturnButton :returnRoute="returnRoute" />
     </div>
@@ -397,8 +396,7 @@ export default {
       <div
         :class="['image-banner', (entityType === 'collection' || entityType === 'event') ? 'image-banner-collection' : 'image-banner-artist']">
         <img :src="bannerImage" alt="Banner Image"
-          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" 
-          />
+          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
       </div>
 
       <!-- Title + Cards -->
@@ -425,14 +423,15 @@ export default {
                 alt="Card Image" class="collection-card-image" />
 
               <div v-else-if="Array.isArray(card.image) && card.image.length" class="carousel">
-                <button class="carousel-arrow left" @click="scrollCarousel(-1)">‹</button>
+               
+                <button class="carousel-arrow left" @click="scrollCarousel(-1, index)">‹</button>
 
-                <div ref="carouselTrack" class="carousel-track">
-                  <img v-for="(img, index) in card.image" :key="index" :src="resolveCardImage(img)" alt="Carousel Image"
+                <div :ref="'carouselTrack_' + index" class="carousel-track">
+                  <img v-for="(img, imgIndex) in card.image" :key="imgIndex" :src="resolveCardImage(img)"
                     class="carousel-image" />
                 </div>
 
-                <button class="carousel-arrow right" @click="scrollCarousel(1)">›</button>
+                <button class="carousel-arrow right" @click="scrollCarousel(1, index)">›</button>
               </div>
 
             </div>
@@ -460,6 +459,6 @@ export default {
     <BackTopButton />
     <Footer :theme="currentTheme" />
   </div>
-  
+
 
 </template>

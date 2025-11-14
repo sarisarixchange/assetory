@@ -12,8 +12,7 @@ export default {
         // default: '../backgrounds/background-collection-default.svg',
         default: '../backgrounds/background-collection-blue.svg',
         grayscale: '../backgrounds/background-collection-page-grayscale.svg',
-        highContrast: '../backgrounds/background-collection-page-high-contrast.svg',
-        wcag: '../backgrounds/background-collection-page-default.svg'
+        highContrast: '../backgrounds/background-collection-page-high-contrast.svg'
       }
     };
   },

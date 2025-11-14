@@ -31,8 +31,7 @@ export default {
         //  default: 'backgrounds/background-artists-page-default.svg',
         default: './backgrounds/background-artists-blue.svg',
         grayscale: './backgrounds/background-artists-page-grayscale.svg',
-        highContrast: './backgrounds/background-artists-page-high-contrast.svg',
-        wcag: './backgrounds/background-artists-page-default.svg'
+        highContrast: './backgrounds/background-artists-page-high-contrast.svg'        
       }
 
     }

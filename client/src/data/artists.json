@@ -1497,7 +1497,7 @@
             {
   "id": 1,
   "name": "Assorted dimsum takeout",
-  "thumbnail": "collection-thumbnail-placeholder.jpeg",
+  "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
   "creator": "Arturo",
   "tags": [
     "chinese food",
@@ -1516,7 +1516,7 @@
 {
   "id": 2,
   "name": "2ScaryCharacterforUE5",
-   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+   "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
 
   "creator": "Arturo Jimenez",
   "tags": [
@@ -1536,7 +1536,7 @@
 {
   "id": 3,
   "name": "3ubercharacter_ue5",
-   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+   "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
 
   "creator": "Arturo Jimenez",
   "tags": [
@@ -1557,7 +1557,7 @@
 {
   "id": 4,
   "name": "new_arttheboy_character",
-   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+   "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
 
   "creator": "Arturo Jimenez",
   "tags": [
@@ -1578,7 +1578,7 @@
 {
   "id": 5,
   "name": "newscaryCharacter",
-   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+   "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
 
   "creator": "Arturo Jimenez",
   "tags": [
@@ -1599,7 +1599,7 @@
 {
   "id": 6,
   "name": "Dinaguan, Chocolate Meat Plate",
-   "thumbnail": "collection-thumbnail-placeholder.jpeg",
+   "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
 
   "creator": "Arturo/ Yakari",
   "tags": [
@@ -1772,7 +1772,7 @@
       {
         "id": 1,
         "name": "Lip glosses and Lip balm",
-        "thumbnail": "collection-thumbnail-placeholder.jpeg",
+        "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
         "creator": "Paryse Reed",
         "tags": [],
         "description": "My friends (Theodora Oyinloye and Alysha Aran) and myself scanned all of our lip balms and lip care items.",
@@ -1805,7 +1805,7 @@
       {
         "id": 1,
         "name": "Scooping the Zucchini",
-        "thumbnail": "collection-thumbnail-placeholder.jpeg",
+        "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
         "creator": "Nasser Al-Shalabi",
         "tags": [],
         "description": "The story about this tool reminded me of my mom. She used to use it to make us a dinner stuffed with rice and meat, and I was sitting on the table trying to help her. But I was not doing a good job because when you scoop the inside you have to be careful to not poke it, and my mom said, “If you keep doing it like that, we won’t have a dinner tonight.”",
@@ -1838,7 +1838,7 @@
       {
         "id": 1,
         "name": "Vaseline Cocoa Radiant",
-        "thumbnail": "collection-thumbnail-placeholder.jpeg",
+        "thumbnail": "../collections/collection-thumbnail-placeholder.jpeg",
         "creator": "Theodora Oyinloye",
         "tags": [],
         "description": "My Vaseline Cocoa Radiant, it’s lotion. 48hr moisture and hydration and I bring it everywhere.",

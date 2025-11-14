@@ -116,7 +116,7 @@ export default {
         with accessibility standards and will publish a full accessibility statement once the website is complete. <br>
         </br>
         If you have any questions or feedback regarding the accessibility of our website, please fill out the following
-        Google Form: <a href="https://forms.gle/3YJm5f6b6Uu4z1Zt7" target="_blank" rel="noopener">Accessibility Feedback
+        Google Form: <a href="https://forms.gle/RhMw4uxXS19Z5qvj7" target="_blank" rel="noopener">Accessibility Feedback
           Form</a>
       </p>
 

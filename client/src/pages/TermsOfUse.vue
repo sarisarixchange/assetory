@@ -132,7 +132,7 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Terms of Use Page"/>
 
 
     <div class="terms-of-use-page-content">

@@ -30,7 +30,7 @@ export default {
             randomEventImage: null,
             randomCollectionImage: null,
 
-          
+
 
             isCollectionsHovered: false,
             isAboutHovered: false,
@@ -70,7 +70,7 @@ export default {
         }
     },
     mounted() {
-        
+
         this.loadInteractiveMode();
         this.updateScale();
         window.addEventListener("resize", this.updateScale);
@@ -163,7 +163,7 @@ export default {
                 console.error('Error in dismissNotification:', error);
             }
         },
-       
+
         loadInteractiveMode() {
             try {
                 const savedSettings =
@@ -1124,15 +1124,20 @@ export default {
     height: 0.96119rem;
 }
 
-.left-top-box:has(.left-top-box-action-call:hover),
-.left-bottom-box:has(.left-bottom-box-action-call:hover),
-.right-top-box:has(.right-top-box-action-call:hover),
-.right-bottom-box:has(.right-bottom-box-action-call:hover) {
-    box-shadow:
-        -4px 4px 0 0 var(--primary-color),
-        /* original */
-        0px 4px 0 0 var(--primary-color);
-    /* extra to the right */
+
+/* This triggers when the box is hovered OR when any child inside it gets focus */
+.left-top-box:hover,
+.left-top-box:focus-within,
+.left-bottom-box:hover,
+.left-bottom-box:focus-within,
+.right-top-box:hover,
+.right-top-box:focus-within,
+.right-bottom-box:hover,
+.right-bottom-box:focus-within {
+    box-shadow: 
+    -4px 4px 0 0 var(--primary-color),
+     0px 4px 0 0 var(--primary-color);
+
 }
 
 
@@ -1679,7 +1684,7 @@ export default {
 
         <!-- New background layer -->
         <div class="topBar">
-            <Topbar ref="topbar" :interactive-mode="interactiveMode"  @theme-changed="updateTheme" />
+            <Topbar ref="topbar" :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Assetory Homepage"/>
         </div>
 
         <!-- background image -->
@@ -1697,15 +1702,15 @@ export default {
                 <div class="left-top-box-container">
                     <div class="left-top-box">
                         <div class="left-top-box-heading">
-                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
                             <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
-                                alt="">
+                                alt="" aria-hidden="true">
                             <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
-                                alt="">
+                                alt="" aria-hidden="true">
                             <img v-show="isHighContrastLeftCardIconVisible"
-                                :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                                :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
                             <img v-show="isWCAGLeftCardIconVisible"
-                                :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
                             <h2>Sari-Sari Xchange</h2>
                         </div>
                         <div class="left-top-box-paragraph">
@@ -1731,24 +1736,24 @@ export default {
                 <div class="left-bottom-box-container">
                     <div class="left-bottom-box">
                         <div class="left-bottom-box-heading">
-                            <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
+                            <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="" aria-hidden="true">
                             <h2>Events</h2>
                         </div>
                         <div class="left-bottom-box-subtitle">
                             <img v-show="isDecoractionCardSubtitleDefault"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitlePink"
-                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleGray"
-                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleHighContrast"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleWCAG"
-                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                             <p>Assets created during SSX events.</p>
                         </div>
                         <div class="left-bottom-box-photo" aria-hidden="true">
-                            <img :src="randomEventImage" alt="">
+                            <img :src="randomEventImage" alt="" aria-hidden="true">
                         </div>
 
 
@@ -1771,25 +1776,25 @@ export default {
                 <div class="right-bottom-box-container">
                     <div class="right-bottom-box">
                         <div class="right-bottom-box-heading">
-                            <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                            <img :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
                             <h2>Artists</h2>
                         </div>
                         <div class="right-bottom-box-subtitle">
                             <img v-show="isDecoractionCardSubtitleDefault"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitlePink"
-                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleGray"
-                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleHighContrast"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleWCAG"
-                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                             <p>Explore community assets created by artists.</p>
 
                         </div>
                         <div class="right-bottom-box-photo" aria-hidden="true">
-                            <img :src="randomArtistImage" alt="">
+                            <img :src="randomArtistImage" alt="" aria-hidden="true">
                         </div>
 
                         <div class="right-bottom-box-action-call" @mouseenter="isArtistsHovered = true"
@@ -1806,26 +1811,26 @@ export default {
                 <div class="right-top-box-container">
                     <div class="right-top-box">
                         <div class="right-top-box-heading">
-                            <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                            <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
                             <h2>Collections</h2>
                         </div>
 
                         <div class="right-top-box-subtitle">
                             <img v-show="isDecoractionCardSubtitleDefault"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitlePink"
-                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleGray"
-                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleHighContrast"
-                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleWCAG"
-                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                             <p>Explore collections by SSX.</p>
                         </div>
 
                         <div class="right-top-box-photo" aria-hidden="true">
-                            <img :src="randomCollectionImage" alt="">
+                            <img :src="randomCollectionImage" alt="" aria-hidden="true">
                         </div>
 
                         <!-- ✅ When hovered, triggers class on the SVG <g> -->
@@ -1864,28 +1869,28 @@ export default {
 
                                 <div class="center-top-box">
                                     <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                                        <img :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
                                         <h2>Artists</h2>
                                     </div>
                                     <div class="other-box-subtitle">
                                         <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                                         <p>Explore community assets created by artists.</p>
 
                                     </div>
                                     <div class="other-box-photos" aria-hidden="true">
                                         <img v-show="arePinkTopCenterCardSampleImagesVisible"
-                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="" aria-hidden="true">
                                         <img v-show="areGrayTopCenterCardSampleImagesVisible"
-                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="" aria-hidden="true">
                                         <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
-                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                            :src="artistBasePath + 'Thumbnail_Anonymous.png'" alt="" aria-hidden="true">
                                     </div>
 
                                     <div class="other-box-action-call">
@@ -1928,13 +1933,13 @@ export default {
                                 <div class="left-box">
                                     <div class="left-box-heading">
                                         <img v-show="isPinkLeftCardIconVisible"
-                                            :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="">
+                                            :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="" aria-hidden="true">
                                         <img v-show="isGrayLeftCardIconVisible"
-                                            :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="">
+                                            :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="" aria-hidden="true">
                                         <img v-show="isHighContrastLeftCardIconVisible"
-                                            :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                                            :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
                                         <img v-show="isWCAGLeftCardIconVisible"
-                                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
                                         <h2>Sari-Sari Xchange</h2>
                                     </div>
                                     <div class="left-box-paragraph">
@@ -1993,27 +1998,27 @@ export default {
 
                                 <div class="right-box">
                                     <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                                        <img :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
                                         <h2>Collections</h2>
                                     </div>
                                     <div class="other-box-subtitle">
                                         <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                                         <p>Explore collections by SSX.</p>
                                     </div>
                                     <div class="other-box-photos" aria-hidden="true">
                                         <img v-show="arePinkTopCenterCardSampleImagesVisible"
-                                            :src="collectionsBasePath + 'collection-thumbnail-placeholder.jpeg'" alt="">
+                                            :src="collectionsBasePath + 'collection-thumbnail-placeholder.jpeg'" alt="" aria-hidden="true">
                                         <img v-show="areGrayTopCenterCardSampleImagesVisible"
-                                            :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                            :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="" aria-hidden="true">
                                         <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
-                                            :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="">
+                                            :src="collectionsBasePath + 'Thumbnail_Anonymous.png'" alt="" aria-hidden="true">
                                     </div>
 
 
@@ -2055,27 +2060,27 @@ export default {
 
                                 <div class="center-bottom-box">
                                     <div class="other-box-heading">
-                                        <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="">
+                                        <img :src="iconBasePath + 'eventsIconWhite.svg'" alt="" aria-hidden="true">
                                         <h2>Events</h2>
                                     </div>
                                     <div class="other-box-subtitle">
                                         <img v-show="isDecoractionCardSubtitlePink"
-                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleGray"
-                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleHighContrast"
-                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                                         <img v-show="isDecoractionCardSubtitleWCAG"
-                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                                         <p>Assets created during SSX events.</p>
                                     </div>
                                     <div class="other-box-photos" aria-hidden="true">
                                         <img v-show="arePinkTopCenterCardSampleImagesVisible"
-                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="" aria-hidden="true">
                                         <img v-show="areGrayTopCenterCardSampleImagesVisible"
-                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="" aria-hidden="true">
                                         <img v-show="areHighContrastTopCenterCardSampleImagesVisible"
-                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="">
+                                            :src="eventsBasePath + 'events-thumbnail-placeholder.png'" alt="" aria-hidden="true">
                                     </div>
 
                                     <div class="other-box-action-call">
@@ -2117,91 +2122,91 @@ export default {
             </svg>
         </div>
 
-     
+
 
         <!-- footer -->
         <div class="footer">
             <div v-show="areFooterImagesDefaultVisible" class="footer-images">
                 <!-- First set of images -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
 
                 <!-- Duplicate set for smooth infinite scroll -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
 
                 <!-- Duplicate set for smooth infinite scroll -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
 
 
                 <!-- Duplicate set for smooth infinite scroll -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
             </div>
 
             <!-- legacy -->
             <!-- <div v-show="areFooterImagesDefaultVisible" class="footer-images">
-                <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
 
-                <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
 
-                <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
 
 
-                <img :src="marqueeBasePath + 'item1.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" class="footer-image">
+                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
+                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
 
             </div> -->
 

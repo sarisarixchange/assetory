@@ -125,7 +125,7 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Accessibility Statement Page" />
 
 
     <div class="accessibility-page-content">

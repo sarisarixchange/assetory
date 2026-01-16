@@ -11,6 +11,10 @@ export default {
     interactiveMode: {
       type: Boolean,
       required: true
+    }, 
+    pageTitle: {
+      type: String, 
+      required: true
     }
   },
   components: {
@@ -259,26 +263,38 @@ export default {
   transition: background-color 0.2s;
 }
 
+.nav-button-homepage:hover, 
+.nav-button-homepage:focus-visible {
+  background-color: var(--hover-color-main);
+  color: var(--hover-text-color-main);
+  box-shadow: -3px 3px 0 0 var(--shadow);
+}
 
 .nav-button.active {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
 }
 
-.nav-button.active:hover {
+.nav-button.active:hover, 
+.nav-button.active:focus-visible {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
 }
+
 
 .nav-button-homepage.active {
   background-color: var(--active-color-main);
   color: var(--active-text-color-main);
 }
 
-.nav-button-homepage.active:hover {
+.nav-button-homepage.active:hover, 
+.nav-button-homepage.active:focus-visible {
   background-color: var(--hover-color-main);
   color: var(--hover-text-color-main);
+  box-shadow: -3px 3px 0 0 var(--shadow);
+
 }
+
 
 
 a {
@@ -287,26 +303,25 @@ a {
 }
 
 
-.nav-button:hover {
+.nav-button:hover, 
+.nav-button:focus-visible
+ {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
   box-shadow: -3px 3px 0 0 var(--shadow);
 }
 
-.nav-button-homepage:hover {
-  background-color: var(--hover-color-main);
-  color: var(--hover-text-color-main);
-  box-shadow: -3px 3px 0 0 var(--shadow);
-}
+
 
 /* Show hamburger only on mobile */
 .hamburger {
   display: none;
 }
 
-  .mobile-menu, .mobile-menu a {
-   visibility: hidden;
-  }
+.mobile-menu,
+.mobile-menu a {
+  visibility: hidden;
+}
 
 
 /* mobile CSS */
@@ -390,7 +405,7 @@ a {
   <div v-if="isHomepage" class="nav-buttons-wrapper-homepage">
     <div class="header-homepage">
       <div class="logo-section">
-        <h1 class="visually-hidden">Sari-Sari Asset Library</h1>
+        <h1 class="visually-hidden">{{pageTitle}}</h1>
         <div class="logo" aria-hidden="true">
           <img v-show="isDefaultLogoIconVisible" src="/icons/logoPink.svg" alt="Sari-Sari Asset Library Logo"
             class="logo" />

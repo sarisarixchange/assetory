@@ -60,6 +60,8 @@ export default {
 <template>
   <EntityPage :entity="enrichedCollection" :entityType="'event'" :backgrounds="backgrounds"
     bannerAndCardImagePrefix="../images/events/" assetImagePrefix="../images/artists/" :returnRoute="'/events'"
+        :collectionName="collection?.title || 'Loading...'"
+
     :assetLinkFn="linkToAsset" 
     :backgroundProps="{
       top: '10rem',

@@ -206,7 +206,7 @@ onMounted(() => {
 </script>
 
 <template>
-      <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+      <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Submissions Page"/>
 
   <div class="submissions-container">
     <div class="header">

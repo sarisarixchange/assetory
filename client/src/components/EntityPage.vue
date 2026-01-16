@@ -15,78 +15,82 @@ export default {
     backgroundProps: Object,
     returnRoute: String,
     assetLinkFn: Function,
-  },
-  components: {
-    Topbar,
-    PageBackground,
-    Footer,
-    BackTopButton,
-    ReturnButton, // <-- add this
-  },
-  data() {
-    return {
-      interactiveMode: false,
-      currentTheme: { theme: 'default' },
-    };
-  },
-  mounted() {
-    this.loadInteractiveMode();
-  },
-
-  computed: {
-    bannerImage() {
-      return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
+    collectionName: {
+      type: String,
+      required: true
+    }
     },
-    resolvedAssets() {
-      return this.entity
-        ? this.entity.assets.map((asset) => ({
-          ...asset,
-          thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
-        }))
-        : [];
+    components: {
+      Topbar,
+      PageBackground,
+      Footer,
+      BackTopButton,
+      ReturnButton, // <-- add this
     },
-  },
-  methods: {
-    updateTheme(payload) {
-      this.currentTheme = payload;
+    data() {
+      return {
+        interactiveMode: false,
+        currentTheme: { theme: 'default' },
+      };
     },
-    resolveCardImage(path) {
-      return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
+    mounted() {
+      this.loadInteractiveMode();
     },
 
-    scrollCarousel(direction, index) {
-  const track = this.$refs['carouselTrack_' + index];
+    computed: {
+      bannerImage() {
+        return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
+      },
+      resolvedAssets() {
+        return this.entity
+          ? this.entity.assets.map((asset) => ({
+            ...asset,
+            thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
+          }))
+          : [];
+      },
+    },
+    methods: {
+      updateTheme(payload) {
+        this.currentTheme = payload;
+      },
+      resolveCardImage(path) {
+        return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
+      },
 
-  // If Vue returns an array (rare but can happen), pick the first element
-  const el = Array.isArray(track) ? track[0] : track;
-  if (!el) return;
+      scrollCarousel(direction, index) {
+        const track = this.$refs['carouselTrack_' + index];
 
-  el.scrollBy({ left: direction * 300, behavior: 'smooth' });
-},
+        // If Vue returns an array (rare but can happen), pick the first element
+        const el = Array.isArray(track) ? track[0] : track;
+        if (!el) return;
 
-    resolveYoutubeUrl(url) {
-      const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-      return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+        el.scrollBy({ left: direction * 300, behavior: 'smooth' });
+      },
+
+      resolveYoutubeUrl(url) {
+        const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+        return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+      },
+
+      getAssetLink(asset) {
+        return this.assetLinkFn ? this.assetLinkFn(asset, this.entity) : '#';
+      },
+
+      loadInteractiveMode() {
+        try {
+          const savedSettings =
+            JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+          this.interactiveMode = savedSettings.interactiveMode ?? false;
+        } catch (error) {
+          console.error('Error in loadInteractiveMode:', error);
+        }
+      },
+
     },
 
-    getAssetLink(asset) {
-      return this.assetLinkFn ? this.assetLinkFn(asset, this.entity) : '#';
-    },
 
-    loadInteractiveMode() {
-      try {
-        const savedSettings =
-          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-        this.interactiveMode = savedSettings.interactiveMode ?? false;
-      } catch (error) {
-        console.error('Error in loadInteractiveMode:', error);
-      }
-    },
-
-  },
-
-
-};
+  };
 </script>
 
 <style scoped>
@@ -459,14 +463,12 @@ export default {
     font-size: 1.1rem;
   }
 }
-
-
 </style>
 
 
 <template>
   <div class="page-container">
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" :pageTitle="collectionName" />
 
     <!-- Use the ReturnButton component -->
     <div class="returnButton">
@@ -480,7 +482,7 @@ export default {
       <!-- Banner -->
       <div
         :class="['image-banner', (entityType === 'collection' || entityType === 'event') ? 'image-banner-collection' : 'image-banner-artist']">
-        <img :src="bannerImage" alt="Banner Image"
+        <img :src="bannerImage" alt="" aria-hidden="true"
           :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
       </div>
 
@@ -508,7 +510,7 @@ export default {
                 alt="Card Image" class="collection-card-image" />
 
               <div v-else-if="Array.isArray(card.image) && card.image.length" class="carousel">
-               
+
                 <button class="carousel-arrow left" @click="scrollCarousel(-1, index)">‹</button>
 
                 <div :ref="'carouselTrack_' + index" class="carousel-track">
@@ -530,7 +532,7 @@ export default {
         <div class="collection-assets-card-container">
           <div v-for="(asset, index) in resolvedAssets" :key="index" class="collection-assets-card">
             <router-link :to="getAssetLink(asset)" class="collection-assets-link">
-              <img :src="asset.thumbnail" :alt="asset.name" class="collection-assets-image" />
+              <img :src="asset.thumbnail" :alt="'An image of' + ' ' + asset.name" class="collection-assets-image" />
             </router-link>
           </div>
         </div>

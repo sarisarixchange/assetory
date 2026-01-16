@@ -79,7 +79,7 @@ export default {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode"  @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode"  @theme-changed="updateTheme" pageTitle="Events Page"/>
 
     <div class="grid">
       <!-- background image -->

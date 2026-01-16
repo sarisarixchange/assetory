@@ -27,7 +27,7 @@ export default {
             marqueeBasePath: 'images/marquee/',
 
             iconHoveredSrc: '/icons/arrow-right-black.svg',
-              isNotificationVisible: true,
+            isNotificationVisible: true,
 
             randomArtistImage: null,
             randomEventImage: null,
@@ -91,7 +91,7 @@ export default {
 
     methods: {
 
-         dismissNotification() {
+        dismissNotification() {
             try {
                 this.isNotificationVisible = false; // Update the state
 
@@ -422,7 +422,7 @@ export default {
 /* Large screens (desktops) */
 .cardsContainer {
     /* background-color: red; */
-    display: flex;    
+    display: flex;
     margin: auto;
     width: 51.8125rem;
     /* height: 43.4375rem; */
@@ -434,11 +434,13 @@ export default {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .cardsContainer {
-    flex-wrap: wrap;
-    width: 100%;            /* Use full screen width */
-    gap: 1rem;              /* Smaller gap for mobile */
-  }
+    .cardsContainer {
+        flex-wrap: wrap;
+        width: 100%;
+        /* Use full screen width */
+        gap: 1rem;
+        /* Smaller gap for mobile */
+    }
 }
 
 /* box sizes new design */
@@ -539,7 +541,7 @@ export default {
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.0625rem;
-    align-self: stretch;    
+    align-self: stretch;
 }
 
 .left-top-box-call-action {
@@ -549,7 +551,7 @@ export default {
     height: 100%;
     display: flex;
     flex-shrink: 0;
-    color: var(--primary-color);    
+    color: var(--primary-color);
     justify-content: space-between;
     border-radius: 0.5rem;
     align-items: center;
@@ -946,12 +948,15 @@ export default {
     height: 0.96119rem;
 }
 
-.left-top-box:has(.left-top-box-action-call:hover),
-.right-top-box:has(.right-top-box-action-call:hover),
-.right-bottom-box:has(.right-bottom-box-action-call:hover) {
+/* This triggers when the box is hovered OR when any child inside it gets focus */
+.left-top-box:hover,
+.left-top-box:focus-within,
+.right-top-box:hover,
+.right-top-box:focus-within,
+.right-bottom-box:hover,
+.right-bottom-box:focus-within {
     box-shadow: -4px 4px 0 0 var(--primary-color);
 }
-
 
 /* notification window */
 
@@ -1042,23 +1047,23 @@ export default {
     }
 
     .notification-window {
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-    border-radius: 30px 30px 0 0;
-  }
+        width: 100%;
+        height: auto;
+        padding: 1rem;
+        border-radius: 30px 30px 0 0;
+    }
 
-  .notification-window p {
-    font-size: 1rem;
-    margin-left: 1rem;
-    margin-right: 1rem;
-    letter-spacing: -0.05rem;
-  }
+    .notification-window p {
+        font-size: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        letter-spacing: -0.05rem;
+    }
 
-  .notification-dismiss-button {
-    font-size: 1rem;
-    padding: 0.4rem 1rem;
-  }
+    .notification-dismiss-button {
+        font-size: 1rem;
+        padding: 0.4rem 1rem;
+    }
 }
 </style>
 
@@ -1068,10 +1073,12 @@ export default {
         <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div>
         <div :class="['background-lines']" aria-hidden="true"></div>
 
+
         <!-- New background layer -->
         <div class="topBar">
             <Topbar ref="topbar" :interactive-mode="interactiveMode" :is-notification-visible="isNotificationVisible"
-                @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme" />
+                @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme"
+                pageTitle="Sari Sari Xchange Project Homepage" />
         </div>
 
         <!-- background image -->
@@ -1085,15 +1092,15 @@ export default {
                 <!-- left top box -->
                 <div class="left-top-box">
                     <div class="left-top-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
                         <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
-                            alt="">
+                            alt="" aria-hidden="true">
                         <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
-                            alt="">
+                            alt="" aria-hidden="true">
                         <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'sariSariIconWhite.svg'"
-                            alt="">
+                            alt="" aria-hidden="true">
                         <img v-show="isWCAGLeftCardIconVisible"
-                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
                         <h2>Sari-Sari Xchange</h2>
                     </div>
                     <div class="left-top-box-paragraph">
@@ -1117,15 +1124,15 @@ export default {
 
                 <div class="left-bottom-box">
                     <div class="left-bottom-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="">
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
                         <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
-                            alt="">
+                            alt="" aria-hidden="true">
                         <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
-                            alt="">
+                            alt="" aria-hidden="true">
                         <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'sariSariIconWhite.svg'"
-                            alt="">
+                            alt="" aria-hidden="true">
                         <img v-show="isWCAGLeftCardIconVisible"
-                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="">
+                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
                         <h2>Land Acknowledgement</h2>
                     </div>
                     <div class="left-bottom-box-paragraph">
@@ -1160,32 +1167,32 @@ export default {
                 <div class="right-top-box">
 
                     <div class="right-top-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
+                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
+                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
                         <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'"
-                            alt="">
-                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="">
+                            alt="" aria-hidden="true">
+                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
                         <h2>Projects</h2>
                     </div>
                     <!-- right top box -->
                     <div class="right-top-box-subtitle">
                         <img v-show="isDecoractionCardSubtitleDefault"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitlePink"
-                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitleGray"
-                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitleHighContrast"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitleWCAG"
-                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                         <p>See what we’re up to!</p>
                     </div>
 
-                    
+
                     <div class="right-top-box-photo" aria-hidden="true">
-                        <img src="/images/homepage/right-top-card-background-image.png" alt="">
+                        <img src="/images/homepage/right-top-card-background-image.png" alt="" aria-hidden="true">
                     </div>
 
                     <div class="right-top-box-action-call" @mouseenter="isAboutHovered = true"
@@ -1203,30 +1210,30 @@ export default {
                 <div class="right-bottom-box">
 
                     <div class="right-bottom-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
+                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
+                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
                         <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
-                            alt="">
-                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="">
+                            alt="" aria-hidden="true">
+                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
                         <h2>Assetory</h2>
                     </div>
 
                     <div class="right-bottom-box-subtitle">
                         <img v-show="isDecoractionCardSubtitleDefault"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitlePink"
-                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitleGray"
-                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitleHighContrast"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitleWCAG"
-                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="">
+                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
                         <p>Explore the online platform for more 3D assets.</p>
                     </div>
                     <div class="right-bottom-box-photo" aria-hidden="true">
-                        <img src="/images/homepage/right-bottom-card-background-image.png" alt="">
+                        <img src="/images/homepage/right-bottom-card-background-image.png" alt="" aria-hidden="true">
                     </div>
 
                     <div class="right-bottom-box-action-call" @mouseenter="isAboutHovered = true"
@@ -1241,7 +1248,7 @@ export default {
 
         </div>
 
-           <!-- Notification Window -->
+        <!-- Notification Window -->
         <div v-if="isNotificationVisible" class="notification-window">
             <p>
                 This website stores accessibility menu settings you select in your browser to enhance your

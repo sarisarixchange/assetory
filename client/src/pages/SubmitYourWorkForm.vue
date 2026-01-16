@@ -4,7 +4,103 @@ import { createClient } from "@supabase/supabase-js";
 import { v4 as uuidv4 } from "uuid";
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
 
+const interactiveMode = false;
+// --- Reactive State ---
+const currentBackgroundLayer = ref('background-layer');
+const iconHoveredSrc = ref('/icons/arrow-right-black.svg');
 
+// Left Box
+const isDefaultCardVisible = ref(true);
+const isPinkLeftCardIconVisible = ref(false);
+const isGrayLeftCardIconVisible = ref(false);
+const isHighContrastLeftCardIconVisible = ref(false);
+const isWCAGLeftCardIconVisible = ref(false);
+
+// Center-top-box images
+const arePinkTopCenterCardSampleImagesVisible = ref(true);
+const areGrayTopCenterCardSampleImagesVisible = ref(false);
+const areHighContrastTopCenterCardSampleImagesVisible = ref(false);
+
+// Other boxes icons
+const isDecoractionCardSubtitleDefault = ref(true);
+const isDecoractionCardSubtitlePink = ref(false);
+const isDecoractionCardSubtitleGray = ref(false);
+const isDecoractionCardSubtitleHighContrast = ref(false);
+const isDecoractionCardSubtitleWCAG = ref(false);
+
+// Footer images
+const areFooterImagesDefaultVisible = ref(true);
+const areFooterImagesGrayscaleVisible = ref(false);
+const areFooterImagesHighContrastVisible = ref(false);
+const areFooterImagesWCAGcolorsVisible = ref(false);
+
+// --- The updateTheme Function ---
+const updateTheme = (payload) => {
+    if (payload.theme === "default") {
+        currentBackgroundLayer.value = 'background-layer';
+        isDefaultCardVisible.value = true;
+        isPinkLeftCardIconVisible.value = false;
+        isGrayLeftCardIconVisible.value = false;
+        isHighContrastLeftCardIconVisible.value = false;
+        isWCAGLeftCardIconVisible.value = false;
+        arePinkTopCenterCardSampleImagesVisible.value = true;
+        areGrayTopCenterCardSampleImagesVisible.value = false;
+        areHighContrastTopCenterCardSampleImagesVisible.value = false;
+        isDecoractionCardSubtitleDefault.value = true;
+        isDecoractionCardSubtitlePink.value = false;
+        isDecoractionCardSubtitleGray.value = false;
+        isDecoractionCardSubtitleHighContrast.value = false;
+        isDecoractionCardSubtitleWCAG.value = false;
+        areFooterImagesDefaultVisible.value = true;
+        areFooterImagesGrayscaleVisible.value = false;
+        areFooterImagesHighContrastVisible.value = false;
+        areFooterImagesWCAGcolorsVisible.value = false;
+        iconHoveredSrc.value = '/icons/arrow-right-black.svg';
+
+    } else if (payload.theme === "originalInteractive" || payload.theme === "grayscale") {
+        // Combined these since they share mostly the same logic in your snippet
+        isDefaultCardVisible.value = false;
+        isPinkLeftCardIconVisible.value = (payload.theme === "originalInteractive");
+        isGrayLeftCardIconVisible.value = true;
+        isHighContrastLeftCardIconVisible.value = false;
+        isWCAGLeftCardIconVisible.value = false;
+        arePinkTopCenterCardSampleImagesVisible.value = false;
+        areGrayTopCenterCardSampleImagesVisible.value = true;
+        areHighContrastTopCenterCardSampleImagesVisible.value = false;
+        isDecoractionCardSubtitleDefault.value = false;
+        isDecoractionCardSubtitlePink.value = false;
+        isDecoractionCardSubtitleGray.value = true;
+        isDecoractionCardSubtitleHighContrast.value = false;
+        isDecoractionCardSubtitleWCAG.value = false;
+        areFooterImagesDefaultVisible.value = false;
+        areFooterImagesGrayscaleVisible.value = true;
+        areFooterImagesHighContrastVisible.value = false;
+        areFooterImagesWCAGcolorsVisible.value = false;
+        currentBackgroundLayer.value = 'background-layer-grayscale';
+        iconHoveredSrc.value = '/icons/arrow-right-black.svg';
+
+    } else if (payload.theme === "highContrast") {
+        isDefaultCardVisible.value = false;
+        isPinkLeftCardIconVisible.value = false;
+        isGrayLeftCardIconVisible.value = false;
+        isHighContrastLeftCardIconVisible.value = true;
+        isWCAGLeftCardIconVisible.value = false;
+        arePinkTopCenterCardSampleImagesVisible.value = false;
+        areGrayTopCenterCardSampleImagesVisible.value = false;
+        areHighContrastTopCenterCardSampleImagesVisible.value = true;
+        isDecoractionCardSubtitleDefault.value = false;
+        isDecoractionCardSubtitlePink.value = false;
+        isDecoractionCardSubtitleGray.value = false;
+        isDecoractionCardSubtitleHighContrast.value = true;
+        isDecoractionCardSubtitleWCAG.value = false;
+        areFooterImagesDefaultVisible.value = false;
+        areFooterImagesGrayscaleVisible.value = false;
+        areFooterImagesHighContrastVisible.value = true;
+        areFooterImagesWCAGcolorsVisible.value = false;
+        currentBackgroundLayer.value = 'background-layer-highContrast';
+        iconHoveredSrc.value = '/icons/arrow-right-white.svg';
+    }
+};
 
 // --------------------
 // Supabase setup
@@ -213,7 +309,7 @@ const submitForm = async () => {
 </script>
 
 <template>
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Submit Your Work Page" />
 
     <div class="form-container">
 
@@ -221,67 +317,80 @@ const submitForm = async () => {
         <h1>SSX Assetory Asset Submission Form</h1>
 
         <form ref="formRef" @submit.prevent="submitForm" enctype="multipart/form-data">
-            <label>Asset Name <span>*</span></label>
-            <input type="text" name="assetName" v-model="formData.assetName" required />
+            <label for="asset-name">Asset Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="asset-name" v-model="formData.assetName" required aria-required="true" />
 
-            <label>Creator(s) Name <span>*</span></label>
-            <input type="text" name="creatorName" v-model="formData.creatorName" required />
+            <label for="creator-name">Creator(s) Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="creator-name" v-model="formData.creatorName" required aria-required="true" />
 
-            <label>Keywords</label>
-            <input type="text" name="keywords" v-model="formData.keywords" placeholder="Please include 3–5 keywords" />
+            <label for="keyowords">Keywords</label>
+            <input type="text" id="keywords" v-model="formData.keywords" required aria-required="true"
+                placeholder="Please include 3–5 keywords" />
 
-            <label>Email Address <span>*</span></label>
-            <input type="email" name="email" v-model="formData.email" required />
+            <label for="email">Email Address <span aria-hidden="true">*</span></label>
+            <input type="email" id="email" v-model="formData.email" required aria-required="true" />
 
-            <label>Asset Story <span>*</span></label>
-            <textarea name="assetStory" v-model="formData.story" required></textarea>
+            <label for="asset-story">Asset Story <span aria-hidden="true">*</span></label>
+            <textarea type="text" id="asset-story" v-model="formData.story" required aria-required="true"></textarea>
 
-            <label>Asset Type <span>*</span></label>
-            <div class="radio-group">
-                <label><input type="radio" name="assetType" value="3D Model" v-model="formData.assetType" required /> 3D
-                    Model</label>
-                <label><input type="radio" name="assetType" value="Audio" v-model="formData.assetType" /> Audio</label>
-                <label><input type="radio" name="assetType" value="Motion Capture" v-model="formData.assetType" />
-                    Motion Capture</label>
-                <label><input type="radio" name="assetType" value="Other" v-model="formData.assetType" /> Other</label>
-            </div>
+            <fieldset class="radio-group-container">
+                <legend>Asset Type <span aria-hidden="true">*</span></legend>
+                <div class="radio-group">
+                    <label><input type="radio" name="assetType" value="3D Model" v-model="formData.assetType"
+                            required /> 3D
+                        Model</label>
+                    <label><input type="radio" name="assetType" value="Audio" v-model="formData.assetType" />
+                        Audio</label>
+                    <label><input type="radio" name="assetType" value="Motion Capture" v-model="formData.assetType" />
+                        Motion Capture</label>
+                    <label><input type="radio" name="assetType" value="Other" v-model="formData.assetType" />
+                        Other</label>
+                </div>
+            </fieldset>
 
-            <label>Creation Method</label>
-            <textarea name="creationMethod" v-model="formData.creationMethod"></textarea>
+            <label fo="creation-method">Creation Method</label>
+            <textarea type="text" id="creation-method" v-model="formData.creationMethod" required
+                aria-hidden="true"></textarea>
 
-            <label>Copyright <span>*</span></label>
-            <div class="radio-group">
-                <label><input type="radio" name="license" value="CC BY 4.0 DEED" v-model="formData.license" required />
-                    CC BY 4.0 DEED</label>
-                <label><input type="radio" name="license" value="CC BY-NC 4.0 DEED" v-model="formData.license" /> CC
-                    BY-NC 4.0 DEED</label>
-                <label><input type="radio" name="license" value="CC BY-NC-ND 4.0 DEED" v-model="formData.license" /> CC
-                    BY-NC-ND 4.0 DEED</label>
-                <label><input type="radio" name="license" value="Upon Request" v-model="formData.license" /> Upon
-                    Request</label>
-            </div>
-            <p class="note">More details: <a
-                    href="https://docs.google.com/document/d/176Y8Rho2qSRki4TbzK5xIFZq_FN99ccpQVEpgDZHwbg/edit"
-                    target="_blank">License Info Document</a></p>
+            <fieldset class="radio-group-container">
+                <legend>Copyright <span aria-hidden="true">*</span></legend>
+                <div class="radio-group">
+                    <label><input type="radio" name="license" value="CC BY 4.0 DEED" v-model="formData.license"
+                            required />
+                        CC BY 4.0 DEED</label>
+                    <label><input type="radio" name="license" value="CC BY-NC 4.0 DEED" v-model="formData.license" /> CC
+                        BY-NC 4.0 DEED</label>
+                    <label><input type="radio" name="license" value="CC BY-NC-ND 4.0 DEED" v-model="formData.license" />
+                        CC
+                        BY-NC-ND 4.0 DEED</label>
+                    <label><input type="radio" name="license" value="Upon Request" v-model="formData.license" /> Upon
+                        Request</label>
+                </div>
+                <p class="note">More details: <a
+                        href="https://docs.google.com/document/d/176Y8Rho2qSRki4TbzK5xIFZq_FN99ccpQVEpgDZHwbg/edit"
+                        target="_blank">License Info Document</a></p>
+                        </fieldset>
 
-            <label>Asset File <span>*</span></label>
-            <input type="file" @change="handleAssetFile" />
-            <p class="note">Upload 1 supported file (Max 50 MB)</p>
+                <label for="asset-file">Asset File <span aria-hidden="true">*</span></label>
+                <input type="file" id="asset-file" @change="handleAssetFile" required aria-describedby="file-note"/>
+                <p id="file-note" class="note">Upload 1 supported file (Max 50 MB)</p>
 
-            <label>Representative Image <span>*</span></label>
-            <input type="file" accept="image/*" @change="handleRepresentativeImage" />
-            <p class="note">Upload 1 supported image file (Max 50 MB)</p>
+                <label for="rep-image">Representative Image <span aria-hidden="true">*</span></label>
+                <input type="file" id="rep-image" accept="image/*" @change="handleRepresentativeImage"required aria-describedby="image-file-note"/>
+                <p id="image-file-note" class="note">Upload 1 supported image file (Max 50 MB)</p>
 
-            <label>Acknowledgement</label>
-            <textarea name="acknowledgement" v-model="formData.acknowledgement"></textarea>
+                <label for="acknowledgement">Acknowledgement</label>
+                <textarea id="acknowledgement" v-model="formData.acknowledgement"></textarea>
 
-            <button type="submit" :disabled="isSubmitting">
-                {{ isSubmitting ? 'Processing...' : 'Submit Asset' }}
-            </button>
+                <div aria-live="polite">
+                <button type="submit" :disabled="isSubmitting">
+                    {{ isSubmitting ? 'Processing...' : 'Submit Asset' }}
+                </button>
 
-            <p v-if="isSubmitting" class="processing-message">
-                Please wait while your asset is being uploaded. This may take a moment...
-            </p>
+                <p v-if="isSubmitting" class="processing-message">
+                    Please wait while your asset is being uploaded. This may take a moment...
+                </p>
+                </div>
         </form>
     </div>
 </template>
@@ -313,6 +422,7 @@ label span {
     color: red;
 }
 
+
 input[type="text"],
 input[type="email"],
 textarea,
@@ -331,7 +441,11 @@ select {
 input[type="text"]:hover,
 input[type="email"]:hover,
 textarea:hover,
-select:hover {
+select:hover,
+input[type="text"]:focus-visible,
+input[type="email"]:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
     background-color: var(--hover-color);
 }
 
@@ -367,7 +481,8 @@ button {
     transition: all 0.3s;
 }
 
-button:hover:not(:disabled) {
+button:hover:not(:disabled),
+button:focus-visible:not(:disabled) {
     background: var(--hover-color);
     color: var(--hover-text-color);
     box-shadow: 2px 2px 0 var(--shadow);

@@ -449,7 +449,7 @@ a-scene {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Asset Page"/>
 
 
 
@@ -463,9 +463,6 @@ a-scene {
       <!-- Asset details -->
 
       <div class="assetDetails-and-info-wrapper">
-
-
-
 
 
         <div class="assetDetailsContainer">

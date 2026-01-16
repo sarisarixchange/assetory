@@ -37,6 +37,7 @@ export default {
 <template>
   <EntityPage :entity="collection" :entityType="'artist'" :backgrounds="backgrounds"
     bannerAndCardImagePrefix="../images/artists/" assetImagePrefix="../images/artists/" :returnRoute="'/artists'"
+    :collectionName="collection?.title || 'Loading...'"
     :assetLinkFn="linkToAsset" :backgroundProps="{
       top: '8.5rem',
       left: '50%',

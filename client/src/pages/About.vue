@@ -595,7 +595,7 @@ export default {
 <template>
     <div class="page-container">
         <!-- top bar -->
-        <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" />
+        <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="About the Sari-Sari Xchange Project"/>
 
         <!-- body -->
         <div class="content">
@@ -604,13 +604,13 @@ export default {
                 <div class="textPlusArrows">
 
                     <img v-show="isDecoractionCardSubtitleOrange"
-                        :src="iconBasePath + 'arrowLeftHomepageOrangeTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowLeftHomepageOrangeTheme.svg'" alt="" aria-hidden="true">
                     <img v-show="isDecoractionCardSubtitlePink"
-                        :src="iconBasePath + 'arrowLeftHomePageDefaultTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowLeftHomePageDefaultTheme.svg'" alt="" aria-hidden="true">
                     <img v-show="isDecoractionCardSubtitleGray"
-                        :src="iconBasePath + 'arrowLeftHomepageGrayscaleTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowLeftHomepageGrayscaleTheme.svg'" alt="" aria-hidden="true">
                     <img v-show="isDecoractionCardSubtitleHighContrast"
-                        :src="iconBasePath + 'arrowLightHomeHighContrastTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowLightHomeHighContrastTheme.svg'" alt="" aria-hidden="true">
 
 
                     <p>The <strong>Sari-Sari Xchange Assetory</strong> (SSXA) is a virtual asset library created with
@@ -619,13 +619,13 @@ export default {
 
 
                     <img v-show="isDecoractionCardSubtitleOrange"
-                        :src="iconBasePath + 'arrowRightHomepageOrangeTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowRightHomepageOrangeTheme.svg'" alt="" aria-hidden="true">
                     <img v-show="isDecoractionCardSubtitlePink"
-                        :src="iconBasePath + 'arrowRightHomePageDefaultTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowRightHomePageDefaultTheme.svg'" alt="" aria-hidden="true">
                     <img v-show="isDecoractionCardSubtitleGray"
-                        :src="iconBasePath + 'arrowRightHomepageGrayscaleTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowRightHomepageGrayscaleTheme.svg'" alt="" aria-hidden="true">
                     <img v-show="isDecoractionCardSubtitleHighContrast"
-                        :src="iconBasePath + 'arrowRightHomeHighContrastTheme.svg'" alt="">
+                        :src="iconBasePath + 'arrowRightHomeHighContrastTheme.svg'" alt="" aria-hidden="true">
 
                 </div>
 
@@ -637,7 +637,7 @@ export default {
                 </div>
 
                 <img class="separator" v-show="isDecoractionCardSubtitleOrange"
-                    :src="iconBasePath + 'separator-orange.svg'" alt="">
+                    :src="iconBasePath + 'separator-orange.svg'" alt="" aria-hidden="true">
 
                 <img class="separator" v-show="isDecoractionCardSubtitleGray" :src="iconBasePath + 'separator-gray.svg'"
                     alt="">
@@ -688,7 +688,7 @@ export default {
             </div>
 
 
-            <div v-show="interactiveMode == true" class="svg-container">
+            <div v-if="interactiveMode"class="svg-container">
                 <svg viewBox="0 0 1360 782" fill="none" xmlns="http://www.w3.org/2000/svg">
 
                     <g id="boxThree">

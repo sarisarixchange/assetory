@@ -27,7 +27,7 @@ export default {
       const enrichedAssets = this.collection.assets.map((asset) => {
         const artist = artistsData.find((a) => a.id === asset.artistId);
         const artistAsset = artist?.assets.find((a) => a.name === asset.name);
-        
+
 
         return {
           ...asset,
@@ -61,7 +61,8 @@ export default {
 <template>
   <EntityPage :entity="enrichedCollection" :entityType="'collection'" :backgrounds="backgrounds"
     bannerAndCardImagePrefix="../images/collections/" assetImagePrefix="../images/artists/"
-    :returnRoute="'/collections'" :assetLinkFn="linkToAsset" :backgroundProps="{
+    :collectionName="collection?.title || 'Loading...'" :returnRoute="'/collections'" :assetLinkFn="linkToAsset"
+    :backgroundProps="{
       top: '10rem',
       left: '0rem',
       transform: 'none',

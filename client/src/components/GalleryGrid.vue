@@ -120,35 +120,46 @@ export default {
   },
 
   methods: {
+
+
+
+
+    // If clicking the same card, toggle it closed.
     showCurrentAbout(index) {
-      // If clicking the same card, toggle it closed.
       if (this.openCurrentIndex === index) {
-        this.openCurrentIndex = null;
-        this.cardHeight = '23.125rem';
+        this.openCurrentIndex = null; 
+        this.cardHeight = '30.5624rem';
         return;
       }
-
-      // Otherwise open the clicked card
-      this.openCurrentIndex = index;
-      this.cardHeight = '30.5624rem';
+        // Otherwise open the clicked card
+        this.openCurrentIndex = index;
+        this.cardHeight = '30.5624rem';
     },
 
-    showPastAbout(index) {
-      // If clicking the same card, toggle it closed.
-      if (this.openPastIndex === index) {
+      closeBio() {
+        this.openCurrentIndex = null;
         this.openPastIndex = null;
         this.cardHeight = '23.125rem';
-        return;
+      },
+
+      showPastAbout(index) {
+        // If clicking the same card, toggle it closed.
+        if (this.openPastIndex === index) {
+          this.openPastIndex = null;
+          this.cardHeight = '23.125rem';
+          return;
+        }
+
+        // Otherwise open the clicked card
+        this.openPastIndex = index;
+        this.cardHeight = '30.5624rem';
       }
-
-      // Otherwise open the clicked card
-      this.openPastIndex = index;
-      this.cardHeight = '30.5624rem';
     }
-  }
 
-  // do not erase curly brackets below
-}
+
+
+    // do not erase curly brackets below
+  }
 
 </script>
 <!-- If your id param should come from the item's actual id instead of its index, just change: -->
@@ -185,20 +196,22 @@ export default {
         v-for="(gallery, index) in currentTeam" :key="'current-' + index">
         <div class="galleryCardImageWrapper">
           <div class="galleryCardContentAboutPage">
-            <img :src="gallery.thumbnail" alt="gallery Image" class="galleryCardContentImageAboutPage">
+            <img :src="gallery.thumbnail"alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
           </div>
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
-        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openCurrentIndex === index }"
-          @click="showCurrentAbout(index)">
+        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openCurrentIndex === index }" tabindex="0"
+          role="button" :aria-expanded="openCurrentIndex === index" @click="showCurrentAbout(index)"
+          @keydown.esc="closeBio()" @keydown.enter="showCurrentAbout(index)"
+          @keydown.space.prevent="showCurrentAbout(index)">
           <p>{{ gallery.title }}</p>
           <img class="asterisk-in-name-about-page"
             :src="openCurrentIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
             src="/icons/arrow-right-black.svg" alt="">
         </div>
 
-        <div class="about-paragraph" v-show="openCurrentIndex === index">
+        <div class="about-paragraph" v-show="openCurrentIndex === index" @keydown.esc="closeBio()">
           <p>{{ gallery.about }}</p>
         </div>
 
@@ -219,13 +232,15 @@ export default {
         v-for="(gallery, index) in pastTeam" :key="'past-' + index">
         <div class="galleryCardContentAboutPage">
           <img :src="gallery.thumbnail"
-            :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+            alt="" aria-hidden="true"
             class="galleryCardContentImageAboutPage">
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
-        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openPastIndex === index }"
-          @click="showPastAbout(index)">
+        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openPastIndex === index }" tabindex="0"
+          role="button" :aria-expanded="openCurrentIndex === index" @click="showPastAbout(index)"
+          @keydown.esc="closeBio()" @keydown.enter="showPastAbout(index)" @keydown.space.prevent="showPastAbout(index)">
+
           <p>{{ gallery.title }}</p>
           <img class="asterisk-in-name-about-page"
             :src="openPastIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
@@ -255,7 +270,7 @@ export default {
       <div class="eventsGalleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="eventsGalleryCardContent">
           <img :src="gallery.thumbnail"
-            :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+            alt="" aria-hidden="true"
             class="galleryCardContentImage">
         </div>
 
@@ -292,7 +307,7 @@ export default {
         v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="galleryCardContent">
           <img :src="gallery.thumbnail"
-            :alt="`Image of ${gallery.thumbnail.split('/').pop().split('.')[0].replace(/-/g, ' ')}`"
+            alt="" aria-hidden="true"
             class="galleryCardContentImage">
         </div>
 
@@ -413,7 +428,7 @@ export default {
 
 
 .galleryCardArtists {
-  display: flex;  
+  display: flex;
   width: 20.25rem;
   height: 23.125rem;
   flex-direction: column;
@@ -605,7 +620,7 @@ export default {
 
 
 .galleryCardAboutPage {
-  display: flex;  
+  display: flex;
   width: 20.25rem;
   height: 23.125rem;
   flex-direction: column;
@@ -666,7 +681,8 @@ export default {
   cursor: pointer;
 }
 
-.galleryCardBottomTextAboutPage:hover {
+.galleryCardBottomTextAboutPage:hover,
+.galleryCardBottomTextAboutPage:focus-visible {
   background-color: var(--hover-color-left-box);
   color: var(--hover-text-color-left-box);
 }
@@ -701,57 +717,57 @@ export default {
 /* Mobile adjustments */
 @media (max-width: 768px) {
 
-.aboutPage {  
-  width: 100%;
-  margin: auto;
-  padding: 1.25rem 1.5rem;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
+  .aboutPage {
+    width: 100%;
+    margin: auto;
+    padding: 1.25rem 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
 
-.meetTheTeamHeader {
-  width: 100%;
-  background-color: var(--primary-color);
-  text-align: center;
-  font-family: var(--font-family-Decorative);
-  color: var(--secondary-color);
-  border: none;
-  border-radius: 12px;
-  font-size: 2rem;
-  font-weight: 400;
-}
-
-
-.eventsGalleryGrid {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  justify-content: center;
-  gap: 2.5rem;
-  padding-left: 5.53rem;
-  padding-right: 5.53rem;
-  align-items: center;
-}
+  .meetTheTeamHeader {
+    width: 100%;
+    background-color: var(--primary-color);
+    text-align: center;
+    font-family: var(--font-family-Decorative);
+    color: var(--secondary-color);
+    border: none;
+    border-radius: 12px;
+    font-size: 2rem;
+    font-weight: 400;
+  }
 
 
-
-.eventsGalleryCard {
-  display: flex;
-  width: 100%;
-  height: auto;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 0.75rem;
-  border-radius: 1rem;
-  gap: 0.5rem;
-  border: 1px solid var(--primary-color);
-  /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
-  background-color: #fff;
+  .eventsGalleryGrid {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    gap: 2.5rem;
+    padding-left: 5.53rem;
+    padding-right: 5.53rem;
+    align-items: center;
+  }
 
 
-}
+
+  .eventsGalleryCard {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.75rem;
+    border-radius: 1rem;
+    gap: 0.5rem;
+    border: 1px solid var(--primary-color);
+    /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
+    background-color: #fff;
+
+
+  }
 }
 </style>

@@ -45,8 +45,14 @@ export default {
 
   mounted() {
     this.loadSettings();
-
+    window.addEventListener('keydown', this.handleKeydown);
   },
+
+  beforeUnmount() {
+    // Clean up to prevent memory leaks
+    window.removeEventListener('keydown', this.handleKeydown);
+  },
+
   computed: {
 
     isHomepage() {
@@ -57,6 +63,38 @@ export default {
   },
 
   methods: {
+
+    handleKeydown(e) {
+      if (!this.isMenuVisible) return;
+
+      // 1. ESCAPE TO CLOSE
+      if (e.key === 'Escape') {
+        this.closeAndRestore();
+      }
+
+      // 2. TAB LOOP LOGIC
+      if (e.key === 'Tab') {
+        const focusableElements = this.$el.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+
+        // Include the H2 heading as the first element
+        const firstElement = this.$el.querySelector('.accessiblityToolsHeading');
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey) { // Shift + Tab
+          if (document.activeElement === firstElement) {
+            e.preventDefault();
+            lastElement.focus();
+          }
+        } else { // Plain Tab
+          if (document.activeElement === lastElement) {
+            e.preventDefault();
+            firstElement.focus();
+          }
+        }
+      }
+    },
 
     applyTheme(theme) {
       const root = document.documentElement;
@@ -330,23 +368,33 @@ export default {
 
 
     accessibilityMenuVisibility() {
-      this.isMenuVisible = !this.isMenuVisible;
+      if (!this.isMenuVisible) {
+        // Save the element that opened the menu
+        this.lastFocusedElement = document.activeElement;
+        this.isMenuVisible = true;
+
+        // Use nextTick to ensure the DOM has rendered the menu before focusing
+        this.$nextTick(() => {
+          const heading = this.$el.querySelector('.accessiblityToolsHeading');
+          if (heading) {
+            heading.setAttribute('tabindex', '-1'); // Make H2 programmatically focusable
+            heading.focus();
+          }
+        });
+      } else {
+        this.closeAndRestore();
+      }
       this.saveSettings();
     },
 
-    // updateContainerHeight() {
-    //   // Multiply base 100vh by the font scale
-    //   const newHeight = 100 * this.fontSize;
-    //   document.documentElement.style.setProperty('--container-height', `${newHeight}vh`);
+    closeAndRestore() {
+      this.isMenuVisible = false;
+      // Restore focus to the toggle button
+      if (this.lastFocusedElement) {
+        this.lastFocusedElement.focus();
+      }
+    },
 
-    //   // Allow overflow when larger than 100
-    //   const container = document.querySelector('.grid-container');
-    //   if (this.fontSize > 1) {
-    //     container.style.overflow = 'visible';
-    //   } else {
-    //     container.style.overflow = 'hidden';
-    //   }
-    // },
 
     increaseTextSize() {
       if (this.fontSize < 2) {
@@ -471,14 +519,15 @@ export default {
   cursor: pointer;
 }
 
-.nav-buttonAccessibilityIcon:hover {
-  background-image: url('/icons/personWhite.svg');
+.nav-buttonAccessibilityIcon:hover, .nav-buttonAccessibilityIcon:focus-visible {
+  background-image: url('/icons/personBlack.svg');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: var(--primary-color);
+  background-color: var(--hover-color-main);
   color: var(--primary-color);
-  /* box-shadow: -3px 3px 0 0 var(--shadow); */
+  box-shadow: -4px 4px 0 0 var(--primary-color);
+
 }
 
 

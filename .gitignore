@@ -28,3 +28,12 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+
+# Ignore local passwords
+.env
+
+# Ignore tests files inside uploads.
+server/uploads/*
+# Dont ignore the folder uploads
+!server/uploads/.gitkeep

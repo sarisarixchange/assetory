@@ -16,11 +16,14 @@ This is the Node.js backend for the Sari-Sari project, responsible for managing 
 ### 3. Configure the environment
    `cp .env.example .env`
 
-### 4. Open the newly created .env file and fill in the database credentials provided by McMaster IT
+### 4. Open the newly created .env file and fill in the database credentials
 
 DB_USER
+
 DB_PASSWORD
+
 DB_HOST
+
 DB_NAME
 
 ### 5. Database Initialization

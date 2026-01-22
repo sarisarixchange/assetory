@@ -24,11 +24,9 @@ DB_HOST
 DB_NAME
 
 ### 5. Database Initialization
-The system is designed to be self-configuring.
 
-Manual Step: Create the database instance through `CREATE DATABASE sarisari_db;` via psql.
-
-Automatic Step: Upon the first run, the server will execute the `init.sql` script to automatically create the necessary tables (assets), columns, and indexes if they do not exist.
+1. Create the database instance through `CREATE DATABASE sarisari_db;` via psql.
+2. Upon the first run, the server will execute the `init.sql` script to automatically create the necessary tables (assets), columns, and indexes if they do not exist.
 
 ### 6. Running the Server
 `npm start`

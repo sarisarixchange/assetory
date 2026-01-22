@@ -1,0 +1,128 @@
+INSERT INTO "myassets" (
+    "asset_name", 
+    "creator_name", 
+    "keywords", 
+    "email", 
+    "story", 
+    "asset_type", 
+    "creation_method", 
+    "copyright", 
+    "acknowledgement", 
+    "files", 
+    "representative_image"
+    ) 
+
+VALUES 
+(
+'Danngo', 
+'Natalie M.', 
+'Keychain, danngo, mochi', 
+'natalie.murao@gmail.com', 
+'This keychain is of a Japanese sweet called danngo (だんご). My partner''s nickname is also danngo! It reminds me of her and the family trip I took to Japan where I bought it.', 
+'3D Model', 
+'Polycam', 
+'CC BY-NC 4.0 DEED', 
+'', 
+'["18ed883f-d48a-4c8a-9bbe-eb42ce4f6b4d/2025-11-07.glb"]',
+'18ed883f-d48a-4c8a-9bbe-eb42ce4f6b4d/1000011628.jpg'
+), 
+(
+'Ness Lee Pin', 'Angela Sun', 
+'Toronto, art, ness Lee, sushi, pin', 
+'angela21sun@gmail.com', 
+'My friend gave me this pin out of the blue. He remembered that Ness Lee is one of my favourite local artists when he saw this pin in a gift shop on Kensington market. “Small gestures” like these are very meaningful to me because it shows that someone thought of you without prompting and cares for you. All of us are Asian so this was also a special, specific instance of Asian care.', '3D Model', 
+'Polycam scan (with a lot of help from Sari Sari team). ', 
+'CC BY-NC-ND 4.0 DEED', 
+'Pin art and design by Ness Lee. Given by KMW.', 
+'["1a3c3866-feb3-4b36-96c6-ea516c99cf88/Ness%20Lee%20pin.glb"]', 
+'1a3c3866-feb3-4b36-96c6-ea516c99cf88/IMG_0002.jpeg'
+),
+(
+'Shaman Flamingo Quandale',
+'Thanongsack Tommy Inthirath',
+'Stuffed animal, emotional support, friend ',
+'tommy@fascinasian.ca',
+'Quandale is my travel duck. Where ever I travel either across countries or provinces, I do my best to travel with him. A reminder that it’s important to maintain the childlike happiness where ever I go. ',
+'3D Model', 
+'Polycam Object Photogrammatry',
+'CC BY 4.0 DEED', 
+'', 
+'["2d92576a-83b2-4662-b562-be7bb11bde8c/Shaman%20Flamingo%20Quandale%20V2.glb"]', 
+'2d92576a-83b2-4662-b562-be7bb11bde8c/image.jpg'
+),
+(
+'Kobe Jellycat',
+'Samantha Liamzon',
+'White dog plush',
+'samanthaliamzon8@gmail.com',
+'I got this white dog Jellycat as a Christmas gift from my aunt. She got it from a Las Vegas trip and thought of me and how it reminds her of Kobe. Kobe is my 8-year-old Westie dog and my first dog in Canada. He is growing up with me and I love him very much. I bring my Kobe plush wherever I go since he can’t physically travel with me all the time.',
+'3D Model', '3D scanning in Polycam', 
+'CC BY-NC 4.0 DEED', 
+'', 
+'["523803a4-b639-48f4-bd68-cb0bae0cdbe6/Kobe%20Jellycat.glb"]', 
+'523803a4-b639-48f4-bd68-cb0bae0cdbe6/IMG_9414.jpeg'
+), 
+(
+'Digestive powder', 
+'Aram', 'Antacid ', 
+'aram@reelasian.com', 
+'As i get older i cant eat spicy food as much and often hve an upset stomach. When i was travelling in taiwan i got this and its a good natural ish remedy', 
+'3D Model', 
+'', 
+'CC BY-NC 4.0 DEED', 
+'X', 
+'["7c99f42e-3200-4232-b550-d7bd885a2659/Digestive%20Powder%20Aram.glb"]',
+'7c99f42e-3200-4232-b550-d7bd885a2659/IMG_0119.png'
+), 
+(
+'Yurt',
+'Asset Akhmetova', 
+'Kazakh, Kazakhstan', 
+'a.akhmetova187@gmail.com', 
+'This is a souvenir-sized national Kazakh house, Yurt, brought from my home. It travelled 9000 km before making it into this assetory!', 
+'3D Model', 
+'', 
+'CC BY-NC 4.0 DEED', 
+'Fggf', 
+'[""]', 
+'8af00f89-6f37-4926-9780-821fc3230382/IMG_0173.png'
+), 
+(
+'Spam ',
+'Beng', 
+'', 
+'ong.rdr@gmail.com', 
+'Spam is a valuable commodity in our house. It''s a family favorite. Growing up, it wasn''t something we always had but it''s so good (and very unhealthy). We have it with steaming white rice, eggs, and ketchup. I have it with mayonnaise too! We try different flavors, including tocino and the very spicy one that I used to enjoy with cousins for midnight snack. My kids love spam too but they know they can''t have it in all their meals. Spam is comfort, spam is life. Spam solves our family''s intergenerational issues. ', 
+'3D Model', 
+'', 
+'CC BY 4.0 DEED', 
+'Spam on iphone Beng :)', 
+'[""]', 
+'8da73b41-5f64-47eb-8878-67484462d3d0/1000019926.jpg'
+), 
+(
+'Test', 
+'Sana Akram', 
+'Test, test, test', 
+'sanaeziist@gmail.com', 
+'This is a test! This is a Frog! From Korea! ', 
+'3D Model', 
+'Object scanning on Polycam', 
+'Upon Request', 
+'', 
+'["b4832ddb-af66-46ad-b99d-c87a26085a97/2025-05-26.glb"]', 
+'b4832ddb-af66-46ad-b99d-c87a26085a97/poly-snapshot.jpeg'
+), 
+(
+'Mouse',
+'Xtina', 
+'Computer', 
+'stina.pofin@gmail.com', 
+'Cjgfgjcjgfgjfgj', 
+'3D Model', 
+'Chjfgjcgj', 
+'CC BY 4.0 DEED', 
+'Fhuk', 
+'["d3237514-a5e6-41ad-a4b6-e6c575df7a74/2025-11-07.glb"]', 
+'d3237514-a5e6-41ad-a4b6-e6c575df7a74/IMG_0338.jpeg'
+);

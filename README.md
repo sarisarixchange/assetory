@@ -10,7 +10,7 @@ This is the Node.js backend for the Sari-Sari project, responsible for managing 
 
 ### 1. Clone this Repository
 
-### 2. Instal dependencies
+### 2. Install dependencies
    `npm install`
 
 ### 3. Configure the environment

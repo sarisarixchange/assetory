@@ -1,6 +1,7 @@
 <script>
 import EntityPage from '../components/EntityPage.vue';
 import data from '../data/artists.json';
+import axios from 'axios'; // 1. Asegúrate de importar axios
 
 export default {
   components: { EntityPage },
@@ -15,9 +16,15 @@ export default {
       },
     };
   },
-  mounted() {
-    const id = parseInt(this.$route.params.id, 10);
-    this.collection = data.find((item) => item.id === id);
+
+  async mounted() {
+    const slug = this.$route.params.slug;
+    try {
+      const response = await axios.get(`http://localhost:3000/api/artists/${slug}`);
+      this.collection = response.data;
+    } catch (error) {
+      console.error("Artist not found in DB");
+    }
   },
 
 
@@ -25,8 +32,10 @@ export default {
     linkToAsset(asset, artist) {
       return {
         name: 'Asset',
-        params: { artistId: artist.id, artistAssetId: asset.name },
-        query: { fromPage: 'Artist', pageId: artist.id },
+        params: { 
+          artistId: artist.slug, 
+          artistAssetId: asset.name },
+        query: { fromPage: 'Artist', pageId: artist.slug },
       };
     },
   },
@@ -37,8 +46,7 @@ export default {
 <template>
   <EntityPage :entity="collection" :entityType="'artist'" :backgrounds="backgrounds"
     bannerAndCardImagePrefix="../images/artists/" assetImagePrefix="../images/artists/" :returnRoute="'/artists'"
-    :collectionName="collection?.title || 'Loading...'"
-    :assetLinkFn="linkToAsset" :backgroundProps="{
+    :collectionName="collection?.title || 'Loading...'" :assetLinkFn="linkToAsset" :backgroundProps="{
       top: '8.5rem',
       left: '50%',
       transform: 'translateX(-50%)',

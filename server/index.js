@@ -1,9 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
+const path = require('path');
 const { Pool } = require('pg');
 require('dotenv').config();
-const path = require('path');
 const fs = require('fs');
 
 const app = express();
@@ -17,18 +17,42 @@ if (!fs.existsSync(uploadDir)) {
 
 // Middleware
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({limit: '50mb'}));
+app.use(express.urlencoded({ limit:'50mb', extended: true }));
 // Servir archivos estáticos para poder ver las imágenes subidas
 app.use('/uploads', express.static('uploads'));
 
-// File upload setup
-// const storage = multer.diskStorage({
-//   destination: uploadDir,
-//   filename: (req, file, cb) => {
-//     cb(null, Date.now() + "-" + file.originalname);
-//   },
-// });
+// artists image uploads
+
+const artistStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // Apuntamos directamente a la carpeta de assets del frontend
+    const dir = path.join(__dirname, '../client/public/images/artists');
+    if (!fs.existsSync(dir)) {
+      fs.mkdirSync(dir, { recursive: true });
+    }
+    cb(null, dir);
+  },
+  filename: function (req, file, cb) {
+    // Usamos el nombre original para que coincida con lo que el JSON espera
+    cb(null, file.originalname);
+  }
+});
+const uploadArtist = multer({ storage: artistStorage });
+
+// Ruta para el Dashboard de Artistas
+app.post('/api/upload', uploadArtist.single('image'), (req, res) => {
+  try {
+    if (!req.file) return res.status(400).send('No file uploaded.');
+    
+    // Devolvemos el nombre para que Vue lo guarde en la columna 'thumbnail'
+    res.json({ filename: req.file.originalname });
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// /////////////////////
 
 // 1. Función para crear la carpeta destino dinámicamente
 const storage = multer.diskStorage({
@@ -107,6 +131,82 @@ app.get("/submissions", async (req, res) => {
   }
 });
 
+// Obtener todos los artistas (para la galería)
+app.get('/api/artists', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM artists ORDER BY id ASC');
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Obtener un artista por ID (para la página individual Artist.vue)
+app.get('/api/artists/:slug', async (req, res) => {
+  try {
+    const { slug } = req.params; // Extraemos el slug de la URL
+    
+    // CAMBIO VITAL: Buscamos por la columna slug usando la variable slug
+    const result = await pool.query('SELECT * FROM artists WHERE slug = $1', [slug]);
+
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: 'Artist not found' });
+    }
+
+    const artist = result.rows[0];
+
+    // Mapeo para compatibilidad con tu Frontend
+    res.json({
+      ...artist,
+      bannerImage: artist.banner_image // Mantenemos tu lógica de mapeo
+    });
+
+  } catch (err) {
+    console.error("Error en GET /api/artists/:slug - ", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+// Update artist via Quill
+app.put('/api/artists/:id', async (req, res) => {
+  const { id } = req.params; 
+  const { title, slug, cards, assets, banner_image, thumbnail } = req.body;
+  try {
+    await pool.query(
+      `UPDATE artists SET title=$1, slug=$2, cards=$3, assets=$4, banner_image=$5, thumbnail=$6 WHERE id=$7`,
+      [title, slug, JSON.stringify(cards), JSON.stringify(assets), banner_image, thumbnail, id]
+    );
+    res.json({ message: "Artist Updated" });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
+//crete new artist
+app.post('/api/artists', async (req, res) => {  
+  const title = req.body.title || 'Untitled';
+  const slug = req.body.slug || 'no-slug-provided'; 
+  const cards = req.body.cards || [];
+  const assets = req.body.assets || [];
+  const banner_image = req.body.banner_image || 'placeholder.png';
+  const thumbnail = req.body.thumbnail || 'placeholder.png';
+
+  try {
+    const result = await pool.query(
+      `INSERT INTO artists (title, slug, cards, assets, banner_image, thumbnail) 
+       VALUES ($1, $2, $3, $4, $5, $6) RETURNING id`,
+      [title, slug, JSON.stringify(cards), JSON.stringify(assets), banner_image, thumbnail]
+    );
+    res.json({ message: 'Artist created', id: result.rows[0].id });
+  } catch (err) {
+    console.error("ERROR EN POST ARTISTS:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 app.post(
   "/submit",
   upload.fields([
@@ -121,15 +221,15 @@ app.post(
         assetType, creationMethod, copyright, acknowledgement,
       } = req.body;
 
-      const folder = req.uploadDir; 
-      
+      const folder = req.uploadDir;
+
       // 2. Usamos los nombres correctos definidos en upload.fields arriba
-      const representative_image = req.files['representativeImage'] 
-        ? `${folder}/${req.files['representativeImage'][0].originalname}` 
+      const representative_image = req.files['representativeImage']
+        ? `${folder}/${req.files['representativeImage'][0].originalname}`
         : null;
 
-      const filesArray = req.files['assetFiles'] 
-        ? req.files['assetFiles'].map(f => `${folder}/${f.originalname}`) 
+      const filesArray = req.files['assetFiles']
+        ? req.files['assetFiles'].map(f => `${folder}/${f.originalname}`)
         : [];
 
       const query = `
@@ -163,13 +263,14 @@ app.post(
   }
 );
 
+
 app.delete("/submissions/:id", async (req, res) => {
   const { id } = req.params;
 
   try {
     // 1. Primero obtenemos la ruta de la carpeta antes de borrar el registro
     const getAsset = await pool.query("SELECT representative_image FROM assets WHERE id = $1", [id]);
-    
+
     if (getAsset.rows.length > 0) {
       const filePath = getAsset.rows[0].representative_image;
       if (filePath) {
@@ -192,5 +293,22 @@ app.delete("/submissions/:id", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ success: false, error: "Error al borrar" });
+  }
+});
+
+// Delete Artists entry
+app.delete('/api/artists/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query('DELETE FROM artists WHERE id = $1', [id]);
+    
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: "Artist not found" });
+    }
+    
+    res.json({ success: true, message: "Artist deleted successfully" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
   }
 });

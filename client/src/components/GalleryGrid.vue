@@ -289,41 +289,44 @@ export default {
   </div>
 
 
-  <div v-else>
+<div v-else>
+  <div class="heading-and-searchbar">
+    <div class="gallery-heading">
+      <h2>{{ galleryName }}</h2>
+      <p>{{ galleryDescription }}</p>
+    </div>
+    <SearchBar v-if="showSearchBar" />
+  </div>
 
-    <!-- heading and searchbar -->
-    <div class="heading-and-searchbar">
-      <div class="gallery-heading">
-        <h2>{{ galleryName }}</h2>
-        <p>{{ galleryDescription }}</p>
+  <div class="galleryGrid">
+    <div 
+      :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'"
+      v-for="gallery in filteredGalleryWithFullPath" 
+      :key="gallery.id"
+    >
+      <div class="galleryCardContent">
+        <img 
+          :src="gallery.thumbnail"
+          alt="" 
+          aria-hidden="true"
+          class="galleryCardContentImage"
+        >
       </div>
 
-      <!-- searchbar only show if enabled -->
-      <SearchBar v-if="showSearchBar" />
-    </div>
-
-    <div class="galleryGrid">
-      <div :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'"
-        v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
-        <div class="galleryCardContent">
-          <img :src="gallery.thumbnail"
-            alt="" aria-hidden="true"
-            class="galleryCardContentImage">
-        </div>
-
-
-
-        <div class="galleryCardContentGoTo">
-          <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
-            <span class="learn-more">{{ gallery.title }}</span>
-            <span class="galleryCardGoToArrow" aria-hidden="true">
-              <img src="/icons/arrow-right-black.svg" alt="" />
-            </span>
-          </router-link>
-        </div>
+      <div class="galleryCardContentGoTo">
+        <router-link 
+          :to="{ name: routeName, params: { slug: gallery.slug } }" 
+          class="galleryCardContentLink"
+        >
+          <span class="learn-more">{{ gallery.title }}</span>
+          <span class="galleryCardGoToArrow" aria-hidden="true">
+            <img src="/icons/arrow-right-black.svg" alt="" />
+          </span>
+        </router-link>
       </div>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>

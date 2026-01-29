@@ -1,5 +1,9 @@
 <template>
+  <v-app shadow>
+    <v-main>
   <router-view />
+  </v-main>
+  </v-app>
 </template>
 
 
@@ -14,7 +18,7 @@
 
 html {
   --font-scale: 1;
-  font-size: calc(clamp(10px, 0.9vw, 16px) * var(--font-scale));
+  font-size: calc(clamp(10px, 0.9vw, 16px) * var(--font-scale)) !important;
 }
 
 
@@ -37,6 +41,7 @@ body {
 :root {
   --base-gap: 16rem;
   --font-family-Decorative: 'Kode Mono', sans-serif;
+  --font-text:  'Inter', sans-serif;
 
   /* new default theme */
   /* --background-color: #FFFEFA;

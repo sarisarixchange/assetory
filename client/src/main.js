@@ -1,11 +1,31 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import router from './router'; // Import the router
+import router from './router'; 
 import { createPinia } from 'pinia';
 
+// --- NUEVO: Importaciones de Vuetify ---
+import 'vuetify/styles'
+import { createVuetify } from 'vuetify'
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import '@mdi/font/css/materialdesignicons.css' 
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
+const vuetify = createVuetify({
+  components,
+  directives,
+  theme: {
+    defaultTheme: 'light', // O 'dark' si prefieres
+  },
+})
 
 const app = createApp(App);
-const pinia = createPinia(); // Create a Pinia instance
-app.use(pinia); // Register Pinia
-app.use(router); // Use the router in the Vue app
+const pinia = createPinia();
+
+app.use(pinia);
+app.use(router);
+app.use(vuetify); 
+app.component('QuillEditor', QuillEditor)
+
 app.mount('#app');

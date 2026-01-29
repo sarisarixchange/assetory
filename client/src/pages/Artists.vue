@@ -5,6 +5,7 @@ import GalleryGrid from '../components/GalleryGrid.vue'; // Import the Grid comp
 import BackTopButton from '../widgets/BackTopButton.vue';
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import astistsData from '../data/artists.json';
+import axios from 'axios';
 
 
 
@@ -25,13 +26,14 @@ export default {
       galleryDescription: 'Explore artists & assets.',
       basePath: 'artists/',
       routeName: 'Artist',
-      data: astistsData,
+      data: [],
+      // data: astistsData,
       // backgrounds
       backgrounds: {
         //  default: 'backgrounds/background-artists-page-default.svg',
         default: './backgrounds/background-artists-blue.svg',
         grayscale: './backgrounds/background-artists-page-grayscale.svg',
-        highContrast: './backgrounds/background-artists-page-high-contrast.svg'        
+        highContrast: './backgrounds/background-artists-page-high-contrast.svg'
       }
 
     }
@@ -39,9 +41,18 @@ export default {
 
   mounted() {
     this.loadInteractiveMode();
+    this.fetchArtists();
   },
 
   methods: {
+    async fetchArtists() {
+      try {
+        const response = await axios.get('http://localhost:3000/api/artists');
+        this.data = response.data;
+      } catch (error) {
+        console.error('Error fetching artists from DB:', error);
+      }
+    },
     updateTheme(payload) {
       this.currentTheme = payload; // Update the theme
     },
@@ -88,8 +99,7 @@ export default {
 
       <!-- background image -->
       <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='0rem' left='0%'
-        transform='translateX(0%)' width='100%' height='100%' backgroundSize='100%'
-        backgroundPosition='center' />
+        transform='translateX(0%)' width='100%' height='100%' backgroundSize='100%' backgroundPosition='center' />
 
 
       <!-- Artists Grid -->

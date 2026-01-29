@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import AdminDashboard from '../pages/AdminDashboard.vue';
 import Homepage from '../pages/Homepage.vue';
 import Assetory from '../pages/Assetory.vue';
 import HomepageAutoScaling from '../pages/HomepageAutoScaling.vue';
@@ -13,11 +14,13 @@ import Event from '../pages/Event.vue';
 import AccessibilityStatement from '../pages/AccessibilityStatement.vue'
 import TermsOfUse from '../pages/TermsOfUse.vue'
 import SubmitYourWorkForm from '../pages/SubmitYourWorkForm.vue';
-import Submissions from '../pages/Submissions.vue';
+// import Submissions from '../pages/Submissions.vue';
+
 
 
 const routes = [
   { path: '/', component: Homepage, name: 'Homepage'},
+  {path: '/admin', component: AdminDashboard, name: 'Admin Dashboard' },
   {path: '/assetory', component: Assetory, name: 'Assetory'},
   { path: '/homeautoscaling', component: HomepageAutoScaling, name: 'Homepage Auto Scaling' },
   {path: '/about', component: About, name: 'About'},
@@ -32,7 +35,7 @@ const routes = [
   //   }),
   //  }, 
   {path: '/artists', component: Artists, name: 'Artists' }, 
-  { path: '/artist/:id',  component: Artist, name: 'Artist', props: true },
+  { path: '/artist/:slug',  component: Artist, name: 'Artist', props: true },
 
   { path: '/asset/:artistId/:artistAssetId', component: Asset, name: 'Asset', 
     props: (route) => ({
@@ -46,7 +49,7 @@ const routes = [
   {path: '/events', component: Events, name: 'Events'}, 
   {path: '/event/:id', component: Event, name: 'Event', props: true}, 
   {path: '/submit-your-work', component: SubmitYourWorkForm, name: 'Submit Your Work Form'},
-  {path: '/submissions', component: Submissions, name: 'Submissions'},
+  // {path: '/submissions', component: Submissions, name: 'Submissions'},
 
 ]
 

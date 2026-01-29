@@ -19,78 +19,78 @@ export default {
       type: String,
       required: true
     }
+  },
+  components: {
+    Topbar,
+    PageBackground,
+    Footer,
+    BackTopButton,
+    ReturnButton, // <-- add this
+  },
+  data() {
+    return {
+      interactiveMode: false,
+      currentTheme: { theme: 'default' },
+    };
+  },
+  mounted() {
+    this.loadInteractiveMode();
+  },
+
+  computed: {
+    bannerImage() {
+      return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
     },
-    components: {
-      Topbar,
-      PageBackground,
-      Footer,
-      BackTopButton,
-      ReturnButton, // <-- add this
+    resolvedAssets() {
+      return this.entity
+        ? this.entity.assets.map((asset) => ({
+          ...asset,
+          thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
+        }))
+        : [];
     },
-    data() {
-      return {
-        interactiveMode: false,
-        currentTheme: { theme: 'default' },
-      };
+  },
+  methods: {
+    updateTheme(payload) {
+      this.currentTheme = payload;
     },
-    mounted() {
-      this.loadInteractiveMode();
-    },
-
-    computed: {
-      bannerImage() {
-        return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
-      },
-      resolvedAssets() {
-        return this.entity
-          ? this.entity.assets.map((asset) => ({
-            ...asset,
-            thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
-          }))
-          : [];
-      },
-    },
-    methods: {
-      updateTheme(payload) {
-        this.currentTheme = payload;
-      },
-      resolveCardImage(path) {
-        return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
-      },
-
-      scrollCarousel(direction, index) {
-        const track = this.$refs['carouselTrack_' + index];
-
-        // If Vue returns an array (rare but can happen), pick the first element
-        const el = Array.isArray(track) ? track[0] : track;
-        if (!el) return;
-
-        el.scrollBy({ left: direction * 300, behavior: 'smooth' });
-      },
-
-      resolveYoutubeUrl(url) {
-        const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
-        return match ? `https://www.youtube.com/embed/${match[1]}` : '';
-      },
-
-      getAssetLink(asset) {
-        return this.assetLinkFn ? this.assetLinkFn(asset, this.entity) : '#';
-      },
-
-      loadInteractiveMode() {
-        try {
-          const savedSettings =
-            JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-          this.interactiveMode = savedSettings.interactiveMode ?? false;
-        } catch (error) {
-          console.error('Error in loadInteractiveMode:', error);
-        }
-      },
-
+    resolveCardImage(path) {
+      return path ? `${this.bannerAndCardImagePrefix}${path}` : ''
     },
 
+    scrollCarousel(direction, index) {
+      const track = this.$refs['carouselTrack_' + index];
 
-  };
+      // If Vue returns an array (rare but can happen), pick the first element
+      const el = Array.isArray(track) ? track[0] : track;
+      if (!el) return;
+
+      el.scrollBy({ left: direction * 300, behavior: 'smooth' });
+    },
+
+    resolveYoutubeUrl(url) {
+      const match = url.match(/(?:youtube\.com.*(?:\?|&)v=|youtu\.be\/)([a-zA-Z0-9_-]{11})/);
+      return match ? `https://www.youtube.com/embed/${match[1]}` : '';
+    },
+
+    getAssetLink(asset) {
+      return this.assetLinkFn ? this.assetLinkFn(asset, this.entity) : '#';
+    },
+
+    loadInteractiveMode() {
+      try {
+        const savedSettings =
+          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+        this.interactiveMode = savedSettings.interactiveMode ?? false;
+      } catch (error) {
+        console.error('Error in loadInteractiveMode:', error);
+      }
+    },
+
+  },
+
+
+};
 </script>
 
 <style scoped>
@@ -207,10 +207,9 @@ export default {
 
 .collection-card {
   display: flex;
-
   flex-direction: column;
   gap: 1rem;
-  border: 1px solid var(--primary-color);
+  /* border: 1px solid var(--primary-color); */
   border-radius: 8px;
   padding: 1rem;
   background-color: var(--secondary-color);
@@ -489,11 +488,12 @@ export default {
       <!-- Title + Cards -->
       <div class="collection-details">
         <h2>{{ entity.title }}</h2>
-        <div class="collection-cards">
-          <div v-for="(card, index) in entity.cards" :key="index" class="collection-card">
-            <h3 v-if="card.heading" v-html="card.heading" class="collection-card-heading" />
-            <div :class="{ 'side-by-side': card.contentSideBySide }" class="collection-card-content">
 
+        <div class="collection-cards">
+        <div v-for="(card, index) in entity.cards" :key="index" class="collection-card">
+        <!-- <h3 v-if="card.heading" v-html="card.heading" class="collection-card-heading" /> -->
+        <!-- <div :class="{ 'side-by-side': card.contentSideBySide }" class="collection-card-content"> -->
+            <div>
               <!-- Social (only for artists) -->
               <p v-if="card.social && typeof card.social === 'object'">
                 <span v-for="(value, key) in card.social" :key="key" class="social-media-item">
@@ -502,7 +502,8 @@ export default {
               </p>
               <p v-else-if="card.social" v-html="card.social" />
 
-              <p v-if="card.description" v-html="card.description" class="collection-card-text" />
+              <!-- <p v-if="card.description" v-html="card.description" class="collection-card-text" /> -->
+              <p v-if="card.description" v-html="card.description" class="" />
               <iframe v-if="card.youtubeUrl" :src="resolveYoutubeUrl(card.youtubeUrl)" class="collection-card-video"
                 frameborder="0" allowfullscreen />
 

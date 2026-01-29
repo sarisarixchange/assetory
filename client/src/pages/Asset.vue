@@ -1,9 +1,9 @@
 <script>
 import Footer from '../components/Footer.vue'; // Import the Footer component
 import Topbar from '../components/Topbar.vue'; // Import the Topbar component
-import ReturnButton from '../widgets/returnButton.vue'; // <-- add this import
-
+import ReturnButton from '../widgets/returnButton.vue';
 import artistsData from '../data/artists.json';
+import axios from 'axios';
 import 'aframe';
 import 'aframe-extras';
 
@@ -17,7 +17,7 @@ export default {
   },
   props: {
     artistId: {
-      type: Number,
+      type: [String, Number],
       required: true,
     },
 
@@ -32,7 +32,7 @@ export default {
     },
 
     pageId: {
-      type: Number,
+      type: [String, Number],
       required: true,
     },
   },
@@ -56,58 +56,68 @@ export default {
   },
 
   beforeUnmount() {
-  const scene = document.querySelector('a-scene');
-  if (scene && scene.renderer) {
+    const scene = document.querySelector('a-scene');
+    if (scene) {
+      // 1. Detenemos la animación de la escena antes de tocar nada
+      if (scene.hasLoaded) {
+        scene.pause();
+      }
+
+      // 2. Limpieza segura del renderizador
+      if (scene.renderer) {
+        try {
+          // Solo hacemos dispose si el renderer existe y no ha sido ya destruido
+          scene.renderer.dispose();
+          console.log('✅ Renderer disposed safely');
+        } catch (err) {
+          console.warn('⚠️ Renderer dispose failed, likely already gone:', err);
+        }
+      }
+
+      // 3. En lugar de remover el nodo manualmente (que a veces choca con Vue),
+      // dejamos que Vue se encargue, pero nos aseguramos de limpiar los sistemas de A-Frame
+      if (typeof scene.destroy === 'function') {
+        scene.destroy();
+      }
+    }
+  },
+
+  async mounted() {
+    this.loadInteractiveMode();
+
+
+
+    // Extraemos los parámetros de la URL
+    const artistSlug = this.$route.params.artistId; // El router lo llama artistId pero es el slug
+    const assetName = this.$route.params.artistAssetId;
+    const pageId = this.$route.query.pageId;
+
+    this.localFromPage = this.$route.query.fromPage || 'Artists';
+    this.localPageId = this.$route.query.pageId;
+
+
     try {
-      scene.renderer.dispose();
-      scene.parentNode?.removeChild(scene);
-      console.log('🧹 A-Frame scene cleaned up');
-    } catch (err) {
-      console.warn('⚠️ Scene cleanup skipped:', err);
+      // Pedimos el artista al backend usando el SLUG
+      const response = await axios.get(`http://localhost:3000/api/artists/${artistSlug}`);
+      const artist = response.data;
+
+      // Buscamos el asset dentro del array de assets del artista
+      const foundAsset = artist.assets.find(
+        (a) => a.name.trim().toLowerCase() === assetName.trim().toLowerCase()
+      );
+
+      if (foundAsset) {
+        this.asset = {
+          ...foundAsset,
+          artistId: artist.id, // UUID real
+          artistSlug: artist.slug,
+          artistName: artist.title,
+        };
+      }
+    } catch (error) {
+      console.error('⚠️ Error fetching asset from DB:', error);
     }
-  }
-},
-
-mounted() {
-  this.loadInteractiveMode();
-
-  const artistAssetId = this.$route.params.artistAssetId;
-  const fromPage = this.$route.query.fromPage;
-  const pageId = parseInt(this.$route.query.pageId, 10);
-
-  console.log('🟢 Route info:', { artistAssetId, fromPage, pageId });
-
-  // Try to find the asset anywhere in artistsData
-  let foundAsset = null;
-  let foundArtist = null;
-
-  for (const artist of artistsData) {
-    const asset = artist.assets.find(
-      (a) => a.name.trim().toLowerCase() === artistAssetId.trim().toLowerCase()
-    );
-    if (asset) {
-      foundArtist = artist;
-      foundAsset = asset;
-      break;
-    }
-  }
-
-  if (foundAsset) {
-    this.asset = {
-      ...foundAsset,
-      artistId: foundArtist.id,
-      artistName: foundArtist.name,
-    };
-    console.log('✅ Asset found:', this.asset);
-  } else {
-    console.warn('⚠️ Asset not found:', artistAssetId);
-  }
-
-  // ✅ store locally instead of mutating props
-  this.localFromPage = fromPage;
-  this.localPageId = pageId;
-},
-
+  },
 
 
 
@@ -449,7 +459,7 @@ a-scene {
   <div class="page-container">
 
     <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Asset Page"/>
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Asset Page" />
 
 
 
@@ -457,7 +467,7 @@ a-scene {
 
       <!-- Use the ReturnButton component -->
       <div class="returnButtonAbsolute">
-        <ReturnButton :returnRoute="`/${fromPage}/${pageId}`" />
+        <ReturnButton :returnRoute="`/artist/${localPageId}`" />
       </div>
 
       <!-- Asset details -->
@@ -628,7 +638,7 @@ a-scene {
       <div class="no-asset">
         <h2>Asset Not Found</h2>
         <p>The asset you are looking for does not exist or could not be loaded.</p>
-        <router-link :to="{ name: fromPage, params: { id: pageId } }" class="nav-button">
+        <router-link :to="`/artist/${localPageId}`" class="nav-button">
           Return < </router-link>
       </div>
     </div>

@@ -99,7 +99,7 @@ export default {
         )
         .map((item) => ({
           ...item,
-          thumbnail: `images/${this.basePath}` + item.thumbnail
+          thumbnail: `${this.basePath}` + item.thumbnail
         }));
     },
 

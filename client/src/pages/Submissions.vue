@@ -122,7 +122,7 @@ const updateTheme = (payload) => {
 const fetchSubmissions = async () => {
     isLoading.value = true;
     try {
-        const response = await axios.get(`${API_URL}/submissions`);
+        const response = await axios.get(`${API_URL}/api/submissions`);
 
         // Como vimos en tu consola, 'response.data' ya es el array [ {...}, {...} ]
         submissions.value = response.data;
@@ -143,8 +143,10 @@ const fetchSubmissions = async () => {
 const getFileUrl = (fileName) => {
     if (!fileName) return null;
     // Si el backend guarda los archivos en la carpeta estática 'uploads'
+    // fileName ya contiene "TIMESTAMP-RANDOM/archivo.ext"s
     return `${API_URL}/uploads/${fileName}`;
 };
+
 
 // Para la columna 'files', recuerda que en Postgres es un JSON string
 const parseFiles = (filesJson) => {
@@ -195,7 +197,7 @@ const deleteSubmission = async (id) => {
     }
 
     try {
-        await axios.delete(`${API_URL}/submissions/${id}`);
+        await axios.delete(`${API_URL}/submissions/api/${id}`);
         alert("Submission deleted successfully");
         fetchSubmissions();
         if (showModal.value) closeModal();

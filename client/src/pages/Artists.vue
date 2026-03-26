@@ -1,85 +1,113 @@
-<script>
-import Topbar from '../components/Topbar.vue'; // Import the Topbar component
-import PageBackground from '../components/PageBackground.vue';
-import GalleryGrid from '../components/GalleryGrid.vue'; // Import the Grid component
-import BackTopButton from '../widgets/BackTopButton.vue';
-import Footer from '../components/Footer.vue'; // Import the Footer component
-import astistsData from '../data/artists.json';
+<script setup>
+import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import Topbar from '../components/Topbar.vue';
+import PageBackground from '../components/PageBackground.vue';
+import GalleryGrid from '../components/GalleryGrid.vue';
+import BackTopButton from '../widgets/BackTopButton.vue';
+import Footer from '../components/Footer.vue';
 
+// --- Configuración de Rutas ---
+const API_BASE_URL = "http://localhost:3000";
+const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
 
+// --- Estado Reactivo ---
+const interactiveMode = ref(false);
+const currentTheme = ref({ theme: 'default' });
+const galleryName = ref('Artists');
+const galleryDescription = ref('Explore artists & assets.');
+const routeName = ref('Artist');
+const artistsData = ref([]);
 
-export default {
-  components: {
-    PageBackground,
-    Topbar, // Register the Topbar component
-    GalleryGrid, // Register the Grid component
-    BackTopButton,
-    Footer, // Register the Footer component
-  },
+const backgrounds = {
+  default: './backgrounds/background-artists-blue.svg',
+  grayscale: './backgrounds/background-artists-page-grayscale.svg',
+  highContrast: './backgrounds/background-artists-page-high-contrast.svg'
+};
 
-  data() {
-    return {
-      interactiveMode: false,
-      currentTheme: { theme: 'default' }, // Default theme      
-      galleryName: 'Artists',
-      galleryDescription: 'Explore artists & assets.',
-      basePath: 'artists/',
-      routeName: 'Artist',
-      data: [],
-      // data: astistsData,
-      // backgrounds
-      backgrounds: {
-        //  default: 'backgrounds/background-artists-page-default.svg',
-        default: './backgrounds/background-artists-blue.svg',
-        grayscale: './backgrounds/background-artists-page-grayscale.svg',
-        highContrast: './backgrounds/background-artists-page-high-contrast.svg'
-      }
-
-    }
-  },
-
-  mounted() {
-    this.loadInteractiveMode();
-    this.fetchArtists();
-  },
-
-  methods: {
-    async fetchArtists() {
-      try {
-        const response = await axios.get('http://localhost:3000/api/artists');
-        this.data = response.data;
-      } catch (error) {
-        console.error('Error fetching artists from DB:', error);
-      }
-    },
-    updateTheme(payload) {
-      this.currentTheme = payload; // Update the theme
-    },
-
-    loadInteractiveMode() {
-      try {
-        const savedSettings =
-          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-        this.interactiveMode = savedSettings.interactiveMode ?? false;
-      } catch (error) {
-        console.error('Error in loadInteractiveMode:', error);
-      }
-    },
-
+// --- Lógica de Carga ---
+const loadInteractiveMode = () => {
+  try {
+    const savedSettings = JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+    interactiveMode.value = savedSettings.interactiveMode ?? false;
+  } catch (error) {
+    console.error('Error in loadInteractiveMode:', error);
   }
-  // do not erase curly brackets below
-}
+};
 
+const fetchArtists = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/artists`);
+    
+    artistsData.value = response.data.map(artist => {
+      // Limpiamos el thumbnail: si viene de la DB algo como "/imagen.jpg", quitamos la barra inicial
+      const cleanThumbnail = artist.thumbnail?.startsWith('/') 
+        ? artist.thumbnail.substring(1) 
+        : artist.thumbnail;
+
+      return {
+        ...artist,
+        // Si ya es una URL de internet, se queda igual. Si no, le ponemos el prefijo del servidor.
+        thumbnail: artist.thumbnail?.startsWith('http') 
+          ? artist.thumbnail 
+          : `${UPLOADS_PREFIX}${cleanThumbnail || 'placeholder.png'}`,
+        title: artist.artist_name || artist.title || 'Untitled'
+      };
+    });
+  } catch (error) {
+    console.error('Error fetching artists:', error);
+  }
+};
+
+const updateTheme = (payload) => {
+  currentTheme.value = payload;
+};
+
+onMounted(() => {
+  loadInteractiveMode();
+  fetchArtists();
+});
 </script>
 
+<template>
+  <div class="page-container">
+    <Topbar 
+      :interactive-mode="interactiveMode" 
+      @theme-changed="updateTheme" 
+      pageTitle="Artists Page" 
+    />
+
+    <div class="grid">
+      <PageBackground 
+        :theme="currentTheme.theme" 
+        :backgrounds="backgrounds" 
+        top='0rem' left='0%'
+        transform='translateX(0%)' 
+        width='100%' height='100%' 
+        backgroundSize='100%' 
+        backgroundPosition='center' 
+      />
+
+      <GalleryGrid 
+        :galleryName="galleryName" 
+         basePath= ""
+        :galleryDescription="galleryDescription" 
+        :items="artistsData"
+        :isArtistsPage="true" 
+        :routeName="routeName" 
+      />
+    </div>
+    
+    <BackTopButton />
+    <Footer :theme="currentTheme" />
+  </div>
+</template>
+
 <style scoped>
-/* Make the page container take the full height */
 .page-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* full viewport height */
 }
 
 .grid {
@@ -89,28 +117,3 @@ export default {
 }
 </style>
 
-<template>
-  <div class="page-container">
-
-    <!-- top bar -->
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" pageTitle="Artists Page" />
-
-    <div class="grid">
-
-      <!-- background image -->
-      <PageBackground :theme="currentTheme.theme" :backgrounds="backgrounds" top='0rem' left='0%'
-        transform='translateX(0%)' width='100%' height='100%' backgroundSize='100%' backgroundPosition='center' />
-
-
-      <!-- Artists Grid -->
-      <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
-        :basePath="basePath" :isArtistsPage="true" :routeName="routeName" />
-
-    </div>
-    <BackTopButton />
-
-    <!-- footer -->
-
-    <Footer :theme="currentTheme" />
-  </div>
-</template>

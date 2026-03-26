@@ -17,11 +17,12 @@
                 </thead>
                 <tbody>
                     <tr v-for="artist in artists" :key="artist.id">
-                        <td>{{ artist.title }}</td>
+                        <td>{{ artist.title || artist.artist_name }}</td>
                         <td>{{ artist.assets?.length || 0 }} assets</td>
                         <td class="text-right">
                             <v-btn icon="mdi-pencil" variant="text" color="blue" @click="startEdit(artist)"></v-btn>
-                            <v-btn icon="mdi-delete" variant="text" color="error" @click="deleteArtist(artist.id)"></v-btn>
+                            <v-btn icon="mdi-delete" variant="text" color="error"
+                                @click="deleteArtist(artist.id)"></v-btn>
                         </td>
                     </tr>
                 </tbody>
@@ -29,19 +30,19 @@
         </v-card>
 
         <v-card v-else variant="flat">
-            <v-btn prepend-icon="mdi-arrow-left" variant="text" @click="editingArtist = null" class="mb-4">Back to
+            <v-btn prepend-icon="mdi-arrow-left" variant="text" @click="handleCancel" class="mb-4">Back to
                 List</v-btn>
 
             <v-row>
                 <v-col cols="6">
-                    
-                    <v-text-field v-model="editingArtist.title" label="Artist Name" variant="outlined"></v-text-field>
+
+                    <v-text-field v-model="editingArtist.title" @input="isDirty = true" label="Artist Name"
+                        variant="outlined"></v-text-field>
 
                     <v-card variant="outlined" class="pa-4">
                         <p class="text-h6">Thumbnail</p>
-                        <v-img
-                            :src="editingArtist.thumbnail.startsWith('http') ? editingArtist.thumbnail : '../images/artists/' + editingArtist.thumbnail"
-                            height="150" class="bg-grey-lighten-2 rounded my-4">
+                        <v-img :src="getImageUrl(editingArtist.thumbnail)" height="150"
+                            class="bg-grey-lighten-2 rounded my-4">
                         </v-img>
 
                         <input type="file" ref="fileInput" style="display: none;" accept="image/*"
@@ -53,34 +54,100 @@
 
                         <v-text-field v-model="editingArtist.thumbnail" label="Thumbnail Filename"
                             hint="Example: carmela.png" variant="outlined" density="compact"
-                            prepend-inner-icon="mdi-image"></v-text-field>   
-                    </v-card> 
+                            prepend-inner-icon="mdi-image"></v-text-field>
+                    </v-card>
                 </v-col>
 
                 <v-col cols="6">
-                    <v-btn block color="success" size="large" @click="saveChanges" class="">
-                            Save Changes
-                        </v-btn>
+                    <v-btn block color="success" :disabled="isDirty === false" size="large" @click="saveChanges" class="">
+                        Save Changes
+                    </v-btn>
 
-                    
+                    <v-btn block color="secondary" size="large" prepend-icon="mdi-eye" @click="openPreview">
+                        Preview Page
+                    </v-btn>
+
+                    <v-btn block color="red" size="large" @click="handleCancel" class="btn-secondary">
+                        Cancel
+                    </v-btn>
+
+
+
                 </v-col>
 
 
-                <v-col cols="12">                    
+                <v-col cols="12">
                     <div v-for="(card, index) in editingArtist.cards" :key="index" class="mb-6">
                         <p class="text-subtitle-1 mb-2">Description Card #{{ index + 1 }}</p>
-                        <QuillEditor v-model:content="card.description" content-type="html" toolbar="full" theme="snow"
+                        <QuillEditor v-model:content="card.description" @keydown.ctrl.s.prevent="saveChanges"
+                            :key="`${editingArtist.id}-${index}`" @textChange="isDirty = true" content-type="html"
+                            :modules="editorModules" toolbar="full" theme="snow"
                             style="min-height: 500px; height: auto; background: white;" />
                     </div>
                 </v-col>
             </v-row>
         </v-card>
+
+        <div v-if="editingArtist">
+            <v-divider class="my-6"></v-divider>
+            <h3 class="text-h5 mb-4">Gestión de Assets 3D</h3>
+
+            <v-row class="mb-4">
+                <v-col cols="12">
+                    <input type="file" ref="assetFileInput" hidden accept=".glb,.gltf" @change="onAssetSelected">
+
+                    <v-btn color="primary" prepend-icon="mdi-plus-box" @click="$refs.assetFileInput.click()"
+                        :disabled="!editingArtist.id">
+                        Subir Nuevo Asset 3D
+                    </v-btn>
+                    <p v-if="!editingArtist.id" class="text-caption text-error mt-1">
+                        * Guarda el artista primero para poder añadirle assets.
+                    </p>
+                </v-col>
+            </v-row>
+
+            <v-row>
+                <v-col v-for="(asset, index) in editingArtist.assets" :key="asset.id" cols="12" sm="4">
+                    <v-card variant="outlined" class="pa-3">
+                        <div class="text-subtitle-1 font-weight-bold">{{ asset.name }}</div>
+                        <div class="text-caption mb-2">{{ asset.assetType }}</div>
+                        <v-img :src="asset.thumbnail"></v-img>
+                        <v-card-actions class="pa-0">
+                            <v-chip size="x-small" :color="asset.is_active ? 'success' : 'grey'">
+                                {{ asset.is_active ? 'Visible' : 'Oculto' }}
+                            </v-chip>
+                            <v-spacer></v-spacer>
+                            <v-btn icon="mdi-delete" size="small" color="error" variant="text"></v-btn>
+                        </v-card-actions>
+                    </v-card>
+                </v-col>
+            </v-row>
+        </div>
     </v-container>
 </template>
 
 <script setup>
-import { ref, onMounted, watch } from 'vue';
+import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue';
+import { useRouter } from 'vue-router';
 import axios from 'axios';
+// 1. Importa el módulo y los estilos
+import { QuillEditor } from '@vueup/vue-quill'
+import '@vueup/vue-quill/dist/vue-quill.snow.css'
+import ImageResize from 'quill-image-resize-vue'
+
+const router = useRouter();
+// ... otros imports
+const API_BASE_URL = "http://localhost:3000";
+const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
+
+// 2. Definir los módulos que usará el editor
+const editorModules = {
+    name: 'imageResize',
+    module: ImageResize,
+    options: {
+        displaySize: true
+    }
+}
 
 const artists = ref([]);
 const editingArtist = ref(null);
@@ -90,9 +157,20 @@ const fetchArtists = async () => {
     artists.value = res.data;
 };
 
-const startEdit = (artist) => {
+const startEdit = async (artist) => {
     // Copia profunda para no modificar la lista original
     editingArtist.value = JSON.parse(JSON.stringify(artist));
+    // editingArtist.value = structuredClone(artist);
+
+    // 2. Esperamos a que el DOM y los componentes se estabilicen
+    await nextTick();
+
+    // 3. Ahora sí, reseteamos la bandera
+    isDirty.value = false;
+    
+    // Opcional: limpiar la carpeta temporal si quedó algo de una edición previa
+    tempSessionFolder.value = null;
+
 };
 
 // En el <script setup> de ArtistsManager.vue
@@ -111,60 +189,88 @@ const onFileSelected = async (event) => {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
 
+
+        // --- CAPTURA DE CARPETA TEMPORAL ---
+        // res.data.dbPath suele ser "artists/1740.../imagen.jpg"
+        const pathParts = res.data.dbPath.split('/');
+        if (pathParts.length >= 2) {
+            tempSessionFolder.value = pathParts[1]; // Guardamos el ID de la sesión
+        }
         // 3. Update the artist name that we are editing 
-        editingArtist.value.thumbnail = res.data.filename;
-        alert("Image uploaded successfully!");
+        // IMPORTANTE: Guardamos la ruta con carpeta en el estado del artista
+        // Ahora editingArtist.value.thumbnail será "173859201-4421/pear.jpg"
+
+        editingArtist.value.thumbnail = res.data.dbPath;
+        // Sincronizamos el banner para que use la misma imagen y carpeta nueva
+        editingArtist.value.banner_image = res.data.dbPath;
+
+        isDirty.value = true; // Activamos la bandera de "cambios sin guardar"
+
+        // alert("Image uploaded successfully!");
     } catch (err) {
         console.error("Error uploading image:", err);
         alert("Failed to upload image.");
     }
 };
 
-// const saveChanges = async () => {
-//     try {
-//         // CAMBIO AQUÍ: Verificamos si el ID existe explícitamente, incluso si es 0
-//         if (editingArtist.value.id !== undefined && editingArtist.value.id !== null) {
-//             console.log("updating artist with ID:", editingArtist.value.id);
-//             await axios.put(`http://localhost:3000/api/artists/${editingArtist.value.id}`, editingArtist.value);
-//         } else {
-//             console.log("Creando nuevo artista");
-//             await axios.post(`http://localhost:3000/api/artists`, editingArtist.value);
-//         }
+const openPreview = () => {
+    // 1. Si el artista es nuevo (no tiene ID), es obligatorio guardar
+    if (!editingArtist.value.id || isDirty.value) {
+        alert("Please save the artist before previewing for the first time.");
+    } else {
 
-//         editingArtist.value = null;
-//         fetchArtists();
-//         alert("Saved successfully!");
-//     } catch (err) {
-//         console.error("Error detallado:", err.response || err);
-//         alert("Failed to save. Check terminal for details.");
-//     }
-// };
+        // 3. Si todo está en orden o el usuario aceptó ver la versión vieja:
+        const routeData = router.resolve({
+            name: 'Artist',
+            params: { slug: editingArtist.value.slug }
+        });
+
+        window.open(routeData.href, '_blank');
+    }
+};
 
 const saveChanges = async () => {
     try {
-        // Limpiamos los datos de las tarjetas antes de enviar
+        const artist = editingArtist.value;
+        const isNew = !artist.id;
+
+        // 1. Construimos el payload de forma explícita y segura
         const payload = {
-            ...editingArtist.value,
-            cards: editingArtist.value.cards.map(card => ({
+            artist_name: artist.title, // Mapeamos title a la columna de la DB
+            slug: artist.slug,
+            thumbnail: artist.thumbnail,
+            banner_image: artist.banner_image || artist.thumbnail, // Aplicamos espejo aquí también por si acaso
+            cards: artist.cards.map(card => ({
                 ...card,
-                // Aseguramos que la descripción sea un string de HTML
                 description: typeof card.description === 'string'
                     ? card.description
                     : card.description?.html || ''
             }))
         };
 
-        if (payload.id) {
-            await axios.put(`http://localhost:3000/api/artists/${payload.id}`, payload);
+        console.log("ID detectado antes de enviar:", artist.id);
+
+        if (!isNew) {
+            console.log("Realizando UPDATE...");
+            await axios.put(`${API_BASE_URL}/api/artists/${artist.id}`, payload);
         } else {
-            await axios.post(`http://localhost:3000/api/artists`, payload);
+            console.log("Realizando INSERT...");
+            const res = await axios.post(`${API_BASE_URL}/api/artists`, payload);
+
+            // Sincronizamos el ID para que la siguiente edición sea un UPDATE
+            editingArtist.value.id = res.data.id;
+            console.log("ID asignado tras INSERT:", res.data.id);
         }
 
-        editingArtist.value = null;
-        fetchArtists();
+        await fetchArtists(); // Refrescamos la lista lateral
+
+        // 1. Marcamos el estado como "limpio"
+        isDirty.value = false;
+        tempSessionFolder.value = null;
+
         alert("Saved successfully!");
     } catch (err) {
-        console.error("Error al guardar:", err.response?.data || err);
+        console.error("Saving error:", err.response?.data || err);
         alert(`Error: ${err.response?.data?.error || "Check terminal"}`);
     }
 };
@@ -178,7 +284,7 @@ const generateSlug = (text) => {
 
 // Si el título cambia y es un artista nuevo, actualizamos el slug
 watch(() => editingArtist.value?.title, (newTitle) => {
-    if (editingArtist.value && !editingArtist.value.id) {
+    if (editingArtist.value && newTitle) {
         editingArtist.value.slug = generateSlug(newTitle);
     }
 });
@@ -187,8 +293,8 @@ const createNewArtist = () => {
     editingArtist.value = {
         id: null,
         title: 'New Artist',
-        thumbnail: 'placeholder.png',
-        banner_image: 'placeholder.png',
+        thumbnail: 'artists/placeholder.png',
+        banner_image: 'artists/placeholder.png',
         cards: [
             {
                 heading: 'Biography',
@@ -212,5 +318,127 @@ const deleteArtist = async (id) => {
         alert("Failed to delete artist.");
     }
 };
-onMounted(fetchArtists);
+
+const onAssetSelected = async (event) => {
+
+    // 0. VALIDACIÓN CRÍTICA: Si no hay artista, no hacemos nada
+    if (!editingArtist.value || !editingArtist.value.id) {
+        alert("Please select or save an artist first.");
+        return;
+    }
+
+    const file = event.target.files[0];
+    if (!file) return;
+
+    // 1. Preparamos el FormData
+    const formData = new FormData();
+    formData.append('model', file);
+
+    // Enviamos datos adicionales para la tabla 'assets'
+    formData.append('artist_id', editingArtist.value.id); // UUID del artista
+    formData.append('asset_name', file.name.replace(/\.[^/.]+$/, "")); // Nombre sin .glb
+    formData.append('creator_name', editingArtist.value.title);
+
+
+    try {
+        // 2. Enviamos al servidor
+        const res = await axios.post('http://localhost:3000/api/upload-3d', formData, {
+            headers: { 'Content-Type': 'multipart/form-data' }
+        });
+
+        // 3. Actualizamos la lista local para ver el cambio de inmediato
+        if (!editingArtist.value.assets) {
+            editingArtist.value.assets = [];
+        }
+
+        // El servidor nos devuelve el nuevo asset creado en la DB
+        editingArtist.value.assets.push(res.data);
+
+        alert("¡Asset 3D subido y guardado en la base de datos!");
+    } catch (err) {
+        console.error("Error al subir el asset:", err);
+        alert("Error al subir el archivo 3D. Revisa la consola.");
+    } finally {
+        // Limpiamos el input para poder subir el mismo archivo otra vez si fuera necesario
+        event.target.value = '';
+    }
+};
+
+const getImageUrl = (filename) => {
+    if (!filename) return 'https://via.placeholder.com/150'; // Fallback
+    if (filename.startsWith('http')) return filename;
+
+    // Si el nombre contiene "artists/", asumimos que es una ruta migrada
+    // Si no, es una subida nueva directa en la raíz de uploads
+    return `${UPLOADS_PREFIX}${filename}`;
+};
+
+
+// Agrega esto a tus variables reactivas
+const tempSessionFolder = ref(null);
+const isDirty = ref(false); // Para saber si hubo cambios
+
+
+const handleCancel = async () => {
+    if (tempSessionFolder.value && isDirty.value) {
+        try {
+            // Asegúrate de usar la URL completa si no tienes configurado un proxy
+            await axios.post('http://localhost:3000/api/cleanup/temp-folder', {
+                folderName: tempSessionFolder.value
+            });
+            console.log("♻️ Carpeta temporal removida del servidor");
+        } catch (err) {
+            console.error("Error limpiando carpeta temporal:", err);
+        }
+    }
+
+    // Resetear estados y volver a la lista
+    tempSessionFolder.value = null;
+    isDirty.value = false;
+    editingArtist.value = null; // Esto es lo que cierra la vista de edición en tu código
+};
+
+
+const handleBeforeUnload = (event) => {
+    if (isDirty.value) {
+        // Esto muestra la alerta clásica del navegador: "¿Seguro que quieres salir?"
+        event.preventDefault();
+        event.returnValue = '';
+    }
+};
+onMounted(() => {
+    // 1. Registro de eventos globales
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // 2. Carga de datos iniciales
+    fetchArtists();
+    isDirty.value = false;
+
+});
+
+onUnmounted(() => window.removeEventListener('beforeunload', handleBeforeUnload));
+
 </script>
+
+<style scoped>
+/* Esto hace que el video en el editor se vea igual que en el frontend */
+:deep(.ql-editor iframe.ql-video) {
+    display: block;
+    width: 100% !important;
+    /* Forzamos el 100% de ancho */
+    max-width: 800px;
+    /* O el ancho máximo que tú prefieras */
+    aspect-ratio: 16 / 9;
+    /* Mantiene la forma de YouTube */
+    margin: 2rem auto;
+    /* Lo centra y le da espacio */
+    border-radius: 8px;
+    border: 2px solid #eee;
+}
+
+/* Opcional: Añadir un pequeño texto o estilo cuando el video está seleccionado */
+:deep(.ql-editor .ql-video.ql-selected) {
+    border: 2px solid #2196F3;
+    /* Color azul de Vuetify para indicar selección */
+}
+</style>

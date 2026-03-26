@@ -5,6 +5,7 @@ import Footer from './Footer.vue';
 import BackTopButton from '../widgets/BackTopButton.vue';
 import ReturnButton from '../widgets/returnButton.vue'; // <-- add this import
 
+
 export default {
   props: {
     entity: Object,
@@ -37,19 +38,30 @@ export default {
     this.loadInteractiveMode();
   },
 
-  computed: {
-    bannerImage() {
-      return this.entity ? `${this.bannerAndCardImagePrefix}${this.entity.bannerImage}` : '';
-    },
-    resolvedAssets() {
-      return this.entity
-        ? this.entity.assets.map((asset) => ({
-          ...asset,
-          thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
-        }))
-        : [];
-    },
+// En EntityPage.vue
+computed: {
+  // Cambiamos el nombre de la función y la propiedad que busca
+  bannerImage() {
+    if (!this.entity) return '';
+    
+    // Ahora buscamos específicamente 'banner_image' que es lo que trae tu SELECT de SQL
+    // Añadimos un fallback a 'thumbnail' por si el artista no tiene banner
+    // Usamos thumbnail como backup si banner_image es nulo
+    const path = this.entity.banner_image || this.entity.thumbnail;
+    
+    return path ? `${this.bannerAndCardImagePrefix}${path}` : '';
   },
+  
+  resolvedAssets() {
+    if (!this.entity || !this.entity.assets) return [];
+    return this.entity.assets.map((asset) => ({
+      ...asset,
+      // Esto asegura que los cuadritos de abajo (assets) también funcionen
+      thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
+    }));
+  },
+},
+
   methods: {
     updateTheme(payload) {
       this.currentTheme = payload;
@@ -92,6 +104,92 @@ export default {
 
 };
 </script>
+
+
+<template>
+  <div class="page-container">
+    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" :pageTitle="collectionName" />
+
+    <!-- Use the ReturnButton component -->
+    <div class="returnButton">
+      <ReturnButton :returnRoute="returnRoute" />
+    </div>
+
+    <div v-if="entity" class="collection-details-container">
+      <!-- Background -->
+      <PageBackground v-if="backgrounds" :theme="currentTheme.theme" :backgrounds="backgrounds"
+        v-bind="backgroundProps" />
+      <!-- Banner -->
+      <div
+        :class="['image-banner', (entityType === 'collection' || entityType === 'event') ? 'image-banner-collection' : 'image-banner-artist']">
+        <img :src="bannerImage" alt="" aria-hidden="true"
+          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
+      </div>
+
+      <!-- Title + Cards -->
+      <div class="collection-details">
+        <!-- <h2>{{ entity.title }}</h2> -->
+
+        <div class="collection-cards">
+          <div v-for="(card, index) in entity.cards" :key="index" class="collection-card">
+            <div>
+              <!-- Social (only for artists) -->
+              <!-- <p v-if="card.social && typeof card.social === 'object'">
+                <span v-for="(value, key) in card.social" :key="key" class="social-media-item">
+                  <strong>{{ key }}:</strong> {{ value }}
+                </span>
+              </p>
+              <p v-else-if="card.social" v-html="card.social" /> -->
+
+              <div v-if="card.description" v-html="card.description" class="ql-editor collection-card-text" />
+
+              <!-- <iframe v-if="card.youtubeUrl" :src="resolveYoutubeUrl(card.youtubeUrl)" class="collection-card-video"
+                frameborder="0" allowfullscreen />
+
+              <img v-else-if="Array.isArray(card.image) === false && card.image" :src="resolveCardImage(card.image)"
+                alt="Card Image" class="collection-card-image" />
+
+              <div v-else-if="Array.isArray(card.image) && card.image.length" class="carousel">
+
+                <button class="carousel-arrow left" @click="scrollCarousel(-1, index)">‹</button>
+
+                <div :ref="'carouselTrack_' + index" class="carousel-track">
+                  <img v-for="(img, imgIndex) in card.image" :key="imgIndex" :src="resolveCardImage(img)"
+                    class="carousel-image" />
+                </div>
+
+                <button class="carousel-arrow right" @click="scrollCarousel(1, index)">›</button>
+              </div> -->
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Assets Grid -->
+      <div class="collection-assets">
+        <h2>Assets</h2>
+        <div class="collection-assets-card-container">
+          <div v-for="(asset, index) in resolvedAssets" :key="index" class="collection-assets-card">
+            <router-link :to="getAssetLink(asset)" class="collection-assets-link">
+              <img :src="asset.thumbnail" :alt="'An image of' + ' ' + asset.name" class="collection-assets-image" />
+            </router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div v-else class="collection-details-container">
+      <p>Collection not found.</p>
+    </div>
+
+    <BackTopButton />
+    <Footer :theme="currentTheme" />
+  </div>
+
+
+</template>
+
 
 <style scoped>
 .page-container {
@@ -240,7 +338,7 @@ export default {
 
 
 .collection-card-text {
-  display: flex;
+  /* display: flex; */
   font-family: 'Inter', sans-serif;
   font-size: 1rem;
   font-style: normal;
@@ -462,91 +560,55 @@ export default {
     font-size: 1.1rem;
   }
 }
+
+ /* Estilos mínimos para que Quill se vea bien */
+.ql-editor {
+  padding: 0; /* Quill añade padding por defecto, lo quitamos */
+  white-space: normal; /* Evita que el texto se desborde en una sola línea */
+  word-wrap: break-word;
+}
+
+/* Forzar los alineados que genera Quill */
+:deep(.ql-align-center) {
+  text-align: center;
+}
+:deep(.ql-align-right) {
+  text-align: right;
+}
+:deep(.ql-align-justify) {
+  text-align: justify;
+}
+
+/* Estilos para listas (si las usas en Quill) */
+:deep(.ql-editor ul), :deep(.ql-editor ol) {
+  padding-left: 1.5em;
+  margin-bottom: 1em;
+}
+
+/* 1. Forzar que la imagen ocupe su propia línea y no se mezcle con el texto */
+:deep(.ql-editor img) {
+    display: block;      /* Hace que la imagen sea un bloque sólido */
+    clear: both;        /* Rompe cualquier flotación previa */
+    max-width: 100%;    /* No permite que la imagen se salga del contenedor */
+    height: auto;
+    margin: 1.5rem auto; /* Centra la imagen y le da aire arriba y abajo */
+}
+
+/* 2. Asegurar que los párrafos de Quill no intenten envolver elementos de forma rara */
+:deep(.ql-editor p) {
+    margin-bottom: 1rem;
+    display: block;
+    width: 100%;
+}
+
+/* 3. Si Quill genera contenedores de video (iframes), aplicamos lo mismo */
+:deep(.ql-editor iframe) {
+    display: block;
+    margin: 1.5rem auto;
+    max-width: 100%;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
 </style>
 
-
-<template>
-  <div class="page-container">
-    <Topbar :interactive-mode="interactiveMode" @theme-changed="updateTheme" :pageTitle="collectionName" />
-
-    <!-- Use the ReturnButton component -->
-    <div class="returnButton">
-      <ReturnButton :returnRoute="returnRoute" />
-    </div>
-
-    <div v-if="entity" class="collection-details-container">
-      <!-- Background -->
-      <PageBackground v-if="backgrounds" :theme="currentTheme.theme" :backgrounds="backgrounds"
-        v-bind="backgroundProps" />
-      <!-- Banner -->
-      <div
-        :class="['image-banner', (entityType === 'collection' || entityType === 'event') ? 'image-banner-collection' : 'image-banner-artist']">
-        <img :src="bannerImage" alt="" aria-hidden="true"
-          :class="['banner-image', (entityType === 'collection' || entityType === 'event') ? 'banner-image-collection' : 'banner-image-artist']" />
-      </div>
-
-      <!-- Title + Cards -->
-      <div class="collection-details">
-        <h2>{{ entity.title }}</h2>
-
-        <div class="collection-cards">
-        <div v-for="(card, index) in entity.cards" :key="index" class="collection-card">
-        <!-- <h3 v-if="card.heading" v-html="card.heading" class="collection-card-heading" /> -->
-        <!-- <div :class="{ 'side-by-side': card.contentSideBySide }" class="collection-card-content"> -->
-            <div>
-              <!-- Social (only for artists) -->
-              <p v-if="card.social && typeof card.social === 'object'">
-                <span v-for="(value, key) in card.social" :key="key" class="social-media-item">
-                  <strong>{{ key }}:</strong> {{ value }}
-                </span>
-              </p>
-              <p v-else-if="card.social" v-html="card.social" />
-
-              <!-- <p v-if="card.description" v-html="card.description" class="collection-card-text" /> -->
-              <p v-if="card.description" v-html="card.description" class="" />
-              <iframe v-if="card.youtubeUrl" :src="resolveYoutubeUrl(card.youtubeUrl)" class="collection-card-video"
-                frameborder="0" allowfullscreen />
-
-              <img v-else-if="Array.isArray(card.image) === false && card.image" :src="resolveCardImage(card.image)"
-                alt="Card Image" class="collection-card-image" />
-
-              <div v-else-if="Array.isArray(card.image) && card.image.length" class="carousel">
-
-                <button class="carousel-arrow left" @click="scrollCarousel(-1, index)">‹</button>
-
-                <div :ref="'carouselTrack_' + index" class="carousel-track">
-                  <img v-for="(img, imgIndex) in card.image" :key="imgIndex" :src="resolveCardImage(img)"
-                    class="carousel-image" />
-                </div>
-
-                <button class="carousel-arrow right" @click="scrollCarousel(1, index)">›</button>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Assets Grid -->
-      <div class="collection-assets">
-        <h2>Assets</h2>
-        <div class="collection-assets-card-container">
-          <div v-for="(asset, index) in resolvedAssets" :key="index" class="collection-assets-card">
-            <router-link :to="getAssetLink(asset)" class="collection-assets-link">
-              <img :src="asset.thumbnail" :alt="'An image of' + ' ' + asset.name" class="collection-assets-image" />
-            </router-link>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div v-else class="collection-details-container">
-      <p>Collection not found.</p>
-    </div>
-
-    <BackTopButton />
-    <Footer :theme="currentTheme" />
-  </div>
-
-
-</template>

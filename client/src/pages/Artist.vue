@@ -1,52 +1,57 @@
-<script>
+<script setup>
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import axios from 'axios';
 import EntityPage from '../components/EntityPage.vue';
-import data from '../data/artists.json';
-import axios from 'axios'; // 1. Asegúrate de importar axios
 
-export default {
-  components: { EntityPage },
-  data() {
-    return {
-      collection: null,
-      backgrounds: {
-        // default: '../backgrounds/background-artist-page-default.svg',
-        default: '../backgrounds/background-artist-blue.svg',
-        grayscale: '../backgrounds/background-artist-page-grayscale.svg',
-        highContrast: '../backgrounds/background-artist-page-high-contrast.svg'
-      },
-    };
-  },
+// 1. Definimos constantes y estado reactivo
+const route = useRoute();
+const API_BASE_URL = "http://localhost:3000";
+const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
 
-  async mounted() {
-    const slug = this.$route.params.slug;
-    try {
-      const response = await axios.get(`http://localhost:3000/api/artists/${slug}`);
-      this.collection = response.data;
-    } catch (error) {
-      console.error("Artist not found in DB");
-    }
-  },
+const collection = ref(null);
+const backgrounds = {
+  default: '../backgrounds/background-artist-blue.svg',
+  grayscale: '../backgrounds/background-artist-page-grayscale.svg',
+  highContrast: '../backgrounds/background-artist-page-high-contrast.svg'
+};
 
+// 2. Lógica de carga
+onMounted(async () => {
+  const slug = route.params.slug;
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/artists/${slug}`);
+    collection.value = response.data;
+  } catch (error) {
+    console.error("Artist not found in DB", error);
+  }
+});
 
-  methods: {
-    linkToAsset(asset, artist) {
-      return {
-        name: 'Asset',
-        params: { 
-          artistId: artist.slug, 
-          artistAssetId: asset.name },
-        query: { fromPage: 'Artist', pageId: artist.slug },
-      };
+// 3. Métodos
+const linkToAsset = (asset, artist) => {
+  return {
+    name: 'Asset',
+    params: {
+      artistId: artist.slug,
+      artistAssetId: asset.name
     },
-  },
+    query: { fromPage: 'Artist', pageId: artist.slug },
+  };
 };
 </script>
 
-
 <template>
-  <EntityPage :entity="collection" :entityType="'artist'" :backgrounds="backgrounds"
-    bannerAndCardImagePrefix="../images/artists/" assetImagePrefix="../images/artists/" :returnRoute="'/artists'"
-    :collectionName="collection?.title || 'Loading...'" :assetLinkFn="linkToAsset" :backgroundProps="{
+  <EntityPage 
+    v-if="collection"
+    :entity="collection" 
+    :entityType="'artist'" 
+    :backgrounds="backgrounds"
+    :bannerAndCardImagePrefix="UPLOADS_PREFIX" 
+    :assetImagePrefix="UPLOADS_PREFIX" 
+    :returnRoute="'/artists'"
+    :collectionName="collection.artist_name || collection.title || 'Loading...'" 
+    :assetLinkFn="linkToAsset" 
+    :backgroundProps="{
       top: '8.5rem',
       left: '50%',
       transform: 'translateX(-50%)',
@@ -54,5 +59,6 @@ export default {
       height: '23.96563rem',
       backgroundSize: '90%',
       backgroundPosition: 'center'
-    }" />
+    }" 
+  />
 </template>

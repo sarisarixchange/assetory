@@ -31,8 +31,8 @@
 <script setup>
 import { ref } from 'vue';
 import SubmissionsManager from '../components/SubmissionsManager.vue';
-import ArtistsEditor from '../components/ArtistsEditor.vue';
 import ArtistsManager from '../components/ArtistsManager.vue';
+
 
 const view = ref('submissions');
 </script>

@@ -221,7 +221,7 @@ const submitForm = async () => {
     data.append('representativeImage', formData.representativeImage);
 
     // Enviamos al servidor local de Node.js
-        const response = await axios.post('http://localhost:3000/submit', data, {
+        const response = await axios.post('http://localhost:3000/api/submit', data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

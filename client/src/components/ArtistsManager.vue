@@ -59,7 +59,8 @@
                 </v-col>
 
                 <v-col cols="6">
-                    <v-btn block color="success" :disabled="isDirty === false" size="large" @click="saveChanges" class="">
+                    <v-btn block color="success" :disabled="isDirty === false" size="large" @click="saveChanges"
+                        class="">
                         Save Changes
                     </v-btn>
 
@@ -90,7 +91,7 @@
 
         <div v-if="editingArtist">
             <v-divider class="my-6"></v-divider>
-            <h3 class="text-h5 mb-4">Gestión de Assets 3D</h3>
+            <h3 class="text-h5 mb-4">3D Asset Management</h3>
 
             <v-row class="mb-4">
                 <v-col cols="12">
@@ -109,13 +110,15 @@
             <v-row>
                 <v-col v-for="(asset, index) in editingArtist.assets" :key="asset.id" cols="12" sm="4">
                     <v-card variant="outlined" class="pa-3">
-                        <div class="text-subtitle-1 font-weight-bold">{{ asset.name }}</div>
-                        <div class="text-caption mb-2">{{ asset.assetType }}</div>
-                        <v-img :src="asset.thumbnail"></v-img>
-                        <v-card-actions class="pa-0">
-                            <v-chip size="x-small" :color="asset.is_active ? 'success' : 'grey'">
-                                {{ asset.is_active ? 'Visible' : 'Oculto' }}
-                            </v-chip>
+                        <div class="text-subtitle-1 font-weight-bold">{{ asset.asset_name }}
+                            <v-switch v-model="asset.is_visible" :label="asset.is_visible ? 'Asset shows on public profile ' : 'Asset is hidden on public profile'" 
+                             :color="asset.is_visible ? 'success' : 'grey'"
+                                @change="toggleAssetVisibility(asset)"></v-switch>
+                        </div>
+                        <div class="text-caption mb-2">{{ asset.asset_Type }}</div>
+                        <v-img :src="`http://localhost:3000/uploads/assets/${asset.representative_image}`" height="100"
+                            cover class="bg-grey-lighten-2"></v-img> <v-card-actions class="pa-0">
+                            
                             <v-spacer></v-spacer>
                             <v-btn icon="mdi-delete" size="small" color="error" variant="text"></v-btn>
                         </v-card-actions>
@@ -157,20 +160,26 @@ const fetchArtists = async () => {
     artists.value = res.data;
 };
 
+// ArtistsManager.vue
+
 const startEdit = async (artist) => {
-    // Copia profunda para no modificar la lista original
+    // 1. Copia profunda del perfil del artista
     editingArtist.value = JSON.parse(JSON.stringify(artist));
-    // editingArtist.value = structuredClone(artist);
 
-    // 2. Esperamos a que el DOM y los componentes se estabilicen
+    // 2. Cargar sus assets vinculados desde la base de datos
+    try {
+        const res = await axios.get(`${API_BASE_URL}/api/artists/${artist.id}/assets`);
+        // Asignamos los assets traídos de la DB al objeto que estamos editando
+        editingArtist.value.assets = res.data;
+        console.log(`Cargados ${res.data.length} assets para ${artist.title}`);
+    } catch (err) {
+        console.error("Error cargando assets:", err);
+        editingArtist.value.assets = [];
+    }
+
     await nextTick();
-
-    // 3. Ahora sí, reseteamos la bandera
     isDirty.value = false;
-    
-    // Opcional: limpiar la carpeta temporal si quedó algo de una edición previa
     tempSessionFolder.value = null;
-
 };
 
 // En el <script setup> de ArtistsManager.vue
@@ -406,6 +415,22 @@ const handleBeforeUnload = (event) => {
         event.returnValue = '';
     }
 };
+
+const toggleAssetVisibility = async (asset) => {
+    try {
+        await axios.patch(`${API_BASE_URL}/api/assets/${asset.id}/visibility`, {
+            is_visible: asset.is_visible
+        });
+        // Opcional: una pequeña notificación visual
+        console.log(`Asset ${asset.id} visibility: ${asset.is_active}`);
+    } catch (err) {
+        console.error("Error changing visibility:", err);
+        // Revertimos el cambio en el UI si falló la DB
+        asset.is_visible = !asset.is_visible;
+        alert("Failed to update visibility");
+    }
+};
+
 onMounted(() => {
     // 1. Registro de eventos globales
     window.addEventListener('beforeunload', handleBeforeUnload);

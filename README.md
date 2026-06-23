@@ -1,10 +1,12 @@
 # Sari-Sari Project - Backend API
 
-This is the Node.js backend for the Sari-Sari project, responsible for managing digital asset submissions, file storage, and database persistence.
+This repository contains the Node.js / Express backend service for the Sari-Sari Exchange platform. It manages secure multi-part digital asset submissions, structured database interactions with PostgreSQL, and automated storage directory mapping.
 
 ## Prerequisites
 
-- **Node.js**: v16.x 
+- **Runtime**: Node.js v16.x or higher
+- **Database**: PostgreSQL v13.x or higher
+- **Process Manager (Recommended for Production)**: PM2 or systemd
 
 ## Deployment Instructions
 
@@ -28,8 +30,18 @@ DB_NAME
 
 ### 5. Database Initialization
 
-1. Create the database instance through `CREATE DATABASE sarisari_db;` via psql.
-2. Upon the first run, the server will execute the `init.sql` script to automatically create the necessary tables (assets), columns, and indexes if they do not exist.
+1. Ensure your PostgreSQL instance is running and create the target database:
+
+`CREATE DATABASE sarisari_db;`
+.
+2. Execute the provided init.sql script to initialize tablesand query performance indexes:
+
+`init.sql`
+
+### 4. File Storage Structure
+The application handles dynamic, segmented storage paths for file processing.
+
+Note: The root ./uploads folder along with its target subdirectories (./uploads/assets and ./uploads/artists) will self-initialize automatically upon the server's first execution cycle. No manual folder creation is required.
 
 ### 6. Running the Server
 `npm start`

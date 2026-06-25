@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import AdminDashboard from '../pages/AdminDashboard.vue';
+import AdminDashboard from '../pages/AdminDashboard_prev.vue/index.js';
 import Homepage from '../pages/Homepage.vue';
 import Assetory from '../pages/Assetory.vue';
 import HomepageAutoScaling from '../pages/HomepageAutoScaling.vue';

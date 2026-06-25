@@ -47,7 +47,7 @@ const routes = [
     }),
   },
   {path: '/events', component: Events, name: 'Events'}, 
-  {path: '/event/:id', component: Event, name: 'Event', props: true}, 
+  {path: '/event/:slug', component: Event, name: 'Event', props: true}, 
   {path: '/submit-your-work', component: SubmitYourWorkForm, name: 'Submit Your Work Form'},
   // {path: '/submissions', component: Submissions, name: 'Submissions'},
 

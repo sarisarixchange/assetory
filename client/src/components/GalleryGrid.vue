@@ -276,7 +276,7 @@ export default {
 
 
         <div class="galleryCardContentGoTo">
-          <router-link :to="{ name: routeName, params: { id: index } }" class="galleryCardContentLink">
+          <router-link :to="{ name: routeName, params: { slug: gallery.slug } }" class="galleryCardContentLink">
             <span class="learn-more">{{ gallery.title }}</span>
             <span class="galleryCardGoToArrow" aria-hidden="true">
               <img src="/icons/arrow-right-black.svg" alt="" />

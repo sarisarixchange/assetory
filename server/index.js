@@ -10,12 +10,21 @@ const app = express();
 const port = process.env.PORT || 3000;
 const cron = require('node-cron');
 
-// --- CONFIGURACIÓN DE CARPETAS ---
-// Solo necesitamos una carpeta base: uploads
+// --- DIRECTORY STORAGE CONFIGURATION ---
+// Automatically ensure the base upload directories exist upon server boot
 const uploadBaseDir = path.join(__dirname, 'uploads');
-if (!fs.existsSync(uploadBaseDir)) {
-  fs.mkdirSync(uploadBaseDir, { recursive: true });
-}
+const assetsDir = path.join(uploadBaseDir, 'assets');
+const artistsDir = path.join(uploadBaseDir, 'artists');
+const eventsDir = path.join(uploadBaseDir, 'events');
+
+const requiredDirectories = [uploadBaseDir, assetsDir, artistsDir, eventsDir];
+
+requiredDirectories.forEach(dir => {
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+    console.log(`📁 Directory initialized successfully: ${dir}`);
+  }
+});
 
 // Middleware
 app.use(cors());
@@ -55,6 +64,27 @@ cron.schedule('0 3 1 * *', async () => {
   }
 });
 
+// --- ENDPOINT DE AUTENTICACIÓN PARA EL PANEL ADMIN ---
+app.post('/api/auth/login', (req, res) => {
+  const { password } = req.body;
+  const securePassword = process.env.ADMIN_PASSWORD;
+
+  // Validación básica por si no está configurada la variable de entorno
+  if (!securePassword) {
+    console.error("⚠️ Alerta: ADMIN_PASSWORD no está definida en el archivo .env");
+    return res.status(500).json({ error: "Error de configuración en el servidor." });
+  }
+
+  if (password === securePassword) {
+    // Si coincide, respondemos con éxito
+    // En el futuro, aquí podrías generar un token JWT si necesitas más seguridad
+    return res.json({ success: true, message: "Autenticación exitosa" });
+  } else {
+    // Si no coincide, devolvemos un error 401 (No autorizado)
+    return res.status(401).json({ success: false, error: "Contraseña incorrecta" });
+  }
+});
+
 // --- CONFIGURACIÓN DE MULTER UNIFICADA ---
 // Creamos una subcarpeta única por cada "envío" o "artista" para evitar colisión de nombres
 const storage = multer.diskStorage({
@@ -65,11 +95,15 @@ const storage = multer.diskStorage({
       req.uploadSessionDir = Date.now() + '-' + Math.round(Math.random() * 1E4);
     }
 
-    // DETECTAMOS EL DESTINO:
-    // Si la ruta contiene '3d' o 'submit', va a assets. Si no, a artists.
-    const subFolder = (req.path.includes('3d') || req.path.includes('submit'))
-      ? 'assets'
-      : 'artists';
+
+   // 🔥 DETECTAMOS EL DESTINO DINÁMICO EXTENDIDO:
+    let subFolder = 'artists'; // Por defecto
+
+    if (req.path.includes('3d') || req.path.includes('submit')) {
+      subFolder = 'assets';
+    } else if (req.path.includes('event')) {
+      subFolder = 'events'; // 🌟 ¡Si la ruta de la API dice 'event', va directo a la carpeta de eventos!
+    }
 
     const targetDir = path.join(uploadBaseDir, subFolder, req.uploadSessionDir);
 
@@ -230,7 +264,117 @@ app.patch('/api/assets/:id/visibility', async (req, res) => {
   }
 });
 
+app.put('/api/assets/:id/metadata', async (req, res) => {
+  const { id } = req.params;
+  const { asset_name, story, keywords, asset_type, creation_method, copyright } = req.body;
+
+  try {
+    await pool.query(
+      `UPDATE assets 
+             SET asset_name = $1, 
+                 story = $2, 
+                 keywords = $3, 
+                 asset_type = $4, 
+                 creation_method = $5, 
+                 copyright = $6 
+             WHERE id = $7`,
+      [asset_name, story, keywords, asset_type, creation_method, copyright, id]
+    );
+    res.json({ message: "Asset metadata updated" });
+  } catch (err) {
+    console.error("Database error:", err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// PATCH: Link an existing asset submission to a specific artist profile
+app.patch("/api/assets/:id/link-artist", async (req, res) => {
+  const { id } = req.params;
+  const { artist_id } = req.body; // Expecting the UUID of the target artist
+
+  try {
+    const query = `
+      UPDATE assets 
+      SET artist_id = $1 
+      WHERE id = $2 
+      RETURNING *;
+    `;
+    
+    const result = await pool.query(query, [artist_id, id]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ 
+        success: false, 
+        error: "Asset registry not found" 
+      });
+    }
+
+    console.log(`🔗 Linked Asset ID ${id} to Artist ID ${artist_id}`);
+    
+    res.json({ 
+      success: true, 
+      message: "Asset linked to artist profile successfully", 
+      data: result.rows[0] 
+    });
+
+  } catch (err) {
+    console.error("❌ Error in PATCH /api/assets/:id/link-artist ->", err.message);
+    res.status(500).json({ 
+      success: false, 
+      error: err.message 
+    });
+  }
+});
+
+// PATCH: Unlink an asset from its current artist profile (sets artist_id to NULL)
+app.patch("/api/assets/:id/unlink-artist", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const query = `
+      UPDATE assets 
+      SET artist_id = NULL 
+      WHERE id = $1 
+      RETURNING *;
+    `;
+    
+    const result = await pool.query(query, [id]);
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ 
+        success: false, 
+        error: "Asset record not found" 
+      });
+    }
+
+    console.log(`🔗 Unlinked Asset ID ${id} (artist_id cleared to NULL)`);
+    
+    res.json({ 
+      success: true, 
+      message: "Asset unlinked from artist profile successfully", 
+      data: result.rows[0] 
+    });
+
+  } catch (err) {
+    console.error("❌ Error in PATCH /api/assets/:id/unlink-artist ->", err.message);
+    res.status(500).json({ 
+      success: false, 
+      error: err.message 
+    });
+  }
+});
+
 // --- RESTO DE TUS RUTAS (Submissions, CRUD Artistas, etc) ---
+
+app.get('/api/events', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM events ORDER BY id DESC');
+        res.json(result.rows);
+    } catch (err) {
+        console.error("Error fetching events:", err);
+        res.status(500).json({ error: "Internal server error reading events" });
+    }
+});
 
 app.get('/api/artists', async (req, res) => {
   try {
@@ -438,7 +582,7 @@ app.get("/api/submissions", async (req, res) => {
 
 // upload new 3D asset from Submit form
 app.post("/api/submit", upload.fields([
-  { name: "assetFiles", maxCount: 5 },
+  { name: "assetFiles", maxCount: 1 }, // Cambiado a 'assetFile' para coincidir con tu AssetForm.vue
   { name: "representativeImage", maxCount: 1 }
 ]), async (req, res) => {
   try {
@@ -449,7 +593,8 @@ app.post("/api/submit", upload.fields([
       keywords, email, story,
       assetType, asset_type,
       creationMethod, creation_method,
-      copyright, acknowledgement
+      copyright, acknowledgement,
+      artist_id // <-- CAPTURAMOS EL ID DEL ARTISTA
     } = req.body;
 
     // Usamos la carpeta de sesión generada por nuestro nuevo Multer
@@ -466,15 +611,17 @@ app.post("/api/submit", upload.fields([
 
     const query = `
         INSERT INTO assets (
+          artist_id,
           asset_name, creator_name, keywords, email, story, 
           asset_type, creation_method, copyright, acknowledgement, 
-          files, representative_image, status
+          files, representative_image, status, is_active, is_visible
         )
-        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, 'pending') 
+        VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, 'pending', true, true) 
         RETURNING *;
       `;
 
     const values = [
+      artist_id || null, // Si es nulo, se queda huérfano (para aprobación manual)
       asset_name || assetName,
       creator_name || creatorName,
       keywords,
@@ -490,7 +637,8 @@ app.post("/api/submit", upload.fields([
 
     const result = await pool.query(query, values);
 
-    console.log(`✅ Nueva submission recibida: ${asset_name || assetName}`);
+    console.log(`✅ Registro creado: ${asset_name || assetName} (Artist ID: ${artist_id || 'None'})`);
+
     res.json({ success: true, data: result.rows[0] });
 
   } catch (err) {
@@ -499,16 +647,16 @@ app.post("/api/submit", upload.fields([
   }
 });
 
-// index.js
 
-// Obtener assets vinculados a un artista específico
+// Get assets linked to a specific artist
 app.get('/api/artists/:id/assets', async (req, res) => {
   try {
     const { id } = req.params; // El UUID del artista
     // Buscamos assets que pertenezcan a este ID y que no estén borrados
     const query = `
       SELECT * FROM assets 
-      WHERE artist_id = $1 AND is_active = true 
+      WHERE artist_id = $1 
+      AND is_active = true 
       ORDER BY created_at DESC
     `;
     const result = await pool.query(query, [id]);
@@ -584,8 +732,174 @@ app.delete('/api/artists/:id', async (req, res) => {
   }
 });
 
+/////////EVENTS//////
+
+// ==========================================
+// ENDPOINTS PARA LA GESTIÓN DE EVENTOS
+// ==========================================
+
+// 1. Obtener todos los eventos (Lista para el Administrador)
+app.get('/api/events', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM events ORDER BY id DESC');
+        res.json(result.rows);
+    } catch (err) {
+        console.error("Error fetching events:", err);
+        res.status(500).json({ error: "Internal server error reading events" });
+    }
+});
+
+// Obtener los detalles de un evento individual mediante su Slug único
+app.get('/api/events/:slug', async (req, res) => {
+    const { slug } = req.params;
+    try {
+        const result = await pool.query('SELECT * FROM events WHERE slug = $1', [slug]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Event artifact target not found" });
+        }
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error("❌ Error running single event lookups:", err);
+        res.status(500).json({ error: "Internal operational server database error" });
+    }
+});
+
+// 2. Creat new event (POST)
+
+app.post('/api/upload-event-image', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) return res.status(400).send('No file uploaded.');
+
+    // 🔥 Cambiamos el prefijo para guardarlo limpiamente bajo la carpeta 'events'
+    const relativePath = `events/${req.uploadSessionDir}/${req.file.filename}`;
+
+    res.json({
+      message: 'Event cover upload successful',
+      dbPath: relativePath
+    });
+  } catch (err) {
+    console.error("❌ Error en upload evento:", err.message);
+    res.status(500).send(err.message);
+  }
+});
+
+app.post('/api/events', async (req, res) => {
+    // 1. Recibimos también thumbnail y banner_image desde el frontend
+    const { title, description, is_active, thumbnail, banner_image, cards } = req.body;
+    
+    // Generar slug amigable para las URLs públicas
+    const slug = title.toLowerCase().trim()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '');
+
+    // Si el frontend ya nos manda las cards estructuradas por Quill las usamos,
+    // de lo contrario usamos tu objeto default inicializado.
+    const finalCards = cards || [{
+        heading: "Overview",
+        description: description || "",
+        image: "",
+        youtubeUrl: "",
+        contentSideBySide: false
+    }];
+
+    // 2. Si no se subió ninguna imagen, asignamos los placeholders por defecto
+    const finalThumbnail = thumbnail || 'events/placeholder.jpg';
+    const finalBanner = banner_image || thumbnail || 'events/placeholder.jpg';
+
+    try {
+        // 3. Añadimos thumbnail y banner_image a la consulta SQL
+        const query = `
+            INSERT INTO events (title, slug, cards, is_active, thumbnail, banner_image)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING *
+        `;
+        const values = [
+            title, 
+            slug, 
+            JSON.stringify(finalCards), 
+            is_active ?? true,
+            finalThumbnail,
+            finalBanner
+        ];
+        
+        const result = await pool.query(query, values);
+        
+        res.status(201).json(result.rows[0]);
+    } catch (err) {
+        console.error("Error creating event:", err);
+        res.status(500).json({ error: "Failed to create event entry" });
+    }
+});
+
+// 3. Update existing event (PUT)
+app.put('/api/events/:id', async (req, res) => {
+    const { id } = req.params;
+    const { title, description, is_active, cards } = req.body;
+    
+    const slug = title.toLowerCase().trim()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '');
+
+    try {
+        let query;
+        let values;
+
+        // Si el cliente envía el árbol de tarjetas completo, lo actualizamos directamente
+        if (cards) {
+            query = `
+                UPDATE events 
+                SET title = $1, slug = $2, cards = $3, is_active = $4
+                WHERE id = $5 RETURNING *
+            `;
+            values = [title, slug, JSON.stringify(cards), is_active, id];
+        } else {
+            // Si viene del formulario simplificado con el campo directo description
+            const defaultCards = [{
+                heading: "Overview",
+                description: description || "",
+                image: "",
+                youtubeUrl: "",
+                contentSideBySide: false
+            }];
+            query = `
+                UPDATE events 
+                SET title = $1, slug = $2, cards = $3, is_active = $4
+                WHERE id = $5 RETURNING *
+            `;
+            values = [title, slug, JSON.stringify(defaultCards), is_active, id];
+        }
+
+        const result = await pool.query(query, values);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Event not found" });
+        }
+        res.json(result.rows[0]);
+    } catch (err) {
+        console.error("Error updating event:", err);
+        res.status(500).json({ error: "Failed to update event entry" });
+    }
+});
+
+// 4. Eliminar un evento
+app.delete('/api/events/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const result = await pool.query('DELETE FROM events WHERE id = $1 RETURNING *', [id]);
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: "Event not found" });
+        }
+        res.json({ success: true, message: "Event successfully deleted" });
+    } catch (err) {
+        console.error("Error deleting event:", err);
+        res.status(500).json({ error: "Failed to delete event execution" });
+    }
+});
+
+
 ////////// DEBUGGING HELPER FUNCTIONS
-// http://localhost:3000/api/debug-assets
+// Load data at http://localhost:3000/api/debug-assets
 app.get('/api/debug-assets', async (req, res) => {
   try {
     // Traemos los últimos 10 assets, incluyendo los "borrados" para que puedas ver el estado
@@ -634,6 +948,27 @@ app.get('/api/lookup-deleted-artists', async (req, res) => {
     res.json(result.rows);
   } catch (err) {
     console.error("Error is lookup-deleted-artists:", err.message);
+    res.status(500).send(err.message);
+  }
+});
+
+// http://localhost:3000/api/debug-events
+app.get('/api/debug-events', async (req, res) => {
+  try {
+    // Traemos los últimos 10 assets, incluyendo los "borrados" para que puedas ver el estado
+    const result = await pool.query('SELECT * FROM events WHERE is_active = true ORDER BY created_at DESC');
+    // const result = await pool.query(`
+    //   SELECT *
+    //   FROM artists 
+    //   ORDER BY created_at DESC 
+    //   LIMIT 10
+    // `);
+
+    // Añadimos un contador simple para el log
+    console.log(`debugging events:  ${result.rows.length} found entries.`);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error en debug-events:", err.message);
     res.status(500).send(err.message);
   }
 });
@@ -720,6 +1055,7 @@ app.get('/api/maintenance/clean-garbage', async (req, res) => {
 
 
 // Endpoint para limpiar carpetas que se crearon pero no se confirmaron (Cancel o abandono)
+// Endpoint para limpiar carpetas que se crearon pero no se confirmaron (Cancel o abandono)
 app.post('/api/cleanup/temp-folder', async (req, res) => {
   const { folderName } = req.body;
 
@@ -729,20 +1065,33 @@ app.post('/api/cleanup/temp-folder', async (req, res) => {
   }
 
   try {
-    // Construimos la ruta: /uploads/artists/NOMBRE_CARPETA
-    const targetDir = path.join(uploadBaseDir, 'artists', folderName);
+    // 🔍 Construimos las rutas potenciales tanto para artistas como para eventos
+    const artistPath = path.join(uploadBaseDir, 'artists', folderName);
+    const eventPath = path.join(uploadBaseDir, 'events', folderName);
 
-    if (fs.existsSync(targetDir)) {
-      // fs.rmSync borra la carpeta y todo lo que tenga dentro
-      fs.rmSync(targetDir, { recursive: true, force: true });
-      console.log(`🧹 Limpieza manual: Carpeta temporal eliminada: ${folderName}`);
+    let removed = false;
+
+    // Si existe en la carpeta de artistas, la eliminamos
+    if (fs.existsSync(artistPath)) {
+      fs.rmSync(artistPath, { recursive: true, force: true });
+      removed = true;
+    }
+
+    // Si existe en la carpeta de eventos, la eliminamos
+    if (fs.existsSync(eventPath)) {
+      fs.rmSync(eventPath, { recursive: true, force: true });
+      removed = true;
+    }
+
+    if (removed) {
+      console.log(`🧹 Limpieza manual: Carpeta temporal [${folderName}] eliminada con éxito del storage.`);
       res.json({ message: "Carpeta temporal eliminada con éxito" });
     } else {
-      // Si ya no existe, probablemente el mantenimiento automático se adelantó
+      // Si ya no existe en ningún lado, probablemente el mantenimiento automático se adelantó
       res.json({ message: "La carpeta ya no existe o ya fue limpiada" });
     }
   } catch (err) {
-    console.error("Error en /api/cleanup/temp-folder:", err);
+    console.error("❌ Error en /api/cleanup/temp-folder:", err.message);
     res.status(500).json({ error: "No se pudo eliminar la carpeta temporal" });
   }
 });

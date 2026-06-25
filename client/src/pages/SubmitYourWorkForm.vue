@@ -105,8 +105,8 @@ const updateTheme = (payload) => {
 // --------------------
 // Supabase setup
 // --------------------
-const SUPABASE_URL = "https://igiktlbaxubjupbuqtqf.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnaWt0bGJheHVianVwYnVxdHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjIyMjM1MjEsImV4cCI6MjA3Nzc5OTUyMX0.Is58dtSu-dUt7SNXxUl_JDbQPp6rsb91Uhp4DV8Owi0";
+const SUPABASE_URL = "https://jmkknhbygadthnygsvvw.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impta2tuaGJ5Z2FkdGhueWdzdnZ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODIzOTIzOTAsImV4cCI6MjA5Nzk2ODM5MH0.oydAov7JmDzth1XGrtGtILNeRtZVOj3-aJ-p1OL4KU0";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 

@@ -253,6 +253,7 @@ export default {
         root.style.setProperty('--primary-color', '#000000');
         root.style.setProperty('--secondary-color', '#FFFEFA');
         root.style.setProperty('--navigation-buttons-border-color', '#000000');
+        root.style.setProperty('--background-color-cards-main', '#26031F');
         root.style.setProperty('--homepage-card-buttons-border-color', '#000000');
         root.style.setProperty('--hover-color', '#E7F6FC');
         root.style.setProperty('--hover-text-color', '#000000');

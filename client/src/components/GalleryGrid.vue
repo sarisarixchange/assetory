@@ -61,6 +61,11 @@ export default {
       default: false
     },
 
+    isHomepage: {
+      type: Boolean,
+      default: false
+    },
+
 
     theme: {
       type: String,

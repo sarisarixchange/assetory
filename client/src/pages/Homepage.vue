@@ -1,4 +1,6 @@
 <script>
+import teamData from '../data/team.json';
+import GalleryGrid from '../components/GalleryGrid.vue'; // Import the Grid component
 import AccessibilityMenu from '../components/AccessibilityMenu.vue';
 import Topbar from '../components/Topbar.vue';
 import SimpleButton from '../widgets/SimpleButton.vue';
@@ -7,6 +9,10 @@ import events from '/src/data/events.json';
 import collections from '/src/data/collections.json';
 import LogoSection from '../components/LogoSection.vue';
 import OddShapeButton from '../widgets/OddShapeButton.vue';
+import Marquee from '../components/Marquee.vue';
+import Footer from '../components/Footer.vue'; // Import the Footer component
+import ContactForm from '../components/ContactForm.vue'
+
 
 
 export default {
@@ -15,16 +21,26 @@ export default {
         Topbar,
         SimpleButton,
         LogoSection,
-        OddShapeButton
+        OddShapeButton,
+        Marquee,
+        GalleryGrid,
+        Footer,
+        ContactForm
     },
     data() {
         return {
+            currentTheme: { theme: 'default' }, // Default theme
             interactiveMode: false, // 👈 this must exist
             iconBasePath: 'icons/', // Base path for icons
             artistBasePath: 'images/artists/',
             collectionsBasePath: 'images/collections/',
             eventsBasePath: 'images/events/',
             marqueeBasePath: 'images/marquee/',
+            galleryName: '',
+            galleryDescription: '',
+            basePath: 'team/',
+            routeName: '',
+            data: teamData,
 
             iconHoveredSrc: '/icons/arrow-right-black.svg',
             isNotificationVisible: true,
@@ -349,10 +365,11 @@ export default {
 </script>
 <style scoped>
 .grid-container {
+    background-color: var(--background-color-main);
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+    /* width: 100vw; */
+    /* height: 100vh; */
 }
 
 .topBar {
@@ -424,12 +441,15 @@ export default {
     /* background-color: red; */
     display: flex;
     margin: auto;
-    width: 51.8125rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    width: 100%;
     /* height: 43.4375rem; */
-    justify-content: center;
+    /* justify-content: center; */
     /* Center cards horizontally */
     flex-shrink: 0;
     gap: 3rem;
+    /* background-color: blue; */
 }
 
 /* Mobile adjustments */
@@ -448,6 +468,18 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
+    /* background-color: red; */
+
+
+}
+
+.cardsContainerLeftSideTop {
+    width: 100%;
+    display: flex;
+    gap: 1.8rem;
+    align-items: center;
+    justify-content: center;
+    /* background-color: green; */
 }
 
 /* Medium desktops / laptops (<= 1400px) */
@@ -461,8 +493,10 @@ export default {
 
 /* left top box */
 
-.left-top-box {
-    width: 24.625rem;
+.sarisariXchangeBlurbContiner {
+
+    width: 18.7rem;
+    height: 22rem;
     display: inline-flex;
     padding: 0.5rem;
     flex-direction: column;
@@ -470,12 +504,12 @@ export default {
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
+    border: 1px solid var(--primary-border-color-main);
+    background: var(--background-color-cards-main);
 }
 
 /* LEFT BOX CONTENTS */
-.left-top-box-heading {
+.sarisariXchangeBlurbContiner-heading {
     height: 2rem;
     display: flex;
     padding: 0.5rem;
@@ -483,10 +517,10 @@ export default {
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 0.5rem;
-    background-color: var(--primary-color-left-box);
+    background-color: var(--background-color-card-heading-one);
 }
 
-.left-top-box-heading h2 {
+.sarisariXchangeBlurbContiner-heading h2 {
     font-family: var(--font-family-Decorative);
     color: var(--text-color-left-box);
     font-size: 1.25rem;
@@ -497,32 +531,32 @@ export default {
     letter-spacing: -0.015;
 }
 
-.left-top-box-heading img {
+.sarisariXchangeBlurbContiner-heading img {
     width: 1.25rem;
 }
 
-.left-top-box-paragraph {
+.sarisariXchangeBlurbContiner-paragraph {
     flex: 1 1 auto;
-    display: flex;
+    /* display: flex; */
     padding: 0.5rem;
     justify-content: center;
     align-items: center;
     align-self: stretch;
     border-radius: 0.5rem;
-    background-color: var(--secondary-color-left-box);
+    background-color: transparent;
     overflow: auto;
 
 }
 
 
-.left-top-box-paragraph p {
-    height: 4.75rem;
+.sarisariXchangeBlurbContiner-paragraph p {
+    /* height: 4.75rem; */
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.05rem;
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     font-family: 'Inter', sans-serif;
     font-weight: 400;
 }
@@ -530,12 +564,12 @@ export default {
 
 
 
-.left-top-box-action-call {
+.sarisariXchangeBlurbContiner-action-call {
     height: 2rem;
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -544,14 +578,14 @@ export default {
     align-self: stretch;
 }
 
-.left-top-box-call-action {
+.sarisariXchangeBlurbContiner-call-action {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     width: 100%;
     height: 100%;
     display: flex;
     flex-shrink: 0;
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     justify-content: space-between;
     border-radius: 0.5rem;
     align-items: center;
@@ -561,7 +595,7 @@ export default {
 
 
 
-.left-top-box-goto-action {
+.sarisariXchangeBlurbContiner-goto-action {
     font-size: 1rem;
     display: flex;
     align-items: center;
@@ -580,21 +614,21 @@ export default {
 
 /* left bottom box */
 
-.left-bottom-box {
+.sarisariXchangeLandAcknowledgementContainer {
     display: flex;
-    width: 24.625rem;
+    width: 49.43rem;
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
+    border: 1px solid var(--primary-border-color-main);
+    background-color: transparent;
 }
 
 /* LEFT BOX CONTENTS */
-.left-bottom-box-heading {
+.sarisariXchangeLandAcknowledgementContainer-heading {
     height: 2rem;
     display: flex;
     padding: 0.5rem;
@@ -602,10 +636,10 @@ export default {
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 0.5rem;
-    background-color: var(--primary-color-left-box);
+    background-color: var(--background-color-card-heading-one);
 }
 
-.left-bottom-box-heading h2 {
+.sarisariXchangeLandAcknowledgementContainer-heading h2 {
     font-family: var(--font-family-Decorative);
     color: var(--text-color-left-box);
     font-size: 1.25rem;
@@ -616,11 +650,11 @@ export default {
     letter-spacing: -0.015;
 }
 
-.left-bottom-box-heading img {
+.sarisariXchangeLandAcknowledgementContainer-heading img {
     width: 1.25rem;
 }
 
-.left-bottom-box-paragraph {
+.sarisariXchangeLandAcknowledgementContainer-paragraph {
     flex: 1 1 auto;
     display: flex;
     padding: 0.5rem;
@@ -628,19 +662,19 @@ export default {
     align-items: center;
     align-self: stretch;
     border-radius: 0.5rem;
-    background-color: var(--secondary-color-left-box);
+    background-color: transparent;
     overflow: auto;
 }
 
 
-.left-bottom-box-paragraph p {
+.sarisariXchangeLandAcknowledgementContainer-paragraph p {
     height: 100%;
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
     letter-spacing: -0.05rem;
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     font-family: 'Inter', sans-serif;
     font-weight: 400;
 }
@@ -675,8 +709,9 @@ export default {
 
 /* right top box */
 
-.right-top-box {
-    width: 24.625rem;
+.exploreProjectsContainer {
+    width: 51.62rem;
+    height: 40.97rem;
     display: inline-flex;
     padding: 0.5rem;
     flex-direction: column;
@@ -684,11 +719,11 @@ export default {
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
+    border: 1px solid var(--primary-border-color-main);
+    background: var(--background-color-cards-main);
 }
 
-.right-top-box-heading {
+.exploreProjectsContainer-heading {
     height: 2rem;
     display: flex;
     padding: 0.5rem;
@@ -696,12 +731,12 @@ export default {
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 0.5rem;
-    background-color: var(--primary-color-left-box);
+    background-color: var(--background-color-card-heading-two);
 }
 
-.right-top-box-heading h2 {
+.exploreProjectsContainer-heading h2 {
     font-family: var(--font-family-Decorative);
-    color: var(--text-color-left-box);
+    color: var(--color-card-heading-two);
     font-size: 1.25rem;
     /* font-size: clamp(1rem, 1.85rem, 2rem); */
     font-style: normal;
@@ -710,7 +745,7 @@ export default {
     letter-spacing: -0.015;
 }
 
-.right-top-box-subtitle {
+.exploreProjectsContainer-subtitle {
     display: flex;
     padding: 0.5rem;
     align-items: center;
@@ -718,13 +753,13 @@ export default {
     align-self: stretch;
     border-radius: 0.5rem;
     gap: 0.5vw;
-    background-color: var(--background-color);
+    background-color: transparent;
     border: 1px solid #000;
 }
 
-.right-top-box-subtitle p {
+.exploreProjectsContainer-subtitle p {
     font-family: 'Inter', sans-serif;
-    color: var(--primary-color);
+    color: var(--secondary-color-main);
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -732,24 +767,25 @@ export default {
 }
 
 @media (max-width: 1400px) {
-    .right-top-box-subtitle p {
+    .exploreProjectsContainer-subtitle p {
         font-size: 0.8rem;
     }
 }
 
-.right-top-box-subtitle img {
+.exploreProjectsContainer-subtitle img {
     width: 1.18756rem;
     height: 0.71619rem;
 }
 
-.right-top-box-heading img {
+.exploreProjectsContainer-heading img {
     width: 0.94rem;
 }
 
-.right-top-box-photo img {
+.exploreProjectsContainer-photo img {
     display: flex;
-    width: 23.625rem;
-    height: 12.875rem;
+    /* width: 23.625rem;
+    height: 12.875rem; */
+    width: 100%;
     padding: 0.5rem;
     justify-content: center;
     align-items: center;
@@ -758,12 +794,15 @@ export default {
     border-radius: 0.5rem;
 }
 
-.right-top-box-action-call {
-    height: 2rem;
+.exploreProjectsContainer-action-call {
+    /* background-color: red; */
+    width: 100%;
+    /* O los píxeles exactos que quieras estirarlo, ej: 450px */
+    /* height: 48px; */
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -772,16 +811,14 @@ export default {
     align-self: stretch;
 }
 
-
-
-.right-top-box-call-action {
+.exploreProjectsContainer-call-action {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     width: 100%;
     height: 100%;
     display: flex;
     flex-shrink: 0;
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     display: flex;
     justify-content: space-between;
     border-radius: 0.5rem;
@@ -790,7 +827,7 @@ export default {
     margin-right: 5rem;
 }
 
-.right-top-box-goto-action {
+.exploreProjectsContainer-goto-action {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -799,24 +836,26 @@ export default {
 
 }
 
-.right-top-box-goto-action img {
+.exploreProjectsContainer-goto-action img {
     width: 1.45881rem;
     height: 0.96119rem;
+
 }
 
 
 
 /* Medium desktops / laptops (<= 1400px) */
 @media (max-width: 1400px) {
-    .right-top-box-goto-action {
+    .exploreProjectsContainer-goto-action {
         font-size: 1.5rem;
         padding-right: 0.25rem;
     }
 }
 
 /* right bottom box */
-.right-bottom-box {
+.exploreAssetoryContainer {
     width: 24.625rem;
+    height: 18rem;
     display: inline-flex;
     padding: 0.5rem;
     flex-direction: column;
@@ -824,11 +863,11 @@ export default {
     align-items: center;
     gap: 0.5rem;
     border-radius: 0.4375rem;
-    border: 1px solid var(--primary-color);
-    background: var(--background-color);
+    border: 1px solid var(--primary-border-color-main);
+    background: var(--background-color-cards-main);
 }
 
-.right-bottom-box-heading {
+.exploreAssetoryContainer-heading {
     height: 2rem;
     display: flex;
     padding: 0.5rem;
@@ -836,12 +875,12 @@ export default {
     gap: 0.5rem;
     align-self: stretch;
     border-radius: 0.5rem;
-    background-color: var(--primary-color-left-box);
+    background-color: var(--background-color-card-heading-two);
 }
 
-.right-bottom-box-heading h2 {
+.exploreAssetoryContainer-heading h2 {
     font-family: var(--font-family-Decorative);
-    color: var(--text-color-left-box);
+    color: var(--color-card-heading-two);
     font-size: 1.25rem;
     /* font-size: clamp(1rem, 1.85rem, 2rem); */
     font-style: normal;
@@ -850,11 +889,11 @@ export default {
     letter-spacing: -0.015;
 }
 
-.right-bottom-box-heading img {
+.exploreAssetoryContainer-heading img {
     width: 0.94rem;
 }
 
-.right-bottom-box-subtitle {
+.exploreAssetoryContainer-subtitle {
     display: flex;
     padding: 0.5rem;
     align-items: center;
@@ -862,13 +901,13 @@ export default {
     align-self: stretch;
     border-radius: 0.5rem;
     gap: 0.5vw;
-    background-color: var(--background-color);
-    border: 1px solid #000;
+    background-color: transparent;
+    border: 1px solid var(--primary-border-color-main);
 }
 
-.right-bottom-box-subtitle p {
+.exploreAssetoryContainer-subtitle p {
     font-family: 'Inter', sans-serif;
-    color: var(--primary-color);
+    color: var(--secondary-color-main);
     font-size: 1rem;
     font-style: normal;
     font-weight: 400;
@@ -876,21 +915,21 @@ export default {
 }
 
 @media (max-width: 1400px) {
-    .right-bottom-box-subtitle p {
+    .exploreAssetoryContainer-subtitle p {
         font-size: 0.8rem;
     }
 }
 
-.right-bottom-box-subtitle img {
+.exploreAssetoryContainer-subtitle img {
     width: 1.18756rem;
     height: 0.71619rem;
 }
 
-.right-bottom-box-heading {
+.exploreAssetoryContainer-heading {
     width: 23.62rem;
 }
 
-.right-bottom-box-photo img {
+.exploreAssetoryContainer-photo img {
     display: flex;
     height: 8.25rem;
     padding: 0.5rem;
@@ -902,12 +941,12 @@ export default {
 
 
 
-.right-bottom-box-action-call {
+.exploreAssetoryContainer-action-call {
     height: 2rem;
     display: flex;
     border-radius: 0.5rem;
     font-family: var(--font-family-Decorative);
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 400;
@@ -916,14 +955,14 @@ export default {
     align-self: stretch;
 }
 
-.right-bottom-box-call-action {
+.exploreAssetoryContainer-call-action {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
     width: 100%;
     height: 100%;
     display: flex;
     flex-shrink: 0;
-    color: var(--primary-color);
+    color: var(--primary-color-main);
     display: flex;
     justify-content: space-between;
     border-radius: 0.5rem;
@@ -934,7 +973,7 @@ export default {
 
 
 
-.right-bottom-box-goto-action {
+.exploreAssetoryContainer-goto-action {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -943,22 +982,87 @@ export default {
 
 }
 
-.right-bottom-box-goto-action img {
+.exploreAssetoryContainer-goto-action img {
     width: 1.45881rem;
     height: 0.96119rem;
 }
 
 /* This triggers when the box is hovered OR when any child inside it gets focus */
-.left-top-box:hover,
-.left-top-box:focus-within,
-.right-top-box:hover,
-.right-top-box:focus-within,
-.right-bottom-box:hover,
-.right-bottom-box:focus-within {
+.sarisariXchangeBlurbContiner:hover,
+.sarisariXchangeBlurbContiner:focus-within,
+.exploreProjectsContainer:hover,
+.exploreProjectsContainer:focus-within,
+.exploreAssetoryContainer:hover,
+.exploreAssetoryContainer:focus-within {
     box-shadow: -4px 4px 0 0 var(--primary-color);
 }
 
-/* notification window */
+
+.assetoryPromoContainer {
+    display: flex;
+    padding-left: 6rem;
+    padding-right: 6rem;
+    /* background-color: red; */
+    align-items: center;
+}
+
+.assetoryPromo {
+    width: 35.43rem;
+    height: 15.6rem;
+    display: inline-flex;
+    padding: 0.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 0.4375rem;
+    border: 1px solid var(--primary-border-color-main);
+    background: var(--background-color-main);
+
+}
+
+.assetoryPromoHeading {
+    /* height: 2rem; */
+    display: flex;
+    padding: 0.5rem;
+    align-items: center;
+    gap: 0.5rem;
+    align-self: stretch;
+    border-radius: 0.5rem;
+    background-color: var(--background-color-card-heading-two);
+}
+
+.assetoryPromoHeading h2 {
+    font-family: var(--font-family-Decorative);
+    color: var(--color-card-heading-two);
+    font-size: 1.25rem;
+    /* font-size: clamp(1rem, 1.85rem, 2rem); */
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: -0.015;
+}
+
+.assetoryPromoHeading img {
+    width: 0.94rem;
+}
+
+.assetoryPromoParagraphPlusButtons {
+    display: flex;
+    gap: 1rem;
+}
+
+.assetoryPromoParagraph {
+    background-color: transparent;
+    color: var(--primary-color-main);
+    width: 100%;
+    font-size: 1.15rem;
+}
+
+.assetoryPromoButtons {
+    font-size: 0.75rem;
+
+}
 
 /* notification window */
 .notification-window {
@@ -1032,8 +1136,8 @@ export default {
     height: 6.6875rem;
     border-radius: 0.5rem;
     border: 1px solid var(--primary-color);
-    margin-left: 2.28rem;
-    margin-right: 2.28rem;
+    margin-left: 6.5rem;
+    margin-right: 6.5rem;
     margin-bottom: 0.5rem;
 }
 
@@ -1065,6 +1169,19 @@ export default {
         padding: 0.4rem 1rem;
     }
 }
+
+.form-section {
+    /* background-color: red; */
+    width: 100%;
+    /* color: black; */
+    /* background: red; */
+    border-radius: 8px;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); */
+    padding-left: 6.5rem;
+    padding-right: 6.5rem;
+    /* max-width: 600px; */
+    margin: 0 auto;
+}
 </style>
 
 <template>
@@ -1089,42 +1206,101 @@ export default {
 
         <div class="cardsContainer">
             <div class="cardsContainerLeftSide">
-                <!-- left top box -->
-                <div class="left-top-box">
-                    <div class="left-top-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'sariSariIconWhite.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isWCAGLeftCardIconVisible"
-                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
-                        <h2>Sari-Sari Xchange</h2>
-                    </div>
-                    <div class="left-top-box-paragraph">
-                        <p>
-                            SSX is a community-building research & creation project using Extended Reality (XR) (ie.
-                            Virtual, Augmented, Mixed Realities) to foster new works by artists from the Asian
-                            diaspora.
-                        </p>
-                    </div>
+
+                <div class="cardsContainerLeftSideTop">
+                    <!-- Sari Sari Xchange intro -->
+                    <div class="sarisariXchangeBlurbContiner">
+                        <div class="sarisariXchangeBlurbContiner-heading">
+                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
+                                aria-hidden="true">
+                            <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
+                                alt="" aria-hidden="true">
+                            <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
+                                alt="" aria-hidden="true">
+                            <img v-show="isHighContrastLeftCardIconVisible"
+                                :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
+                            <img v-show="isWCAGLeftCardIconVisible"
+                                :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
+                            <h2>Sari-Sari Xchange</h2>
+                        </div>
+                        <div class="sarisariXchangeBlurbContiner-paragraph">
+                            <p>The Sari-Sari Xchange is a community-building research & creation project using Extended
+                                Reality (XR) (ie. Virtual, Augmented, Mixed Realities) to foster new works by artists
+                                from
+                                the Asian diaspora.
+
+                                <br><br>
+
+                                We undertake exploration in emergent XR technologies and new storytelling techniques,
+                                address under-representation and issues of systemic racism as well as inaccessibility of
+                                these new technologies for both creators and users with disabilities.
+                            </p>
+                        </div>
 
 
-                    <div class="left-top-box-action-call" @mouseenter="isAboutHovered = true"
+                        <!-- <div class="sarisariXchangeBlurbContiner-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
 
                         <OddShapeButton label="Learn More" iconText="OK" :to="{ name: 'About' }"
                             fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color-main)" />
+                    </div> -->
+                    </div>
+
+
+                    <!-- Assetory  -->
+                    <div class="exploreAssetoryContainer">
+
+                        <div class="exploreAssetoryContainer-heading">
+                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt=""
+                                aria-hidden="true">
+                            <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                                alt="" aria-hidden="true">
+                            <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                                alt="" aria-hidden="true">
+                            <img v-show="isHighContrastLeftCardIconVisible"
+                                :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
+                            <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                                alt="" aria-hidden="true">
+                            <h2>Assetory</h2>
+                        </div>
+
+                        <div class="exploreAssetoryContainer-subtitle">
+                            <img v-show="isDecoractionCardSubtitleDefault"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt=""
+                                aria-hidden="true">
+                            <img v-show="isDecoractionCardSubtitlePink"
+                                :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
+                            <img v-show="isDecoractionCardSubtitleGray"
+                                :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
+                            <img v-show="isDecoractionCardSubtitleHighContrast"
+                                :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt=""
+                                aria-hidden="true">
+                            <img v-show="isDecoractionCardSubtitleWCAG"
+                                :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
+                            <p>Explore the online platform for more 3D assets.</p>
+                        </div>
+                        <div class="exploreAssetoryContainer-photo" aria-hidden="true">
+                            <img src="/images/homepage/right-bottom-card-background-image.png" alt=""
+                                aria-hidden="true">
+                        </div>
+
+                        <div class="exploreAssetoryContainer-action-call" @mouseenter="isAboutHovered = true"
+                            @mouseleave="isAboutHovered = false">
+
+                            <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-black.svg'
+                                :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Assetory' }"
+                                fillColor="transparent" textColor="var(--secondary-color-main)"
+                                hoverColor="var(--hover-color-main)" strokeColor="var(--primary-border-color-main)" />
+                        </div>
                     </div>
                 </div>
 
-                <!-- left bottom box -->
+                <!-- Land acknowledgement -->
 
-                <div class="left-bottom-box">
-                    <div class="left-bottom-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
+                <div class="sarisariXchangeLandAcknowledgementContainer">
+                    <div class="sarisariXchangeLandAcknowledgementContainer-heading">
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
+                            aria-hidden="true">
                         <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
                             alt="" aria-hidden="true">
                         <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
@@ -1135,7 +1311,7 @@ export default {
                             :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
                         <h2>Land Acknowledgement</h2>
                     </div>
-                    <div class="left-bottom-box-paragraph">
+                    <div class="sarisariXchangeLandAcknowledgementContainer-paragraph">
                         <p>As Settlers from the Asian Diaspora, we would like to recognize the importance of
                             acknowledging the Indigenous peoples on whose land we live and work.
                             <br></br>
@@ -1163,20 +1339,24 @@ export default {
 
             <div class="cardsContainerRightSide">
 
-                <!-- right top box -->
-                <div class="right-top-box">
+                <!-- projects -->
+                <div class="exploreProjectsContainer">
 
-                    <div class="right-top-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt="" aria-hidden="true">
+                    <div class="exploreProjectsContainer-heading">
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                            aria-hidden="true">
+                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                            aria-hidden="true">
+                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                            aria-hidden="true">
+                        <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                            aria-hidden="true">
+                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                            aria-hidden="true">
                         <h2>Projects</h2>
                     </div>
-                    <!-- right top box -->
-                    <div class="right-top-box-subtitle">
+
+                    <div class="exploreProjectsContainer-subtitle">
                         <img v-show="isDecoractionCardSubtitleDefault"
                             :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
                         <img v-show="isDecoractionCardSubtitlePink"
@@ -1191,62 +1371,67 @@ export default {
                     </div>
 
 
-                    <div class="right-top-box-photo" aria-hidden="true">
+                    <div class="exploreProjectsContainer-photo" aria-hidden="true">
                         <img src="/images/homepage/right-top-card-background-image.png" alt="" aria-hidden="true">
                     </div>
 
-                    <div class="right-top-box-action-call" @mouseenter="isAboutHovered = true"
+                    <div class="exploreProjectsContainer-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
-                        <OddShapeButton label="Open Projects (Coming soon!)" iconSrc='/icons/arrow-right-black.svg'
-                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }"
-                            fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
+                        <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-black.svg'
+                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" fillColor="transparent"
+                            textColor="var(--secondary-color-main)" hoverColor="var(--hover-color-main)"
+                            strokeColor="var(--primary-border-color-main)" />
                     </div>
 
                 </div>
+            </div>
+        </div>
 
+        <!-- marquee -->
+        <div class="assetoryPromoContainer">
+            <div class="assetoryPromo">
+                <div class="assetoryPromoHeading">
+                    <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
+                        aria-hidden="true">
+                    <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt=""
+                        aria-hidden="true">
+                    <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt=""
+                        aria-hidden="true">
+                    <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
+                        aria-hidden="true">
+                    <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'"
+                        alt="" aria-hidden="true">
+                    <h2>Hey, we’ve got more!</h2>
+                </div>
 
-
-                <!-- right bottom box -->
-                <div class="right-bottom-box">
-
-                    <div class="right-bottom-box-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
-                        <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
-                        <h2>Assetory</h2>
+                <div class="assetoryPromoParagraphPlusButtons">
+                    <div class="assetoryPromoParagraph">
+                        <p>We’ve been working on a open-source asset library that highlights artists and their 3D work.
+                            Yeah, sounds cool. Check it out & stay in touch.
+                        </p>
                     </div>
-
-                    <div class="right-bottom-box-subtitle">
-                        <img v-show="isDecoractionCardSubtitleDefault"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitlePink"
-                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitleGray"
-                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitleWCAG"
-                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
-                        <p>Explore the online platform for more 3D assets.</p>
-                    </div>
-                    <div class="right-bottom-box-photo" aria-hidden="true">
-                        <img src="/images/homepage/right-bottom-card-background-image.png" alt="" aria-hidden="true">
-                    </div>
-
-                    <div class="right-bottom-box-action-call" @mouseenter="isAboutHovered = true"
-                        @mouseleave="isAboutHovered = false">
-
-                        <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-black.svg'
-                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Assetory' }"
-                            fillColor="var(--background-color)" hoverColor="var(--hover-color-main)" />
+                    <div class="assetoryPromoButtons">
+                        <SimpleButton :to="{ name: '' }" text="Visit the SSX Assetory"
+                            :icon="iconBasePath + 'arrow-right-black.svg'" />
+                        <SimpleButton :to="{ name: 'Submit Your Work Form' }" text="Submit your work"
+                            :icon="iconBasePath + 'submit-your-work-icon-black.svg'" />
+                        <SimpleButton :to="{ name: '' }" text="Instagram" icon="" />
                     </div>
                 </div>
             </div>
 
+            <Marquee :are-footer-images-default-visible="true" />
         </div>
+
+        <!-- Collections Grid -->
+        <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
+            :basePath="basePath" :routeName="routeName" :showSearchBar="false" :is-homepage="true"
+            :theme="currentTheme.theme" />
+
+        <!-- contact form -->
+        <section class="form-section">
+            <ContactForm backgroundColor="var(--background-color-cards-main-two)"/>
+        </section>
 
         <!-- Notification Window -->
         <div v-if="isNotificationVisible" class="notification-window">
@@ -1259,8 +1444,14 @@ export default {
             <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
         </div>
 
+
+
         <div class="footer">
         </div>
+
+        <!-- footer -->
+
+        <Footer :theme="currentTheme" />
 
     </div>
 

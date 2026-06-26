@@ -68,6 +68,20 @@ body {
 
   /* Main Sari Sari website */
   --active-color-main: #D400A6;
+  --primary-color-main: white;
+  --secondary-color-main: #E47BCD;
+  --primary-border-color-main: #9D488B;
+  --background-color-main: #1D0018;
+  --background-color-cards-main: #26031F;
+  --background-color-cards-main-two: #DBD71C;
+  --background-color-card-heading-one: #8C006E;
+  --background-color-card-heading-two: #DBD71C;
+  --color-card-heading-one: #FFFBEB;
+  --color-card-heading-two: #26031F;
+  --background-color-topbar-nav-buttons: #8C006E;
+  --border-color-topbar-nav-button-active: #FFFBEB;  
+  --border-color-topbar-nav-button-hover: #FFBAF0;  
+  --text-color-topbar-nav-button-hover: #FFFBEB;  
   --active-text-color-main: #FFFEFA;
   --hover-color-main: #FFEDF4;
   --hover-text-color-main: #000000;

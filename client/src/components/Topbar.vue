@@ -11,9 +11,9 @@ export default {
     interactiveMode: {
       type: Boolean,
       required: true
-    }, 
+    },
     pageTitle: {
-      type: String, 
+      type: String,
       required: true
     }
   },
@@ -144,17 +144,18 @@ export default {
 }
 
 .header-homepage {
-  width: 26.53125rem;
+  /* width: 39.0625rem; */
   margin-top: 0.87rem;
   margin-left: auto;
-  margin-right: auto;
+  margin-right: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #eee;
   border: solid 1px var(--primary-color);
   border-radius: 1.25rem;
-  background-color: var(--background-color);
+  background-color: var(--background-color-main);
+
   height: 5rem;
 }
 
@@ -253,9 +254,9 @@ export default {
   align-items: center;
   height: 2.1875rem;
   padding: 0.3125rem 1.25rem;
-  border: 1px solid var(--navigation-buttons-border-color);
-  background: none;
-  color: var(--primary-color);
+  border: 1px solid var(--primary-border-color-main);
+  background: transparent;
+  color: var(--primary-color-main);
   border-radius: 0.75rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -263,10 +264,10 @@ export default {
   transition: background-color 0.2s;
 }
 
-.nav-button-homepage:hover, 
+.nav-button-homepage:hover,
 .nav-button-homepage:focus-visible {
-  background-color: var(--hover-color-main);
-  color: var(--hover-text-color-main);
+  color: var(--text-color-topbar-nav-button-hover);
+  border: 1px solid var(--border-color-topbar-nav-button-hover);
   box-shadow: -3px 3px 0 0 var(--shadow);
 }
 
@@ -275,7 +276,7 @@ export default {
   color: var(--hover-text-color);
 }
 
-.nav-button.active:hover, 
+.nav-button.active:hover,
 .nav-button.active:focus-visible {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
@@ -283,14 +284,16 @@ export default {
 
 
 .nav-button-homepage.active {
-  background-color: var(--active-color-main);
+  background-color: var(--background-color-topbar-nav-buttons);
+  border: 1px solid var(--border-color-topbar-nav-button-active);
   color: var(--active-text-color-main);
 }
 
-.nav-button-homepage.active:hover, 
+.nav-button-homepage.active:hover,
 .nav-button-homepage.active:focus-visible {
-  background-color: var(--hover-color-main);
-  color: var(--hover-text-color-main);
+  background-color: transparent;
+  color: var(--text-color-topbar-nav-button-hover);
+  border: 1px solid var(--border-color-topbar-nav-button-hover);
   box-shadow: -3px 3px 0 0 var(--shadow);
 
 }
@@ -303,9 +306,8 @@ a {
 }
 
 
-.nav-button:hover, 
-.nav-button:focus-visible
- {
+.nav-button:hover,
+.nav-button:focus-visible {
   background-color: var(--hover-color);
   color: var(--hover-text-color);
   box-shadow: -3px 3px 0 0 var(--shadow);
@@ -405,9 +407,9 @@ a {
   <div v-if="isHomepage" class="nav-buttons-wrapper-homepage">
     <div class="header-homepage">
       <div class="logo-section">
-        <h1 class="visually-hidden">{{pageTitle}}</h1>
+        <h1 class="visually-hidden">{{ pageTitle }}</h1>
         <div class="logo" aria-hidden="true">
-          <img v-show="isDefaultLogoIconVisible" src="/icons/logoPink.svg" alt="Sari-Sari Asset Library Logo"
+          <img v-show="isDefaultLogoIconVisible" src="/icons/logoPurple.svg" alt="Sari-Sari Asset Library Logo"
             class="logo" />
           <img v-show="isGrayscaleLogoIconVisible" src="/icons/logoGray.svg" alt="Sari-Sari Asset Library Logo"
             class="logo" />
@@ -431,8 +433,9 @@ a {
       <div class="nav-buttons">
         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
-        <router-link :to="{ name: 'About' }" class="nav-button-homepage">About</router-link>
-        <router-link :to="{ name: 'Assetory' }" class="nav-button-homepage">Assetory</router-link>
+        <router-link :to="{ name: '' }" class="nav-button-homepage">Projects</router-link>
+        <router-link :to="{ name: '' }" class="nav-button-homepage">Mobile Units</router-link>
+        <router-link :to="{ name: '' }" class="nav-button-homepage">Learning Modules</router-link>
         <!-- <router-link to="" class="nav-button-homepage">Projects</router-link> -->
 
       </div>
@@ -442,17 +445,18 @@ a {
     <div class="mobile-menu" v-if="isMobileMenuOpen">
       <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
         :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
-      <router-link :to="{ name: 'About' }" class="nav-button-homepage"
-        :class="{ active: this.$route.name === 'Homepage' }">About</router-link>
-      <router-link :to="{ name: 'Assetory' }" class="nav-button-homepage"
-        :class="{ active: this.$route.name === 'Homepage' }">Assetory</router-link>
+      <router-link :to="{ name: '' }" class="nav-button-homepage"
+        :class="{ active: this.$route.name === 'Homepage' }">Projects</router-link>
+      <router-link :to="{ name: '' }" class="nav-button-homepage"
+        :class="{ active: this.$route.name === 'Homepage' }">Mobile Units</router-link>
+      <router-link :to="{ name: '' }" class="nav-button-homepage"
+        :class="{ active: this.$route.name === 'Homepage' }">Learning Modules</router-link>
     </div>
 
 
     <!-- Accessibility Menu -->
     <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
       @update-notification-visible="$emit('update-notification-visible', $event)" @theme-changed="handleThemeChange" />
-
   </div>
 
 

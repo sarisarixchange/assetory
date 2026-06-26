@@ -37,7 +37,7 @@ DB_NAME
 
 2. Execute the provided init.sql script to initialize tablesand query performance indexes:
 
-`init.sql`
+`sudo -u postgres psql -d sarisari_db -f init.sql`
 
 ### 4. File Storage Structure
 The application handles dynamic, segmented storage paths for file processing.

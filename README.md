@@ -35,7 +35,7 @@ DB_NAME
 `CREATE DATABASE sarisari_db;`
 
 
-2. Execute the provided init.sql script to initialize tablesand query performance indexes:
+2. Execute the provided init.sql script to initialize tables and query performance indexes:
 
 `sudo -u postgres psql -d sarisari_db -f init.sql`
 

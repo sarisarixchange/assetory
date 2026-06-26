@@ -34,6 +34,7 @@ DB_NAME
 
 `CREATE DATABASE sarisari_db;`
 
+
 2. Execute the provided init.sql script to initialize tablesand query performance indexes:
 
 `init.sql`

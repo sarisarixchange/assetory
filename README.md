@@ -33,7 +33,7 @@ DB_NAME
 1. Ensure your PostgreSQL instance is running and create the target database:
 
 `CREATE DATABASE sarisari_db;`
-.
+
 2. Execute the provided init.sql script to initialize tablesand query performance indexes:
 
 `init.sql`

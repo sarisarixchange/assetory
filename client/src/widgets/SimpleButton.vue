@@ -13,6 +13,20 @@ export default {
         icon: {
           type: String,
           default: null
+        }, 
+        backgroundColor: {
+          type: String,
+          default: 'var(--background-color)'
+        }, 
+
+        color: {
+          type: String,
+          default: 'var(--primary-color)'
+        },
+        
+        borderColor: {
+          type: String,
+          default: 'var(--primary-color)'
         }
     }
 }
@@ -25,9 +39,10 @@ export default {
 .simpleButton {
   display: inline-flex;
   align-items: center;
-  background-color: var(--background-color);
-  color: var(--primary-color);
-  border: 1px solid var(--primary-color);
+  justify-content: center;
+  background-color: v-bind(backgroundColor);
+  color: v-bind(color);
+  border: 1px solid v-bind(borderColor);
   font-family: 'Inter', sans-serif;
   font-size: var(--font-base);
   font-weight: 600;

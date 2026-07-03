@@ -1,8 +1,8 @@
 <template>
   <v-app shadow>
     <v-main>
-  <router-view />
-  </v-main>
+      <router-view />
+    </v-main>
   </v-app>
 </template>
 
@@ -27,55 +27,37 @@ body {
   background: white;
   height: 100vh;
   margin: 0;
-  /* background-color: #f9f9f9; */
   background-color: var(--background-color);
 }
 
-/* @font-face {
-        font-family: 'Handjet';
-        src: url('/fonts/Handjet.ttf') format('opentype');
-        font-weight: normal;
-        font-style: normal;
-        } */
 
 :root {
   --base-gap: 16rem;
   --font-family-Decorative: 'Kode Mono', sans-serif;
-  --font-text:  'Inter', sans-serif;
-
-  /* new default theme */
-  /* --background-color: #FFFEFA;
-  --primary-color: #000000;
-  --secondary-color: #DBF2FD;
-  --navigation-buttons-border-color: #A9D0F5;
-  --hover-color: #FD5733;
-  --hover-text-color: #FFFFFF;
-  --shadow: #000000; */
-
-
-  /* interactive theme */
-  /* --background-color: #FFFEF6;
-  --primary-color: #D400A6;
-  --secondary-color: #FFEDF4;
-  --navigation-buttons-border-color: #F1AFDD;
-  --hover-color: #A80084;
-  --hover-text-color: #FFFFFF;
-  --shadow: #F1AFDD;
-
-
-  --primary-color-left-box: #E7EB17;
-  --secondary-color-left-box: #FCFCCE;
-  --text-color-left-box: #D400A6;
-  --hover-color-left-box: #E7EB17;
-  --hover-text-color-left-box: #D400A6; */
-
-  /* default (orange + blue theme) */
+  --font-text: 'Inter', sans-serif;
 
   /* Main Sari Sari website */
   --active-color-main: #D400A6;
+  --primary-color-main: #FFFBEB;
+  --secondary-color-main: #E47BCD;
+  --primary-border-color-main: #9D488B;
+  --background-color-main: #1D0018;
+  --background-color-cards-main: #26031F;
+  --background-color-cards-main-two: #DBD71C;
+  --background-color-card-heading-one: #8C006E;
+  --background-color-card-heading-two: #DBD71C;
+  --color-card-heading-one: #FFFBEB;
+  --color-card-heading-two: #26031F;
+  --background-color-topbar-nav-buttons: #8C006E;
+  --text-color-topbar-nav-button-main: #E47BCD;
+  --border-color-topbar-nav-button-active: #FFFBEB;
+  --border-color-topbar-nav-button-hover: #FFBAF0;
+  --text-color-topbar-nav-button-hover: #FFFBEB;
   --active-text-color-main: #FFFEFA;
   --hover-color-main: #FFEDF4;
   --hover-text-color-main: #000000;
+  /* --hover-color-nav-buttons: #8C006E; */
+
 
   /* Assetory */
   --background-color: #FFFEFA;

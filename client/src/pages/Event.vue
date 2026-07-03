@@ -65,7 +65,7 @@ import EntityPage from '../components/EntityPage.vue';
 
 // 1. Configuración de constantes y estado reactivo
 const route = useRoute();
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://sarisarixchange.ca/assetory_api";
 const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
 
 const collection = ref(null);

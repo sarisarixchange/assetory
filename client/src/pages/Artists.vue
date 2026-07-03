@@ -8,7 +8,7 @@ import BackTopButton from '../widgets/BackTopButton.vue';
 import Footer from '../components/Footer.vue';
 
 // --- Configuración de Rutas ---
-const API_BASE_URL = "http://localhost:3000";
+const API_BASE_URL = "https://sarisarixchange.ca/assetory_api";
 const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
 
 // --- Estado Reactivo ---

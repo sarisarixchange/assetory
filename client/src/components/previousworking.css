@@ -61,11 +61,6 @@ export default {
       default: false
     },
 
-    isHomepage: {
-      type: Boolean,
-      default: false
-    },
-
 
     theme: {
       type: String,
@@ -104,7 +99,7 @@ export default {
         )
         .map((item) => ({
           ...item,
-          thumbnail: `images/${this.basePath}` + item.thumbnail
+          thumbnail: `${this.basePath}` + item.thumbnail
         }));
     },
 
@@ -171,10 +166,12 @@ export default {
 <!-- params: { id: gallery.id } -->
 
 <template>
-  <div v-if="isAboutPage || isHomepage" :class="{ 'homePage': isHomepage, 'aboutPage': isAboutPage }">
+  <div v-if="isAboutPage" class="aboutPage" :style="{
+    // backgroundImage: `url('${this.imageUrl}')`,
+    // backgroundSize: 'contain'
+  }">
     <!-- current team members -->
-    <div :class="{'meetTheTeamHeader': isAboutPage, 'meetTheTeamHeaderHomepage': isHomepage}"
-    >
+    <div class="meetTheTeamHeader">
 
       <h3>
         <img class="arrowHeadingAboutPage" src="/icons/left-decor-default.svg">
@@ -194,30 +191,27 @@ export default {
 
     </div>
 
-    <div :class="{'galleryGridAboutPage' : isAboutPage, 'galleryGridAboutHomepage' : isHomepage}">
-      <div :class="{'galleryCardAboutPage': isAboutPage, 'galleryCardAboutHomepage' : isHomepage}" :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
+    <div class="galleryGridAboutPage">
+      <div class="galleryCardAboutPage" :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
         v-for="(gallery, index) in currentTeam" :key="'current-' + index">
         <div class="galleryCardImageWrapper">
-          <div :class="{'galleryCardContentAboutPage': isAboutPage, 'galleryCardContentHomepage' : isHomepage}">
+          <div class="galleryCardContentAboutPage">
             <img :src="gallery.thumbnail"alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
           </div>
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
-        <div :class="{'galleryCardBottomTextAboutPage': isAboutPage, 'galleryCardBottomTextHomepage': isHomepage, expanded: openCurrentIndex === index }"  tabindex="0"
+        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openCurrentIndex === index }" tabindex="0"
           role="button" :aria-expanded="openCurrentIndex === index" @click="showCurrentAbout(index)"
           @keydown.esc="closeBio()" @keydown.enter="showCurrentAbout(index)"
           @keydown.space.prevent="showCurrentAbout(index)">
           <p>{{ gallery.title }}</p>
-          <img v-if="isAboutPage" class="asterisk-in-name-about-page"
+          <img class="asterisk-in-name-about-page"
             :src="openCurrentIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
-            src="/icons/arrow-right-black.svg" alt="">
-            <img v-else="isHomePage" class="asterisk-in-name-about-page"
-            :src="openCurrentIndex === index ? '/icons/arrow-right-purple.svg' : '/icons/arrow-right-purple.svg'"
             src="/icons/arrow-right-black.svg" alt="">
         </div>
 
-        <div :class="{'about-paragraph' : isAboutPage, 'about-paragraph-home' : isHomepage}" v-show="openCurrentIndex === index" @keydown.esc="closeBio()">
+        <div class="about-paragraph" v-show="openCurrentIndex === index" @keydown.esc="closeBio()">
           <p>{{ gallery.about }}</p>
         </div>
 
@@ -259,7 +253,6 @@ export default {
     </div>
   </div>
 
-  
   <div v-else-if="isEventsPage">
 
     <!-- heading and searchbar -->
@@ -282,7 +275,7 @@ export default {
         </div>
 
 
-            <div class="galleryCardContentGoTo">
+        <div class="galleryCardContentGoTo">
           <router-link :to="{ name: routeName, params: { slug: gallery.slug } }" class="galleryCardContentLink">
             <span class="learn-more">{{ gallery.title }}</span>
             <span class="galleryCardGoToArrow" aria-hidden="true">
@@ -292,10 +285,11 @@ export default {
         </div>
       </div>
     </div>
+
   </div>
 
 
-  <div v-else>
+<div v-else>
   <div class="heading-and-searchbar">
     <div class="gallery-heading">
       <h2>{{ galleryName }}</h2>
@@ -333,7 +327,6 @@ export default {
     </div>
   </div>
 </div>
-
 </template>
 
 <style scoped>
@@ -653,6 +646,24 @@ export default {
   color: var(--primary-color);
 }
 
+.galleryCardImageWrapper {
+  /* aspect-ratio: 1 / 1;  */
+  overflow: hidden;
+  background-color: var(--secondary-color);
+  border-radius: 0.625rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.galleryCardContentImageAboutPage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
 .galleryCardBottomTextAboutPage {
   display: flex;
   padding: 0.75rem;
@@ -758,223 +769,8 @@ export default {
     border: 1px solid var(--primary-color);
     /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
     background-color: #fff;
+
+
   }
-}
-
-  /* /* Home page */
-/* css only if in home page */
-.homePage {
-  border: 1px solid var(--primary-border-color-main);
-  border-radius: 1rem;
-  width: 93.375rem;
-  margin: auto;
-  padding: 1.25rem 1.5rem;
-  flex-direction: column;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-}
-
-.meetTheTeamHeaderHomepage {
-  width: 100%;
-  background-color: var(--background-color-card-heading-one);
-  text-align: center;
-  font-family: var(--font-family-Decorative);
-  color: var(--color-card-heading-one);
-  border: none;
-  border-radius: 12px;
-  font-size: 3rem;
-  font-weight: 400;
-}
-
-
-.gallery-section-heading-about {
-  display: flex;
-  height: 1.875rem;
-  padding: 0.5rem;
-  align-items: center;
-  gap: 0.625rem;
-  border-radius: 0.5rem;
-  background-color: black;
-  color: white;
-  font-family: var(--font-family-Decorative);
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.025rem;
-}
-
-.arrowHeadingAboutPage {
-  width: 5.45231rem;
-  height: 1.96581rem;
-
-}
-
-
-.galleryGridAboutHomepage {
-  display: flex;
-  width: 100%;
-  justify-content: center;
-  gap: 2.94rem;
-  flex-wrap: wrap;
-  background-color: transparent;
-  /* padding-left: 5.53rem; */
-  /* padding-right: 5.53rem; */
-}
-
-
-.galleryCardAboutHomepage {
-  display: flex;
-  width: 20.25rem;
-  height: 23.125rem;
-  flex-direction: column;
-  justify-content: flex-start;
-  /* keep content of the card at the top*/
-  align-items: center;
-  padding: 0.75rem;
-  border-radius: 1rem;
-  gap: 0.5rem;
-  border: 1px solid var(--primary-border-color-main);
-  background-color: var(--background-color-cards-main);
-}
-
-.galleryCardContentHomepage {
-  width: 18.75rem;
-  height: 18.75rem;
-  align-self: stretch;
-  border-radius: 0.625rem;
-  background-color: transparent;
-  /* color: var(--primary-color); */
-}
- 
-
-
-.galleryCardImageWrapper {
-  /* aspect-ratio: 1 / 1;  */
-  overflow: hidden;
-  background-color: var(--secondary-color);
-  border-radius: 0.625rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.galleryCardContentImageAboutPage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-.galleryCardBottomTextHomepage {
-  display: flex;
-  padding: 0.75rem;
-  align-items: center;
-  gap: 0.5rem;
-  align-self: stretch;
-  border-radius: 0.5rem;
-  
-  border: 1px solid var(--primary-border-color-main);
-  background-color: var(--background-color-cards-main);
-  font-family: var(--font-family-Decorative);
-  color: var( --secondary-color-main);
-  font-size: 1.25rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: -0.05625rem;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.galleryCardBottomTextHomepage:hover,
-.galleryCardBottomTextHomepage:focus-visible {
-  color: var(--primary-color-main);
-  border-color: var(--primary-color-main);
-}
-
-
-
-.asterisk-in-name-about-page {
-  color: black;
-  width: 0.94081rem;
-  height: 0.97863rem;
-  transition: transform 0.25s ease;
-  /* smooth rotation */
-}
-
-/* optional: if you also want it rotated when expanded */
-.galleryCardBottomTextAboutPage.expanded .asterisk-in-name-about-page {
-  transform: rotate(-90deg);
-  /* arrow points up when expanded */
-}
-
-.galleryCardBottomTextHomePage.expanded {
-  background-color: transparent;
-  color: red;
-  border-color: var(--primary-color);
-}
-
-.about-paragraph-home {
-  overflow-y: auto;
-  color: var(--primary-color-main);
-}
-
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-
-  .homePage {
-    width: 100%;
-    margin: auto;
-    padding: 1.25rem 1.5rem;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-  }
-
-  .meetTheTeamHeaderHomepage {
-    width: 100%;
-    background-color: var(--primary-color);
-    text-align: center;
-    font-family: var(--font-family-Decorative);
-    color: var(--secondary-color);
-    border: none;
-    border-radius: 12px;
-    font-size: 2rem;
-    font-weight: 400;
-  }
-
-
-  .eventsGalleryGrid {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: center;
-    gap: 2.5rem;
-    padding-left: 5.53rem;
-    padding-right: 5.53rem;
-    align-items: center;
-  }
-
-
-
-  .eventsGalleryCard {
-    display: flex;
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0.75rem;
-    border-radius: 1rem;
-    gap: 0.5rem;
-    border: 1px solid var(--primary-color);
-    /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
-    background-color: #fff;
-  }
-
 }
 </style>

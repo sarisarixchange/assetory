@@ -231,6 +231,8 @@ const API_BASE_URL = "http://localhost:3000";
 const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
 
 // ⚙️ MAPEO DE CONFIGURACIONES ARQUITECTÓNICAS POR MÓDULO
+
+
 const MODULES_CONFIG = {
     artists: {
         viewTitle: 'Artist Profiles Library',
@@ -348,6 +350,7 @@ const createNewItem = () => {
 };
 
 // Subida de Archivos unificada usando la ruta inyectada por Multer
+// 🛠️ REEMPLAZA ESTA FUNCIÓN EN TU MANAGER.VUE ACTUAL
 const onFileSelected = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -360,13 +363,24 @@ const onFileSelected = async (event) => {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
 
+        // res.data.dbPath contiene algo como: "artists/1719600000-1234/imagen.png"
         const pathParts = res.data.dbPath.split('/');
         if (pathParts.length >= 2) {
-            tempSessionFolder.value = pathParts[1]; // Almacena el código de sesión
+            tempSessionFolder.value = pathParts[1]; // Almacena el código de sesión para el cleanup
         }
 
-        editingItem.value.thumbnail = res.data.dbPath;
-        editingItem.value.banner_image = res.data.dbPath;
+        // 🌟 CORRECCIÓN CRÍTICA: Extraemos solo el nombre del archivo final
+        // para que las páginas públicas (Artists.vue, Events.vue) no hagan un 404
+        // al buscar carpetas que no entienden.
+        const fileNameOnly = pathParts[pathParts.length - 1]; 
+
+        // Reconstruimos el path plano que tus componentes públicos ya saben leer:
+        // Si el módulo es 'artists', guardamos 'artists/nombre_archivo.png'
+        // Si es 'events', guardamos 'events/nombre_archivo.jpg'
+        const cleanPathForPublicVistas = `${currentModule.value}/${fileNameOnly}`;
+
+        editingItem.value.thumbnail = cleanPathForPublicVistas;
+        editingItem.value.banner_image = cleanPathForPublicVistas;
         isDirty.value = true;
     } catch (err) {
         console.error("❌ Failed uploading target file:", err);
@@ -380,18 +394,26 @@ const saveChanges = async () => {
         const item = editingItem.value;
         const isNew = !item.id;
 
+        // Limpieza de tarjetas para asegurar compatibilidad con base de datos JSONB
+        const formattedCards = item.cards.map(card => ({
+            heading: card.heading || '',
+            description: typeof card.description === 'string' ? card.description : card.description?.html || '',
+            image: card.image || '',
+            youtubeUrl: card.youtubeUrl || '',
+            contentSideBySide: !!card.contentSideBySide
+        }));
+
         const payload = {
-            [config.value.dbTitleField]: item.title, // 'artist_name', 'title' o 'collection_name'
+            [config.value.dbTitleField]: item.title,
             slug: item.slug,
             thumbnail: item.thumbnail,
             banner_image: item.banner_image || item.thumbnail,
             is_active: item.is_active ?? true,
-            cards: item.cards.map(card => ({
-                ...card,
-                description: typeof card.description === 'string' ? card.description : card.description?.html || ''
-            }))
+            cards: formattedCards
         };
 
+        // Si es el módulo de eventos, tu index.js (Línea ~478) procesa directo la propiedad 'description' si no mandas 'cards'
+        // pero como mandamos 'cards', lo inyectamos de manera transparente.
         if (!isNew) {
             await axios.put(`${API_BASE_URL}${config.value.endpoint}/${item.id}`, payload);
         } else {
@@ -403,10 +425,10 @@ const saveChanges = async () => {
         isDirty.value = false;
         tempSessionFolder.value = null;
         editingItem.value = null;
-        alert("Saved successfully!");
+        alert("¡Guardado exitosamente!");
     } catch (err) {
         console.error("Saving transaction rolled back error:", err);
-        alert("Failed saving data entity to database.");
+        alert("Error al guardar la entidad en la base de datos.");
     }
 };
 
@@ -501,30 +523,40 @@ const openSubmissionsSelector = async () => {
 // Vincula un asset existente usando la configuración del módulo activo
 const linkSubmissionToItem = async (assetId) => {
     try {
-        // Tu backend recibirá la petición en el endpoint del módulo correspondiente
-        await axios.patch(`${API_BASE_URL}/api/assets/${assetId}/link-item`, { 
-            item_id: editingItem.value.id,
-            module: currentModule.value // Le pasamos la pista de qué módulo es si lo necesitas en el backend
+        // Tu backend index.js espera '/api/assets/:id/link-artist' y el body con 'artist_id'
+        if (currentModule.value !== 'artists') {
+            alert("La vinculación de assets en este módulo no está soportada en el backend aún.");
+            return;
+        }
+
+        await axios.patch(`${API_BASE_URL}/api/assets/${assetId}/link-artist`, { 
+            artist_id: editingItem.value.id
         });
 
         const linkedAsset = availableSubmissions.value.find(a => a.id === assetId);
         if (linkedAsset) {
+            // Aseguramos estructura reactiva local
+            if (!editingItem.value.assets) editingItem.value.assets = [];
             editingItem.value.assets.push(linkedAsset);
         }
         showSubmissionsDialog.value = false;
-        alert("Asset linked successfully!");
+        alert("Asset vinculado con éxito!");
     } catch (err) {
         console.error("Error linking asset:", err);
+        alert("Error al vincular el asset.");
     }
 };
 
 const unlinkAssetFromItem = async (assetId) => {
-    if (!confirm("Remove this asset connection?")) return;
+    if (!confirm("¿Remover la conexión de este asset con el artista?")) return;
     try {
-        await axios.patch(`${API_BASE_URL}/api/assets/${assetId}/unlink-item`);
+        // Tu backend index.js posee '/api/assets/:id/unlink-artist'
+        await axios.patch(`${API_BASE_URL}/api/assets/${assetId}/unlink-artist`);
         editingItem.value.assets = editingItem.value.assets.filter(a => a.id !== assetId);
+        alert("Asset desvinculado.");
     } catch (err) {
         console.error("Error unlinking asset:", err);
+        alert("No se pudo desvincular el asset.");
     }
 };
 

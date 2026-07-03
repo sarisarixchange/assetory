@@ -519,7 +519,8 @@ export default {
   cursor: pointer;
 }
 
-.nav-buttonAccessibilityIcon:hover, .nav-buttonAccessibilityIcon:focus-visible {
+.nav-buttonAccessibilityIcon:hover,
+.nav-buttonAccessibilityIcon:focus-visible {
   background-image: url('/icons/personBlack.svg');
   background-size: contain;
   background-repeat: no-repeat;
@@ -527,7 +528,26 @@ export default {
   background-color: var(--hover-color-main);
   color: var(--primary-color);
   box-shadow: -4px 4px 0 0 var(--primary-color);
+}
 
+/* Estilo base para la Homepage (Ajusta los colores y propiedades según el diseño nuevo) */
+.nav-buttonAccessibilityIcon-homepage {
+  background-color: var(--background-color-main);
+  /* O el color que te haya pedido */
+  
+  border: 1px solid var(--primary-border-color-main);
+  background-image: url('/icons/personPurple.svg');
+}
+
+/* También puedes modificar el comportamiento del Hover/Focus exclusivo en la Homepage */
+.nav-buttonAccessibilityIcon-homepage:hover,
+.nav-buttonAccessibilityIcon-homepage:focus-visible {
+  border: 1px solid var(--text-color-topbar-nav-button-hover);
+  background-color: var(--background-color-main);
+  background-image: url('/icons/personWhite.svg');
+
+
+  /* box-shadow: -4px 4px 0 0 var(--secondary-color); */
 }
 
 
@@ -1246,8 +1266,12 @@ a {
 
 <template>
   <div class="accessibility-sticky-wrapper">
-    <button :class="['nav-buttonAccessibilityIcon', currentNavAccessibilityIcon]" @click="accessibilityMenuVisibility"
-      aria-label="Accessibility Menu">
+    <!-- Busca tu botón actual y cámbialo por este: -->
+    <button :class="[
+      'nav-buttonAccessibilityIcon',
+      currentNavAccessibilityIcon,
+      { 'nav-buttonAccessibilityIcon-homepage': isHomepage }
+    ]" @click="accessibilityMenuVisibility" aria-label="Accessibility Menu">
     </button>
     <!-- accessibility menu -->
     <div v-show="isMenuVisible" class="dropdown-content" role="dialog" aria-modal="true"

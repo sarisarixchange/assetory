@@ -4,7 +4,7 @@ import axios from 'axios';
 import Topbar from '../components/Topbar.vue';
 
 
-const API_URL = "http://localhost:3000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // --------------------
 // State
@@ -122,7 +122,7 @@ const updateTheme = (payload) => {
 const fetchSubmissions = async () => {
     isLoading.value = true;
     try {
-        const response = await axios.get(`${API_URL}/api/submissions`);
+        const response = await axios.get(`${API_BASE_URL}/api/submissions`);
 
         // Como vimos en tu consola, 'response.data' ya es el array [ {...}, {...} ]
         submissions.value = response.data;
@@ -144,7 +144,7 @@ const getFileUrl = (fileName) => {
     if (!fileName) return null;
     // Si el backend guarda los archivos en la carpeta estática 'uploads'
     // fileName ya contiene "TIMESTAMP-RANDOM/archivo.ext"s
-    return `${API_URL}/uploads/${fileName}`;
+    return `${API_BASE_URL}/uploads/${fileName}`;
 };
 
 
@@ -197,7 +197,7 @@ const deleteSubmission = async (id) => {
     }
 
     try {
-        await axios.delete(`${API_URL}/submissions/api/${id}`);
+        await axios.delete(`${API_BASE_URL}/submissions/api/${id}`);
         alert("Submission deleted successfully");
         fetchSubmissions();
         if (showModal.value) closeModal();

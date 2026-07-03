@@ -8,8 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "build:local": "vite build --mode devlocal",
-    "build:github": "vite build --mode github",
-    "build:mcmaster": "vite build --mode mcmaster",
+    "build:github": "vite build",
+    "build:mcmaster": "vite build",
     "deploy": "npm run build:github && cp dist/index.html dist/404.html && gh-pages -d dist -b gh-pages -r https://github.com/sarisarixchange/assetory.git",
     "deploy:mcmaster": "bash ./deploy-mcmaster.sh"
   },

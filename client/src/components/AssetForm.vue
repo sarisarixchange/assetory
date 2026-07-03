@@ -1,6 +1,8 @@
 <script setup>
 import axios from 'axios';
 import { reactive, ref, defineProps, defineEmits } from "vue";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
 // Definimos qué datos puede recibir el componente
 const props = defineProps({
@@ -144,13 +146,14 @@ const submitForm = async () => {
         data.append('representativeImage', formData.representativeImage);
 
         // Perform the API call using your Vite environment base URL
-        const response = await axios.post(`${import.meta.env.VITE_API_BASE_URL}/api/submit`, data, {
+        const response = await axios.post(`${API_BASE_URL}/api/submit`, data, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
         });
 
-       // Check if the backend responded with a valid asset structure
+
+        // Check if the backend responded with a valid asset structure
         if (response.data && response.data.success) {
             console.log('Asset submission processed successfully:', response.data.message);
 
@@ -164,7 +167,7 @@ const submitForm = async () => {
 
             // 🔥 FIX 2: Pass the freshly created asset back to the parent component (ArtistsManager)
             const createdAsset = response.data.data;
-            emit('success', createdAsset); 
+            emit('success', createdAsset);
         } else {
             alert('The server processed the request but returned an unsuccessful status.');
         }

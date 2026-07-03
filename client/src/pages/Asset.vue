@@ -49,6 +49,7 @@ export default {
       asset: null,
       localFromPage: null,
       localPageId: null,
+      API_BASE_URL: import.meta.env.VITE_API_BASE_URL
 
 
     };
@@ -98,7 +99,7 @@ export default {
 
     try {
       // Pedimos el artista al backend usando el SLUG
-      const response = await axios.get(`http://localhost:3000/api/artists/${artistSlug}`);
+      const response = await axios.post(`${API_BASE_URL}/api/artists/${artistSlug}`);
       const artist = response.data;
 
       // Buscamos el asset dentro del array de assets del artista

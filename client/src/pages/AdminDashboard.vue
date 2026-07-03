@@ -94,10 +94,15 @@ const handleLogin = async () => {
   isLoading.value = true;
   errorMessage.value = '';
 
-  try {
-    const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
-      password: password.value
-    });
+  // try {
+  //   const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+  //     password: password.value
+  //   });
+
+    try {
+   const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+    password: password.value
+});
 
     if (response.data.success) {
       isAuthenticated.value = true;

@@ -72,8 +72,7 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import axios from 'axios';
-
-const API_URL = "http://localhost:3000";
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const submissions = ref([]);
 const isLoading = ref(true);
 const selectedSubmission = ref(null);
@@ -90,7 +89,7 @@ const headers = [
 const fetchSubmissions = async () => {
   isLoading.value = true;
   try {
-    const response = await axios.get(`${API_URL}/api/submissions`);
+    const response = await axios.get(`${API_BASE_URL}/api/submissions`);
     submissions.value = response.data;
   } catch (err) {
     console.error("Error:", err);
@@ -99,7 +98,7 @@ const fetchSubmissions = async () => {
   }
 };
 
-const getFileUrl = (fileName) => `${API_URL}/uploads/assets/${fileName}`;
+const getFileUrl = (fileName) => `${API_BASE_URL}/uploads/assets/${fileName}`;
 
 const parseFiles = (filesJson) => {
   try {
@@ -123,7 +122,7 @@ const downloadFile = (fileName, originalName) => {
 const deleteSubmission = async (id) => {
   if (!confirm("Delete this submission?")) return;
   try {
-    await axios.delete(`${API_URL}/api/submissions/${id}`);
+    await axios.delete(`${API_BASE_URL}/api/submissions/${id}`);
     fetchSubmissions();
     closeModal();
   } catch (err) { alert("Error deleting"); }

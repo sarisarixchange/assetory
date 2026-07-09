@@ -42,7 +42,7 @@ export default {
             routeName: '',
             data: teamData,
 
-            iconHoveredSrc: '/icons/arrow-right-black.svg',
+            iconHoveredSrc: '/icons/arrow-right-white.svg',
             isNotificationVisible: true,
 
             randomArtistImage: null,
@@ -1298,8 +1298,11 @@ export default {
 
                             <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-purple.svg'
                                 :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Assetory' }"
-                                fillColor="transparent" textColor="var(--secondary-color-main)"
-                                hoverColor="transparent" strokeColor="var(--primary-border-color-main)" />
+                                fillColor="transparent"
+                            textColor="var(--secondary-color-main)"
+                            strokeColor="var(--primary-border-color-main)"
+                            hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+                            hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent" />
                         </div>
                     </div>
                 </div>
@@ -1387,9 +1390,13 @@ export default {
                     <div class="exploreProjectsContainer-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
                         <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-purple.svg'
-                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" fillColor="transparent"
-                            textColor="var(--secondary-color-main)" hoverColor="var(--hover-color-main)"
-                            strokeColor="var(--primary-border-color-main)" />
+                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" 
+                            fillColor="transparent"
+                            textColor="var(--secondary-color-main)"
+                            strokeColor="var(--primary-border-color-main)"
+                            hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+                            hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+                             />
                     </div>
 
                 </div>
@@ -1449,7 +1456,7 @@ export default {
 
         <!-- Collections Grid -->
         <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
-            :basePath="basePath" :routeName="routeName" :showSearchBar="false" :is-homepage="true"
+            :basePath="basePath" :routeName="routeName" showSearchBar="false" isHomepage="true"
             :theme="currentTheme.theme" />
 
         <!-- contact form -->
@@ -1475,7 +1482,7 @@ export default {
 
         <!-- footer -->
 
-        <Footer :theme="currentTheme" />
+        <Footer :theme="currentTheme" isMainWebsite="true" />
 
     </div>
 

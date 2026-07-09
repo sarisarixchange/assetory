@@ -132,39 +132,39 @@ export default {
     // If clicking the same card, toggle it closed.
     showCurrentAbout(index) {
       if (this.openCurrentIndex === index) {
-        this.openCurrentIndex = null; 
+        this.openCurrentIndex = null;
         this.cardHeight = '30.5624rem';
         return;
       }
-        // Otherwise open the clicked card
-        this.openCurrentIndex = index;
-        this.cardHeight = '30.5624rem';
+      // Otherwise open the clicked card
+      this.openCurrentIndex = index;
+      this.cardHeight = '30.5624rem';
     },
 
-      closeBio() {
-        this.openCurrentIndex = null;
+    closeBio() {
+      this.openCurrentIndex = null;
+      this.openPastIndex = null;
+      this.cardHeight = '23.125rem';
+    },
+
+    showPastAbout(index) {
+      // If clicking the same card, toggle it closed.
+      if (this.openPastIndex === index) {
         this.openPastIndex = null;
         this.cardHeight = '23.125rem';
-      },
-
-      showPastAbout(index) {
-        // If clicking the same card, toggle it closed.
-        if (this.openPastIndex === index) {
-          this.openPastIndex = null;
-          this.cardHeight = '23.125rem';
-          return;
-        }
-
-        // Otherwise open the clicked card
-        this.openPastIndex = index;
-        this.cardHeight = '30.5624rem';
+        return;
       }
+
+      // Otherwise open the clicked card
+      this.openPastIndex = index;
+      this.cardHeight = '30.5624rem';
     }
-
-
-
-    // do not erase curly brackets below
   }
+
+
+
+  // do not erase curly brackets below
+}
 
 </script>
 <!-- If your id param should come from the item's actual id instead of its index, just change: -->
@@ -173,8 +173,7 @@ export default {
 <template>
   <div v-if="isAboutPage || isHomepage" :class="{ 'homePage': isHomepage, 'aboutPage': isAboutPage }">
     <!-- current team members -->
-    <div :class="{'meetTheTeamHeader': isAboutPage, 'meetTheTeamHeaderHomepage': isHomepage}"
-    >
+    <div :class="{ 'meetTheTeamHeader': isAboutPage, 'meetTheTeamHeaderHomepage': isHomepage }">
 
       <h3>
         <img class="arrowHeadingAboutPage" src="/icons/left-decor-default.svg">
@@ -194,30 +193,33 @@ export default {
 
     </div>
 
-    <div :class="{'galleryGridAboutPage' : isAboutPage, 'galleryGridAboutHomepage' : isHomepage}">
-      <div :class="{'galleryCardAboutPage': isAboutPage, 'galleryCardAboutHomepage' : isHomepage}" :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
+    <div :class="{ 'galleryGridAboutPage': isAboutPage, 'galleryGridAboutHomepage': isHomepage }">
+      <div :class="{ 'galleryCardAboutPage': isAboutPage, 'galleryCardAboutHomepage': isHomepage }"
+        :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
         v-for="(gallery, index) in currentTeam" :key="'current-' + index">
         <div class="galleryCardImageWrapper">
-          <div :class="{'galleryCardContentAboutPage': isAboutPage, 'galleryCardContentHomepage' : isHomepage}">
-            <img :src="gallery.thumbnail"alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
+          <div :class="{ 'galleryCardContentAboutPage': isAboutPage, 'galleryCardContentHomepage': isHomepage }">
+            <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
           </div>
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
-        <div :class="{'galleryCardBottomTextAboutPage': isAboutPage, 'galleryCardBottomTextHomepage': isHomepage, expanded: openCurrentIndex === index }"  tabindex="0"
-          role="button" :aria-expanded="openCurrentIndex === index" @click="showCurrentAbout(index)"
+        <div
+          :class="{ 'galleryCardBottomTextAboutPage': isAboutPage, 'galleryCardBottomTextHomepage': isHomepage, expanded: openCurrentIndex === index }"
+          tabindex="0" role="button" :aria-expanded="openCurrentIndex === index" @click="showCurrentAbout(index)"
           @keydown.esc="closeBio()" @keydown.enter="showCurrentAbout(index)"
           @keydown.space.prevent="showCurrentAbout(index)">
           <p>{{ gallery.title }}</p>
           <img v-if="isAboutPage" class="asterisk-in-name-about-page"
             :src="openCurrentIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
             src="/icons/arrow-right-black.svg" alt="">
-            <img v-else="isHomePage" class="asterisk-in-name-about-page"
+          <img v-else="isHomePage" class="asterisk-in-name-about-page"
             :src="openCurrentIndex === index ? '/icons/arrow-right-purple.svg' : '/icons/arrow-right-purple.svg'"
             src="/icons/arrow-right-black.svg" alt="">
         </div>
 
-        <div :class="{'about-paragraph' : isAboutPage, 'about-paragraph-home' : isHomepage}" v-show="openCurrentIndex === index" @keydown.esc="closeBio()">
+        <div :class="{ 'about-paragraph': isAboutPage, 'about-paragraph-home': isHomepage }"
+          v-show="openCurrentIndex === index" @keydown.esc="closeBio()">
           <p>{{ gallery.about }}</p>
         </div>
 
@@ -225,41 +227,46 @@ export default {
     </div>
 
     <!-- past team members -->
-    <div class="heading-and-searchbar-about">
-      <div class="gallery-section-heading-about">
+    <div :class="{ 'heading-and-searchbar-about': isAboutPage, 'heading-and-searchbar-home': isHomepage }">
+      <div :class="{ 'gallery-section-heading-about': isAboutPage, 'gallery-section-heading-home': isHomepage }">
         <img class="arrow" src="/icons/arrow-left-white.svg">
         Past Team Members
         <img class="arrow" src="/icons/arrow-right-white.svg">
       </div>
     </div>
 
-    <div class="galleryGridAboutPage">
-      <div class="galleryCardAboutPage" :style="{ height: openPastIndex === index ? '30.5624rem' : '23.125rem' }"
-        v-for="(gallery, index) in pastTeam" :key="'past-' + index">
-        <div class="galleryCardContentAboutPage">
-          <img :src="gallery.thumbnail"
-            alt="" aria-hidden="true"
-            class="galleryCardContentImageAboutPage">
+    <div :class="{ 'galleryGridAboutPage': isAboutPage, 'galleryGridAboutHomepage': isHomepage }">
+      <div :class="{ 'galleryCardAboutPage': isAboutPage, 'galleryCardAboutHomepage': isHomepage }"
+        :style="{ height: openPastIndex === index ? '30.5624rem' : '23.125rem' }" v-for="(gallery, index) in pastTeam"
+        :key="'past-' + index">
+        <div :class="{ 'galleryCardContentAboutPage': isAboutPage, 'galleryCardContentHomepage': isHomepage }">
+          <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
         </div>
 
         <!-- CLICKABLE TITLE AREA -->
-        <div class="galleryCardBottomTextAboutPage" :class="{ expanded: openPastIndex === index }" tabindex="0"
-          role="button" :aria-expanded="openCurrentIndex === index" @click="showPastAbout(index)"
+
+
+        <div :class="{
+          'galleryCardBottomTextAboutPage': isAboutPage, 'galleryCardBottomTextHomepage': isHomepage, expanded:
+            openPastIndex === index
+        }" tabindex="0" role="button" :aria-expanded="openCurrentIndex === index" @click="showPastAbout(index)"
           @keydown.esc="closeBio()" @keydown.enter="showPastAbout(index)" @keydown.space.prevent="showPastAbout(index)">
 
           <p>{{ gallery.title }}</p>
-          <img class="asterisk-in-name-about-page"
+          <img v-if="isAboutPage" class="asterisk-in-name-about-page"
             :src="openPastIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
             src="/icons/arrow-right-black.svg" alt="">
+          <img v-else="isHomePage" class="asterisk-in-name-about-page"
+            :src="openPastIndex === index ? '/icons/arrow-right-purple.svg' : '/icons/arrow-right-purple.svg'"
+            src="/icons/arrow-right-black.svg" alt="">
         </div>
-
         <p v-show="openPastIndex === index">{{ gallery.about }}</p>
 
       </div>
     </div>
   </div>
 
-  
+
   <div v-else-if="isEventsPage">
 
     <!-- heading and searchbar -->
@@ -276,13 +283,11 @@ export default {
     <div class="eventsGalleryGrid">
       <div class="eventsGalleryCard" v-for="(gallery, index) in filteredGalleryWithFullPath" :key="index">
         <div class="eventsGalleryCardContent">
-          <img :src="gallery.thumbnail"
-            alt="" aria-hidden="true"
-            class="galleryCardContentImage">
+          <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImage">
         </div>
 
 
-            <div class="galleryCardContentGoTo">
+        <div class="galleryCardContentGoTo">
           <router-link :to="{ name: routeName, params: { slug: gallery.slug } }" class="galleryCardContentLink">
             <span class="learn-more">{{ gallery.title }}</span>
             <span class="galleryCardGoToArrow" aria-hidden="true">
@@ -296,43 +301,32 @@ export default {
 
 
   <div v-else>
-  <div class="heading-and-searchbar">
-    <div class="gallery-heading">
-      <h2>{{ galleryName }}</h2>
-      <p>{{ galleryDescription }}</p>
-    </div>
-    <SearchBar v-if="showSearchBar" />
-  </div>
-
-  <div class="galleryGrid">
-    <div 
-      :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'"
-      v-for="gallery in filteredGalleryWithFullPath" 
-      :key="gallery.id"
-    >
-      <div class="galleryCardContent">
-        <img 
-          :src="gallery.thumbnail"
-          alt="" 
-          aria-hidden="true"
-          class="galleryCardContentImage"
-        >
+    <div class="heading-and-searchbar">
+      <div class="gallery-heading">
+        <h2>{{ galleryName }}</h2>
+        <p>{{ galleryDescription }}</p>
       </div>
+      <SearchBar v-if="showSearchBar" />
+    </div>
 
-      <div class="galleryCardContentGoTo">
-        <router-link 
-          :to="{ name: routeName, params: { slug: gallery.slug } }" 
-          class="galleryCardContentLink"
-        >
-          <span class="learn-more">{{ gallery.title }}</span>
-          <span class="galleryCardGoToArrow" aria-hidden="true">
-            <img src="/icons/arrow-right-black.svg" alt="" />
-          </span>
-        </router-link>
+    <div class="galleryGrid">
+      <div :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'" v-for="gallery in filteredGalleryWithFullPath"
+        :key="gallery.id">
+        <div class="galleryCardContent">
+          <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImage">
+        </div>
+
+        <div class="galleryCardContentGoTo">
+          <router-link :to="{ name: routeName, params: { slug: gallery.slug } }" class="galleryCardContentLink">
+            <span class="learn-more">{{ gallery.title }}</span>
+            <span class="galleryCardGoToArrow" aria-hidden="true">
+              <img src="/icons/arrow-right-black.svg" alt="" />
+            </span>
+          </router-link>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 </template>
 
@@ -761,7 +755,7 @@ export default {
   }
 }
 
-  /* /* Home page */
+/* /* Home page */
 /* css only if in home page */
 .homePage {
   border: 1px solid var(--primary-border-color-main);
@@ -847,7 +841,7 @@ export default {
   background-color: transparent;
   /* color: var(--primary-color); */
 }
- 
+
 
 
 .galleryCardImageWrapper {
@@ -874,11 +868,11 @@ export default {
   gap: 0.5rem;
   align-self: stretch;
   border-radius: 0.5rem;
-  
+
   border: 1px solid var(--primary-border-color-main);
   background-color: var(--background-color-cards-main);
   font-family: var(--font-family-Decorative);
-  color: var( --secondary-color-main);
+  color: var(--secondary-color-main);
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 600;
@@ -894,7 +888,24 @@ export default {
   border-color: var(--primary-color-main);
 }
 
+.gallery-section-heading-home {
+  display: flex;
+  height: 1.875rem;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  background-color: var(--background-color-card-heading-two);
+  color: black;
+  font-family: var(--font-family-Decorative);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+}
 
+/*  */
 
 .asterisk-in-name-about-page {
   color: black;
@@ -921,6 +932,17 @@ export default {
   color: var(--primary-color-main);
 }
 
+.heading-and-searchbar-home {
+  color: var(--primary-color);
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
 /* Mobile adjustments */
 @media (max-width: 768px) {

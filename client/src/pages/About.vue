@@ -843,7 +843,7 @@ export default {
 
             <!-- Collections Grid -->
             <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
-                :basePath="basePath" :routeName="routeName" :showSearchBar="false" :isAboutPage="true"
+                :basePath="basePath" :routeName="routeName" showSearchBar="false" isAboutPage="true"
                 :theme="currentTheme.theme" />
 
             <!-- Logos -->

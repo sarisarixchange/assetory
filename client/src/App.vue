@@ -35,7 +35,7 @@ body {
   --base-gap: 16rem;
   --font-family-Decorative: 'Kode Mono', sans-serif;
   --font-text: 'Inter', sans-serif;
-
+ 
   /* Main Sari Sari website */
   --active-color-main: #D400A6;
   --primary-color-main: #FFFBEB;
@@ -56,6 +56,8 @@ body {
   --active-text-color-main: #FFFEFA;
   --hover-color-main: #FFEDF4;
   --hover-text-color-main: #000000;
+  --border-color-footer: #FFFBEB;
+  --text-color-footer: #FFFBEB;
   /* --hover-color-nav-buttons: #8C006E; */
 
 

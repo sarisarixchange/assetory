@@ -270,7 +270,7 @@ export default {
   border: 1px solid var(--border-color-topbar-nav-button-hover);
   box-shadow: -3px 3px 0 0 var(--shadow);
 }
-
+ 
 .nav-button.active {
   background-color: var(--hover-color);
   color: var(--hover-text-color);

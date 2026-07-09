@@ -2,17 +2,22 @@
 export default {
   name: 'Footer',
   props: {
-  theme: {
-    type: Object,
-    default: () => ({ theme: 'default' }), // Default theme
-  },
-},
+    theme: {
+      type: Object,
+      default: () => ({ theme: 'default' }), // Default theme
+    },
 
-watch: {
-  theme(newTheme) {
-    this.updateTheme(newTheme);
+    isMainWebsite: {
+      type: Boolean,
+      default: false
+    }
   },
-},
+
+  watch: {
+    theme(newTheme) {
+      this.updateTheme(newTheme);
+    },
+  },
 
   data() {
     return {
@@ -24,7 +29,7 @@ watch: {
     };
   },
 
- 
+
 
   methods: {
     updateTheme(payload) {
@@ -52,7 +57,6 @@ watch: {
 </script>
 
 <style scoped>
-
 h2 {
   font-size: 1rem;
   font-weight: 700;
@@ -65,31 +69,57 @@ h2 {
   border-top: 1px solid var(--primary-color);
   border-left: 1px solid var(--primary-color);
   border-right: 1px solid var(--primary-color);
-  border-bottom: none; /* No bottom border */
-  border-radius: 2rem 2rem 0 0; /* Top-left and top-right rounded, bottom corners straight */
+  border-bottom: none;
+  /* No bottom border */
+  border-radius: 2rem 2rem 0 0;
+  /* Top-left and top-right rounded, bottom corners straight */
   padding: 2rem;
-  margin-left: 0.97rem; /* Add margin to the left */
-  margin-right: 0.97rem; /* Add margin to the right */
+  margin-left: 0.97rem;
+  /* Add margin to the left */
+  margin-right: 0.97rem;
+  /* Add margin to the right */
   color: var(--primary-color);
   font-family: 'Inter', sans-serif;
   /* width: 107.5rem; */
   height: 14.5625rem;
   /* margin: auto; */
-  margin-left: 6.25rem; 
-   margin-right: 6.25rem;
-   background-color: var(--background-color);
+  margin-left: 6.25rem;
+  margin-right: 6.25rem;
+  background-color: var(--background-color);
 }
 
-.leftSideFooter{
- width: 50%; 
-}
-
-.leftSideFooterInfo{
+.main-website-footer {
   display: flex;
-  
+  border: 1px solid var(--border-color-footer);
+  border-bottom: none;
+  /* No bottom border */
+  border-radius: 2rem 2rem 0 0;
+  /* Top-left and top-right rounded, bottom corners straight */
+  padding: 2rem;
+  margin-left: 0.97rem;
+  /* Add margin to the left */
+  margin-right: 0.97rem;
+  /* Add margin to the right */
+  color: var(--text-color-footer);
+  font-family: 'Inter', sans-serif;
+  /* width: 107.5rem; */
+  height: 14.5625rem;
+  /* margin: auto; */
+  margin-left: 6.25rem;
+  margin-right: 6.25rem;
+  background-color: var(--background-color-cards-main);
 }
 
-.footerLogo img{
+.leftSideFooter {
+  width: 50%;
+}
+
+.leftSideFooterInfo {
+  display: flex;
+
+}
+
+.footerLogo img {
   width: 5.37119rem;
   height: 5.375rem;
   margin-right: 1rem;
@@ -106,11 +136,12 @@ h2 {
   font-weight: 400;
 }
 
-.rightSideFooter{
+.rightSideFooter {
   width: 50%;
   display: flex;
   gap: 5.2rem;
-  justify-content: flex-end; /* Align items to the right */
+  justify-content: flex-end;
+  /* Align items to the right */
 }
 
 .rightSideFooter a {
@@ -118,7 +149,7 @@ h2 {
   font-weight: 400;
 }
 
-.footer-links{
+.footer-links {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
@@ -131,28 +162,34 @@ h2 {
 @media (max-width: 768px) {
   .non-homepage-footer {
     flex-direction: column;
-    height: auto;           /* let it grow with content */
-    padding: 1.5rem;        /* smaller padding */
+    height: auto;
+    /* let it grow with content */
+    padding: 1.5rem;
+    /* smaller padding */
     margin-left: 1rem;
     margin-right: 1rem;
   }
 
   .leftSideFooter,
   .rightSideFooter {
-    width: 100%;           /* full width for each section */
+    width: 100%;
+    /* full width for each section */
     display: flex;
     flex-direction: column;
-    align-items: center;   /* center logos and links */
+    align-items: center;
+    /* center logos and links */
     gap: 1rem;
   }
 
   .rightSideFooter {
-    justify-content: center; /* center all link blocks */
+    justify-content: center;
+    /* center all link blocks */
     gap: 1.5rem;
   }
 
   .footer-links {
-    align-items: center;    /* center links */
+    align-items: center;
+    /* center links */
     text-align: center;
   }
 
@@ -166,64 +203,117 @@ h2 {
   .acknowledgements p,
   .footer-links a,
   .footer-links h2 {
-    font-size: 0.875rem;  /* smaller text for mobile */
+    font-size: 0.875rem;
+    /* smaller text for mobile */
   }
 }
-
-
 </style>
 
 <template>
-
-<footer class="non-homepage-footer">
-        <div class="leftSideFooter">
-        <div class="leftSideFooterInfo">
-          <div class="footerLogo">
-        <img v-show="isDefaultTheme" src="/icons/logo.svg" alt="Footer Logo">
-        <img v-show="isGrayscaleTheme" src="/icons/logoGray.svg" alt="Footer Logo">
-        <img v-show="isHighContrastTheme" src="/icons/logoBlack.svg" alt="Footer Logo">
-        <img v-show="isWCAGTheme" src="/icons/logoWCAG.svg" alt="Footer Logo">
+  <!-- Sari Sari Footer -->
+  <footer v-if="isMainWebsite" class='main-website-footer'>
+    <div class="leftSideFooter">
+      <div class="leftSideFooterInfo">
+        <div class="footerLogo">
+          <img v-show="isDefaultTheme" src="/icons/logoPurple.svg" alt="Footer Logo">
+          <img v-show="isGrayscaleTheme" src="/icons/logoGray.svg" alt="Footer Logo">
+          <img v-show="isHighContrastTheme" src="/icons/logoBlack.svg" alt="Footer Logo">
+          <img v-show="isWCAGTheme" src="/icons/logoWCAG.svg" alt="Footer Logo">
         </div>
         <div class="footerCopyright">
-        <h2>Sari-Sari XChange</h2>
-        <h3>Assetory</h3>
-        <p>© 2025</p>
+          <h2>Sari-Sari XChange</h2>
+          <h3>Assetory</h3>
+          <p>© 2025</p>
         </div>
-        </div>
-        <div class="acknowledgements">
-          <p>☺ Made with care & curiosity</p>
-          <p>Designed by Hanan Abbas</p>
-          <p>Developed by Luis Navarro</p>
-        </div>
-        </div>
+      </div>
+      <div class="acknowledgements">
+        <p>☺ Made with care & curiosity</p>
+        <p>Designed by Hanan Abbas</p>
+        <p>Developed by Luis Navarro</p>
+      </div>
+    </div>
 
-        <div class="rightSideFooter">
-          <div class="footer-links">
-          <h2>Information</h2>
-          
-          <a href="https://sarisarixchange.mcmaster.ca/" target="_blank">SSX Website</a>
-          <router-link to="/about">About</router-link>
-          <router-link to="/accessibility-statement">Accessibility</router-link>
-          <router-link to="/terms-of-use">Terms of Use</router-link>
+    <div class="rightSideFooter">
+      <div class="footer-links">
+        <h2>Information</h2>
+
+        <a href="https://sarisarixchange.mcmaster.ca/" target="_blank">SSX Website</a>
+        <router-link to="/about">About</router-link>
+        <router-link to="/accessibility-statement">Accessibility</router-link>
+        <router-link to="/terms-of-use">Terms of Use</router-link>
       </div>
 
       <div class="footer-links">
-          <h2>Quick Links</h2>
-          <a href="">Submit</a>
-          <router-link to="/">Home</router-link>
-          <router-link to="/artists">Artists</router-link>
-          <router-link to="/collections">Collections</router-link>
-          <router-link to="/events">Events</router-link>
+        <h2>Quick Links</h2>
+        <a href="">Submit</a>
+        <router-link to="/">Home</router-link>
+        <router-link to="/artists">Artists</router-link>
+        <router-link to="/collections">Collections</router-link>
+        <router-link to="/events">Events</router-link>
       </div>
 
       <div class="footer-links">
-          <h2>Contact</h2>
-          <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
-          <a href="https://www.instagram.com/sarisarixchange/" target="_blank">@sarisarixchange</a>
-          
-      </div>
+        <h2>Contact</h2>
+        <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
+        <a href="https://www.instagram.com/sarisarixchange/" target="_blank">@sarisarixchange</a>
 
       </div>
 
-        </footer>
+    </div>
+
+  </footer>
+
+
+  <!-- Assetory Footer -->
+  <footer v-else class="non-homepage-footer">
+    <div class="leftSideFooter">
+      <div class="leftSideFooterInfo">
+        <div class="footerLogo">
+          <img v-show="isDefaultTheme" src="/icons/logo.svg" alt="Footer Logo">
+          <img v-show="isGrayscaleTheme" src="/icons/logoGray.svg" alt="Footer Logo">
+          <img v-show="isHighContrastTheme" src="/icons/logoBlack.svg" alt="Footer Logo">
+          <img v-show="isWCAGTheme" src="/icons/logoWCAG.svg" alt="Footer Logo">
+        </div>
+        <div class="footerCopyright">
+          <h2>Sari-Sari XChange</h2>
+          <h3>Assetory</h3>
+          <p>© 2025</p>
+        </div>
+      </div>
+      <div class="acknowledgements">
+        <p>☺ Made with care & curiosity</p>
+        <p>Designed by Hanan Abbas</p>
+        <p>Developed by Luis Navarro</p>
+      </div>
+    </div>
+
+    <div class="rightSideFooter">
+      <div class="footer-links">
+        <h2>Information</h2>
+
+        <a href="https://sarisarixchange.mcmaster.ca/" target="_blank">SSX Website</a>
+        <router-link to="/about">About</router-link>
+        <router-link to="/accessibility-statement">Accessibility</router-link>
+        <router-link to="/terms-of-use">Terms of Use</router-link>
+      </div>
+
+      <div class="footer-links">
+        <h2>Quick Links</h2>
+        <a href="">Submit</a>
+        <router-link to="/">Home</router-link>
+        <router-link to="/artists">Artists</router-link>
+        <router-link to="/collections">Collections</router-link>
+        <router-link to="/events">Events</router-link>
+      </div>
+
+      <div class="footer-links">
+        <h2>Contact</h2>
+        <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
+        <a href="https://www.instagram.com/sarisarixchange/" target="_blank">@sarisarixchange</a>
+
+      </div>
+
+    </div>
+
+  </footer>
 </template>

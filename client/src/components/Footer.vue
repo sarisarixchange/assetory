@@ -159,6 +159,17 @@ h2 {
   color: var(--primary-color);
 }
 
+.footer-links-main-website {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.footer-links-main-website a {
+  color: var(  --primary-color-main);
+}
+
+
 @media (max-width: 768px) {
   .non-homepage-footer {
     flex-direction: column;
@@ -234,7 +245,7 @@ h2 {
     </div>
 
     <div class="rightSideFooter">
-      <div class="footer-links">
+      <div class="footer-links-main-website">
         <h2>Information</h2>
 
         <a href="https://sarisarixchange.mcmaster.ca/" target="_blank">SSX Website</a>
@@ -243,7 +254,7 @@ h2 {
         <router-link to="/terms-of-use">Terms of Use</router-link>
       </div>
 
-      <div class="footer-links">
+      <div class="footer-links-main-website">
         <h2>Quick Links</h2>
         <a href="">Submit</a>
         <router-link to="/">Home</router-link>
@@ -252,7 +263,7 @@ h2 {
         <router-link to="/events">Events</router-link>
       </div>
 
-      <div class="footer-links">
+      <div class="footer-links-main-website">
         <h2>Contact</h2>
         <a href="mailto:sarisarixchange@gmail.com">sarisarixchange@gmail.com</a>
         <a href="https://www.instagram.com/sarisarixchange/" target="_blank">@sarisarixchange</a>

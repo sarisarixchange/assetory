@@ -213,7 +213,7 @@ export default {
           <img v-if="isAboutPage" class="asterisk-in-name-about-page"
             :src="openCurrentIndex === index ? '/icons/arrow-right-white.svg' : '/icons/arrow-right-black.svg'"
             src="/icons/arrow-right-black.svg" alt="">
-          <img v-else="isHomePage" class="asterisk-in-name-about-page"
+          <img v-else class="asterisk-in-name-about-page"
             :src="openCurrentIndex === index ? '/icons/arrow-right-purple.svg' : '/icons/arrow-right-purple.svg'"
             src="/icons/arrow-right-black.svg" alt="">
         </div>
@@ -229,9 +229,16 @@ export default {
     <!-- past team members -->
     <div :class="{ 'heading-and-searchbar-about': isAboutPage, 'heading-and-searchbar-home': isHomepage }">
       <div :class="{ 'gallery-section-heading-about': isAboutPage, 'gallery-section-heading-home': isHomepage }">
+        <div  v-if="isAboutPage">
         <img class="arrow" src="/icons/arrow-left-white.svg">
         Past Team Members
         <img class="arrow" src="/icons/arrow-right-white.svg">
+      </div>
+
+      <div  v-if="isHomepage">
+        Past Team Members
+        <img class="arrow" src="/icons/arrow-right-black.svg">
+      </div>
       </div>
     </div>
 

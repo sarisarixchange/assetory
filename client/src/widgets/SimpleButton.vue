@@ -1,41 +1,67 @@
-<script>
-export default {
-    name: 'SimpleButton',
-    props: {
-        to: {
-            type: [String, Object],
-            required: true
-        },
-        text: {
-            type: String,
-            required: true
-        }, 
-        icon: {
-          type: String,
-          default: null
-        }, 
-        backgroundColor: {
-          type: String,
-          default: 'var(--background-color)'
-        }, 
+<script setup>
 
-        color: {
-          type: String,
-          default: 'var(--primary-color)'
-        },
-        
-        borderColor: {
-          type: String,
-          default: 'var(--primary-color)'
-        }
-    }
-}
+import { ref } from 'vue'
+
+
+const props = defineProps({
+  to: {
+    type: [String, Object],
+    required: true
+  },
+  text: {
+    type: String,
+    required: true
+  },
+  icon: {
+    type: String,
+    default: null
+  },
+  backgroundColor: {
+    type: String,
+    default: 'var(--background-color)'
+  },
+
+  color: {
+    type: String,
+    default: 'var(--primary-color)'
+  },
+
+  borderColor: {
+    type: String,
+    default: 'var(--primary-color)'
+  },
+
+  backgroundColorHover: {
+    type: String,
+    default: 'var(--hover-color)'
+  },
+  textColorHover: {
+    type: String,
+    default: 'var(--hover-text-color)'
+  },
+
+  borderColorHover: {
+    type: String,
+    default: 'var(--primary-color)'
+  },
+
+  iconHover: {
+    type: String,
+    default: null
+  },
+
+  shadow: {
+    type: String,
+    default: '-6px 6px 0 var(--shadow), 0 6px 1px var(--shadow)'
+  }
+})
+
+const isHovered = ref(false);
+
 
 </script>
 
 <style scoped>
-
-
 .simpleButton {
   display: inline-flex;
   align-items: center;
@@ -48,16 +74,16 @@ export default {
   font-weight: 600;
   border-radius: 0.625rem;
   padding: 0.5rem 1rem;
-  cursor: pointer;  
-  
+  cursor: pointer;
+
 }
 
 .simpleButton:hover {
-  background-color: var(--hover-color);
-  color: var(--hover-text-color);
-  box-shadow: 
-    -6px 6px 0 var(--shadow),
-    0 6px 1px var(--shadow);
+  background-color: v-bind(BackgroundColorHover);
+  color: v-bind(textColorHover);
+  border-color: v-bind(borderColorHover);
+  box-shadow: v-bind(shadow);
+
 }
 
 .btn-content {
@@ -67,20 +93,20 @@ export default {
 }
 
 .btn-icon {
-  height: 1em;       /* matches text height */
+  height: 1em;
+  /* matches text height */
   width: auto;
   display: inline-block;
 }
-
-
-
 </style>
 
 <template>
-    <router-link :to="to" class="simpleButton">
-      <span class="btn-content">        
-      {{ text }}      
-      <img v-if="icon" :src="icon" alt="" class="btn-icon" />
-      </span>
-    </router-link>
-  </template>
+  <router-link :to="to" class="simpleButton" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
+    <span class="btn-content">
+      {{ text }}
+      <img v-if="icon" :src="(isHovered && iconHover) ? iconHover : icon" alt="" class="btn-icon" />
+      
+    </span>
+
+  </router-link>
+</template>

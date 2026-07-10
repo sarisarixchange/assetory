@@ -1298,11 +1298,11 @@ export default {
 
                             <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-purple.svg'
                                 :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Assetory' }"
-                                fillColor="transparent"
-                            textColor="var(--secondary-color-main)"
-                            strokeColor="var(--primary-border-color-main)"
-                            hoverTextColor="var(--text-color-topbar-nav-button-hover)"
-                            hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent" />
+                                fillColor="transparent" textColor="var(--secondary-color-main)"
+                                strokeColor="var(--primary-border-color-main)"
+                                hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+                                hoverStrokeColor="var(--border-color-topbar-nav-button-hover)"
+                                hoverColor="transparent" />
                         </div>
                     </div>
                 </div>
@@ -1390,13 +1390,10 @@ export default {
                     <div class="exploreProjectsContainer-action-call" @mouseenter="isAboutHovered = true"
                         @mouseleave="isAboutHovered = false">
                         <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-purple.svg'
-                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" 
-                            fillColor="transparent"
-                            textColor="var(--secondary-color-main)"
-                            strokeColor="var(--primary-border-color-main)"
+                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" fillColor="transparent"
+                            textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
                             hoverTextColor="var(--text-color-topbar-nav-button-hover)"
-                            hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
-                             />
+                            hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent" />
                     </div>
 
                 </div>
@@ -1436,27 +1433,37 @@ export default {
                             backgroundColor="var(--background-color-cards-main)"
                             color="var(--text-color-topbar-nav-button-main)"
                             borderColor="var(--text-color-topbar-nav-button-main)"
-                            :icon="iconBasePath + 'arrow-right-purple.svg'" />
+                            :icon="iconBasePath + 'arrow-right-purple.svg'"
+                            :iconHover="iconBasePath + 'arrow-right-white-FFFBEB.svg'"
+                            backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
+                            borderColorHover="var(--hover-color-main)" shadow='none' />
                         <SimpleButton :to="{ name: 'Submit Your Work Form' }" text="Submit your work"
                             backgroundColor="var(--background-color-cards-main)"
                             color="var(--text-color-topbar-nav-button-main)"
                             borderColor="var(--text-color-topbar-nav-button-main)"
-                            :icon="iconBasePath + 'submit-your-work-icon-purple.svg'" />
+                            :icon="iconBasePath + 'submit-your-work-icon-purple.svg'"
+                            :iconHover="iconBasePath + 'submit-your-work-icon-FFFBEB.svg'"
+                            backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
+                            borderColorHover="var(--hover-color-main)" shadow='none' />
                         <SimpleButton :to="{ name: '' }" text="Instagram"
                             backgroundColor="var(--background-color-cards-main)"
                             color="var(--text-color-topbar-nav-button-main)"
                             borderColor="var(--text-color-topbar-nav-button-main)"
-                            :icon="iconBasePath + 'instagramIconPurple.svg'" />
+                            :icon="iconBasePath + 'instagramIconPurple.svg'"
+                            :iconHover="iconBasePath + 'instagramIcon-FFFBEB.svg'" backgroundColorHover="transparent"
+                            textColorHover="var(--hover-color-main)" borderColorHover="var(--hover-color-main)" 
+                            shadow= 'none'
+                            />
                     </div>
                 </div>
             </div>
 
-            <Marquee :are-footer-images-default-visible="true" is-homepage="true" />
+            <Marquee :are-footer-images-default-visible=true :isHomepage=true />
         </div>
 
         <!-- Collections Grid -->
         <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
-            :basePath="basePath" :routeName="routeName" showSearchBar="false" isHomepage="true"
+            :basePath="basePath" :routeName="routeName"  :isHomepage=true
             :theme="currentTheme.theme" />
 
         <!-- contact form -->
@@ -1482,7 +1489,7 @@ export default {
 
         <!-- footer -->
 
-        <Footer :theme="currentTheme" isMainWebsite="true" />
+        <Footer :theme="currentTheme" :isMainWebsite=true />
 
     </div>
 

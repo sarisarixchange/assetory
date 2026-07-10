@@ -42,7 +42,7 @@ export default {
             routeName: '',
             data: teamData,
 
-            iconHoveredSrc: '/icons/arrow-right-white.svg',
+            iconHoveredSrc: '/icons/arrow-right-white-FFFBEB.svg',
             isNotificationVisible: true,
 
             randomArtistImage: null,
@@ -273,7 +273,7 @@ export default {
                 this.areFooterImagesGrayscaleVisible = false;
                 this.areFooterImagesHighContrastVisible = false;
                 this.areFooterImagesWCAGcolorsVisible = false;
-                this.iconHoveredSrc = '/icons/arrow-right-black.svg';
+                this.iconHoveredSrc = '/icons/arrow-right-white-FFFBEB.svg';
 
             } else if (payload.theme === "originalInteractive") {
 
@@ -350,7 +350,7 @@ export default {
                 this.areFooterImagesWCAGcolorsVisible = false;
                 // background image
                 this.currentBackgroundLayer = 'background-layer-highContrast';
-                this.iconHoveredSrc = '/icons/arrow-right-white.svg';
+                this.iconHoveredSrc = '/icons/arrow-right-white-FFFBEB.svg';
 
             }
         },
@@ -1297,7 +1297,7 @@ export default {
                             @mouseleave="isAboutHovered = false">
 
                             <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-purple.svg'
-                                :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Assetory' }"
+                                :hoverIconSrc='iconHoveredSrc' iconAlt="" :to="{ name: 'Assetory' }"
                                 fillColor="transparent" textColor="var(--secondary-color-main)"
                                 strokeColor="var(--primary-border-color-main)"
                                 hoverTextColor="var(--text-color-topbar-nav-button-hover)"

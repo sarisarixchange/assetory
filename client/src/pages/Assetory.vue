@@ -6,6 +6,8 @@ import artists from '/src/data/artists.json';
 import events from '/src/data/events.json';
 import collections from '/src/data/collections.json';
 import OddShapeButton from '../widgets/OddShapeButton.vue';
+import Marquee from '../components/Marquee.vue';
+
 
 
 export default {
@@ -13,7 +15,8 @@ export default {
         AccessibilityMenu, // Register the AccessibilityMenu component
         Topbar,
         SimpleButton,
-        OddShapeButton
+        OddShapeButton, 
+        Marquee
     },
     data() {
         return {
@@ -2126,207 +2129,8 @@ export default {
 
         <!-- footer -->
         <div class="footer">
-            <div v-show="areFooterImagesDefaultVisible" class="footer-images">
-                <!-- First set of images -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
+                       <Marquee :are-footer-images-default-visible=true  />
 
-                <!-- Duplicate set for smooth infinite scroll -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
-
-                <!-- Duplicate set for smooth infinite scroll -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
-
-
-                <!-- Duplicate set for smooth infinite scroll -->
-                <img :src="marqueeBasePath + 'item1-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-blue.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-blue.png'" alt="" aria-hidden="true" class="footer-image">
-            </div>
-
-            <!-- legacy -->
-            <!-- <div v-show="areFooterImagesDefaultVisible" class="footer-images">
-                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
-
-
-                <img :src="marqueeBasePath + 'item1.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item2.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item3.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item4.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item5.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item6.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item7.png'" alt="" aria-hidden="true" class="footer-image">
-                <img :src="marqueeBasePath + 'item8.png'" alt="" aria-hidden="true" class="footer-image">
-
-            </div> -->
-
-            <div v-show="areFooterImagesGrayscaleVisible" class="footer-images">
-
-                <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-gray.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-gray.png'" alt="" class="footer-image">
-            </div>
-
-            <div v-show="areFooterImagesHighContrastVisible" class="footer-images">
-
-                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-darkblue.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-darkblue.png'" alt="" class="footer-image">
-            </div>
-
-
-            <div v-show="areFooterImagesWCAGcolorsVisible" class="footer-images">
-
-                <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
-
-                <img :src="marqueeBasePath + 'item1-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item2-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item3-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item4-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item5-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item6-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item7-wcag.png'" alt="" class="footer-image">
-                <img :src="marqueeBasePath + 'item8-wcag.png'" alt="" class="footer-image">
-            </div>
 
         </div>
     </div>

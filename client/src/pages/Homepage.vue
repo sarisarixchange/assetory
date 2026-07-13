@@ -366,6 +366,8 @@ export default {
 <style scoped>
 .grid-container {
     background-color: var(--background-color-main);
+        background-image: url("backgrounds/decorative-plus-xyz-homepage-purple.svg");
+    background-size: 100%;
     display: flex;
     flex-direction: column;
     /* width: 100vw; */
@@ -438,7 +440,9 @@ export default {
 
 /* Large screens (desktops) */
 .cardsContainer {
-    /* background-color: red; */
+
+    /* width: 120.96863rem; */
+    /* height: 66.85013rem; */
     display: flex;
     margin: auto;
     margin-top: 7rem;
@@ -625,7 +629,7 @@ export default {
     gap: 0.5rem;
     border-radius: 0.4375rem;
     border: 1px solid var(--primary-border-color-main);
-    background-color: transparent;
+    background-color: var(--background-color-cards-main);
 }
 
 /* LEFT BOX CONTENTS */
@@ -715,6 +719,7 @@ export default {
     height: 40.97rem;
     display: inline-flex;
     padding: 0.5rem;
+    margin-left: 2rem;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1451,9 +1456,8 @@ export default {
                             borderColor="var(--text-color-topbar-nav-button-main)"
                             :icon="iconBasePath + 'instagramIconPurple.svg'"
                             :iconHover="iconBasePath + 'instagramIcon-FFFBEB.svg'" backgroundColorHover="transparent"
-                            textColorHover="var(--hover-color-main)" borderColorHover="var(--hover-color-main)" 
-                            shadow= 'none'
-                            />
+                            textColorHover="var(--hover-color-main)" borderColorHover="var(--hover-color-main)"
+                            shadow='none' />
                     </div>
                 </div>
             </div>
@@ -1463,8 +1467,7 @@ export default {
 
         <!-- Collections Grid -->
         <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
-            :basePath="basePath" :routeName="routeName"  :isHomepage=true
-            :theme="currentTheme.theme" />
+            :basePath="basePath" :routeName="routeName" :isHomepage=true :theme="currentTheme.theme" />
 
         <!-- contact form -->
         <section class="form-section">

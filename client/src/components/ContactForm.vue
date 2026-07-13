@@ -1,10 +1,10 @@
 <script setup>
 import { ref } from 'vue'
-const props = defineProps ({
-backgroundColor: {
-    type: String,
-    default: '#ffffff'
-}
+const props = defineProps({
+    backgroundColor: {
+        type: String,
+        default: '#ffffff'
+    }
 })
 
 
@@ -60,53 +60,56 @@ const handleSubmit = async () => {
 <template>
     <!-- Contenedor principal con ancho y borde forzado -->
     <div class="contact-card">
-        <div class="titleAndSubtitleContainer">
-             <h2 class="form-title">Contact Us</h2>
-            <p class="form-subtitle">We will get back to you shortly!.</p>
-        </div>
-        <div class="fields">
-            <form @submit.prevent="handleSubmit" class="contact-form">
-                <!-- Fila para Nombre y Apellido -->
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="firstName">First Name</label>
-                        <input v-model.trim="formData.firstName" type="text" id="firstName" required
-                            placeholder="John" />
+        <div class="contact-card-background-image">
+            <div class="titleAndSubtitleContainer">
+                <h2 class="form-title">Contact Us</h2>
+                <p class="form-subtitle">We will get back to you shortly!.</p>
+            </div>
+            <div class="fields">
+                <form @submit.prevent="handleSubmit" class="contact-form">
+                    <!-- Fila para Nombre y Apellido -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input v-model.trim="formData.firstName" type="text" id="firstName" required
+                                placeholder="John" />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input v-model.trim="formData.lastName" type="text" id="lastName" required
+                                placeholder="Doe" />
+                        </div>
                     </div>
 
+                    <!-- Campo Email -->
                     <div class="form-group">
-                        <label for="lastName">Last Name</label>
-                        <input v-model.trim="formData.lastName" type="text" id="lastName" required placeholder="Doe" />
+                        <label for="email">Email</label>
+                        <input v-model.trim="formData.email" type="email" id="email" required
+                            placeholder="your@email.com" />
                     </div>
-                </div>
 
-                <!-- Campo Email -->
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input v-model.trim="formData.email" type="email" id="email" required
-                        placeholder="your@email.com" />
-                </div>
+                    <!-- Campo Mensaje -->
+                    <div class="form-group">
+                        <label for="message">Leave us a note, we’re all ears.</label>
+                        <textarea v-model="formData.message" id="message" rows="2" required
+                            placeholder="Type your message here..."></textarea>
+                    </div>
 
-                <!-- Campo Mensaje -->
-                <div class="form-group">
-                    <label for="message">Leave us a note, we’re all ears.</label>
-                    <textarea v-model="formData.message" id="message" rows="6" required
-                        placeholder="Type your message here..."></textarea>
-                </div>
-
-                <!-- Botón de Enviar (Grande) -->
-                <button type="submit" :disabled="status.submitting" class="submit-btn">
-                    {{ status.submitting ? 'Sending Message...' : 'Send Message' }}
-                </button>
-            </form>
+                    <!-- Botón de Enviar (Grande) -->
+                    <button type="submit" :disabled="status.submitting" class="submit-btn">
+                        {{ status.submitting ? 'Sending Message...' : 'Send Message' }}
+                    </button>
+                </form>
+            </div>
+            <!-- Mensajes de Feedback visual -->
+            <transition name="fade">
+                <p v-if="status.success" class="msg-success">{{ status.success }}</p>
+            </transition>
+            <transition name="fade">
+                <p v-if="status.error" class="msg-error">{{ status.error }}</p>
+            </transition>
         </div>
-        <!-- Mensajes de Feedback visual -->
-        <transition name="fade">
-            <p v-if="status.success" class="msg-success">{{ status.success }}</p>
-        </transition>
-        <transition name="fade">
-            <p v-if="status.error" class="msg-error">{{ status.error }}</p>
-        </transition>
     </div>
 
 </template>
@@ -120,10 +123,10 @@ const handleSubmit = async () => {
 .contact-card {
     display: flex;
     width: 100%;
+    height: 26.3125rem;
     /* Ocupa todo el ancho disponible hasta el máximo */
     margin: 20px auto;
     /* Centrado */
-    padding: 40px;
     /* Mucho espacio interno */
     background-color: v-bind('props.backgroundColor');
     /* Fondo blanco forzado */
@@ -136,7 +139,21 @@ const handleSubmit = async () => {
     align-items: center;
 }
 
+.contact-card-background-image {
+    display: flex;
+    width: 100%;
+    padding: 40px;
+    background-image: url("/backgrounds/contact-form-background-pink.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    align-items: center;
+
+}
+
 .form-title {
+    flex-direction: column;
     margin-top: 0;
     margin-bottom: 10px;
     font-size: 2rem;
@@ -149,7 +166,7 @@ const handleSubmit = async () => {
 
 .form-subtitle {
     margin-bottom: 30px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--background-color-main);
     /* Gris oscuro */
     text-align: center;
@@ -159,14 +176,18 @@ const handleSubmit = async () => {
 .contact-form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 1rem;
     /* Espacio entre campos */
+
+
 }
 
 .form-row {
     display: flex;
-    gap: 20px;
+    gap: 1rem;
 }
+
+
 
 /* En móviles, la fila se vuelve columna */
 @media (max-width: 600px) {
@@ -192,17 +213,17 @@ label {
 
 input,
 textarea {
-    padding: 12px 15px;
+    padding: 0.5rem;
     /* Campos más altos */
     border: 2px solid #e0e0e0;
     /* Borde más grueso */
-    border-radius: 8px;
+    /* border-radius: 8px; */
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: #1a1a1a;
     /* Texto dentro del input visible */
     background-color: #ffffff;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    /* transition: border-color 0.2s, box-shadow 0.2s; */
     box-sizing: border-box;
     /* Importante para el ancho */
 }
@@ -213,16 +234,19 @@ textarea:focus {
     border-color: var(--primary-color-main);
     /* Color de foco azul */
     box-shadow: 0 0 0 4px rgba(0, 112, 243, 0.1);
+
 }
 
 textarea {
     resize: vertical;
-    min-height: 120px;
+    min-height: 5rem;
+    resize: none;
+
 }
 
 /* Botón grande y llamativo */
 .submit-btn {
-    padding: 15px;
+    padding: 0.5rem;
     margin-top: 10px;
     background-color: var(--background-color-cards-main);
     color: #ffffff;
@@ -282,8 +306,9 @@ textarea {
     opacity: 0;
 }
 
-.titleAndSubtitleContainer{
+.titleAndSubtitleContainer {
     width: 50%;
 }
 
+.fields {}
 </style>

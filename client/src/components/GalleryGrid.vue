@@ -184,7 +184,7 @@ export default {
 
     <div class="heading-and-searchbar-about">
 
-      <div class="gallery-section-heading-about">
+      <div v-if="isAboutPage" class="gallery-section-heading-about">
         <img class="arrow" src="/icons/arrow-left-white.svg">
         Our Team
         <img class="arrow" src="/icons/arrow-right-white.svg">
@@ -229,16 +229,16 @@ export default {
     <!-- past team members -->
     <div :class="{ 'heading-and-searchbar-about': isAboutPage, 'heading-and-searchbar-home': isHomepage }">
       <div :class="{ 'gallery-section-heading-about': isAboutPage, 'gallery-section-heading-home': isHomepage }">
-        <div  v-if="isAboutPage">
-        <img class="arrow" src="/icons/arrow-left-white.svg">
-        Past Team Members
-        <img class="arrow" src="/icons/arrow-right-white.svg">
-      </div>
+        <div v-if="isAboutPage">
+          <img class="arrow" src="/icons/arrow-left-white.svg">
+          Past Team Members
+          <img class="arrow" src="/icons/arrow-right-white.svg">
+        </div>
 
-      <div  v-if="isHomepage">
-        Past Team Members
-        <img class="arrow" src="/icons/arrow-right-black.svg">
-      </div>
+        <div v-if="isHomepage">
+          Past Team Members
+          <img class="arrow" src="/icons/arrow-right-black.svg">
+        </div>
       </div>
     </div>
 
@@ -766,6 +766,7 @@ export default {
 /* css only if in home page */
 .homePage {
   border: 1px solid var(--primary-border-color-main);
+  background-color: var(--background-color-cards-main);
   border-radius: 1rem;
   width: 93.375rem;
   margin: auto;

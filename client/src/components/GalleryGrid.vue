@@ -767,8 +767,11 @@ export default {
 .homePage {
   border: 1px solid var(--primary-border-color-main);
   background-color: var(--background-color-cards-main);
-  border-radius: 1rem;
-  width: 93.375rem;
+  background-image: url("/backgrounds/meet-the-team-background-purple.svg");
+  background-size: 100%;
+  background-position: center;
+  border-radius: 0.625rem;
+  width: 100%;
   margin: auto;
   padding: 1.25rem 1.5rem;
   flex-direction: column;

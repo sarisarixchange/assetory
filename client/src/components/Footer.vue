@@ -92,21 +92,20 @@ h2 {
   display: flex;
   border: 1px solid var(--border-color-footer);
   border-bottom: none;
-  /* No bottom border */
   border-radius: 2rem 2rem 0 0;
-  /* Top-left and top-right rounded, bottom corners straight */
   padding: 2rem;
-  margin-left: 0.97rem;
+  /* margin-left: 0.97rem; */
   /* Add margin to the left */
-  margin-right: 0.97rem;
+  /* margin-right: 0.97rem; */
   /* Add margin to the right */
   color: var(--text-color-footer);
   font-family: 'Inter', sans-serif;
   /* width: 107.5rem; */
   height: 14.5625rem;
-  /* margin: auto; */
-  margin-left: 6.25rem;
-  margin-right: 6.25rem;
+  /* margin-top: 1rem; */
+
+  /* margin-left: 6.25rem; */
+  /* margin-right: 6.25rem; */
   background-color: var(--background-color-cards-main);
 }
 

@@ -123,22 +123,14 @@ const handleSubmit = async () => {
 .contact-card {
     display: flex;
     width: 100%;
-    height: 26.3125rem;
-    /* Ocupa todo el ancho disponible hasta el máximo */
-    margin: 20px auto;
-    /* Centrado */
-    /* Mucho espacio interno */
+    height: 25rem;
     background-color: v-bind('props.backgroundColor');
     /* Fondo blanco forzado */
-    border-radius: 12px;
+    border-radius:  0.625rem;
     border: 1px solid #e0e0e0;
-    /* Borde suave para definir la forma */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    /* Sombra elegante */
     box-sizing: border-box;
     align-items: center;
-}
-
+} 
 .contact-card-background-image {
     display: flex;
     width: 100%;
@@ -147,7 +139,6 @@ const handleSubmit = async () => {
     background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
-
     align-items: center;
 
 }

@@ -366,12 +366,22 @@ export default {
 <style scoped>
 .grid-container {
     background-color: var(--background-color-main);
-        background-image: url("backgrounds/decorative-plus-xyz-homepage-purple.svg");
+    /* background-color: red; */
+    background-image: url("/backgrounds/decorative-plus-xyz-homepage-purple.svg");
     background-size: 100%;
     display: flex;
     flex-direction: column;
     /* width: 100vw; */
     /* height: 100vh; */
+}
+
+.content-container {
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    align-self: center;
+    gap: 3.75rem;
 }
 
 .topBar {
@@ -440,18 +450,12 @@ export default {
 
 /* Large screens (desktops) */
 .cardsContainer {
-
-    /* width: 120.96863rem; */
-    /* height: 66.85013rem; */
     display: flex;
     margin: auto;
-    margin-top: 7rem;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    /* margin-top: 7rem; */
+    /* padding-left: 3rem; */
+    /* padding-right: 3rem; */
     width: 100%;
-    /* height: 43.4375rem; */
-    /* justify-content: center; */
-    /* Center cards horizontally */
     flex-shrink: 0;
     gap: 3rem;
     /* background-color: blue; */
@@ -470,20 +474,18 @@ export default {
 
 /* box sizes new design */
 .cardsContainerLeftSide {
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
-    /* background-color: red; */
-
-
-}
+    }
 
 .cardsContainerLeftSideTop {
     width: 100%;
     display: flex;
     gap: 1.8rem;
     align-items: center;
-    justify-content: center;
+    justify-content: right;
     /* background-color: green; */
 }
 
@@ -621,7 +623,8 @@ export default {
 
 .sarisariXchangeLandAcknowledgementContainer {
     display: flex;
-    width: 49.43rem;
+    width: 95%;
+    /* width: 50%; */
     padding: 0.5rem;
     flex-direction: column;
     justify-content: center;
@@ -699,6 +702,7 @@ export default {
 
 /* box sizes new design */
 .cardsContainerRightSide {
+    width: 50%;
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
@@ -715,11 +719,11 @@ export default {
 /* right top box */
 
 .exploreProjectsContainer {
-    width: 51.62rem;
-    height: 40.97rem;
+    /* width: 100%; */
+    /* height: 40.97rem; */
     display: inline-flex;
     padding: 0.5rem;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -1006,12 +1010,12 @@ export default {
 
 .assetoryPromoContainer {
     display: flex;
-    padding-left: 6rem;
-    padding-right: 6rem;
+    /* padding-left: 6rem; */
+    /* padding-right: 6rem; */
     /* background-color: red; */
     align-items: center;
-    margin-top: 3rem;
-    margin-bottom: 5rem;
+    /* margin-top: 3rem; */
+    /* margin-bottom: 5rem; */
 }
 
 .assetoryPromo {
@@ -1141,7 +1145,7 @@ export default {
 
 /* FOOTER */
 
-.footer {
+.logos {
     /* flex: 0 0 auto; */
     background-image: url("/images/logos/logos-condensed.svg");
     background-size: contain;
@@ -1150,16 +1154,13 @@ export default {
     display: flex;
     height: 6.6875rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--primary-color);
-    margin-left: 6.5rem;
-    margin-right: 6.5rem;
-    margin-bottom: 0.5rem;
+    border: 1px solid var(--primary-color);    
 }
 
 
 /* Medium desktops / laptops (<= 1400px) */
 @media (max-width: 1400px) {
-    .footer-image {
+    .logos-image {
         width: 4%;
         object-fit: contain;
         flex-shrink: 0;
@@ -1186,46 +1187,134 @@ export default {
 }
 
 .form-section {
-    /* background-color: red; */
-    width: 100%;
-    /* color: black; */
-    /* background: red; */
-    border-radius: 8px;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); */
-    padding-left: 6.5rem;
-    padding-right: 6.5rem;
-    /* max-width: 600px; */
-    margin: 0 auto;
+    background-color: gray;
+    width: 100%;    
+    border-radius: 8px;    
+    /* margin: 0 auto; */
 }
 </style>
 
 <template>
 
     <div class="grid-container">
-        <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div>
-        <div :class="['background-lines']" aria-hidden="true"></div>
+        <div class="content-container">
+            <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div>
+            <div :class="['background-lines']" aria-hidden="true"></div>
 
 
-        <!-- New background layer -->
-        <div class="topBar">
-            <Topbar ref="topbar" :interactive-mode="interactiveMode" :is-notification-visible="isNotificationVisible"
-                @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme"
-                pageTitle="Sari Sari Xchange Project Homepage" />
-        </div>
+            <!-- New background layer -->
+            <div class="topBar">
+                <Topbar ref="topbar" :interactive-mode="interactiveMode"
+                    :is-notification-visible="isNotificationVisible"
+                    @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme"
+                    pageTitle="Sari Sari Xchange Project Homepage" />
+            </div>
 
-        <!-- background image -->
-        <div class="background-image" aria-hidden="true"></div>
-        <div class="grid-background" aria-hidden="true"></div>
-
+          
 
 
-        <div class="cardsContainer">
-            <div class="cardsContainerLeftSide">
+            <div class="cardsContainer">
+                <div class="cardsContainerLeftSide">
 
-                <div class="cardsContainerLeftSideTop">
-                    <!-- Sari Sari Xchange intro -->
-                    <div class="sarisariXchangeBlurbContiner">
-                        <div class="sarisariXchangeBlurbContiner-heading">
+                    <div class="cardsContainerLeftSideTop">
+                        <!-- Sari Sari Xchange intro -->
+                        <div class="sarisariXchangeBlurbContiner">
+                            <div class="sarisariXchangeBlurbContiner-heading">
+                                <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
+                                    aria-hidden="true">
+                                <img v-show="isPinkLeftCardIconVisible"
+                                    :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt="" aria-hidden="true">
+                                <img v-show="isGrayLeftCardIconVisible"
+                                    :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt="" aria-hidden="true">
+                                <img v-show="isHighContrastLeftCardIconVisible"
+                                    :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
+                                <img v-show="isWCAGLeftCardIconVisible"
+                                    :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt=""
+                                    aria-hidden="true">
+                                <h2>Sari-Sari Xchange</h2>
+                            </div>
+                            <div class="sarisariXchangeBlurbContiner-paragraph">
+                                <p>The Sari-Sari Xchange is a community-building research & creation project using
+                                    Extended
+                                    Reality (XR) (ie. Virtual, Augmented, Mixed Realities) to foster new works by
+                                    artists
+                                    from
+                                    the Asian diaspora.
+
+                                    <br><br>
+
+                                    We undertake exploration in emergent XR technologies and new storytelling
+                                    techniques,
+                                    address under-representation and issues of systemic racism as well as
+                                    inaccessibility of
+                                    these new technologies for both creators and users with disabilities.
+                                </p>
+                            </div>
+
+
+                            <!-- <div class="sarisariXchangeBlurbContiner-action-call" @mouseenter="isAboutHovered = true"
+                        @mouseleave="isAboutHovered = false">
+
+                        <OddShapeButton label="Learn More" iconText="OK" :to="{ name: 'About' }"
+                            fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color-main)" />
+                    </div> -->
+                        </div>
+
+
+                        <!-- Assetory  -->
+                        <div class="exploreAssetoryContainer">
+
+                            <div class="exploreAssetoryContainer-heading">
+                                <img v-show="isDefaultCardVisible" :src="iconBasePath + 'collectionsIconPurple.svg'"
+                                    alt="" aria-hidden="true">
+                                <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                                    alt="" aria-hidden="true">
+                                <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                                    alt="" aria-hidden="true">
+                                <img v-show="isHighContrastLeftCardIconVisible"
+                                    :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
+                                <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                                    alt="" aria-hidden="true">
+                                <h2>Assetory</h2>
+                            </div>
+
+                            <div class="exploreAssetoryContainer-subtitle">
+                                <img v-show="isDecoractionCardSubtitleDefault"
+                                    :src="iconBasePath + 'decorationCardSubtitlePurple.svg'" alt="" aria-hidden="true">
+                                <img v-show="isDecoractionCardSubtitlePink"
+                                    :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
+                                <img v-show="isDecoractionCardSubtitleGray"
+                                    :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
+                                <img v-show="isDecoractionCardSubtitleHighContrast"
+                                    :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt=""
+                                    aria-hidden="true">
+                                <img v-show="isDecoractionCardSubtitleWCAG"
+                                    :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
+                                <p>Explore the online platform for more 3D assets.</p>
+                            </div>
+                            <div class="exploreAssetoryContainer-photo" aria-hidden="true">
+                                <img src="/images/homepage/right-bottom-card-background-transparent-background.png"
+                                    alt="" aria-hidden="true">
+                            </div>
+
+                            <div class="exploreAssetoryContainer-action-call" @mouseenter="isAboutHovered = true"
+                                @mouseleave="isAboutHovered = false">
+
+                                <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-purple.svg'
+                                    :hoverIconSrc='iconHoveredSrc' iconAlt="" :to="{ name: 'Assetory' }"
+                                    fillColor="transparent" textColor="var(--secondary-color-main)"
+                                    strokeColor="var(--primary-border-color-main)"
+                                    hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+                                    hoverStrokeColor="var(--border-color-topbar-nav-button-hover)"
+                                    hoverColor="transparent" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Land acknowledgement -->
+
+                    <div class="sarisariXchangeLandAcknowledgementContainer">
+                        <div class="sarisariXchangeLandAcknowledgementContainer-heading">
                             <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
                                 aria-hidden="true">
                             <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
@@ -1236,50 +1325,54 @@ export default {
                                 :src="iconBasePath + 'sariSariIconWhite.svg'" alt="" aria-hidden="true">
                             <img v-show="isWCAGLeftCardIconVisible"
                                 :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
-                            <h2>Sari-Sari Xchange</h2>
+                            <h2>Land Acknowledgement</h2>
                         </div>
-                        <div class="sarisariXchangeBlurbContiner-paragraph">
-                            <p>The Sari-Sari Xchange is a community-building research & creation project using Extended
-                                Reality (XR) (ie. Virtual, Augmented, Mixed Realities) to foster new works by artists
-                                from
-                                the Asian diaspora.
+                        <div class="sarisariXchangeLandAcknowledgementContainer-paragraph">
+                            <p>As Settlers from the Asian Diaspora, we would like to recognize the importance of
+                                acknowledging the Indigenous peoples on whose land we live and work.
+                                <br></br>
 
-                                <br><br>
+                                The City of Hamilton and Toronto is situated upon the traditional territories of the
+                                Erie,
+                                Neutral, Huron-Wendat, Haudenosaunee and Mississaugas, Chippewa, now home to many
+                                diverse
+                                first nations, inuit, and metis peoples. This land is covered by the Dish With One Spoon
+                                Wampum Belt Covenant, which was an agreement to share and care for the resources around
+                                the
+                                Great Lakes.
+                                <br></br>
 
-                                We undertake exploration in emergent XR technologies and new storytelling techniques,
-                                address under-representation and issues of systemic racism as well as inaccessibility of
-                                these new technologies for both creators and users with disabilities.
+                                It is important that we continue to uphold the principles of the Dish with One Spoon
+                                agreement by recognizing the rights and contributions of Indigenous peoples,
+                                acknowledging
+                                their ongoing struggle for justice as we move forward with this project. Taking
+                                collaborative approaches to build community, we keep in mind that the shared space for
+                                knowledge exchange that we create cannot be owned.
                             </p>
                         </div>
-
-
-                        <!-- <div class="sarisariXchangeBlurbContiner-action-call" @mouseenter="isAboutHovered = true"
-                        @mouseleave="isAboutHovered = false">
-
-                        <OddShapeButton label="Learn More" iconText="OK" :to="{ name: 'About' }"
-                            fillColor="var(--secondary-color-left-box)" hoverColor="var(--hover-color-main)" />
-                    </div> -->
                     </div>
+                </div>
 
+                <div class="cardsContainerRightSide">
 
-                    <!-- Assetory  -->
-                    <div class="exploreAssetoryContainer">
+                    <!-- projects -->
+                    <div class="exploreProjectsContainer">
 
-                        <div class="exploreAssetoryContainer-heading">
-                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'collectionsIconPurple.svg'" alt=""
+                        <div class="exploreProjectsContainer-heading">
+                            <img v-show="isDefaultCardVisible" :src="iconBasePath + 'asteriskPurple.svg'" alt=""
                                 aria-hidden="true">
-                            <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
+                            <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                                aria-hidden="true">
+                            <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                                aria-hidden="true">
+                            <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'"
                                 alt="" aria-hidden="true">
-                            <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
-                                alt="" aria-hidden="true">
-                            <img v-show="isHighContrastLeftCardIconVisible"
-                                :src="iconBasePath + 'collectionsIconWhite.svg'" alt="" aria-hidden="true">
-                            <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'collectionsIconWhite.svg'"
-                                alt="" aria-hidden="true">
-                            <h2>Assetory</h2>
+                            <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
+                                aria-hidden="true">
+                            <h2>Projects</h2>
                         </div>
 
-                        <div class="exploreAssetoryContainer-subtitle">
+                        <div class="exploreProjectsContainer-subtitle">
                             <img v-show="isDecoractionCardSubtitleDefault"
                                 :src="iconBasePath + 'decorationCardSubtitlePurple.svg'" alt="" aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitlePink"
@@ -1291,128 +1384,36 @@ export default {
                                 aria-hidden="true">
                             <img v-show="isDecoractionCardSubtitleWCAG"
                                 :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
-                            <p>Explore the online platform for more 3D assets.</p>
-                        </div>
-                        <div class="exploreAssetoryContainer-photo" aria-hidden="true">
-                            <img src="/images/homepage/right-bottom-card-background-transparent-background.png" alt=""
-                                aria-hidden="true">
+                            <p>See what we’re up to!</p>
                         </div>
 
-                        <div class="exploreAssetoryContainer-action-call" @mouseenter="isAboutHovered = true"
+
+                        <div class="exploreProjectsContainer-photo" aria-hidden="true">
+                            <img src="/images/homepage/right-top-card-background-image.png" alt="" aria-hidden="true">
+                        </div>
+
+                        <div class="exploreProjectsContainer-action-call" @mouseenter="isAboutHovered = true"
                             @mouseleave="isAboutHovered = false">
-
-                            <OddShapeButton label="Open SSXA" iconSrc='/icons/arrow-right-purple.svg'
-                                :hoverIconSrc='iconHoveredSrc' iconAlt="" :to="{ name: 'Assetory' }"
-                                fillColor="transparent" textColor="var(--secondary-color-main)"
-                                strokeColor="var(--primary-border-color-main)"
+                            <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-purple.svg'
+                                :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" fillColor="transparent"
+                                textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
                                 hoverTextColor="var(--text-color-topbar-nav-button-hover)"
                                 hoverStrokeColor="var(--border-color-topbar-nav-button-hover)"
                                 hoverColor="transparent" />
                         </div>
-                    </div>
-                </div>
 
-                <!-- Land acknowledgement -->
-
-                <div class="sarisariXchangeLandAcknowledgementContainer">
-                    <div class="sarisariXchangeLandAcknowledgementContainer-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'sariSariIconWhite.svg'" alt=""
-                            aria-hidden="true">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'sariSariIconWhite.svg'"
-                            alt="" aria-hidden="true">
-                        <img v-show="isWCAGLeftCardIconVisible"
-                            :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'" alt="" aria-hidden="true">
-                        <h2>Land Acknowledgement</h2>
-                    </div>
-                    <div class="sarisariXchangeLandAcknowledgementContainer-paragraph">
-                        <p>As Settlers from the Asian Diaspora, we would like to recognize the importance of
-                            acknowledging the Indigenous peoples on whose land we live and work.
-                            <br></br>
-
-                            The City of Hamilton and Toronto is situated upon the traditional territories of the
-                            Erie,
-                            Neutral, Huron-Wendat, Haudenosaunee and Mississaugas, Chippewa, now home to many
-                            diverse
-                            first nations, inuit, and metis peoples. This land is covered by the Dish With One Spoon
-                            Wampum Belt Covenant, which was an agreement to share and care for the resources around
-                            the
-                            Great Lakes.
-                            <br></br>
-
-                            It is important that we continue to uphold the principles of the Dish with One Spoon
-                            agreement by recognizing the rights and contributions of Indigenous peoples,
-                            acknowledging
-                            their ongoing struggle for justice as we move forward with this project. Taking
-                            collaborative approaches to build community, we keep in mind that the shared space for
-                            knowledge exchange that we create cannot be owned.
-                        </p>
                     </div>
                 </div>
             </div>
 
-            <div class="cardsContainerRightSide">
+            <!-- marquee -->
+            <div class="assetoryPromoContainer">
+                <div class="assetoryPromo">
+                    <div class="assetoryPromoHeading">
 
-                <!-- projects -->
-                <div class="exploreProjectsContainer">
-
-                    <div class="exploreProjectsContainer-heading">
-                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'asteriskPurple.svg'" alt=""
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'squiggle_icon_purple.svg'" alt=""
                             aria-hidden="true">
-                        <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
-                            aria-hidden="true">
-                        <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
-                            aria-hidden="true">
-                        <img v-show="isHighContrastLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
-                            aria-hidden="true">
-                        <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'asteriskWhite.svg'" alt=""
-                            aria-hidden="true">
-                        <h2>Projects</h2>
-                    </div>
-
-                    <div class="exploreProjectsContainer-subtitle">
-                        <img v-show="isDecoractionCardSubtitleDefault"
-                            :src="iconBasePath + 'decorationCardSubtitlePurple.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitlePink"
-                            :src="iconBasePath + 'decorationCardSubtitlePink.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitleGray"
-                            :src="iconBasePath + 'decorationCardSubtitleGray.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitleHighContrast"
-                            :src="iconBasePath + 'decorationCardSubtitleHighContrast.svg'" alt="" aria-hidden="true">
-                        <img v-show="isDecoractionCardSubtitleWCAG"
-                            :src="iconBasePath + 'decorationCardSubtitleWCAG.svg'" alt="" aria-hidden="true">
-                        <p>See what we’re up to!</p>
-                    </div>
-
-
-                    <div class="exploreProjectsContainer-photo" aria-hidden="true">
-                        <img src="/images/homepage/right-top-card-background-image.png" alt="" aria-hidden="true">
-                    </div>
-
-                    <div class="exploreProjectsContainer-action-call" @mouseenter="isAboutHovered = true"
-                        @mouseleave="isAboutHovered = false">
-                        <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-purple.svg'
-                            :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" fillColor="transparent"
-                            textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
-                            hoverTextColor="var(--text-color-topbar-nav-button-hover)"
-                            hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent" />
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- marquee -->
-        <div class="assetoryPromoContainer">
-            <div class="assetoryPromo">
-                <div class="assetoryPromoHeading">
-
-                    <img v-show="isDefaultCardVisible" :src="iconBasePath + 'squiggle_icon_purple.svg'" alt=""
-                        aria-hidden="true">
-                    <!-- <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt=""
+                        <!-- <img v-show="isPinkLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsPink.svg'" alt=""
                         aria-hidden="true">
                     <img v-show="isGrayLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsGray.svg'" alt=""
                         aria-hidden="true">
@@ -1420,80 +1421,82 @@ export default {
                         aria-hidden="true">
                     <img v-show="isWCAGLeftCardIconVisible" :src="iconBasePath + 'greaterThanBracketsHighContrast.svg'"
                         alt="" aria-hidden="true"> -->
-                    <h2>Hey, we’ve got more!</h2>
-                    <img v-show="isDefaultCardVisible" :src="iconBasePath + 'squiggle_icon_purple.svg'" alt=""
-                        aria-hidden="true">
-                    </img>
+                        <h2>Hey, we’ve got more!</h2>
+                        <img v-show="isDefaultCardVisible" :src="iconBasePath + 'squiggle_icon_purple.svg'" alt=""
+                            aria-hidden="true">
+                        </img>
 
+                    </div>
+
+                    <div class="assetoryPromoParagraphPlusButtons">
+                        <div class="assetoryPromoParagraph">
+                            <p>We’ve been working on a open-source asset library that highlights artists and their 3D
+                                work.
+                                Yeah, sounds cool. Check it out & stay in touch.
+                            </p>
+                        </div>
+                        <div class="assetoryPromoButtons">
+                            <SimpleButton :to="{ name: '' }" text="Visit the SSX Assetory"
+                                backgroundColor="var(--background-color-cards-main)"
+                                color="var(--text-color-topbar-nav-button-main)"
+                                borderColor="var(--text-color-topbar-nav-button-main)"
+                                :icon="iconBasePath + 'arrow-right-purple.svg'"
+                                :iconHover="iconBasePath + 'arrow-right-white-FFFBEB.svg'"
+                                backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
+                                borderColorHover="var(--hover-color-main)" shadow='none' />
+                            <SimpleButton :to="{ name: 'Submit Your Work Form' }" text="Submit your work"
+                                backgroundColor="var(--background-color-cards-main)"
+                                color="var(--text-color-topbar-nav-button-main)"
+                                borderColor="var(--text-color-topbar-nav-button-main)"
+                                :icon="iconBasePath + 'submit-your-work-icon-purple.svg'"
+                                :iconHover="iconBasePath + 'submit-your-work-icon-FFFBEB.svg'"
+                                backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
+                                borderColorHover="var(--hover-color-main)" shadow='none' />
+                            <SimpleButton :to="{ name: '' }" text="Instagram"
+                                backgroundColor="var(--background-color-cards-main)"
+                                color="var(--text-color-topbar-nav-button-main)"
+                                borderColor="var(--text-color-topbar-nav-button-main)"
+                                :icon="iconBasePath + 'instagramIconPurple.svg'"
+                                :iconHover="iconBasePath + 'instagramIcon-FFFBEB.svg'"
+                                backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
+                                borderColorHover="var(--hover-color-main)" shadow='none' />
+                        </div>
+                    </div>
                 </div>
 
-                <div class="assetoryPromoParagraphPlusButtons">
-                    <div class="assetoryPromoParagraph">
-                        <p>We’ve been working on a open-source asset library that highlights artists and their 3D work.
-                            Yeah, sounds cool. Check it out & stay in touch.
-                        </p>
-                    </div>
-                    <div class="assetoryPromoButtons">
-                        <SimpleButton :to="{ name: '' }" text="Visit the SSX Assetory"
-                            backgroundColor="var(--background-color-cards-main)"
-                            color="var(--text-color-topbar-nav-button-main)"
-                            borderColor="var(--text-color-topbar-nav-button-main)"
-                            :icon="iconBasePath + 'arrow-right-purple.svg'"
-                            :iconHover="iconBasePath + 'arrow-right-white-FFFBEB.svg'"
-                            backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
-                            borderColorHover="var(--hover-color-main)" shadow='none' />
-                        <SimpleButton :to="{ name: 'Submit Your Work Form' }" text="Submit your work"
-                            backgroundColor="var(--background-color-cards-main)"
-                            color="var(--text-color-topbar-nav-button-main)"
-                            borderColor="var(--text-color-topbar-nav-button-main)"
-                            :icon="iconBasePath + 'submit-your-work-icon-purple.svg'"
-                            :iconHover="iconBasePath + 'submit-your-work-icon-FFFBEB.svg'"
-                            backgroundColorHover="transparent" textColorHover="var(--hover-color-main)"
-                            borderColorHover="var(--hover-color-main)" shadow='none' />
-                        <SimpleButton :to="{ name: '' }" text="Instagram"
-                            backgroundColor="var(--background-color-cards-main)"
-                            color="var(--text-color-topbar-nav-button-main)"
-                            borderColor="var(--text-color-topbar-nav-button-main)"
-                            :icon="iconBasePath + 'instagramIconPurple.svg'"
-                            :iconHover="iconBasePath + 'instagramIcon-FFFBEB.svg'" backgroundColorHover="transparent"
-                            textColorHover="var(--hover-color-main)" borderColorHover="var(--hover-color-main)"
-                            shadow='none' />
-                    </div>
-                </div>
+                <Marquee :are-footer-images-default-visible=true :isHomepage=true />
             </div>
 
-            <Marquee :are-footer-images-default-visible=true :isHomepage=true />
+            <!-- Collections Grid -->
+            <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
+                :basePath="basePath" :routeName="routeName" :isHomepage=true :theme="currentTheme.theme" />
+
+            <!-- contact form -->
+            <section class="form-section">
+                <ContactForm backgroundColor="var(--background-color-cards-main-two)" />
+            </section>
+
+            <!-- Notification Window -->
+            <div v-if="isNotificationVisible" class="notification-window">
+                <p>
+                    This website stores accessibility menu settings you select in your browser to enhance your
+                    experience.
+                    No
+                    cookies or tracking are used.
+                </p>
+                <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
+            </div>
+
+
+
+            <div class="logos">
+            </div>
+
+            <!-- footer -->
+
+            <Footer :theme="currentTheme" :isMainWebsite=true />
+
         </div>
-
-        <!-- Collections Grid -->
-        <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"
-            :basePath="basePath" :routeName="routeName" :isHomepage=true :theme="currentTheme.theme" />
-
-        <!-- contact form -->
-        <section class="form-section">
-            <ContactForm backgroundColor="var(--background-color-cards-main-two)" />
-        </section>
-
-        <!-- Notification Window -->
-        <div v-if="isNotificationVisible" class="notification-window">
-            <p>
-                This website stores accessibility menu settings you select in your browser to enhance your
-                experience.
-                No
-                cookies or tracking are used.
-            </p>
-            <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
-        </div>
-
-
-
-        <div class="footer">
-        </div>
-
-        <!-- footer -->
-
-        <Footer :theme="currentTheme" :isMainWebsite=true />
-
     </div>
 
 </template>

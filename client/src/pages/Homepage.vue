@@ -478,7 +478,7 @@ export default {
     display: flex;
     flex-direction: column;
     gap: 1.8rem;
-    }
+}
 
 .cardsContainerLeftSideTop {
     width: 100%;
@@ -623,10 +623,10 @@ export default {
 
 .sarisariXchangeLandAcknowledgementContainer {
     display: flex;
+    flex-direction: column;
     width: 95%;
     /* width: 50%; */
     padding: 0.5rem;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
@@ -665,6 +665,7 @@ export default {
 .sarisariXchangeLandAcknowledgementContainer-paragraph {
     flex: 1 1 auto;
     display: flex;
+    flex-direction: column;
     padding: 0.5rem;
     justify-content: center;
     align-items: center;
@@ -1154,7 +1155,7 @@ export default {
     display: flex;
     height: 6.6875rem;
     border-radius: 0.5rem;
-    border: 1px solid var(--primary-color);    
+    border: 1px solid var(--primary-color);
 }
 
 
@@ -1188,8 +1189,8 @@ export default {
 
 .form-section {
     background-color: gray;
-    width: 100%;    
-    border-radius: 8px;    
+    width: 100%;
+    border-radius: 8px;
     /* margin: 0 auto; */
 }
 </style>
@@ -1197,20 +1198,20 @@ export default {
 <template>
 
     <div class="grid-container">
+        <div class="topBar">
+            <Topbar ref="topbar" :interactive-mode="interactiveMode" :is-notification-visible="isNotificationVisible"
+                @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme"
+                pageTitle="Sari Sari Xchange Project Homepage" />
+        </div>
+
         <div class="content-container">
             <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div>
             <div :class="['background-lines']" aria-hidden="true"></div>
 
 
             <!-- New background layer -->
-            <div class="topBar">
-                <Topbar ref="topbar" :interactive-mode="interactiveMode"
-                    :is-notification-visible="isNotificationVisible"
-                    @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme"
-                    pageTitle="Sari Sari Xchange Project Homepage" />
-            </div>
 
-          
+
 
 
             <div class="cardsContainer">
@@ -1330,7 +1331,7 @@ export default {
                         <div class="sarisariXchangeLandAcknowledgementContainer-paragraph">
                             <p>As Settlers from the Asian Diaspora, we would like to recognize the importance of
                                 acknowledging the Indigenous peoples on whose land we live and work.
-                                <br></br>
+                                <br><br>
 
                                 The City of Hamilton and Toronto is situated upon the traditional territories of the
                                 Erie,
@@ -1340,7 +1341,7 @@ export default {
                                 Wampum Belt Covenant, which was an agreement to share and care for the resources around
                                 the
                                 Great Lakes.
-                                <br></br>
+                                <br><br>
 
                                 It is important that we continue to uphold the principles of the Dish with One Spoon
                                 agreement by recognizing the rights and contributions of Indigenous peoples,

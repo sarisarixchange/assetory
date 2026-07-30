@@ -1,4 +1,6 @@
 <script>
+import OddShapeButton from '../widgets/OddShapeButton.vue';
+
 
 export default {
   name: 'AccessibilityMenu',
@@ -7,7 +9,14 @@ export default {
     isNotificationVisible: {
       type: Boolean,
       default: true,
+    },
+    isMainWebsite: {
+      type: Boolean,
+      default: false
     }
+  },
+  components: {
+    OddShapeButton
   },
   data() {
     return {
@@ -534,7 +543,7 @@ export default {
 .nav-buttonAccessibilityIcon-homepage {
   background-color: var(--background-color-main);
   /* O el color que te haya pedido */
-  
+
   border: 1px solid var(--primary-border-color-main);
   background-image: url('/icons/personPurple.svg');
 }
@@ -633,13 +642,52 @@ export default {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
   cursor: pointer;
+    /* Move menu to the right of the button */
+  right: auto;
+  top: 15.5rem;
+  transform: translateY(-50%);
 }
+
+.dropdown-content-main {
+  /* width: 22.569vw; */
+  width: 20.31rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  gap: 0.625rem;
+  background-color: var(--background-color-cards-main);
+  border: 1px solid var(--navigation-buttons-border-color);
+  border-radius: 15px 15px 5px 5px;
+  position: absolute;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 4;
+  cursor: pointer;
+      /* Move menu to the right of the button */
+  right: auto;
+  top: 14.5rem;
+  transform: translateY(-50%);
+
+}
+
 
 .accessiblityToolsHeading {
   padding: 0.6875rem 0.875rem;
   border-radius: 10px;
   background-color: var(--primary-color);
   color: white;
+  font-family: var(--font-family-Decorative);
+  /* Uses Handjet by default */
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: center;
+  cursor: default;
+}
+
+.accessiblityToolsHeading-main {
+  padding: 0.6875rem 0.875rem;
+  border-radius: 10px;
+  background-color: var(--background-color-card-heading-one);
+  color: var(--primary-color-main);
   font-family: var(--font-family-Decorative);
   /* Uses Handjet by default */
   font-size: 1.25rem;
@@ -1265,7 +1313,8 @@ a {
 </style>
 
 <template>
-  <div class="accessibility-sticky-wrapper">
+
+  <div  class="accessibility-sticky-wrapper">
     <!-- Busca tu botón actual y cámbialo por este: -->
     <button :class="[
       'nav-buttonAccessibilityIcon',
@@ -1273,8 +1322,78 @@ a {
       { 'nav-buttonAccessibilityIcon-homepage': isHomepage }
     ]" @click="accessibilityMenuVisibility" aria-label="Accessibility Menu">
     </button>
+
+    
+
     <!-- accessibility menu -->
-    <div v-show="isMenuVisible" class="dropdown-content" role="dialog" aria-modal="true"
+    <div v-if="isMainWebsite" v-show="isMenuVisible" class="dropdown-content-main" role="dialog" aria-modal="true"
+      aria-labelledby="accessibility tools heading" ref="accessibilityMenu">
+      <div>
+        <h2 class="accessiblityToolsHeading-main">
+          Accessibility Tools
+        </h2>
+      </div>
+
+
+
+      <!-- buttons -->
+
+      <OddShapeButton label="Increase Text" iconSrc="/icons/IncreaseTextIconPurple.svg"
+        hoverIconSrc="/icons/IncreaseTextIconFFFBEB.svg" iconAlt="Increase text size" fillColor="transparent"
+        textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
+        hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+        @click="increaseTextSize" />
+
+
+
+      <OddShapeButton label="Decrease Text" iconSrc="/icons/decreaseTextIconPurple.svg"
+        hoverIconSrc="/icons/decreaseTextIconFFFBEB.svg" iconAlt="Decrease text size" fillColor="transparent"
+        textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
+        hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+        @click="decreaseTextSize" />
+
+
+      <OddShapeButton label="Grayscale" iconSrc="/icons/grayscaleIconPurple.svg"
+        hoverIconSrc="/icons/grayscaleIconFFFBEB.svg" iconAlt="Decrease text size" fillColor="transparent"
+        textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
+        hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+        @click="changeTograyscale" />
+
+      <OddShapeButton label="High Contrast" iconSrc="/icons/highContrastIconPurple.svg"
+        hoverIconSrc="/icons/highContrastIconFFFBEB.svg" iconAlt="Decrease text size" fillColor="transparent"
+        textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
+        hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+        @click="changeToHighContrast" />
+
+
+      <OddShapeButton label="Links Underline" iconSrc="/icons/linksUnderlineIconPink.svg"
+        hoverIconSrc="/icons/linksUnderlineIconFFFBEB.svg" iconAlt="Decrease text size" fillColor="transparent"
+        textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
+        hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+        @click="activateLinksUnderline" />
+
+
+      <OddShapeButton label="Readable Font" iconSrc="/icons/readableFontIconPurple.svg"
+        hoverIconSrc="/icons/readableFontIconFFFBEB.svg" iconAlt="Decrease text size" fillColor="transparent"
+        textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
+        hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
+        @click="activateReadableFont" />
+
+
+      <OddShapeButton label="Reset" iconSrc="/icons/resetIconPurple.svg" hoverIconSrc="/icons/resetIconFFFBEB.svg" 
+        iconAlt="Decrease text size" fillColor="transparent" textColor="var(--secondary-color-main)"
+        strokeColor="var(--primary-border-color-main)" hoverTextColor="var(--text-color-topbar-nav-button-hover)"
+        hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent" @click="reset" />
+    </div>
+
+ 
+    <div v-else v-show="isMenuVisible" class="dropdown-content" role="dialog" aria-modal="true"
       aria-labelledby="accessibility tools heading" ref="accessibilityMenu">
       <div>
         <h2 class="accessiblityToolsHeading">

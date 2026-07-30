@@ -456,7 +456,7 @@ a {
 
     <!-- Accessibility Menu -->
     <AccessibilityMenu ref="accessibilityMenu" :is-notification-visible="isNotificationVisible"
-      @update-notification-visible="$emit('update-notification-visible', $event)" @theme-changed="handleThemeChange" />
+      @update-notification-visible="$emit('update-notification-visible', $event)" @theme-changed="handleThemeChange" :isMainWebsite="true" />
   </div>
 
 

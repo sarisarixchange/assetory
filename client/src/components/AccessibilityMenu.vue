@@ -65,7 +65,7 @@ export default {
   computed: {
 
     isHomepage() {
-      return this.$route.path === '/';
+      return this.$route?.path === '/';
     },
 
 
@@ -249,12 +249,36 @@ export default {
         // Default theme
         this.currentTheme = 'default'; // Update currentTheme
 
+        // main website
+
+        // In default theme block of applyTheme():
         root.style.setProperty('--active-color-main', '#D400A6');
+        root.style.setProperty('--primary-color-main', '#FFFBEB');
+        root.style.setProperty('--primary-border-color-main', '#9D488B');
+        root.style.setProperty('--background-color-main', '#1D0018');
+        root.style.setProperty('--background-color-cards-main', '#26031F');
+        root.style.setProperty('--background-color-cards-main-two', '#DBD71C');
+        root.style.setProperty('--background-color-card-heading-one', '#8C006E');
+        root.style.setProperty('--background-color-card-heading-two', '#DBD71C');
+        root.style.setProperty('--color-card-heading-one', '#FFFBEB');
+        root.style.setProperty('--color-card-heading-two', '#26031F');
+        root.style.setProperty('--background-color-topbar-nav-buttons', '#8C006E');
+        root.style.setProperty('--text-color-topbar-nav-button-main', '#E47BCD');
+        root.style.setProperty('--border-color-topbar-nav-button-active', '#FFFBEB');
+        root.style.setProperty('--border-color-topbar-nav-button-hover', '#FFBAF0');
+        root.style.setProperty('--text-color-topbar-nav-button-hover', '#FFFBEB');
         root.style.setProperty('--active-text-color-main', '#FFFEFA');
         root.style.setProperty('--hover-color-main', '#FFEDF4');
         root.style.setProperty('--hover-text-color-main', '#000000');
+        root.style.setProperty('--border-color-footer', '#FFFBEB');
+        root.style.setProperty('--text-color-footer', '#FFFBEB');
+        // root.style.setProperty('--secondary-color-main', '#E47BCD');
 
+        // root.style.setProperty('--active-text-color-main', '#FFFEFA');
+        // root.style.setProperty('--hover-color-main', '#FFEDF4');
+        // root.style.setProperty('--hover-text-color-main', '#000000');
 
+        // assetory?
         root.style.setProperty('--background-color', '#FFFEFA');
         root.style.setProperty('--background-color-headings', '#FD5733');
         root.style.setProperty('--return-button-background-color', '#FD5733');
@@ -366,8 +390,9 @@ export default {
         this.currentReadableFontIcon = settings.currentReadableFontIcon || this.currentReadableFontIcon
         this.currentWcagColoursIcon = settings.currentWcagColoursIcon || this.currentWcagColoursIcon
         this.currentResetIcon = settings.currentResetIcon || this.currentResetIcon
-
       }
+      // 🚀 ALWAYS apply the theme on mount, even if no localStorage exists!
+      this.applyTheme(this.currentTheme);
     },
 
     dismissNotification() {
@@ -642,7 +667,7 @@ export default {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
   cursor: pointer;
-    /* Move menu to the right of the button */
+  /* Move menu to the right of the button */
   right: auto;
   top: 15.5rem;
   transform: translateY(-50%);
@@ -662,7 +687,7 @@ export default {
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 4;
   cursor: pointer;
-      /* Move menu to the right of the button */
+  /* Move menu to the right of the button */
   right: auto;
   top: 14.5rem;
   transform: translateY(-50%);
@@ -1314,16 +1339,16 @@ a {
 
 <template>
 
-  <div  class="accessibility-sticky-wrapper">
+  <div class="accessibility-sticky-wrapper">
     <!-- Busca tu botón actual y cámbialo por este: -->
     <button :class="[
       'nav-buttonAccessibilityIcon',
       currentNavAccessibilityIcon,
-      { 'nav-buttonAccessibilityIcon-homepage': isHomepage }
+      { 'nav-buttonAccessibilityIcon-homepage': isMainWebsite }
     ]" @click="accessibilityMenuVisibility" aria-label="Accessibility Menu">
     </button>
 
-    
+
 
     <!-- accessibility menu -->
     <div v-if="isMainWebsite" v-show="isMenuVisible" class="dropdown-content-main" role="dialog" aria-modal="true"
@@ -1345,7 +1370,7 @@ a {
         hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent"
         @click="increaseTextSize" />
 
-
+ 
 
       <OddShapeButton label="Decrease Text" iconSrc="/icons/decreaseTextIconPurple.svg"
         hoverIconSrc="/icons/decreaseTextIconFFFBEB.svg" iconAlt="Decrease text size" fillColor="transparent"
@@ -1386,13 +1411,13 @@ a {
         @click="activateReadableFont" />
 
 
-      <OddShapeButton label="Reset" iconSrc="/icons/resetIconPurple.svg" hoverIconSrc="/icons/resetIconFFFBEB.svg" 
+      <OddShapeButton label="Reset" iconSrc="/icons/resetIconPurple.svg" hoverIconSrc="/icons/resetIconFFFBEB.svg"
         iconAlt="Decrease text size" fillColor="transparent" textColor="var(--secondary-color-main)"
         strokeColor="var(--primary-border-color-main)" hoverTextColor="var(--text-color-topbar-nav-button-hover)"
         hoverStrokeColor="var(--border-color-topbar-nav-button-hover)" hoverColor="transparent" @click="reset" />
     </div>
 
- 
+
     <div v-else v-show="isMenuVisible" class="dropdown-content" role="dialog" aria-modal="true"
       aria-labelledby="accessibility tools heading" ref="accessibilityMenu">
       <div>

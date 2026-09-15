@@ -98,14 +98,26 @@ export default {
     },
 
     filteredGalleryWithFullPath() {
+      if (!Array.isArray(this.items)) return [];
+
+      const query = this.searchQuery.toLowerCase().trim();
+      const base = this.basePath || '';
+
       return this.items
-        .filter((item) =>
-          item.title.toLowerCase().includes(this.searchQuery.toLowerCase())
-        )
-        .map((item) => ({
-          ...item,
-          thumbnail: `images/${this.basePath}` + item.thumbnail
-        }));
+        .filter((item) => {
+          if (!query) return true;
+          return item.title?.toLowerCase().includes(query);
+        })
+        .map((item) => {
+          const rawThumb = item.thumbnail || '';
+          // Safely check if path is already prepended or if it's an external URL
+          const isAbsolute = rawThumb.startsWith('http') || rawThumb.startsWith('/') || rawThumb.startsWith(base);
+
+          return {
+            ...item,
+            thumbnail: isAbsolute ? rawThumb : `${base}${rawThumb}`
+          };
+        });
     },
 
     imageUrl() {
@@ -196,7 +208,7 @@ export default {
     <div :class="{ 'galleryGridAboutPage': isAboutPage, 'galleryGridAboutHomepage': isHomepage }">
       <div :class="{ 'galleryCardAboutPage': isAboutPage, 'galleryCardAboutHomepage': isHomepage }"
         :style="{ height: openCurrentIndex === index ? '30.5624rem' : '23.125rem' }"
-        v-for="(gallery, index) in currentTeam" :key="'current-' + index">
+        v-for="(gallery, index) in currentTeam" :key="gallery.id || gallery.title">
         <div class="galleryCardImageWrapper">
           <div :class="{ 'galleryCardContentAboutPage': isAboutPage, 'galleryCardContentHomepage': isHomepage }">
             <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
@@ -245,7 +257,7 @@ export default {
     <div :class="{ 'galleryGridAboutPage': isAboutPage, 'galleryGridAboutHomepage': isHomepage }">
       <div :class="{ 'galleryCardAboutPage': isAboutPage, 'galleryCardAboutHomepage': isHomepage }"
         :style="{ height: openPastIndex === index ? '30.5624rem' : '23.125rem' }" v-for="(gallery, index) in pastTeam"
-        :key="'past-' + index">
+        :key="gallery.id || gallery.title">
         <div :class="{ 'galleryCardContentAboutPage': isAboutPage, 'galleryCardContentHomepage': isHomepage }">
           <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImageAboutPage">
         </div>
@@ -318,13 +330,14 @@ export default {
 
     <div class="galleryGrid">
       <div :class="isArtistsPage ? 'galleryCardArtists' : 'galleryCard'" v-for="gallery in filteredGalleryWithFullPath"
-        :key="gallery.id">
+        :key="gallery.id || gallery.slug">
         <div class="galleryCardContent">
           <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImage">
         </div>
 
         <div class="galleryCardContentGoTo">
-          <router-link :to="{ name: routeName, params: { slug: gallery.slug } }" class="galleryCardContentLink">
+          <router-link :to="{ name: routeName, params: gallery.slug ? { slug: gallery.slug } : { id: gallery.id } }"
+            class="galleryCardContentLink">
             <span class="learn-more">{{ gallery.title }}</span>
             <span class="galleryCardGoToArrow" aria-hidden="true">
               <img src="/icons/arrow-right-black.svg" alt="" />

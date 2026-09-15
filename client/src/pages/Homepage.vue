@@ -38,7 +38,7 @@ export default {
             marqueeBasePath: 'images/marquee/',
             galleryName: '',
             galleryDescription: '',
-            basePath: 'team/',
+            basePath: '/images/team/',
             routeName: '',
             data: teamData,
 

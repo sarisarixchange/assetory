@@ -27,7 +27,7 @@ const routes = [
   {path: '/accessibility-statement', component: AccessibilityStatement, name: 'Accessibility Statement'},
   {path: '/terms-of-use', component: TermsOfUse, name: 'Terms of Use'},
   { path: '/collections', component: Collections, name: 'Collections' },
-  { path: '/collection/:id',  component: Collection, name: 'Collection', props: true },
+  { path: '/collection/:slug',  component: Collection, name: 'Collection', props: true },
   // { path: '/asset/:collectionId/:id', component: Asset, name: 'Asset', 
   //   props: (route) => ({
   //     collectionId: Number(route.params.collectionId), // Convert collectionId to a number

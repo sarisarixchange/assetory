@@ -7,8 +7,8 @@ import EntityPage from '../components/EntityPage.vue';
 // 1. Definimos constantes y estado reactivo
 const route = useRoute();
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const UPLOADS_PREFIX_THUMNAIL_AND_BANNER = `${API_BASE_URL}/uploads/`;
-const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/assets/`;
+const UPLOADS_PREFIX_THUMNAIL_AND_BANNER = `${API_BASE_URL}/uploads/artists/`;
+const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/artists/`;
 
 const collection = ref(null);
 const backgrounds = {

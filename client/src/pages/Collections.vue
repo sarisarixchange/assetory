@@ -1,62 +1,70 @@
-<script>
-import Topbar from '../components/Topbar.vue'; // Import the Topbar component
+<script setup>
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
+import Topbar from '../components/Topbar.vue';
 import PageBackground from '../components/PageBackground.vue';
-import GalleryGrid from '../components/GalleryGrid.vue'; // Import the Grid component
+import GalleryGrid from '../components/GalleryGrid.vue';
 import BackTopButton from '../widgets/BackTopButton.vue';
-import Footer from '../components/Footer.vue'; // Import the Footer component
-import collectionsData from '../data/collections.json';
+import Footer from '../components/Footer.vue';
 
+// --- Configuración de Rutas ---
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/collections/`;
 
-export default {
-  components: {
-    Topbar, // Register the Topbar component
-    PageBackground,
-    GalleryGrid, // Register the Grid component
-    BackTopButton,
-    Footer, // Register the Footer component    
-  },
+// --- Estado Reactivo ---
+const interactiveMode = ref(false);
+const currentTheme = ref({ theme: 'default' });
+const galleryName = ref('Collections');
+const galleryDescription = ref('Curated assets created by the community.');
+const routeName = ref('Collection');
+const collectionsData = ref([]);
 
-  data() {
-    return {
-      interactiveMode: false,
-      currentTheme: { theme: 'default' }, // Default theme
-      galleryName: 'Collections',
-      galleryDescription: 'Curated assets created by the community.',
-      basePath: 'collections/',
-      routeName: 'Collection',
-      data: collectionsData,
-      backgrounds: {
-        // default: './backgrounds/background-collections-page-default.svg',
-        default: './backgrounds/background-collections-blue.svg',
-        grayscale: './backgrounds/background-collections-page-grayscale.svg',
-        highContrast: './backgrounds/background-collections-page-high-contrast.svg'
-      }
-    }
-  },
+const backgrounds = {
+  default: './backgrounds/background-collections-blue.svg',
+  grayscale: './backgrounds/background-collections-page-grayscale.svg',
+  highContrast: './backgrounds/background-collections-page-high-contrast.svg'
+};
 
-  mounted() {
-    this.loadInteractiveMode();
-  },
+// --- Lógica de Carga ---
+const loadInteractiveMode = () => {
+  try {
+    const savedSettings = JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+    interactiveMode.value = savedSettings.interactiveMode ?? false;
+  } catch (error) {
+    console.error('Error in loadInteractiveMode:', error);
+  }
+};
 
-  methods: {
-    updateTheme(payload) {
-      this.currentTheme = payload; // Update the theme
-    },
+const fetchCollections = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/collections`);
+    const activeCollections = response.data.filter(collection => collection.is_active);
+    
+    collectionsData.value = activeCollections.map(collection => {
+      const cleanThumbnail = collection.thumbnail;
+      return {
+        ...collection,
+        // Forzamos que 'id' y 'slug' tengan el valor adecuado de la base de datos
+        id: collection.id || collection.slug,
+        slug: collection.slug,
+        thumbnail: cleanThumbnail?.startsWith('http') 
+          ? cleanThumbnail 
+          : `${UPLOADS_PREFIX}${cleanThumbnail || 'placeholder.png'}`
+      };
+    });
+  } catch (error) {
+    console.error('❌ Error fetching public collections repository:', error);
+  }
+};
 
-    loadInteractiveMode() {
-      try {
-        const savedSettings =
-          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-        this.interactiveMode = savedSettings.interactiveMode ?? false;
-      } catch (error) {
-        console.error('Error in loadInteractiveMode:', error);
-      }
-    },
+const updateTheme = (payload) => {
+  currentTheme.value = payload;
+};
 
-    // do not erase curly brackets below
-  },
-}
-
+onMounted(() => {
+  loadInteractiveMode();
+  fetchCollections();
+});
 </script>
 
 <style scoped>
@@ -64,19 +72,14 @@ export default {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* full viewport height */
 }
 
 .grid {
-  /* position: relative;     */
-
   flex: 1;
   display: flex;
   flex-direction: column;
 }
-
 </style>
-
 
 <template>
   <div class="page-container">
@@ -86,9 +89,9 @@ export default {
 
     <div class="grid">
 
-      <!-- background image  -->
+      <!-- background image -->
       <PageBackground
-       :theme="currentTheme.theme"
+        :theme="currentTheme.theme"
         :backgrounds="backgrounds" 
         top='0' left='0'
         transform='translateX(0%)'
@@ -98,14 +101,18 @@ export default {
         backgroundPosition='center' />
 
       <!-- Collections Grid -->
-      <GalleryGrid :galleryName="galleryName" :galleryDescription="galleryDescription" :items="data"
-        :basePath="basePath" :routeName="routeName" />
+      <GalleryGrid 
+        :galleryName="galleryName" 
+        :galleryDescription="galleryDescription" 
+        :items="collectionsData"
+        basePath="" 
+        :routeName="routeName" 
+      />
     </div>
 
     <BackTopButton />
 
     <!-- footer -->
-
     <Footer :theme="currentTheme" />
   </div>
 </template>

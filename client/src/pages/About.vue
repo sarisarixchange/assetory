@@ -28,7 +28,7 @@ export default {
             iconBasePath: 'icons/', // Base path for icons
             galleryName: '',
             galleryDescription: '',
-            basePath: 'team/',
+            basePath: 'images/team/',
             routeName: '',
             data: teamData,
             backgrounds: {
@@ -839,7 +839,7 @@ export default {
 
 
             </div>
-
+ 
 
             <!-- Collections Grid -->
             <GalleryGrid :items="data" :galleryName="galleryName" :galleryDescription="galleryDescription"

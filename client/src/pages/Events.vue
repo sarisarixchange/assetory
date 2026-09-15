@@ -70,7 +70,7 @@ import Footer from '../components/Footer.vue';
 
 // --- Configuración de Rutas ---
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/`;
+const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/events/`; // Prefijo para las imágenes de eventos
 
 // --- Estado Reactivo ---
 const interactiveMode = ref(false);

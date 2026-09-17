@@ -1,72 +1,12 @@
-<!-- <script>
-import EntityPage from '../components/EntityPage.vue';
-import data from '../data/events.json';
-import artistsData from '../data/artists.json';
-
-export default {
-  components: { EntityPage },
-  data() {
-    return {
-      collection: null,
-      backgrounds: {
-        // default: '../backgrounds/background-event-page-default.svg',
-        default: '../backgrounds/background-event-blue.svg',
-        grayscale: '../backgrounds/background-event-page-grayscale.svg',
-        highContrast: '../backgrounds/background-event-page-high-contrast.svg'
-      }
-    };
-  },
-  mounted() {
-    const id = parseInt(this.$route.params.id, 10);
-    this.collection = data.find((item) => item.id === id);
-  },
-  computed: {
-    enrichedCollection() {
-      if (!this.collection) return null;
-
-      const enrichedAssets = this.collection.assets.map((asset) => {
-        const artist = artistsData.find((a) => a.id === asset.artistId);
-        const artistAsset = artist?.assets.find((a) => a.name === asset.name);
-
-        return {
-          ...asset,
-          artistId: artist?.id || null,
-          thumbnail: artistAsset?.thumbnail || null,
-          name: artistAsset?.name || 'Unknown Asset',
-        };
-      });
-
-      return {
-        ...this.collection,
-        assets: enrichedAssets,
-      };
-    },
-
-
-  },
-  methods: {
-    linkToAsset(asset, artist) {
-      return {
-        name: 'Asset',
-        params: { artistId: artist.id, artistAssetId: asset.name },
-        query: { fromPage: 'Event', pageId: this.collection.id },
-      };
-    },
-  },
-};
-</script> -->
-
-
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
 import axios from 'axios';
 import EntityPage from '../components/EntityPage.vue';
 
-// 1. Configuración de constantes y estado reactivo
 const route = useRoute();
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-const UPLOADS_PREFIX = `${API_BASE_URL}/uploads/events/`;
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
+const EVENTS_UPLOADS_PREFIX = `${API_BASE_URL}/uploads/events/`;
 
 const collection = ref(null);
 const backgrounds = {
@@ -75,29 +15,41 @@ const backgrounds = {
   highContrast: '../backgrounds/background-event-page-high-contrast.svg'
 };
 
-// 2. Lógica de carga asíncrona desde la BD usando el slug de la URL
 onMounted(async () => {
-  const eventSlug = route.params.slug; // Dependiendo de cómo definieras tu index.js de rutas públicas (usualmente :id o :slug)
+  const eventSlug = route.params.slug;
   try {
-    // Apuntamos directamente al endpoint individual por slug que creamos en Express
     const response = await axios.get(`${API_BASE_URL}/api/events/${eventSlug}`);
+    console.log("🔍 Datos recibidos del evento:", response.data); // 👈 Revisa esto en la consola F12
     collection.value = response.data;
   } catch (error) {
     console.error(`❌ Event database registry lookup failed for slug: "${eventSlug}"`, error);
   }
 });
 
-// 3. Enriquecimiento del esquema de datos para inyectar en <EntityPage />
+// Enriquecimiento del esquema de datos
 const enrichedCollection = computed(() => {
   if (!collection.value) return null;
 
-  const assets = collection.value.assets || [];
-  const enrichedAssets = assets.map((asset) => {
+  // Soportamos tanto collection.value.assets como collection.value.event_assets
+  const rawAssets = collection.value.assets || collection.value.event_assets || [];
+  
+  const enrichedAssets = rawAssets.map((asset) => {
+    // Normalizamos la imagen usando representative_image como respaldo
+    const rawImage = asset.thumbnail || asset.representative_image || asset.image || '';
+    
+    // Si la imagen ya incluye http o /uploads/, la usamos directa; si no, dejamos solo el nombre del archivo
+    const formatImage = (img) => {
+      if (!img) return 'placeholder.png';
+      if (img.startsWith('http') || img.startsWith('/uploads/')) return img;
+      return img;
+    };
+
     return {
       ...asset,
-      artistId: asset.artistId || null,
-      thumbnail: asset.thumbnail || null,
-      name: asset.name || 'Unknown Asset',
+      artistId: asset.artist_slug || asset.artistId || 'unknown',
+      artistSlug: asset.artist_slug || asset.artistSlug || 'unknown',
+      thumbnail: formatImage(rawImage),
+      name: asset.name || asset.title || 'Unknown Asset',
     };
   });
 
@@ -112,7 +64,7 @@ const linkToAsset = (asset, artist) => {
   return {
     name: 'Asset',
     params: {
-      artistId: artist?.slug || 'unknown',
+      artistId: asset.artistSlug || artist?.slug || 'unknown',
       artistAssetId: asset.name
     },
     query: { fromPage: 'Event', pageId: collection.value?.slug },
@@ -120,26 +72,17 @@ const linkToAsset = (asset, artist) => {
 };
 </script>
 
-
 <template>
-  <!-- <EntityPage :entity="enrichedCollection" :entityType="'event'" :backgrounds="backgrounds"
-    bannerAndCardImagePrefix="../images/events/" assetImagePrefix="../images/artists/" :returnRoute="'/events'"
-        :collectionName="collection?.title || 'Loading...'"
-
+  <EntityPage 
+    :entity="enrichedCollection" 
+    :entityType="'event'" 
+    :backgrounds="backgrounds"
+    :bannerAndCardImagePrefix="EVENTS_UPLOADS_PREFIX" 
+    :assetImagePrefix="`${API_BASE_URL}/uploads/artists/`" 
+    :returnRoute="'/events'"
+    :collectionName="collection?.title || 'Loading...'" 
     :assetLinkFn="linkToAsset" 
     :backgroundProps="{
-      top: '10rem',
-      left: '5rem',
-      transform: 'none',
-      width: '90%',
-      height: '100%',      
-      backgroundSize: 'contain',
-      backgroundPosition: 'top center'
-    }" /> -->
-
-  <EntityPage :entity="enrichedCollection" :entityType="'event'" :backgrounds="backgrounds"
-    :bannerAndCardImagePrefix="UPLOADS_PREFIX" :assetImagePrefix="UPLOADS_PREFIX" :returnRoute="'/events'"
-    :collectionName="collection?.title || 'Loading...'" :assetLinkFn="linkToAsset" :backgroundProps="{
       top: '10rem',
       left: '5rem',
       transform: 'none',
@@ -147,5 +90,6 @@ const linkToAsset = (asset, artist) => {
       height: '100%',
       backgroundSize: 'contain',
       backgroundPosition: 'top center'
-    }" />
+    }" 
+  />
 </template>

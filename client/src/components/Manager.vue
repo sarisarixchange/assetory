@@ -4,6 +4,7 @@
             <v-tab value="artists" :disabled="editingItem !== null">Artists</v-tab>
             <v-tab value="events" :disabled="editingItem !== null">Events</v-tab>
             <v-tab value="collections" :disabled="editingItem !== null">Collections</v-tab>
+            <v-tab value="projects" :disabled="editingItem !== null">Projects</v-tab>
         </v-tabs>
 
         <v-card v-if="!editingItem" variant="outlined">
@@ -36,7 +37,8 @@
                             {{ item.assets?.length || 0 }} assets
                         </td>
                         <td>
-                            <v-chip :color="item.is_active !== false ? 'success' : 'warning'" size="small" variant="tonal">
+                            <v-chip :color="item.is_active !== false ? 'success' : 'warning'" size="small"
+                                variant="tonal">
                                 {{ item.is_active !== false ? 'Active' : 'Draft' }}
                             </v-chip>
                         </td>
@@ -56,53 +58,42 @@
 
             <v-row>
                 <v-col cols="12" md="6">
-                    <v-text-field 
-                        v-model="editingItem.title" 
-                        @input="isDirty = true" 
-                        :label="config.titleLabel"
-                        variant="outlined"
-                    ></v-text-field>
+                    <v-text-field v-model="editingItem.title" @input="isDirty = true" :label="config.titleLabel"
+                        variant="outlined"></v-text-field>
 
                     <v-card variant="outlined" class="pa-4">
                         <p class="text-h6">Cover Image (Thumbnail & Banner)</p>
-                        <v-img :src="getImageUrl(editingItem.thumbnail)" height="150" class="bg-grey-lighten-2 rounded my-4">
+                        <v-img :src="getImageUrl(editingItem.thumbnail)" height="150"
+                            class="bg-grey-lighten-2 rounded my-4">
                         </v-img>
 
-                        <input type="file" ref="fileInput" style="display: none;" accept="image/*" @change="onFileSelected">
+                        <input type="file" ref="fileInput" style="display: none;" accept="image/*"
+                            @change="onFileSelected">
 
                         <v-btn block color="blue-darken-1" variant="tonal" prepend-icon="mdi-upload"
                             @click="$refs.fileInput.click()" class="mb-4">
                             Upload Image
                         </v-btn>
 
-                        <v-text-field 
-                            v-model="editingItem.thumbnail" 
-                            label="Thumbnail Path"
-                            variant="outlined" 
-                            density="compact"
-                            prepend-inner-icon="mdi-image"
-                            readonly
-                        ></v-text-field>
+                        <v-text-field v-model="editingItem.thumbnail" label="Thumbnail Path" variant="outlined"
+                            density="compact" prepend-inner-icon="mdi-image" readonly></v-text-field>
                     </v-card>
                 </v-col>
 
                 <v-col cols="12" md="6">
-                    <v-btn block color="success" :disabled="isDirty === false" size="large" @click="saveChanges" class="mb-4">
+                    <v-btn block color="success" :disabled="isDirty === false" size="large" @click="saveChanges"
+                        class="mb-4">
                         Save Changes
                     </v-btn>
 
-                    <v-btn v-if="currentModule === 'artists'" block color="secondary" size="large" prepend-icon="mdi-eye" @click="openPreview" class="mb-4">
+                    <v-btn v-if="currentModule === 'artists'" block color="secondary" size="large"
+                        prepend-icon="mdi-eye" @click="openPreview" class="mb-4">
                         Preview Page
                     </v-btn>
 
-                    <v-switch
-                        v-model="editingItem.is_active"
-                        @change="isDirty = true"
+                    <v-switch v-model="editingItem.is_active" @change="isDirty = true"
                         :label="editingItem.is_active ? 'Status: Active (Public)' : 'Status: Draft (Hidden)'"
-                        color="success"
-                        inset
-                        class="ml-2 mb-4"
-                    ></v-switch>
+                        color="success" inset class="ml-2 mb-4"></v-switch>
 
                     <v-btn block color="red" size="large" @click="handleCancel">
                         Cancel
@@ -112,33 +103,32 @@
                 <v-col cols="12">
                     <div v-for="(card, index) in editingItem.cards" :key="index" class="mb-6">
                         <p class="text-subtitle-1 mb-2">Description Section #{{ index + 1 }}</p>
-                        <QuillEditor 
-                            v-model="card.description" 
+                        <QuillEditor v-model="card.description"
                             placeholder="Write specifications and rich text details here..."
-                            @textChange="isDirty = true" 
-                            @keydown.ctrl.s.prevent="saveChanges" 
-                        />
+                            @textChange="isDirty = true" @keydown.ctrl.s.prevent="saveChanges" />
                     </div>
                 </v-col>
             </v-row>
         </v-card>
 
-<div v-if="editingItem">
+        <div v-if="editingItem && currentModule !== 'projects'">
             <v-divider class="my-6"></v-divider>
             <h3 class="text-h5 mb-4">3D Asset Management</h3>
 
             <v-row class="mb-4">
                 <v-col cols="12" class="d-flex ga-4">
-                    <v-btn color="primary" prepend-icon="mdi-plus-box" @click="showUploadDialog = true" :disabled="!editingItem.id">
+                    <v-btn color="primary" prepend-icon="mdi-plus-box" @click="showUploadDialog = true"
+                        :disabled="!editingItem.id">
                         Upload New Asset
                     </v-btn>
 
-                    <v-btn color="secondary" prepend-icon="mdi-file-find" @click="openSubmissionsSelector" :disabled="!editingItem.id">
+                    <v-btn color="secondary" prepend-icon="mdi-file-find" @click="openSubmissionsSelector"
+                        :disabled="!editingItem.id">
                         Add Asset From Previous Submissions
                     </v-btn>
                 </v-col>
             </v-row>
-            
+
             <p v-if="!editingItem.id" class="text-caption text-error mt-1 mb-4">
                 * Please save the details first before managing linked 3D assets.
             </p>
@@ -146,12 +136,8 @@
             <v-dialog v-model="showUploadDialog" max-width="800px">
                 <v-card>
                     <v-card-text>
-                        <AssetForm 
-                            :artist-id="editingItem.id"
-                            :initial-creator-name="editingItem.title"
-                            @success="handleUploadSuccess" 
-                            @cancel="showUploadDialog = false" 
-                        />
+                        <AssetForm :artist-id="editingItem.id" :initial-creator-name="editingItem.title"
+                            @success="handleUploadSuccess" @cancel="showUploadDialog = false" />
                     </v-card-text>
                 </v-card>
             </v-dialog>
@@ -187,7 +173,8 @@
                                     <td>{{ submission.creator_name }}</td>
                                     <td><v-chip size="small" variant="tonal">{{ submission.asset_type }}</v-chip></td>
                                     <td class="text-right">
-                                        <v-btn color="success" prepend-icon="mdi-link-plus" size="small" @click="linkSubmissionToItem(submission.id)">
+                                        <v-btn color="success" prepend-icon="mdi-link-plus" size="small"
+                                            @click="linkSubmissionToItem(submission.id)">
                                             Link Asset
                                         </v-btn>
                                     </td>
@@ -202,21 +189,22 @@
                 <v-col v-for="asset in editingItem.assets" :key="asset.id" cols="12" sm="4">
                     <v-card variant="outlined" class="pa-3">
                         <div class="text-subtitle-1 font-weight-bold">{{ asset.asset_name }}
-                            <v-switch v-model="asset.is_visible"
-                                :label="asset.is_visible ? 'Visible' : 'Hidden'"
+                            <v-switch v-model="asset.is_visible" :label="asset.is_visible ? 'Visible' : 'Hidden'"
                                 :color="asset.is_visible ? 'success' : 'grey'"
                                 @change="toggleAssetVisibility(asset)"></v-switch>
                         </div>
-                        <v-img :src="`http://localhost:3000/uploads/assets/${asset.representative_image}`" height="100" cover class="bg-grey-lighten-2"></v-img>
+                        <v-img :src="`http://localhost:3000/uploads/assets/${asset.representative_image}`" height="100"
+                            cover class="bg-grey-lighten-2"></v-img>
                         <v-card-actions class="pa-0">
                             <v-spacer></v-spacer>
-                            <v-btn icon="mdi-link-off" size="small" color="error" variant="text" @click="unlinkAssetFromItem(asset.id)"></v-btn>
+                            <v-btn icon="mdi-link-off" size="small" color="error" variant="text"
+                                @click="unlinkAssetFromItem(asset.id)"></v-btn>
                         </v-card-actions>
                     </v-card>
                 </v-col>
             </v-row>
         </div>
-            </v-container>
+    </v-container>
 </template>
 
 <script setup>
@@ -260,16 +248,27 @@ const MODULES_CONFIG = {
         endpoint: '/api/collections',
         uploadEndpoint: '/api/upload-collection-image', // Escalable para el futuro
         placeholder: 'collections/placeholder.jpg'
+    },
+
+    projects: {
+        viewTitle: 'Projects Management',
+        addButtonLabel: 'Add New Project',
+        titleLabel: 'Project Title',
+        dbTitleField: 'title',
+        endpoint: '/api/projects',
+        uploadEndpoint: '/api/upload-project-image', // 👈 La URL contiene "project"
+        placeholder: 'projects/placeholder.png',
+        hasAssets: false
     }
 };
 
 // Estados Reactivos Generales
 // Dentro del <script setup> de tu Manager.vue añade/modifica esto:
 const props = defineProps({
-  initialModule: {
-    type: String,
-    default: 'artists'
-  }
+    initialModule: {
+        type: String,
+        default: 'artists'
+    }
 });
 
 // Asignamos la prop al estado interno que ya tenías
@@ -305,7 +304,7 @@ const onModuleChange = () => {
 const startEdit = async (rowData) => {
     // Clonación profunda de la fila seleccionada
     editingItem.value = JSON.parse(JSON.stringify(rowData));
-    
+
     // Unificamos el mapeo de títulos reactivos en el formulario (.title)
     if (currentModule.value === 'artists') {
         editingItem.value.title = rowData.artist_name || rowData.title;
@@ -314,14 +313,17 @@ const startEdit = async (rowData) => {
     } else if (currentModule.value === 'events') {
         editingItem.value.title = rowData.title;
     }
-
-    // 🌟 Carga dinámica de assets: Consume la ruta del módulo activo (ej: /api/artists/:id/assets o /api/events/:id/assets)
-    try {
-        const res = await axios.get(`${API_BASE_URL}${config.value.endpoint}/${rowData.id}/assets`);
-        editingItem.value.assets = res.data;
-    } catch (err) {
-        console.error(`Error loading linked assets for ${currentModule.value}:`, err);
-        editingItem.value.assets = [];
+    if (currentModule.value !== 'projects') {
+        // 🌟 Carga dinámica de assets: Consume la ruta del módulo activo (ej: /api/artists/:id/assets o /api/events/:id/assets)
+        try {
+            const res = await axios.get(`${API_BASE_URL}${config.value.endpoint}/${rowData.id}/assets`);
+            editingItem.value.assets = res.data;
+        } catch (err) {
+            console.error(`Error loading linked assets for ${currentModule.value}:`, err);
+            editingItem.value.assets = [];
+        }
+    } else {
+        editingItem.value.assets = []; // Los proyectos no tienen assets vinculados
     }
 
     await nextTick();
@@ -349,8 +351,6 @@ const createNewItem = () => {
     tempSessionFolder.value = null;
 };
 
-// Subida de Archivos unificada usando la ruta inyectada por Multer
-// 🛠️ REEMPLAZA ESTA FUNCIÓN EN TU MANAGER.VUE ACTUAL
 const onFileSelected = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -363,24 +363,17 @@ const onFileSelected = async (event) => {
             headers: { 'Content-Type': 'multipart/form-data' }
         });
 
-        // res.data.dbPath contiene algo como: "artists/1719600000-1234/imagen.png"
-        const pathParts = res.data.dbPath.split('/');
-        if (pathParts.length >= 2) {
-            tempSessionFolder.value = pathParts[1]; // Almacena el código de sesión para el cleanup
+        // Utilizar la ruta real entregada por el servidor (ej: "artists/1719600000-1234/imagen.png")
+        const savedPath = res.data.dbPath || res.data.filePath;
+
+        // Guardamos la carpeta de sesión para que el cleanup funcione en caso de cancelar
+        const pathParts = savedPath.split('/');
+        if (pathParts.length >= 3) {
+            tempSessionFolder.value = pathParts[1];
         }
 
-        // 🌟 CORRECCIÓN CRÍTICA: Extraemos solo el nombre del archivo final
-        // para que las páginas públicas (Artists.vue, Events.vue) no hagan un 404
-        // al buscar carpetas que no entienden.
-        const fileNameOnly = pathParts[pathParts.length - 1]; 
-
-        // Reconstruimos el path plano que tus componentes públicos ya saben leer:
-        // Si el módulo es 'artists', guardamos 'artists/nombre_archivo.png'
-        // Si es 'events', guardamos 'events/nombre_archivo.jpg'
-        const cleanPathForPublicVistas = `${currentModule.value}/${fileNameOnly}`;
-
-        editingItem.value.thumbnail = cleanPathForPublicVistas;
-        editingItem.value.banner_image = cleanPathForPublicVistas;
+        editingItem.value.thumbnail = savedPath;
+        editingItem.value.banner_image = savedPath;
         isDirty.value = true;
     } catch (err) {
         console.error("❌ Failed uploading target file:", err);
@@ -529,7 +522,7 @@ const linkSubmissionToItem = async (assetId) => {
             return;
         }
 
-        await axios.patch(`${API_BASE_URL}/api/assets/${assetId}/link-artist`, { 
+        await axios.patch(`${API_BASE_URL}/api/assets/${assetId}/link-artist`, {
             artist_id: editingItem.value.id
         });
 
@@ -596,9 +589,11 @@ onUnmounted(() => {
     border-radius: 8px;
     border: 2px solid #eee;
 }
+
 :deep(.ql-editor .ql-video.ql-selected) {
     border: 2px solid #2196F3;
 }
+
 :deep(.ql-toolbar .ql-tooltip),
 :deep(.ql-container .ql-tooltip) {
     z-index: 10;
@@ -606,7 +601,9 @@ onUnmounted(() => {
     transform: translateX(-50%);
     white-space: nowrap;
 }
-:deep(.ql-container), :deep(.ql-editor) {
+
+:deep(.ql-container),
+:deep(.ql-editor) {
     overflow: visible !important;
 }
 </style>

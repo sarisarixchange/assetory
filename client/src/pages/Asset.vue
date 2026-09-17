@@ -1,147 +1,114 @@
-<script>
-import Footer from '../components/Footer.vue'; // Import the Footer component
-import Topbar from '../components/Topbar.vue'; // Import the Topbar component
-import ReturnButton from '../widgets/returnButton.vue';
-import artistsData from '../data/artists.json';
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { useRoute } from 'vue-router';
 import axios from 'axios';
 import 'aframe';
 import 'aframe-extras';
 
+import Footer from '../components/Footer.vue';
+import Topbar from '../components/Topbar.vue';
+import ReturnButton from '../widgets/returnButton.vue';
 
+// 1. Configuración de Router y Entorno
+const route = useRoute();
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
-export default {
-  components: {
-    Footer, // Register the Footer component
-    Topbar, // Register the Topbar component
-    ReturnButton, // Register the ReturnButton component
-  },
-  props: {
-    artistId: {
-      type: [String, Number],
-      required: true,
-    },
+// 2. Props
+const props = defineProps({
+  artistId: { type: [String, Number], required: true },
+  artistAssetId: { type: String, required: true },
+  fromPage: { type: String, required: true },
+  pageId: { type: [String, Number], required: true },
+});
 
-    artistAssetId: {
-      type: String,
-      required: true,
-    },
+// 3. Estado Reactivo
+const interactiveMode = ref(false);
+const currentTheme = ref({ theme: 'default' });
+const asset = ref(null);
+const localFromPage = ref(null);
+const localPageId = ref(null);
 
-    fromPage: {
-      type: String,
-      required: true
-    },
+const position = ref({ x: 0, y: 0, z: -3 });
+const scale = ref({ x: 15, y: 15, z: 15 });
+const rotation = ref({ x: 0, y: 0, z: 0 });
 
-    pageId: {
-      type: [String, Number],
-      required: true,
-    },
-  },
+// 4. Métodos
+const updateTheme = (payload) => {
+  currentTheme.value = payload;
+};
 
-
-  data() {
-    return {
-      interactiveMode: false,
-      currentTheme: { theme: 'default' }, // Default theme
-      asset: null, // Holds the data for the selected asset
-      position: { x: 0, y: 0, z: -3 },
-      scale: { x: 15, y: 15, z: 15 },
-      rotation: { x: 0, y: 0, z: 0 },
-      asset: null,
-      localFromPage: null,
-      localPageId: null,
-      API_BASE_URL: import.meta.env.VITE_API_BASE_URL
-
-
-    };
-
-  },
-
-  beforeUnmount() {
-    const scene = document.querySelector('a-scene');
-    if (scene) {
-      // 1. Detenemos la animación de la escena antes de tocar nada
-      if (scene.hasLoaded) {
-        scene.pause();
-      }
-
-      // 2. Limpieza segura del renderizador
-      if (scene.renderer) {
-        try {
-          // Solo hacemos dispose si el renderer existe y no ha sido ya destruido
-          scene.renderer.dispose();
-          console.log('✅ Renderer disposed safely');
-        } catch (err) {
-          console.warn('⚠️ Renderer dispose failed, likely already gone:', err);
-        }
-      }
-
-      // 3. En lugar de remover el nodo manualmente (que a veces choca con Vue),
-      // dejamos que Vue se encargue, pero nos aseguramos de limpiar los sistemas de A-Frame
-      if (typeof scene.destroy === 'function') {
-        scene.destroy();
-      }
-    }
-  },
-
-  async mounted() {
-    this.loadInteractiveMode();
-
-
-
-    // Extraemos los parámetros de la URL
-    const artistSlug = this.$route.params.artistId; // El router lo llama artistId pero es el slug
-    const assetName = this.$route.params.artistAssetId;
-    const pageId = this.$route.query.pageId;
-
-    this.localFromPage = this.$route.query.fromPage || 'Artists';
-    this.localPageId = this.$route.query.pageId;
-
-
-    try {
-      // Pedimos el artista al backend usando el SLUG
-      const response = await axios.post(`${API_BASE_URL}/api/artists/${artistSlug}`);
-      const artist = response.data;
-
-      // Buscamos el asset dentro del array de assets del artista
-      const foundAsset = artist.assets.find(
-        (a) => a.name.trim().toLowerCase() === assetName.trim().toLowerCase()
-      );
-
-      if (foundAsset) {
-        this.asset = {
-          ...foundAsset,
-          artistId: artist.id, // UUID real
-          artistSlug: artist.slug,
-          artistName: artist.title,
-        };
-      }
-    } catch (error) {
-      console.error('⚠️ Error fetching asset from DB:', error);
-    }
-  },
-
-
-
-  methods: {
-
-    updateTheme(payload) {
-      this.currentTheme = payload; // Update the theme
-    },
-
-    loadInteractiveMode() {
-      try {
-        const savedSettings =
-          JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
-        this.interactiveMode = savedSettings.interactiveMode ?? false;
-      } catch (error) {
-        console.error('Error in loadInteractiveMode:', error);
-      }
-    },
-
-    // do not erase curly brackets below
+const loadInteractiveMode = () => {
+  try {
+    const savedSettings = JSON.parse(localStorage.getItem('accessibilitySettings')) || {};
+    interactiveMode.value = savedSettings.interactiveMode ?? false;
+  } catch (error) {
+    console.error('Error in loadInteractiveMode:', error);
   }
-}
+};
 
+// 5. Ciclo de Vida: Mount
+onMounted(async () => {
+  loadInteractiveMode();
+
+  const artistSlug = route.params.artistId;
+  const assetName = route.params.artistAssetId;
+
+  localFromPage.value = route.query.fromPage || 'Artists';
+  localPageId.value = route.query.pageId;
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}/api/artists/${artistSlug}`);
+    const artist = response.data;
+
+    const assetsList = artist.assets || artist.collection || [];
+
+    const foundAsset = assetsList.find(
+      (a) => (a.name || a.title || '').trim().toLowerCase() === assetName.trim().toLowerCase()
+    );
+
+    if (foundAsset) {
+      const gltf = foundAsset.gltf_model || foundAsset.gltfModel || foundAsset.file_url || '';
+      const download = foundAsset.download_link || foundAsset.downloadLink || gltf;
+
+      const formatUrl = (url) => {
+        if (!url) return '';
+        if (url.startsWith('http')) return url;
+        return `${API_BASE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
+      };
+
+      asset.value = {
+        ...foundAsset,
+        artistId: artist.id,
+        artistSlug: artist.slug,
+        artistName: artist.title,
+        gltfModel: formatUrl(gltf),
+        downloadLink: formatUrl(download),
+      };
+    } else {
+      console.warn(`⚠️ Asset "${assetName}" no encontrado para el artista "${artistSlug}"`);
+    }
+  } catch (error) {
+    console.error('⚠️ Error buscando asset en la base de datos:', error);
+  }
+});
+
+// 6. Ciclo de Vida: Unmount (Limpieza A-Frame)
+onBeforeUnmount(() => {
+  const scene = document.querySelector('a-scene');
+  if (scene) {
+    if (scene.hasLoaded) scene.pause();
+    if (scene.renderer) {
+      try {
+        scene.renderer.dispose();
+      } catch (err) {
+        console.warn('⚠️ Renderer dispose failed:', err);
+      }
+    }
+    if (typeof scene.destroy === 'function') {
+      scene.destroy();
+    }
+  }
+});
 </script>
 
 <style scoped>

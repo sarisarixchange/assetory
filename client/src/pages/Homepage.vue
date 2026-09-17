@@ -1396,7 +1396,7 @@ export default {
                         <div class="exploreProjectsContainer-action-call" @mouseenter="isAboutHovered = true"
                             @mouseleave="isAboutHovered = false">
                             <OddShapeButton label="Open Projects" iconSrc='/icons/arrow-right-purple.svg'
-                                :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: '' }" fillColor="transparent"
+                                :hoverIconSrc="iconHoveredSrc" iconAlt="" :to="{ name: 'Projects' }" fillColor="transparent"
                                 textColor="var(--secondary-color-main)" strokeColor="var(--primary-border-color-main)"
                                 hoverTextColor="var(--text-color-topbar-nav-button-hover)"
                                 hoverStrokeColor="var(--border-color-topbar-nav-button-hover)"

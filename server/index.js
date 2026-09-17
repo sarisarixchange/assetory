@@ -16,8 +16,9 @@ const uploadBaseDir = path.join(__dirname, 'uploads');
 const assetsDir = path.join(uploadBaseDir, 'assets');
 const artistsDir = path.join(uploadBaseDir, 'artists');
 const eventsDir = path.join(uploadBaseDir, 'events');
+const collectionsDir = path.join(uploadBaseDir, 'collections');
 
-const requiredDirectories = [uploadBaseDir, assetsDir, artistsDir, eventsDir];
+const requiredDirectories = [uploadBaseDir, assetsDir, artistsDir, eventsDir, collectionsDir];
 
 requiredDirectories.forEach(dir => {
   if (!fs.existsSync(dir)) {
@@ -96,14 +97,20 @@ const storage = multer.diskStorage({
     }
 
 
-   // 🔥 DETECTAMOS EL DESTINO DINÁMICO EXTENDIDO:
+    // 🔥 DETECTAMOS EL DESTINO DINÁMICO EXTENDIDO:
     let subFolder = 'artists'; // Por defecto
 
     if (req.path.includes('3d') || req.path.includes('submit')) {
       subFolder = 'assets';
     } else if (req.path.includes('event')) {
       subFolder = 'events'; // 🌟 ¡Si la ruta de la API dice 'event', va directo a la carpeta de eventos!
+    } else if (req.path.includes('collection')) {
+      subFolder = 'collections'; // 🌟 Guarda imágenes en /uploads/collections/
+    } else if (req.path.includes('project')) {
+      subFolder = 'projects'; // 🌟 Guarda imágenes en /uploads/projects/
     }
+
+
 
     const targetDir = path.join(uploadBaseDir, subFolder, req.uploadSessionDir);
 
@@ -299,29 +306,29 @@ app.patch("/api/assets/:id/link-artist", async (req, res) => {
       WHERE id = $2 
       RETURNING *;
     `;
-    
+
     const result = await pool.query(query, [artist_id, id]);
 
     if (result.rowCount === 0) {
-      return res.status(404).json({ 
-        success: false, 
-        error: "Asset registry not found" 
+      return res.status(404).json({
+        success: false,
+        error: "Asset registry not found"
       });
     }
 
     console.log(`🔗 Linked Asset ID ${id} to Artist ID ${artist_id}`);
-    
-    res.json({ 
-      success: true, 
-      message: "Asset linked to artist profile successfully", 
-      data: result.rows[0] 
+
+    res.json({
+      success: true,
+      message: "Asset linked to artist profile successfully",
+      data: result.rows[0]
     });
 
   } catch (err) {
     console.error("❌ Error in PATCH /api/assets/:id/link-artist ->", err.message);
-    res.status(500).json({ 
-      success: false, 
-      error: err.message 
+    res.status(500).json({
+      success: false,
+      error: err.message
     });
   }
 });
@@ -337,29 +344,29 @@ app.patch("/api/assets/:id/unlink-artist", async (req, res) => {
       WHERE id = $1 
       RETURNING *;
     `;
-    
+
     const result = await pool.query(query, [id]);
 
     if (result.rowCount === 0) {
-      return res.status(404).json({ 
-        success: false, 
-        error: "Asset record not found" 
+      return res.status(404).json({
+        success: false,
+        error: "Asset record not found"
       });
     }
 
     console.log(`🔗 Unlinked Asset ID ${id} (artist_id cleared to NULL)`);
-    
-    res.json({ 
-      success: true, 
-      message: "Asset unlinked from artist profile successfully", 
-      data: result.rows[0] 
+
+    res.json({
+      success: true,
+      message: "Asset unlinked from artist profile successfully",
+      data: result.rows[0]
     });
 
   } catch (err) {
     console.error("❌ Error in PATCH /api/assets/:id/unlink-artist ->", err.message);
-    res.status(500).json({ 
-      success: false, 
-      error: err.message 
+    res.status(500).json({
+      success: false,
+      error: err.message
     });
   }
 });
@@ -367,20 +374,21 @@ app.patch("/api/assets/:id/unlink-artist", async (req, res) => {
 // --- RESTO DE TUS RUTAS (Submissions, CRUD Artistas, etc) ---
 
 app.get('/api/events', async (req, res) => {
-    try {
-        const result = await pool.query('SELECT * FROM events ORDER BY id DESC');
-        res.json(result.rows);
-    } catch (err) {
-        console.error("Error fetching events:", err);
-        res.status(500).json({ error: "Internal server error reading events" });
-    }
+  try {
+    const result = await pool.query('SELECT * FROM events ORDER BY id DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching events:", err);
+    res.status(500).json({ error: "Internal server error reading events" });
+  }
 });
 
 app.get('/api/artists', async (req, res) => {
   try {
+
+
     // 1. Traemos los datos de la nueva tabla
-    const result = await pool.query('SELECT * FROM artists WHERE is_active = true ORDER BY created_at DESC');
-    // const result = await pool.query('SELECT * FROM artists ORDER BY artist_name ASC');
+    const result = await pool.query('SELECT * FROM artists ORDER BY created_at DESC');
 
     // 2. Mapeamos para que el frontend reciba "title" en lugar de "artist_name"
     const formattedArtists = result.rows.map(artist => ({
@@ -395,6 +403,8 @@ app.get('/api/artists', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
 
 // upload new artist image from ArtistsManager inside admin
 app.post('/api/upload', upload.single('image'), (req, res) => {
@@ -419,7 +429,7 @@ app.post('/api/upload', upload.single('image'), (req, res) => {
 app.put('/api/artists/:id', async (req, res) => {
 
   const { id } = req.params; // Este id es el UUID
-  const { artist_name, slug, cards, banner_image, thumbnail } = req.body;
+  const { artist_name, slug, cards, banner_image, thumbnail, is_active = true } = req.body;
 
   try {
     // 1. OBTENER LOS DATOS ACTUALES ANTES DE SOBREESCRIBIRLOS
@@ -450,19 +460,18 @@ app.put('/api/artists/:id', async (req, res) => {
         }
       }
     }
-
-    // 3. Actualizamos solo los datos del perfil del artista
-    // Eliminamos 'assets' de aquí porque ya no es una columna de esta tabla
+    // 2. Incluimos is_active en la consulta UPDATE ($6)
     await pool.query(
       `UPDATE artists 
-       SET artist_name=$1, slug=$2, cards=$3, banner_image=$4, thumbnail=$5 
-       WHERE id=$6`,
+       SET artist_name=$1, slug=$2, cards=$3, banner_image=$4, thumbnail=$5, is_active=$6 
+       WHERE id=$7`,
       [
         artist_name,
         slug,
         JSON.stringify(cards || []),
         banner_image,
         thumbnail,
+        is_active,
         id
       ]
     );
@@ -740,28 +749,55 @@ app.delete('/api/artists/:id', async (req, res) => {
 
 // 1. Obtener todos los eventos (Lista para el Administrador)
 app.get('/api/events', async (req, res) => {
-    try {
-        const result = await pool.query('SELECT * FROM events ORDER BY id DESC');
-        res.json(result.rows);
-    } catch (err) {
-        console.error("Error fetching events:", err);
-        res.status(500).json({ error: "Internal server error reading events" });
-    }
+  try {
+    const result = await pool.query('SELECT * FROM events ORDER BY id DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching events:", err);
+    res.status(500).json({ error: "Internal server error reading events" });
+  }
 });
 
 // Obtener los detalles de un evento individual mediante su Slug único
+
 app.get('/api/events/:slug', async (req, res) => {
-    const { slug } = req.params;
-    try {
-        const result = await pool.query('SELECT * FROM events WHERE slug = $1', [slug]);
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: "Event artifact target not found" });
-        }
-        res.json(result.rows[0]);
-    } catch (err) {
-        console.error("❌ Error running single event lookups:", err);
-        res.status(500).json({ error: "Internal operational server database error" });
+  const { slug } = req.params;
+  try {
+    // 1. Obtener los datos del evento
+    const eventResult = await pool.query('SELECT * FROM events WHERE slug = $1', [slug]);
+
+    if (eventResult.rows.length === 0) {
+      return res.status(404).json({ error: "Event not found" });
     }
+
+    const event = eventResult.rows[0];
+
+    // 2. Consulta con JOIN para traer los assets del evento junto a sus artistas
+    const assetsQuery = `
+            SELECT 
+                a.id,
+                a.asset_name AS name,
+                COALESCE(a.representative_image, '') AS thumbnail,
+                a.representative_image,
+                art.id AS "artistId",
+                art.slug AS "artistSlug",
+                art.artist_name AS "artistName"
+            FROM event_assets ea
+            JOIN assets a ON ea.asset_id = a.id
+            LEFT JOIN artists art ON a.artist_id = art.id
+            WHERE ea.event_id = $1
+        `;
+
+    const assetsResult = await pool.query(assetsQuery, [event.id]);
+
+    // Asignar el arreglo de assets a la propiedad 'assets'
+    event.assets = assetsResult.rows;
+
+    res.json(event);
+  } catch (err) {
+    console.error("❌ Error fetching event with assets:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 // 2. Creat new event (POST)
@@ -784,120 +820,497 @@ app.post('/api/upload-event-image', upload.single('image'), (req, res) => {
 });
 
 app.post('/api/events', async (req, res) => {
-    // 1. Recibimos también thumbnail y banner_image desde el frontend
-    const { title, description, is_active, thumbnail, banner_image, cards } = req.body;
-    
-    // Generar slug amigable para las URLs públicas
-    const slug = title.toLowerCase().trim()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]+/g, '');
+  // 1. Recibimos también thumbnail y banner_image desde el frontend
+  const { title, description, is_active, thumbnail, banner_image, cards } = req.body;
 
-    // Si el frontend ya nos manda las cards estructuradas por Quill las usamos,
-    // de lo contrario usamos tu objeto default inicializado.
-    const finalCards = cards || [{
+  // Generar slug amigable para las URLs públicas
+  const slug = title.toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '');
+
+  // Si el frontend ya nos manda las cards estructuradas por Quill las usamos,
+  // de lo contrario usamos tu objeto default inicializado.
+  const finalCards = cards || [{
+    heading: "Overview",
+    description: description || "",
+    image: "",
+    youtubeUrl: "",
+    contentSideBySide: false
+  }];
+
+  // 2. Si no se subió ninguna imagen, asignamos los placeholders por defecto
+  const finalThumbnail = thumbnail || 'events/placeholder.jpg';
+  const finalBanner = banner_image || thumbnail || 'events/placeholder.jpg';
+
+  try {
+    // 3. Añadimos thumbnail y banner_image a la consulta SQL
+    const query = `
+            INSERT INTO events (title, slug, cards, is_active, thumbnail, banner_image)
+            VALUES ($1, $2, $3, $4, $5, $6)
+            RETURNING *
+        `;
+    const values = [
+      title,
+      slug,
+      JSON.stringify(finalCards),
+      is_active ?? true,
+      finalThumbnail,
+      finalBanner
+    ];
+
+    const result = await pool.query(query, values);
+
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("Error creating event:", err);
+    res.status(500).json({ error: "Failed to create event entry" });
+  }
+});
+
+// 3. Update existing event (PUT)
+app.put('/api/events/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, description, is_active, cards } = req.body;
+
+  const slug = title.toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '');
+
+  try {
+    let query;
+    let values;
+
+    // Si el cliente envía el árbol de tarjetas completo, lo actualizamos directamente
+    if (cards) {
+      query = `
+                UPDATE events 
+                SET title = $1, slug = $2, cards = $3, is_active = $4
+                WHERE id = $5 RETURNING *
+            `;
+      values = [title, slug, JSON.stringify(cards), is_active, id];
+    } else {
+      // Si viene del formulario simplificado con el campo directo description
+      const defaultCards = [{
         heading: "Overview",
         description: description || "",
         image: "",
         youtubeUrl: "",
         contentSideBySide: false
-    }];
-
-    // 2. Si no se subió ninguna imagen, asignamos los placeholders por defecto
-    const finalThumbnail = thumbnail || 'events/placeholder.jpg';
-    const finalBanner = banner_image || thumbnail || 'events/placeholder.jpg';
-
-    try {
-        // 3. Añadimos thumbnail y banner_image a la consulta SQL
-        const query = `
-            INSERT INTO events (title, slug, cards, is_active, thumbnail, banner_image)
-            VALUES ($1, $2, $3, $4, $5, $6)
-            RETURNING *
-        `;
-        const values = [
-            title, 
-            slug, 
-            JSON.stringify(finalCards), 
-            is_active ?? true,
-            finalThumbnail,
-            finalBanner
-        ];
-        
-        const result = await pool.query(query, values);
-        
-        res.status(201).json(result.rows[0]);
-    } catch (err) {
-        console.error("Error creating event:", err);
-        res.status(500).json({ error: "Failed to create event entry" });
-    }
-});
-
-// 3. Update existing event (PUT)
-app.put('/api/events/:id', async (req, res) => {
-    const { id } = req.params;
-    const { title, description, is_active, cards } = req.body;
-    
-    const slug = title.toLowerCase().trim()
-        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]+/g, '');
-
-    try {
-        let query;
-        let values;
-
-        // Si el cliente envía el árbol de tarjetas completo, lo actualizamos directamente
-        if (cards) {
-            query = `
+      }];
+      query = `
                 UPDATE events 
                 SET title = $1, slug = $2, cards = $3, is_active = $4
                 WHERE id = $5 RETURNING *
             `;
-            values = [title, slug, JSON.stringify(cards), is_active, id];
-        } else {
-            // Si viene del formulario simplificado con el campo directo description
-            const defaultCards = [{
-                heading: "Overview",
-                description: description || "",
-                image: "",
-                youtubeUrl: "",
-                contentSideBySide: false
-            }];
-            query = `
-                UPDATE events 
-                SET title = $1, slug = $2, cards = $3, is_active = $4
-                WHERE id = $5 RETURNING *
-            `;
-            values = [title, slug, JSON.stringify(defaultCards), is_active, id];
-        }
-
-        const result = await pool.query(query, values);
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: "Event not found" });
-        }
-        res.json(result.rows[0]);
-    } catch (err) {
-        console.error("Error updating event:", err);
-        res.status(500).json({ error: "Failed to update event entry" });
+      values = [title, slug, JSON.stringify(defaultCards), is_active, id];
     }
+
+    const result = await pool.query(query, values);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Event not found" });
+    }
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Error updating event:", err);
+    res.status(500).json({ error: "Failed to update event entry" });
+  }
 });
 
 // 4. Eliminar un evento
 app.delete('/api/events/:id', async (req, res) => {
-    const { id } = req.params;
-    try {
-        const result = await pool.query('DELETE FROM events WHERE id = $1 RETURNING *', [id]);
-        if (result.rows.length === 0) {
-            return res.status(404).json({ error: "Event not found" });
-        }
-        res.json({ success: true, message: "Event successfully deleted" });
-    } catch (err) {
-        console.error("Error deleting event:", err);
-        res.status(500).json({ error: "Failed to delete event execution" });
+  const { id } = req.params;
+  try {
+    const result = await pool.query('DELETE FROM events WHERE id = $1 RETURNING *', [id]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Event not found" });
     }
+    res.json({ success: true, message: "Event successfully deleted" });
+  } catch (err) {
+    console.error("Error deleting event:", err);
+    res.status(500).json({ error: "Failed to delete event execution" });
+  }
+});
+
+////////// COLLECTIONS //////////
+
+// 1. Obtener todas las colecciones (Públicas y Panel Admin)
+app.get('/api/collections', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM collections ORDER BY id DESC');
+    res.json(result.rows);
+  } catch (err) {
+    console.error("Error fetching collections:", err);
+    res.status(500).json({ error: "Internal server error reading collections" });
+  }
+});
+
+app.get('/api/collections/:slug', async (req, res) => {
+  const { slug } = req.params;
+  try {
+    // 1. Obtener la colección por slug
+    const collectionResult = await pool.query('SELECT * FROM collections WHERE slug = $1', [slug]);
+    if (collectionResult.rows.length === 0) {
+      return res.status(404).json({ error: "Collection not found" });
+    }
+
+    const collection = collectionResult.rows[0];
+
+    // 2. Obtener los assets vinculados usando la tabla pivote collection_assets
+    const assetsQuery = `
+      SELECT 
+        a.id,
+        a.asset_name AS name,
+        COALESCE(a.representative_image, '') AS thumbnail,
+        a.representative_image,
+        art.id AS "artistId",
+        art.slug AS "artistSlug",
+        art.artist_name AS "artistName"
+      FROM collection_assets ca
+      JOIN assets a ON ca.asset_id = a.id
+      LEFT JOIN artists art ON a.artist_id = art.id
+      WHERE ca.collection_id = $1
+    `;
+
+    const assetsResult = await pool.query(assetsQuery, [collection.id]);
+    collection.assets = assetsResult.rows;
+
+    res.json(collection);
+  } catch (err) {
+    console.error("❌ Error running single collection lookup:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
 
 
+
+// 3. Subir portada o miniatura de una colección
+app.post('/api/upload-collection-image', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) return res.status(400).send('No file uploaded.');
+
+    const relativePath = `collections/${req.uploadSessionDir}/${req.file.filename}`;
+
+    res.json({
+      message: 'Collection image upload successful',
+      dbPath: relativePath
+    });
+  } catch (err) {
+    console.error("❌ Error en upload colección:", err.message);
+    res.status(500).send(err.message);
+  }
+});
+
+// 4. Crear una nueva colección (POST)
+app.post('/api/collections', async (req, res) => {
+  // Aceptamos 'title' o 'name' por si el frontend envía 'name'
+  const { title, name, description, is_active, thumbnail, banner_image, cards } = req.body;
+
+  const rawTitle = title || name || 'Untitled Collection';
+
+  const slug = rawTitle.toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '');
+
+  const finalCards = cards || [{
+    heading: "Overview",
+    description: description || "",
+    image: "",
+    youtubeUrl: "",
+    contentSideBySide: false
+  }];
+
+  const finalThumbnail = thumbnail || 'collections/placeholder.jpg';
+  const finalBanner = banner_image || thumbnail || 'collections/placeholder.jpg';
+
+  try {
+    const query = `
+      INSERT INTO collections (title, slug, cards, is_active, thumbnail, banner_image)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *
+    `;
+    const values = [
+      rawTitle,
+      slug,
+      JSON.stringify(finalCards),
+      is_active ?? true,
+      finalThumbnail,
+      finalBanner
+    ];
+
+    const result = await pool.query(query, values);
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("Error creating collection:", err);
+    res.status(500).json({ error: "Failed to create collection entry" });
+  }
+});
+
+// 5. Actualizar colección existente (PUT)
+app.put('/api/collections/:id', async (req, res) => {
+  const { id } = req.params;
+  // Aceptamos 'title' o 'name'
+  const { title, name, description, is_active, is_visible, cards, thumbnail, banner_image } = req.body;
+
+  const rawTitle = title || name;
+
+  try {
+    // 1. Si no viene título, recuperamos el registro existente para no perder el slug/título actual
+    const currentData = await pool.query('SELECT title, slug FROM collections WHERE id = $1', [id]);
+
+    if (currentData.rows.length === 0) {
+      return res.status(404).json({ error: "Collection not found" });
+    }
+
+    const finalTitle = rawTitle || currentData.rows[0].title;
+
+    // Generamos slug nuevo solo si tenemos un título válido
+    const slug = finalTitle
+      ? finalTitle.toLowerCase().trim()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/\s+/g, '-')
+        .replace(/[^\w-]+/g, '')
+      : currentData.rows[0].slug;
+
+    let query;
+    let values;
+
+    if (cards) {
+      query = `
+        UPDATE collections 
+        SET title = $1, slug = $2, cards = $3, is_active = $4, thumbnail = COALESCE($5, thumbnail), banner_image = COALESCE($6, banner_image)
+        WHERE id = $7 RETURNING *
+      `;
+      values = [finalTitle, slug, JSON.stringify(cards), is_active ?? true, thumbnail, banner_image, id];
+    } else {
+      const defaultCards = [{
+        heading: "Overview",
+        description: description || "",
+        image: "",
+        youtubeUrl: "",
+        contentSideBySide: false
+      }];
+      query = `
+        UPDATE collections 
+        SET title = $1, slug = $2, cards = $3, is_active = $4, thumbnail = COALESCE($5, thumbnail), banner_image = COALESCE($6, banner_image)
+        WHERE id = $7 RETURNING *
+      `;
+      values = [finalTitle, slug, JSON.stringify(defaultCards), is_active ?? true, thumbnail, banner_image, id];
+    }
+
+    const result = await pool.query(query, values);
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("Error updating collection:", err);
+    res.status(500).json({ error: "Failed to update collection entry" });
+  }
+});
+
+// 6. Eliminar colección (DELETE)
+app.delete('/api/collections/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const result = await pool.query('DELETE FROM collections WHERE id = $1 RETURNING *', [id]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ error: "Collection not found" });
+    }
+    res.json({ success: true, message: "Collection successfully deleted" });
+  } catch (err) {
+    console.error("Error deleting collection:", err);
+    res.status(500).json({ error: "Failed to delete collection" });
+  }
+});
+
+// 7. Endpoint Debug para inspeccionar la tabla
+app.get('/api/debug-collections', async (req, res) => {
+  try {
+    const query = `
+            SELECT 
+                c.*,
+                COALESCE(
+                    json_agg(
+                        json_build_object(
+                            'id', a.id,
+                            'name', a.asset_name,
+                            'thumbnail', COALESCE(a.representative_image, ''),
+                            'artistId', art.id,
+                            'artistSlug', art.slug,
+                            'artistName', art.artist_name
+                        )
+                    ) FILTER (WHERE a.id IS NOT NULL), '[]'
+                ) AS assets
+            FROM collections c
+            LEFT JOIN collection_assets ca ON c.id = ca.collection_id
+            LEFT JOIN assets a ON ca.asset_id = a.id
+            LEFT JOIN artists art ON a.artist_id = art.id
+            GROUP BY c.id
+            ORDER BY c.created_at DESC
+        `;
+
+    const result = await pool.query(query);
+    res.json(result.rows);
+  } catch (err) {
+    console.error("❌ Error fetching debug collections:", err);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+//////////////PROJECTS ///////////////
+
+// --- ENDPOINTS DE PROYECTOS ---
+
+// --- ENDPOINTS DE PROYECTOS ---
+
+// GET: Obtener todos los proyectos
+app.get('/api/projects', async (req, res) => {
+  try {
+    const includeHidden = req.query.includeHidden === 'true';
+
+
+    // const query = includeHidden
+    //   ? 'SELECT * FROM projects ORDER BY created_at DESC'
+    //   : 'SELECT * FROM projects WHERE is_active = true ORDER BY created_at DESC';
+
+    const result = await pool.query('SELECT * FROM projects ORDER BY id DESC');
+
+    const formatted = result.rows.map(project => ({
+      ...project,
+      title: project.title || project.project_name
+    }));
+
+    res.json(formatted);
+  } catch (err) {
+    console.error("❌ Error fetching projects:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// GET: Obtener un proyecto por Slug
+app.get('/api/projects/:slug', async (req, res) => {
+  const { slug } = req.params;
+  try {
+    const projectQuery = 'SELECT * FROM projects WHERE slug = $1';
+    const projectResult = await pool.query(projectQuery, [slug]);
+
+    if (projectResult.rows.length === 0) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    res.json(projectResult.rows[0]);
+  } catch (err) {
+    console.error("❌ Error fetching project details:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// POST: Crear proyecto
+app.post('/api/projects', async (req, res) => {
+  const { title, name, description, thumbnail, banner_image, cards, is_active } = req.body;
+  const rawTitle = title || name || 'Untitled Project';
+
+  const slug = rawTitle.toLowerCase().trim()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '');
+
+  try {
+    const query = `
+      INSERT INTO projects (title, slug, description, thumbnail, banner_image, cards, is_active)
+      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      RETURNING *;
+    `;
+    const values = [
+      rawTitle,
+      slug,
+      description || '',
+      thumbnail || 'projects/placeholder.png',
+      banner_image || 'projects/placeholder.png',
+      JSON.stringify(cards || []),
+      is_active ?? true
+    ];
+
+    const result = await pool.query(query, values);
+    res.status(201).json(result.rows[0]);
+  } catch (err) {
+    console.error("❌ Error creating project:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Endpoint exclusivo para subir imágenes de proyectos
+app.post('/api/upload-project-image', upload.single('image'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+
+    // Construye la ruta para guardar en PostgreSQL (ej. "projects/1789685224354-7020/mi-imagen.png")
+    const relativePath = `projects/${req.uploadSessionDir}/${req.file.originalname}`;
+
+    res.json({
+      filePath: relativePath,
+      dbPath: relativePath
+    });
+  } catch (err) {
+    console.error("❌ Error uploading project image:", err);
+    res.status(500).json({ error: "Failed to upload image" });
+  }
+});
+
+// PUT: Actualizar proyecto
+app.put('/api/projects/:id', async (req, res) => {
+  const { id } = req.params;
+  const { title, name, description, thumbnail, banner_image, cards, is_active } = req.body;
+  const rawTitle = title || name;
+
+  try {
+    const current = await pool.query('SELECT title, slug FROM projects WHERE id = $1', [id]);
+    if (current.rows.length === 0) {
+      return res.status(404).json({ error: 'Project not found' });
+    }
+
+    const finalTitle = rawTitle || current.rows[0].title;
+    const slug = rawTitle
+      ? rawTitle.toLowerCase().trim().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/\s+/g, '-').replace(/[^\w-]+/g, '')
+      : current.rows[0].slug;
+
+    const query = `
+      UPDATE projects 
+      SET title = $1, slug = $2, description = $3, thumbnail = COALESCE($4, thumbnail), banner_image = COALESCE($5, banner_image), cards = $6, is_active = $7
+      WHERE id = $8 RETURNING *;
+    `;
+    const values = [
+      finalTitle,
+      slug,
+      description || '',
+      thumbnail,
+      banner_image,
+      JSON.stringify(cards || []),
+      is_active ?? true,
+      id
+    ];
+
+    const result = await pool.query(query, values);
+    res.json(result.rows[0]);
+  } catch (err) {
+    console.error("❌ Error updating project:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// DELETE: Eliminar proyecto
+app.delete('/api/projects/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query('DELETE FROM projects WHERE id = $1', [id]);
+    res.json({ success: true });
+  } catch (err) {
+    console.error("❌ Error deleting project:", err);
+    res.status(500).json({ error: err.message });
+  }
+});
 ////////// DEBUGGING HELPER FUNCTIONS
 // Load data at http://localhost:3000/api/debug-assets
 app.get('/api/debug-assets', async (req, res) => {
@@ -922,7 +1335,7 @@ app.get('/api/debug-assets', async (req, res) => {
 app.get('/api/debug-artists', async (req, res) => {
   try {
     // Traemos los últimos 10 assets, incluyendo los "borrados" para que puedas ver el estado
-    const result = await pool.query('SELECT * FROM artists WHERE is_active = true ORDER BY created_at DESC');
+    const result = await pool.query('SELECT * FROM artists ORDER BY created_at DESC');
     // const result = await pool.query(`
     //   SELECT *
     //   FROM artists 
@@ -938,6 +1351,8 @@ app.get('/api/debug-artists', async (req, res) => {
     res.status(500).send(err.message);
   }
 });
+
+
 
 // see deleted artists: http://localhost:3000/api/lookup-deleted-artists
 app.get('/api/lookup-deleted-artists', async (req, res) => {
@@ -955,21 +1370,34 @@ app.get('/api/lookup-deleted-artists', async (req, res) => {
 // http://localhost:3000/api/debug-events
 app.get('/api/debug-events', async (req, res) => {
   try {
-    // Traemos los últimos 10 assets, incluyendo los "borrados" para que puedas ver el estado
-    const result = await pool.query('SELECT * FROM events WHERE is_active = true ORDER BY created_at DESC');
-    // const result = await pool.query(`
-    //   SELECT *
-    //   FROM artists 
-    //   ORDER BY created_at DESC 
-    //   LIMIT 10
-    // `);
+    const query = `
+            SELECT 
+                e.*,
+                COALESCE(
+                    json_agg(
+                        json_build_object(
+                            'id', a.id,
+                            'name', a.asset_name,
+                            'thumbnail', COALESCE(a.representative_image, ''),
+                            'artistId', art.id,
+                            'artistSlug', art.slug,
+                            'artistName', art.artist_name
+                        )
+                    ) FILTER (WHERE a.id IS NOT NULL), '[]'
+                ) AS assets
+            FROM events e
+            LEFT JOIN event_assets ea ON e.id = ea.event_id
+            LEFT JOIN assets a ON ea.asset_id = a.id
+            LEFT JOIN artists art ON a.artist_id = art.id
+            GROUP BY e.id
+            ORDER BY e.created_at DESC
+        `;
 
-    // Añadimos un contador simple para el log
-    console.log(`debugging events:  ${result.rows.length} found entries.`);
+    const result = await pool.query(query);
     res.json(result.rows);
   } catch (err) {
-    console.error("Error en debug-events:", err.message);
-    res.status(500).send(err.message);
+    console.error("❌ Error fetching events debug:", err);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 
@@ -1068,6 +1496,7 @@ app.post('/api/cleanup/temp-folder', async (req, res) => {
     // 🔍 Construimos las rutas potenciales tanto para artistas como para eventos
     const artistPath = path.join(uploadBaseDir, 'artists', folderName);
     const eventPath = path.join(uploadBaseDir, 'events', folderName);
+    const collectionPath = path.join(uploadBaseDir, 'collections', folderName); // 👈 Agregar esta línea
 
     let removed = false;
 
@@ -1080,6 +1509,11 @@ app.post('/api/cleanup/temp-folder', async (req, res) => {
     // Si existe en la carpeta de eventos, la eliminamos
     if (fs.existsSync(eventPath)) {
       fs.rmSync(eventPath, { recursive: true, force: true });
+      removed = true;
+    }
+
+    if (fs.existsSync(collectionPath)) { // 👈 Agregar esta verificación
+      fs.rmSync(collectionPath, { recursive: true, force: true });
       removed = true;
     }
 

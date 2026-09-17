@@ -39,11 +39,17 @@
 
     <v-navigation-drawer permanent>
       <v-list density="compact" nav>
-        <v-list-item prepend-icon="mdi-cube-send" title="Submissions Manager" :active="currentTab === 'submissions'"
-          @click="currentTab = 'submissions'"></v-list-item>
+        <v-list-subheader>SARI SARI WEBSITE MANAGEMENT</v-list-subheader>
+
+        <!-- 🚀 Módulo de Projects Agregado -->
+        <v-list-item prepend-icon="mdi-briefcase-outline" title="Projects" :active="currentTab === 'projects'"
+          @click="currentTab = 'projects'"></v-list-item>
 
         <v-divider class="my-2"></v-divider>
-        <v-list-subheader>CONTENT MANAGEMENT</v-list-subheader>
+        <v-list-subheader>ASSETORY MANAGEMENT</v-list-subheader>
+
+        <v-list-item prepend-icon="mdi-cube-send" title="Submissions Manager" :active="currentTab === 'submissions'"
+          @click="currentTab = 'submissions'"></v-list-item>
 
         <v-list-item prepend-icon="mdi-palette-outline" title="Artists" :active="currentTab === 'artists'"
           @click="currentTab = 'artists'"></v-list-item>
@@ -53,15 +59,17 @@
 
         <v-list-item prepend-icon="mdi-folder-multiple-image" title="Collections" :active="currentTab === 'collections'"
           @click="currentTab = 'collections'"></v-list-item>
+
+
       </v-list>
     </v-navigation-drawer>
 
     <v-main>
       <v-container fluid class="pa-10">
-        <SubmissionsManager v-if="currentTab === 'submissions'"/>
+        <SubmissionsManager v-if="currentTab === 'submissions'" />
 
         <Manager v-else :initial-module="currentTab" :key="currentTab" />
-     </v-container> </v-main>
+      </v-container> </v-main>
   </v-app>
 </template>
 
@@ -70,7 +78,7 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import SubmissionsManager from '../components/SubmissionsManager.vue';
 // 🌟 Importamos tu nuevo componente unificado maestro
-import Manager from '../components/Manager.vue'; 
+import Manager from '../components/Manager.vue';
 
 const isAuthenticated = ref(false);
 const password = ref('');
@@ -79,7 +87,7 @@ const errorMessage = ref('');
 const isLoading = ref(false);
 
 // Iniciamos la pestaña por defecto en 'artists'
-const currentTab = ref('artists');
+const currentTab = ref('projects');
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -99,10 +107,10 @@ const handleLogin = async () => {
   //     password: password.value
   //   });
 
-    try {
-   const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
-    password: password.value
-});
+  try {
+    const response = await axios.post(`${API_BASE_URL}/api/auth/login`, {
+      password: password.value
+    });
 
     if (response.data.success) {
       isAuthenticated.value = true;

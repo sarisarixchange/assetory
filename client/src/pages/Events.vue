@@ -94,7 +94,7 @@ const loadInteractiveMode = () => {
   } catch (error) {
     console.error('Error in loadInteractiveMode:', error);
   }
-};
+}; 
 
 const fetchEvents = async () => {
   try {

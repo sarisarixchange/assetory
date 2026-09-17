@@ -37,6 +37,13 @@ export default {
     isHomepage() {
       return this.$route.path === '/';
     },
+    isProjectsPage() {
+      return this.$route.path === '/projects';
+    },
+     isProjectPage() {
+      return this.$route.path === '/project';
+    },
+    
     isAssetory() {
       return this.$route.path === '/assetory';
     },
@@ -404,7 +411,7 @@ a {
 </style>
 
 <template>
-  <div v-if="isHomepage" class="nav-buttons-wrapper-homepage">
+  <div v-if="isHomepage || isProjectsPage || isProjectPage" class="nav-buttons-wrapper-homepage">
     <div class="header-homepage">
       <div class="logo-section">
         <h1 class="visually-hidden">{{ pageTitle }}</h1>
@@ -433,7 +440,7 @@ a {
       <div class="nav-buttons">
         <router-link v-if="!interactiveMode" :to="{ name: 'Homepage' }" class="nav-button-homepage"
           :class="{ active: this.$route.name === 'Homepage' }">Home</router-link>
-        <router-link :to="{ name: '' }" class="nav-button-homepage">Projects</router-link>
+        <router-link :to="{ name: 'Projects' }" class="nav-button-homepage">Projects</router-link>
         <router-link :to="{ name: '' }" class="nav-button-homepage">Mobile Units</router-link>
         <router-link :to="{ name: '' }" class="nav-button-homepage">Learning Modules</router-link>
         <!-- <router-link to="" class="nav-button-homepage">Projects</router-link> -->

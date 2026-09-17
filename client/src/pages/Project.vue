@@ -8,22 +8,19 @@ import EntityPage from '../components/EntityPage.vue';
 const route = useRoute();
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-// Dejamos los prefijos base apuntando a /uploads/
-// const UPLOADS_PREFIX_THUMNAIL_AND_BANNER = `${API_BASE_URL}/uploads/`;
-// const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/`;
+// Prefijos base apuntando a /uploads/projects/
+const UPLOADS_PREFIX_THUMBNAIL_AND_BANNER = `${API_BASE_URL}/uploads/projects/`;
+const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/projects/`;
 
-const UPLOADS_PREFIX_THUMNAIL_AND_BANNER = `${API_BASE_URL}/uploads/artists/`;
-const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/artists/`;
-
-const collection = ref(null);
+const project = ref(null);
 const backgrounds = {
-  default: '../backgrounds/background-artist-blue.svg',
+  default: '../backgrounds/background-artist-blue.svg', // Puedes ajustar el SVG de fondo si tienes uno exclusivo de proyectos
   grayscale: '../backgrounds/background-artist-page-grayscale.svg',
   highContrast: '../backgrounds/background-artist-page-high-contrast.svg'
 };
 
-// Función auxiliar para forzar que el string siempre empiece con 'artists/'
-const normalizeImagePath = (path, defaultPlaceholder = 'artists/placeholder.png') => {
+// Función auxiliar para forzar que el string siempre empiece con 'projects/'
+const normalizeImagePath = (path, defaultPlaceholder = 'projects/placeholder.png') => {
   if (!path) return defaultPlaceholder;
 
   let raw = String(path).trim();
@@ -38,32 +35,32 @@ const normalizeImagePath = (path, defaultPlaceholder = 'artists/placeholder.png'
     return raw;
   }
 
-  // 3. Limpiamos cualquier prefijo previo 'artists/'
-  while (raw.startsWith('artists/')) {
-    raw = raw.replace(/^artists\//, '');
+  // 3. Limpiamos cualquier prefijo previo 'projects/'
+  while (raw.startsWith('projects/')) {
+    raw = raw.replace(/^projects\//, '');
   }
 
-  // 4. Retornamos con 'artists/' al inicio
-  return `artists/${raw}`;
+  // 4. Retornamos con 'projects/' al inicio
+  return `projects/${raw}`;
 };
 
 // 2. Lógica de carga
 onMounted(async () => {
   const slug = route.params.slug;
   try {
-    const response = await axios.get(`${API_BASE_URL}/api/artists/${slug}`);
-    const artist = response.data;
+    const response = await axios.get(`${API_BASE_URL}/api/projects/${slug}`);
+    const projectData = response.data;
 
-    if (artist) {
+    if (projectData) {
       // 🛡️ Forzar la normalización en thumbnail y banner
-      artist.thumbnail = normalizeImagePath(artist.thumbnail);
-      if (artist.banner) {
-        artist.banner = normalizeImagePath(artist.banner);
+      projectData.thumbnail = normalizeImagePath(projectData.thumbnail);
+      if (projectData.banner) {
+        projectData.banner = normalizeImagePath(projectData.banner);
       }
 
-      // 🛡️ Normalizar las imágenes de los assets del artista
-      if (artist.assets && Array.isArray(artist.assets)) {
-        artist.assets = artist.assets.map(asset => {
+      // 🛡️ Normalizar las imágenes de los assets del proyecto
+      if (projectData.assets && Array.isArray(projectData.assets)) {
+        projectData.assets = projectData.assets.map(asset => {
           const rawImage = asset.thumbnail || asset.representative_image || 'placeholder.png';
           return {
             ...asset,
@@ -74,36 +71,36 @@ onMounted(async () => {
       }
 
       // Asignación final
-      collection.value = artist;
+      project.value = projectData;
     }
   } catch (error) {
-    console.error("Artist not found in DB", error);
+    console.error("Project not found in DB", error);
   }
 });
 
 // 3. Métodos
-const linkToAsset = (asset, artist) => {
+const linkToAsset = (asset, currentProject) => {
   return {
     name: 'Asset',
     params: {
-      artistId: artist.slug,
+      artistId: currentProject.slug,
       artistAssetId: asset.name
     },
-    query: { fromPage: 'Artist', pageId: artist.slug },
+    query: { fromPage: 'Project', pageId: currentProject.slug },
   };
 };
 </script>
 
 <template>
   <EntityPage 
-    v-if="collection"
-    :entity="collection" 
-    :entityType="'artist'" 
+    v-if="project"
+    :entity="project" 
+    :entityType="'project'" 
     :backgrounds="backgrounds"
-    :bannerAndCardImagePrefix="UPLOADS_PREFIX_THUMNAIL_AND_BANNER" 
+    :bannerAndCardImagePrefix="UPLOADS_PREFIX_THUMBNAIL_AND_BANNER" 
     :assetImagePrefix="UPLOADS_PREFIX_ASSET_IMAGE" 
-    :returnRoute="'/artists'"
-    :collectionName="collection.artist_name || collection.title || 'Loading...'" 
+    :returnRoute="'/projects'"
+    :collectionName="project.project_name || project.title || 'Loading...'" 
     :assetLinkFn="linkToAsset" 
     :backgroundProps="{
       top: '8.5rem',

@@ -39,26 +39,85 @@ export default {
   },
 
 // En EntityPage.vue
+// computed: {
+//   // Cambiamos el nombre de la función y la propiedad que busca
+//   bannerImage() {
+//     if (!this.entity) return '';
+    
+//     // Ahora buscamos específicamente 'banner_image' que es lo que trae tu SELECT de SQL
+//     // Añadimos un fallback a 'thumbnail' por si el artista no tiene banner
+//     // Usamos thumbnail como backup si banner_image es nulo
+//     const path = this.entity.banner_image || this.entity.thumbnail;
+    
+//     return path ? `${this.bannerAndCardImagePrefix}${path}` : '';
+//   },
+  
+//   resolvedAssets() {
+//     if (!this.entity || !this.entity.assets) return [];
+//     return this.entity.assets.map((asset) => ({
+//       ...asset,
+//       // Esto asegura que los cuadritos de abajo (assets) también funcionen
+//       thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
+//     }));
+//   },
+// },
+
 computed: {
-  // Cambiamos el nombre de la función y la propiedad que busca
   bannerImage() {
     if (!this.entity) return '';
-    
-    // Ahora buscamos específicamente 'banner_image' que es lo que trae tu SELECT de SQL
-    // Añadimos un fallback a 'thumbnail' por si el artista no tiene banner
-    // Usamos thumbnail como backup si banner_image es nulo
-    const path = this.entity.banner_image || this.entity.thumbnail;
-    
-    return path ? `${this.bannerAndCardImagePrefix}${path}` : '';
+    let path = this.entity.banner_image || this.entity.thumbnail;
+    if (!path) return '';
+
+    // 1. Quitar barra inicial si la tiene
+    if (path.startsWith('/')) path = path.substring(1);
+
+    // 2. Si ya es una URL externa (http/https), se devuelve directa
+    if (path.startsWith('http')) return path;
+
+    // 3. Extraer el nombre de la carpeta contenida en la prop (ej. "events/" o "artists/")
+    const prefix = this.bannerAndCardImagePrefix || '';
+    const folderMatch = prefix.match(/\/uploads\/([^/]+\/)/);
+    const targetFolder = folderMatch ? folderMatch[1] : ''; // ej: "artists/" o "events/"
+
+    // 4. Si la ruta ya empieza con esa carpeta, se la removemos para no duplicar
+    if (targetFolder && path.startsWith(targetFolder)) {
+      path = path.replace(new RegExp(`^${targetFolder}`), '');
+    }
+
+    return `${prefix}${path}`;
   },
   
   resolvedAssets() {
     if (!this.entity || !this.entity.assets) return [];
-    return this.entity.assets.map((asset) => ({
-      ...asset,
-      // Esto asegura que los cuadritos de abajo (assets) también funcionen
-      thumbnail: `${this.assetImagePrefix}${asset.thumbnail}`,
-    }));
+    
+    const prefix = this.assetImagePrefix || '';
+    const folderMatch = prefix.match(/\/uploads\/([^/]+\/)/);
+    const targetFolder = folderMatch ? folderMatch[1] : ''; // ej: "artists/"
+
+    return this.entity.assets.map((asset) => {
+      let path = asset.thumbnail || asset.representative_image || '';
+      
+      if (!path) return { ...asset, thumbnail: '' };
+
+      // 1. Quitar barra inicial
+      if (path.startsWith('/')) path = path.substring(1);
+
+      // 2. Si ya es URL externa completa, retornarla tal cual
+      if (path.startsWith('http')) {
+        return { ...asset, thumbnail: path };
+      }
+
+      // 3. Si path ya inicia con la carpeta del prefijo (ej: "artists/"), se elimina para no duplicar
+      if (targetFolder && path.startsWith(targetFolder)) {
+        path = path.replace(new RegExp(`^${targetFolder}`), '');
+      }
+
+      // 4. Concatenación limpia
+      return {
+        ...asset,
+        thumbnail: `${prefix}${path}`
+      };
+    });
   },
 },
 

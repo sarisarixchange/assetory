@@ -1,6 +1,27 @@
 -- 1. Extensions
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
+-- create a table for projects
+CREATE TABLE IF NOT EXISTS projects (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    description TEXT,
+    thumbnail VARCHAR(255) DEFAULT 'projects/placeholder.png',
+    banner_image VARCHAR(255) DEFAULT 'projects/placeholder.png',
+    cards JSONB DEFAULT '[]'::jsonb,
+    is_active BOOLEAN DEFAULT true,
+    is_visible BOOLEAN DEFAULT true,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Tabla intermedia para vincular assets a proyectos
+CREATE TABLE IF NOT EXISTS project_assets (
+    project_id INTEGER REFERENCES projects(id) ON DELETE CASCADE,
+    asset_id INTEGER REFERENCES assets(id) ON DELETE CASCADE,
+    PRIMARY KEY (project_id, asset_id)
+);
+
 -- 2. Artists Table
 CREATE TABLE IF NOT EXISTS artists (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
@@ -59,14 +80,32 @@ CREATE TABLE IF NOT EXISTS events (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- 5. Collections Table
+CREATE TABLE IF NOT EXISTS collections (
+  id SERIAL PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  slug VARCHAR(255) UNIQUE NOT NULL,
+  thumbnail TEXT,
+  banner_image TEXT,
+  cards JSONB DEFAULT '[]'::jsonb,
+  is_active BOOLEAN DEFAULT true,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
+);
+
+CREATE TABLE IF NOT EXISTS collection_assets (
+  collection_id INT REFERENCES collections(id) ON DELETE CASCADE,
+  asset_id INT REFERENCES assets(id) ON DELETE CASCADE,
+  PRIMARY KEY (collection_id, asset_id)
+);
+
 -- -- 2. Tabla Intermedia: Vinculación de Assets a un Evento específico
--- -- Esto mapea el arreglo "assets" del JSON conectando un evento con un asset existente
--- CREATE TABLE IF NOT EXISTS event_assets (
---     id SERIAL PRIMARY KEY,
---     event_id INT REFERENCES events(id) ON DELETE CASCADE,
---     asset_id INT NOT NULL, -- ID numérico o UUID según uses en tu tabla assets
---     UNIQUE(event_id, asset_id)
--- );
+-- Esto mapea el arreglo "assets" del JSON conectando un evento con un asset existente
+CREATE TABLE IF NOT EXISTS event_assets (
+    id SERIAL PRIMARY KEY,
+    event_id INT REFERENCES events(id) ON DELETE CASCADE,
+    asset_id INT NOT NULL, -- ID numérico o UUID según uses en tu tabla assets
+    UNIQUE(event_id, asset_id)
+);
 
 -- 4. Índices
 CREATE INDEX IF NOT EXISTS idx_assets_artist_id ON assets(artist_id);

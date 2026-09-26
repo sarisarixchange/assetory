@@ -66,6 +66,11 @@ export default {
       default: false
     },
 
+    isProjectsPage: {
+      type: Boolean,
+      default: false
+    },
+
 
     theme: {
       type: String,
@@ -319,6 +324,35 @@ export default {
   </div>
 
 
+  <div v-else-if="isProjectsPage">
+    <div class="heading-and-searchbar-projects">
+      <div class="gallery-heading-projects">
+        <h2>{{ galleryName }}</h2>
+        <p>{{ galleryDescription }}</p>
+      </div>
+      <SearchBar v-if="showSearchBar" />
+    </div>
+
+    <div class="galleryGrid-projects">
+      <div class="galleryCard-projects" v-for="gallery in filteredGalleryWithFullPath"
+        :key="gallery.id || gallery.slug">
+        <div class="galleryCardContent-projects">
+          <img :src="gallery.thumbnail" alt="" aria-hidden="true" class="galleryCardContentImage">
+        </div>
+
+        <div class="galleryCardContentGoTo-projects">
+          <router-link :to="{ name: routeName, params: gallery.slug ? { slug: gallery.slug } : { id: gallery.id } }"
+            class="galleryCardContentLink-projects">
+            <span class="learn-more">{{ gallery.title }}</span>
+            <span class="galleryCardGoToArrow-projects" aria-hidden="true">
+              <img src="/icons/arrow-right-purple.svg" alt="" />
+            </span>
+          </router-link>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div v-else>
     <div class="heading-and-searchbar">
       <div class="gallery-heading">
@@ -537,6 +571,7 @@ export default {
 .galleryCardContentGoTo:hover .galleryCardContentLink {
   color: var(--hover-text-color);
 }
+
 
 
 
@@ -1021,6 +1056,168 @@ export default {
     /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
     background-color: #fff;
   }
+
+}
+
+/* projects */
+
+.heading-and-searchbar-projects {
+  color: var(--primary-color-main);
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heading-and-searchbar-projects {
+  color: var(--primary-color-main);
+  width: 62.75rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-section-heading-projects {
+  display: flex;
+  height: 1.875rem;
+  padding: 0.5rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.5rem;
+  background-color: black;
+  color: var(--primary-color-main);
+  font-family: var(--font-family-Decorative);
+  font-size: 1.25rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.025rem;
+}
+
+.arrow {
+  width: 0.54rem;
+
+
+}
+
+.galleryGrid-projects {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  padding-left: 5.53rem;
+  padding-right: 5.53rem;
+}
+
+.heading-and-searchbar-projects input[type=text] {
+  width: 14.875rem;
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var( --border-color-topbar-nav-button-hover);
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  margin-right: 4rem
+}
+
+.gallery-heading-projects {
+  margin-left: 4rem;
+}
+
+.gallery-heading-projects h2 {
+  font-family: var(--font-family-Decorative);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--primary-color-main);
+}
+
+.gallery-heading-projects p {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--primary-color-main);
+
+}
+
+.galleryCard-projects {
+  display: flex;
+  width: 24rem;
+  /* height: 24rem; */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  border-radius: 1rem;
+  gap: 0.5rem;
+  border: 1px solid var(--border-color-topbar-nav-button-hover);
+  /* box-shadow: -6px 6px 0 var(--shadow), 0 6px 1px var(--shadow); */
+  background-color: var(--background-color-cards-main)
+}
+
+
+.galleryCardContent-projects {
+  height: 18.75rem;
+  align-self: stretch;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+
+.galleryCardContentGoTo-projects {
+  display: flex;
+  height: 2.375rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-color-topbar-nav-button-hover);
+  font-family: var(--font-family-Decorative);
+  color: var(--primary-color-main);
+  font-size: 1rem;
+  font-weight: 400;
+  background-color: var(--background-color-cards-main);
+  align-items: center;
+  align-self: stretch;
+  padding: 0.75rem;
+}
+
+.galleryCardGoToArrow-projects img {
+  width: 0.55rem;
+}
+
+/* CSS normally can’t “select the parent” of a hovered element, but :has() flips that — it says “select .galleryCard if it has a child .galleryCardContentGoTo that’s being hovered.” */
+/* Not compatible with Firefox? */
+.galleryCard-projects:has(.galleryCardContentGoTo:hover) {
+  box-shadow: -4px 4px 0 0 var(--primary-color);
+}
+
+
+.galleryCardContentLink-projects {
+  margin-left: 0.5em;
+  width: 90%;
+  color: var(--text-color-topbar-nav-button-main);
+  display: flex;
+  justify-content: space-between;
+  /* or use margin-left: auto on .ok-action */
+  width: 100%;
+  /* or any fixed width you prefer */
+}
+
+.galleryCardContentGoTo-projects:hover {
+  border-color: var(--primary-color-main);
+
+}
+
+.galleryCardContentGoTo-projects:hover .galleryCardContentLink-projects {
+color: var(--primary-color-main);
 
 }
 </style>

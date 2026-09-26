@@ -14,7 +14,7 @@ const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/projects/`;
 
 const project = ref(null);
 const backgrounds = {
-  default: '../backgrounds/background-artist-blue.svg', // Puedes ajustar el SVG de fondo si tienes uno exclusivo de proyectos
+  default: '../backgrounds/background-project-page-default.svg', // Puedes ajustar el SVG de fondo si tienes uno exclusivo de proyectos
   grayscale: '../backgrounds/background-artist-page-grayscale.svg',
   highContrast: '../backgrounds/background-artist-page-high-contrast.svg'
 };
@@ -90,7 +90,7 @@ const linkToAsset = (asset, currentProject) => {
   };
 };
 </script>
-
+ 
 <template>
   <EntityPage 
     v-if="project"
@@ -101,6 +101,7 @@ const linkToAsset = (asset, currentProject) => {
     :assetImagePrefix="UPLOADS_PREFIX_ASSET_IMAGE" 
     :returnRoute="'/projects'"
     :collectionName="project.project_name || project.title || 'Loading...'" 
+    :isProjects="true"
     :assetLinkFn="linkToAsset" 
     :backgroundProps="{
       top: '8.5rem',

@@ -15,11 +15,16 @@ export default {
     pageTitle: {
       type: String,
       required: true
-    }
+    }, 
+    isProjectPage: {
+      type: Boolean,
+      default: false
+    },
   },
   components: {
     AccessibilityMenu, // Register the AccessibilityMenu component
   },
+
   data() {
     return {
       isDefaultLogoIconVisible: true,
@@ -40,9 +45,7 @@ export default {
     isProjectsPage() {
       return this.$route.path === '/projects';
     },
-     isProjectPage() {
-      return this.$route.path === '/project';
-    },
+    
     
     isAssetory() {
       return this.$route.path === '/assetory';

@@ -44,14 +44,14 @@ const dismissNotification = () => {
 
 const updateTheme = (payload) => {
   currentTheme.value = payload;
-  
-  if (payload.theme === 'grayscale' || payload.theme === 'originalInteractive') {
-    currentBackgroundLayer.value = 'background-layer-grayscale';
-  } else if (payload.theme === 'highContrast') {
-    currentBackgroundLayer.value = 'background-layer-highContrast';
-  } else {
-    currentBackgroundLayer.value = 'background-layer';
-  }
+
+  //   if (payload.theme === 'grayscale' || payload.theme === 'originalInteractive') {
+  //     currentBackgroundLayer.value = 'background-layer-grayscale';
+  //   } else if (payload.theme === 'highContrast') {
+  //     currentBackgroundLayer.value = 'background-layer-highContrast';
+  //   } else {
+  //     currentBackgroundLayer.value = 'background-layer';
+  //   }
 };
 
 const fetchProjects = async () => {
@@ -94,63 +94,55 @@ onMounted(() => {
 </script>
 
 <template>
+  <!-- <div class="page-container"> -->
   <div class="grid-container">
+  
     <div class="topBar">
-      <Topbar 
-        ref="topbar" 
-        :interactive-mode="interactiveMode" 
-        :is-notification-visible="isNotificationVisible"
-        @update-notification-visible="isNotificationVisible = $event" 
-        @theme-changed="updateTheme" 
-        pageTitle="Projects Page" 
-      />
+      <Topbar ref="topbar" :interactive-mode="interactiveMode" :is-notification-visible="isNotificationVisible"
+        @update-notification-visible="isNotificationVisible = $event" @theme-changed="updateTheme"
+        pageTitle="Projects Page" />
     </div>
 
     <div class="content-container">
       <div :class="['background-layer', currentBackgroundLayer]" aria-hidden="true"></div>
 
-      <GalleryGrid 
-        :galleryName="galleryName" 
-        basePath=""
-        :galleryDescription="galleryDescription" 
-        :items="projectsData"
-        :isArtistsPage="false" 
-        :routeName="routeName" 
-        :theme="currentTheme.theme"
-      />
-
-      <!-- Window Notification -->
-      <div v-if="isNotificationVisible" class="notification-window">
-        <p>
-          This website stores accessibility menu settings you select in your browser to enhance your experience. No cookies or tracking are used.
-        </p>
-        <button @click="dismissNotification" class="notification-dismiss-button">Accept</button>
-      </div>
-
-      <Footer :theme="currentTheme" :isMainWebsite="true" />
+      <GalleryGrid :galleryName="galleryName" basePath="" :galleryDescription="galleryDescription" :items="projectsData"
+        :isProjectsPage="true" :routeName="routeName" :theme="currentTheme.theme" />
     </div>
 
     <BackTopButton />
+
+
+    <Footer :theme="currentTheme" :isMainWebsite="true" />
+
   </div>
 </template>
 
 <style scoped>
 .grid-container {
   background-color: var(--background-color-main);
-  background-image: url("/backgrounds/decorative-plus-xyz-homepage-purple.svg");
+  background-image: url("/backgrounds/background-projects-page-default.svg");
   background-size: 100%;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
+
 .content-container {
   display: flex;
   flex-direction: column;
+
   width: 90%;
   align-self: center;
   gap: 3.75rem;
   flex: 1;
+}
+
+/* 2. Empujamos el Footer al fondo automáticamente si el contenido es corto */
+:deep(footer),
+.content-container> :deep(footer) {
+  margin-top: auto;
 }
 
 .topBar {
@@ -247,9 +239,11 @@ onMounted(() => {
     padding: 1rem;
     border-radius: 30px 30px 0 0;
   }
+
   .notification-window p {
     font-size: 1rem;
   }
+
   .notification-dismiss-button {
     font-size: 1rem;
   }

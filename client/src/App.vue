@@ -35,7 +35,7 @@ body {
   --base-gap: 16rem;
   --font-family-Decorative: 'Kode Mono', sans-serif;
   --font-text: 'Inter', sans-serif;
- 
+  
   /* Main Sari Sari website */
   --active-color-main: #D400A6;
   --primary-color-main: #FFFBEB;

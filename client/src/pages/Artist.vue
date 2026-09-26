@@ -7,15 +7,11 @@ import EntityPage from '../components/EntityPage.vue';
 // 1. Definimos constantes y estado reactivo
 const route = useRoute();
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
-
-// Dejamos los prefijos base apuntando a /uploads/
-// const UPLOADS_PREFIX_THUMNAIL_AND_BANNER = `${API_BASE_URL}/uploads/`;
-// const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/`;
-
 const UPLOADS_PREFIX_THUMNAIL_AND_BANNER = `${API_BASE_URL}/uploads/artists/`;
 const UPLOADS_PREFIX_ASSET_IMAGE = `${API_BASE_URL}/uploads/artists/`;
 
 const collection = ref(null);
+
 const backgrounds = {
   default: '../backgrounds/background-artist-blue.svg',
   grayscale: '../backgrounds/background-artist-page-grayscale.svg',
@@ -46,6 +42,8 @@ const normalizeImagePath = (path, defaultPlaceholder = 'artists/placeholder.png'
   // 4. Retornamos con 'artists/' al inicio
   return `artists/${raw}`;
 };
+
+
 
 // 2. Lógica de carga
 onMounted(async () => {
@@ -95,24 +93,18 @@ const linkToAsset = (asset, artist) => {
 </script>
 
 <template>
-  <EntityPage 
-    v-if="collection"
-    :entity="collection" 
-    :entityType="'artist'" 
-    :backgrounds="backgrounds"
-    :bannerAndCardImagePrefix="UPLOADS_PREFIX_THUMNAIL_AND_BANNER" 
-    :assetImagePrefix="UPLOADS_PREFIX_ASSET_IMAGE" 
-    :returnRoute="'/artists'"
-    :collectionName="collection.artist_name || collection.title || 'Loading...'" 
-    :assetLinkFn="linkToAsset" 
-    :backgroundProps="{
+  <EntityPage v-if="collection" :entity="collection" :entityType="'artist'" :backgrounds="backgrounds"
+    :bannerAndCardImagePrefix="UPLOADS_PREFIX_THUMNAIL_AND_BANNER" :assetImagePrefix="UPLOADS_PREFIX_ASSET_IMAGE"
+    :returnRoute="'/artists'" :collectionName="collection.artist_name || collection.title || 'Loading...'"
+    :assetLinkFn="linkToAsset" :backgroundProps="{
       top: '8.5rem',
       left: '50%',
       transform: 'translateX(-50%)',
-      width: '60.5625rem',
-      height: '23.96563rem',
+      width: '65.87494rem',
+      height: '24.11456rem',
       backgroundSize: '90%',
-      backgroundPosition: 'center'
-    }" 
-  />
+      backgroundPosition: 'center',
+      zIndex: '999',
+      opacity: '1'
+    }" />
 </template>

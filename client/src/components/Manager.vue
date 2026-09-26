@@ -89,15 +89,15 @@
                     <v-btn v-if="currentModule === 'artists'" block color="secondary" size="large"
                         prepend-icon="mdi-eye" @click="openPreview" class="mb-4">
                         Preview Page
-                    </v-btn>
-
-                    <v-switch v-model="editingItem.is_active" @change="isDirty = true"
-                        :label="editingItem.is_active ? 'Status: Active (Public)' : 'Status: Draft (Hidden)'"
-                        color="success" inset class="ml-2 mb-4"></v-switch>
-
+                    </v-btn>                   
                     <v-btn block color="red" size="large" @click="handleCancel">
                         Cancel
                     </v-btn>
+
+                     <v-switch v-model="editingItem.is_active" @change="isDirty = true"
+                        :label="editingItem.is_active ? 'Status: Active (Public)' : 'Status: Draft (Hidden)'"
+                        color="success" inset class="ml-2 mb-4"></v-switch>
+
                 </v-col>
 
                 <v-col cols="12">
@@ -411,13 +411,24 @@ const saveChanges = async () => {
             await axios.put(`${API_BASE_URL}${config.value.endpoint}/${item.id}`, payload);
         } else {
             const res = await axios.post(`${API_BASE_URL}${config.value.endpoint}`, payload);
+            // Si era un registro nuevo, actualizamos el ID en el objeto que estamos editando
             editingItem.value.id = res.data.id;
         }
 
         await fetchModuleData();
         isDirty.value = false;
         tempSessionFolder.value = null;
-        editingItem.value = null;
+        // editingItem.value = null;
+
+        // 🟢 Opcional: Si necesitas sincronizar el objeto editado con la lista recargada
+        // if (items.value) {
+        //     const updated = items.value.find(i => i.id === editingItem.value.id);
+        //     if (updated) {
+        //         // Mantener la referencia actualizada sin salir del formulario
+        //         editingItem.value = { ...updated }; 
+        //     }
+        // }
+
         alert("¡Guardado exitosamente!");
     } catch (err) {
         console.error("Saving transaction rolled back error:", err);

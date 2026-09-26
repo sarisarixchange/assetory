@@ -20,9 +20,9 @@ const routeName = ref('Artist');
 const artistsData = ref([]);
 
 const backgrounds = {
-  default: './backgrounds/background-artists-blue.svg',
-  grayscale: './backgrounds/background-artists-page-grayscale.svg',
-  highContrast: './backgrounds/background-artists-page-high-contrast.svg'
+  default: '../backgrounds/background-artists-blue.svg',
+  grayscale: '../backgrounds/background-artists-page-grayscale.svg',
+  highContrast: '../backgrounds/background-artists-page-high-contrast.svg'
 };
 
 // --- Lógica de Carga ---
@@ -34,30 +34,6 @@ const loadInteractiveMode = () => {
     console.error('Error in loadInteractiveMode:', error);
   }
 };
-
-// const fetchArtists = async () => {
-//   try {
-//     const response = await axios.get(`${API_BASE_URL}/api/artists`);
-    
-//     artistsData.value = response.data.map(artist => {
-//       // Limpiamos el thumbnail: si viene de la DB algo como "/imagen.jpg", quitamos la barra inicial
-//       const cleanThumbnail = artist.thumbnail?.startsWith('/') 
-//         ? artist.thumbnail.substring(1) 
-//         : artist.thumbnail;
-
-//       return {
-//         ...artist,
-//         // Si ya es una URL de internet, se queda igual. Si no, le ponemos el prefijo del servidor.
-//         thumbnail: artist.thumbnail?.startsWith('http') 
-//           ? artist.thumbnail 
-//           : `${UPLOADS_PREFIX}${cleanThumbnail || 'placeholder.png'}`,
-//         title: artist.artist_name || artist.title || 'Untitled'
-//       };
-//     });
-//   } catch (error) {
-//     console.error('Error fetching artists:', error);
-//   }
-// };
 
 const fetchArtists = async () => {
   try {
